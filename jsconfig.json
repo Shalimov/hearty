@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"target": "es5",
+		"baseUrl": "./app"
+	},
+	"exclude": [
+		"node_modules"
+	]
+}

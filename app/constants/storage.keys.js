@@ -1,0 +1,3 @@
+export const STORAGE_KEYS = {
+	HEARTY_TOKEN: 'HEARTY:TKN',
+}

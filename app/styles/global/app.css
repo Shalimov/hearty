@@ -1,0 +1,17 @@
+html, body {
+  height: 100vh;
+  font-family: 'Raleway', sans-serif;
+  color: #2E2E2E;
+}
+
+#app { 
+  height: inherit;
+}
+
+.loader-hidden {
+  display: none;
+}
+
+.loader-active {
+  display: block;
+}

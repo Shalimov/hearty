@@ -1,6 +1,5 @@
-const ENV = process.env.NODE_ENV || 'development'
-
 const electron = require('electron')
+
 const apiService = require('./api')
 
 const app = electron.app
@@ -10,6 +9,7 @@ const BrowserWindow = electron.BrowserWindow
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+const ENV = process.env.NODE_ENV || 'development'
 const appUrl = ENV === 'production'
 	? `file://${__dirname}/index.html`
 	: 'http://localhost:8080'

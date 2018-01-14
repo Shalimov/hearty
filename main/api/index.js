@@ -5,6 +5,7 @@ const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs')
 const GraphQLService = require('./service')
 const GRAPHQL = require('../constants/graphql')
+const log = require('../utils/logger')
 
 module.exports = {
 	init() {
@@ -15,8 +16,8 @@ module.exports = {
 			try {
 				const message = await graphQLService.processRequest(args)
 				event.sender.send(GRAPHQL.NET, message)
-			} catch(err) {
-				console.error(err)
+			} catch (err) {
+				log.error(err)
 			}
 		})
 	},

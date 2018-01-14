@@ -4,7 +4,7 @@ const Mutation = require('./mutations/mutation.type')
 const SchemaDefinition = `
 	schema {
 		query: Query
-		mutation: Mutation
+		# mutation: Mutation
 	} 
 `
 

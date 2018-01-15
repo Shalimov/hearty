@@ -1,15 +1,15 @@
 const { graphql } = require('graphql')
 
-class GraphQLService {
+class GraphQLProcessor {
 	constructor(schema, middlewares = []) {
 		this.schema = schema
 
 		middlewares.push(this.completeQuery.bind(this))
 
-		this.processor = GraphQLService.createProcessor(middlewares)
+		this.processor = GraphQLProcessor.createMWProcessor(middlewares)
 	}
 
-	static createProcessor(middlewares) {
+	static createMWProcessor(middlewares) {
 		return {
 			run(data) {
 				const context = {}
@@ -33,7 +33,7 @@ class GraphQLService {
 	}
 
 	static create(schema, ...middlewares) {
-		return new GraphQLService(schema, middlewares)
+		return new GraphQLProcessor(schema, middlewares)
 	}
 
 	processRequest(data) {
@@ -66,4 +66,4 @@ class GraphQLService {
 	}
 }
 
-module.exports = GraphQLService
+module.exports = GraphQLProcessor

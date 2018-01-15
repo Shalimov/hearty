@@ -3,18 +3,18 @@ const { makeExecutableSchema } = require('graphql-tools')
 
 const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs')
-const GraphQLService = require('./service')
+const GraphQLProcessor = require('./processor')
 const GRAPHQL = require('../constants/graphql')
 const log = require('../utils/logger')
 
 module.exports = {
 	init() {
 		const executableSchema = makeExecutableSchema({ typeDefs, resolvers })
-		const graphQLService = GraphQLService.create(executableSchema)
+		const graphQLProcessor = GraphQLProcessor.create(executableSchema)
 
 		ipcMain.on(GRAPHQL.NET, async (event, args) => {
 			try {
-				const message = await graphQLService.processRequest(args)
+				const message = await graphQLProcessor.processRequest(args)
 				event.sender.send(GRAPHQL.NET, message)
 			} catch (err) {
 				log.error(err)

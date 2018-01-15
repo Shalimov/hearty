@@ -1,25 +1,25 @@
+const fp = require('lodash/fp')
 const Datastore = require('nedb')
 const bluebird = require('bluebird')
 
 module.exports = {
 	init() {
-		const db = {}
-
-		const loadOrCreateCollection = (collectionName) => {
+		const loadOrCreateCollection = async (collectionName) => {
 			const collection = new Datastore({
 				filename: `${collectionName}.db`,
 				timestampData: true,
 			})
 
 			bluebird.promisifyAll(collection)
-			db[collectionName] = collection
 
-			return collection.loadDatabaseAsync()
+			await collection.loadDatabaseAsync()
+
+			return [collectionName, collection]
 		}
 
 		return Promise.all([
 			loadOrCreateCollection('users'),
 			loadOrCreateCollection('patients'),
-		])
+		]).then(fp.fromPairs)
 	},
 }

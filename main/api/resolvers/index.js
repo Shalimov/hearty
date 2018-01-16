@@ -1,10 +1,6 @@
 module.exports = {
 	Query: {
-		me: () => Promise.resolve({
-			id: 'q23A!wS23sazqX!',
-			username: 'admin_account',
-			email: 'system@gmail.com',
-		}),
+		me: (_obj, _args, context) => context.user,
 	},
 
 	// AuthMutation: {

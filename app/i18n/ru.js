@@ -23,5 +23,5 @@ export default {
 	labels: {
 		email: 'Адрес электронной почты',
 		password: 'Пароль',
-	}
+	},
 }

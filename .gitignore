@@ -28,5 +28,8 @@ package-lock.json
 # Brunch output folder.
 public/
 
+# DB files
+dbs/*.db
+
 # Exclude public routes
 !app/routes/public

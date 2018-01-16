@@ -1,12 +1,18 @@
 const { graphql } = require('graphql')
 
+const QueryContext = require('./context')
+
 class GraphQLProcessor {
 	constructor({ schema, context = {}, middlewares = [] }) {
 		this.schema = schema
 
 		middlewares.push(this.completeQuery.bind(this))
-
-		this.processor = GraphQLProcessor.createMWProcessor(context, middlewares)
+		
+		const sealedContext = true
+		this.processor = GraphQLProcessor.createMWProcessor(
+			QueryContext.create(context, sealedContext),
+			middlewares
+		)
 	}
 
 	static createMWProcessor(context, middlewares) {
@@ -18,14 +24,14 @@ class GraphQLProcessor {
 					if (error) {
 						return Promise.reject(error)
 					}
-	
+
 					const middleware = queue.shift()
 
 					if (middleware) {
 						return middleware(data, context, next)
 					}
 				}
-	
+
 				return next()
 			},
 		}

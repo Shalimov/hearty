@@ -8,7 +8,7 @@ module.exports = {
 	async init() {
 		const loadOrCreateCollection = async (collectionName) => {
 			const collection = new Datastore({
-				filename: `${collectionName}.db`,
+				filename: `/dbs/${collectionName}.db`,
 				timestampData: true,
 			})
 

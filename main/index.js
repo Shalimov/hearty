@@ -1,6 +1,7 @@
 const electron = require('electron')
 
-const apiService = require('./api')
+const api = require('./api')
+const repository = require('./repo')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -37,8 +38,11 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-	apiService.init()
-	createWindow()
+	repository.init().then(() => {
+		api.init(repository)
+	}).then(() => {
+		createWindow()
+	})
 })
 
 // Quit when all windows are closed.

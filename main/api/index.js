@@ -1,6 +1,7 @@
 const { ipcMain } = require('electron')
 const { makeExecutableSchema } = require('graphql-tools')
 
+const { verifyToken, retrieveUser } = require('./middlewares/auth')
 const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs')
 const GraphQLProcessor = require('./processor')
@@ -9,15 +10,10 @@ const log = require('../utils/logger')
 
 module.exports = {
 	init(repository) {
-		const defaultContext = Object.defineProperty({}, 'repository', {
-			writable: false,
-			value: repository,
-		})
-
 		const graphQLProcessor = GraphQLProcessor.create({
 			schema: makeExecutableSchema({ typeDefs, resolvers }),
-			context: defaultContext,
-			middlewares: [],
+			context: { repository },
+			middlewares: [verifyToken, retrieveUser],
 		})
 
 		ipcMain.on(GRAPHQL.NET, async (event, args) => {

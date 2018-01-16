@@ -1,7 +1,16 @@
-const AuthMutation = require('./auth.mutation.type')
-
 const Mutation = `
-	union Mutation = AuthMutation
+	type Mutation {
+		createToken(input: CredentialsInput): CreateTokenPayload
+	}
+
+	input CredentialsInput {
+		email: String!
+		password: String!
+	}
+
+	type CreateTokenPayload {
+		token: String!
+	}
 `
 
-module.exports = [Mutation, AuthMutation]
+module.exports = [Mutation]

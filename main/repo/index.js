@@ -1,14 +1,30 @@
 const fp = require('lodash/fp')
+const fs = require('fs')
+const path = require('path')
 const Datastore = require('nedb')
 const bluebird = require('bluebird')
 
 const seeds = require('./seeds')
+const log = require('../utils/logger')
+
+const createDatabaseDirectory = () => {
+	try {
+		const dbsPath = path.join(process.cwd(), '/dbs')
+		if (!fs.existsSync(dbsPath)) {
+			fs.mkdirSync(dbsPath)
+		}
+	} catch (err) {
+		log.error(err)
+	}
+}
 
 module.exports = {
 	async init() {
+		createDatabaseDirectory()
+
 		const loadOrCreateCollection = async (collectionName) => {
 			const collection = new Datastore({
-				filename: `/dbs/${collectionName}.db`,
+				filename: `${process.cwd()}/dbs/${collectionName}.db`,
 				timestampData: true,
 			})
 

@@ -2,6 +2,7 @@ const { ipcMain } = require('electron')
 const { makeExecutableSchema } = require('graphql-tools')
 
 const { verifyToken, retrieveUser } = require('./middlewares/auth')
+const servicesFactory = require('./services')
 const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs')
 const GraphQLProcessor = require('./processor')
@@ -10,9 +11,11 @@ const log = require('../utils/logger')
 
 module.exports = {
 	init(repository) {
+		const services = servicesFactory.create(repository)
+
 		const graphQLProcessor = GraphQLProcessor.create({
 			schema: makeExecutableSchema({ typeDefs, resolvers }),
-			context: { repository },
+			context: { repository, services },
 			middlewares: [verifyToken, retrieveUser],
 		})
 

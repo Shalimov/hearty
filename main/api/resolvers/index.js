@@ -3,9 +3,10 @@ module.exports = {
 		me: (_obj, _args, context) => context.user,
 	},
 
-	// AuthMutation: {
-	// 	createToken: (_, { email, password }) => ({
-	// 		token: `api${email}${password}token`.toLowerCase(),
-	// 	}),
-	// },
+	Mutation: {
+		createToken: (_, { email, password }, context) => {
+			const { authService } = context.services
+			return authService.createToken(email, password)
+		},
+	},
 }

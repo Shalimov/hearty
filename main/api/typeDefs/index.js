@@ -1,15 +1,15 @@
 const Query = require('./queries/query.type')
-// const Mutation = require('./mutations/mutation.type')
+const Mutation = require('./mutations/mutation.type')
 
 const SchemaDefinition = `
 	schema {
 		query: Query
-		# mutation: Mutation
+		mutation: Mutation
 	} 
 `
 
 module.exports = [
 	SchemaDefinition,
-	// ...Mutation,
+	...Mutation,
 	...Query,
 ]

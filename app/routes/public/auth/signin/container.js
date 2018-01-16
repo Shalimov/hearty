@@ -3,6 +3,7 @@ import { compose, withHandlers } from 'recompose'
 import { graphql } from 'react-apollo'
 import qql from 'graphql-tag'
 import { inject } from 'mobx-react'
+import log from 'utils/logger'
 // import { board } from 'routes/route.map'
 
 import SignInComponent from './component'
@@ -12,16 +13,33 @@ export default compose(
 	graphql(qql`
 		query {
 			me {
-				id
+				_id
 				email
 			}
 		}
 	`),
+	graphql(qql`
+		mutation Mutation{
+			createToken(input: $credentials) {
+				token
+			}
+		}
+	`, { name: 'createTokenMutation' }),
 	withHandlers({
 		onSubmit: ({ createTokenMutation }) => async () => {
-			try{
-				const result = await createTokenMutation({ variables: { email: 'hello', password: 'world' }})
-			} catch(err) {
+			try {
+				const token = await createTokenMutation({
+					variables: {
+						credentials: {
+							email: 'hello',
+							password: 'world',
+						},
+					},
+				})
+
+				console.log(token)
+			} catch (err) {
+				log.error(err)
 			}
 		},
 	}),

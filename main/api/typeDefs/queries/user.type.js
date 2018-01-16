@@ -1,9 +1,8 @@
 const User = `
 	type User {
-		id: Int!
+		id: String!
 		email: String!
-		firstName: String
-		lastName: String
+		username: String!
 	}
 `
 

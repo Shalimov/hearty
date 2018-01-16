@@ -37,10 +37,13 @@ class IpcLink extends ApolloLink {
 	generateMessage(id, operation) {
 		return {
 			id,
+			meta: {
+				context: operation.getContext(),
+			},
 			payload: {
 				...operation,
-				query: print(operation.query)
-			}
+				query: print(operation.query),
+			},
 		}
 	}
 

@@ -1,7 +1,6 @@
-import { types, flow, getSnapshot, getRoot } from 'mobx-state-tree'
-import services from 'services'
+import { types, getRoot } from 'mobx-state-tree'
 
-const { userService } = services
+// const { userService } = services
 
 const nullableStringType = types.maybe(types.string)
 
@@ -23,12 +22,6 @@ const UserModel = types.model('UserModel', UserModelScheme).actions(self => ({
 	applyChanges(changes) {
 		Object.assign(self, changes)
 	},
-
-	save: flow(function* () {
-		const userSnapshot = getSnapshot(self)
-		yield userService.update(userSnapshot.id, userSnapshot)
-		return self
-	}),
 })).views(self => ({
 	get tenant() {
 		const { tenants } = getRoot(self)

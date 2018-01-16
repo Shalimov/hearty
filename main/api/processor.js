@@ -1,18 +1,17 @@
 const { graphql } = require('graphql')
 
 class GraphQLProcessor {
-	constructor(schema, middlewares = []) {
+	constructor({ schema, context = {}, middlewares = [] }) {
 		this.schema = schema
 
 		middlewares.push(this.completeQuery.bind(this))
 
-		this.processor = GraphQLProcessor.createMWProcessor(middlewares)
+		this.processor = GraphQLProcessor.createMWProcessor(context, middlewares)
 	}
 
-	static createMWProcessor(middlewares) {
+	static createMWProcessor(context, middlewares) {
 		return {
 			run(data) {
-				const context = {}
 				const queue = middlewares.slice()
 
 				const next = (error) => {

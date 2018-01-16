@@ -2,8 +2,10 @@ const fp = require('lodash/fp')
 const Datastore = require('nedb')
 const bluebird = require('bluebird')
 
+const seeds = require('./seeds')
+
 module.exports = {
-	init() {
+	async init() {
 		const loadOrCreateCollection = async (collectionName) => {
 			const collection = new Datastore({
 				filename: `${collectionName}.db`,
@@ -17,9 +19,13 @@ module.exports = {
 			return [collectionName, collection]
 		}
 
-		return Promise.all([
+		const repository = await Promise.all([
 			loadOrCreateCollection('users'),
 			loadOrCreateCollection('patients'),
 		]).then(fp.fromPairs)
+
+		await seeds.init(repository)
+
+		return repository
 	},
 }

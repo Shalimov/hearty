@@ -8,9 +8,17 @@ const GRAPHQL = require('../constants/graphql')
 const log = require('../utils/logger')
 
 module.exports = {
-	init() {
-		const executableSchema = makeExecutableSchema({ typeDefs, resolvers })
-		const graphQLProcessor = GraphQLProcessor.create(executableSchema)
+	init(repository) {
+		const defaultContext = Object.defineProperty({}, 'repository', {
+			writable: false,
+			value: repository,
+		})
+
+		const graphQLProcessor = GraphQLProcessor.create({
+			schema: makeExecutableSchema({ typeDefs, resolvers }),
+			context: defaultContext,
+			middlewares: [],
+		})
 
 		ipcMain.on(GRAPHQL.NET, async (event, args) => {
 			try {

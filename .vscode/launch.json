@@ -4,6 +4,7 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+
 		{
 			"name": "Debug Main Process",
 			"type": "node",
@@ -11,7 +12,7 @@
 			"cwd": "${workspaceRoot}",
 			"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
 			"args": [
-				"./public/main/index.js"
+				"./main/index.js"
 			]
 		},
 		{

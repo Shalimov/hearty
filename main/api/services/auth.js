@@ -34,10 +34,10 @@ class AuthService {
 			}, jwtsecret, {
 				expiresIn: jwtperiod,
 			}, (err, token) => {
-				if (token) {
+				if (err) {
 					reject(err)
 				} else {
-					resolve(token)
+					resolve({ token })
 				}
 			})
 		})

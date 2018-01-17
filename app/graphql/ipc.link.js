@@ -19,19 +19,22 @@ class IpcLink extends ApolloLink {
 		const { id, payload } = args
 
 		if (!id) {
-			observer.error(new Error('Listener id is not present!'))
-			return
+			throw new Error('Listener id is not present!')
 		}
 
 		const observer = this.listeners.get(id)
 
 		if (!observer) {
-			observer.error(new Error(`Listener with id ${id} does not exist!`))
-			return
+			throw new Error(`Listener with id ${id} does not exist!`)
 		}
 
-		observer.next(payload)
-		observer.complete()
+		if (payload.errors) {
+			observer.error(payload.errors)
+		} else {
+			observer.next(payload)
+			observer.complete()
+		}
+
 
 		this.listeners.delete(id)
 	}

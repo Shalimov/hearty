@@ -1,9 +1,6 @@
 import createRoutes from 'shared/hocs/create-routes'
 
 import SignIn from './signin'
-import SignUp from './signup'
-import ForgotPassword from './forgotPassword'
-import ChangePassword from './changePassword'
 
 const AuthRoutes = createRoutes(({ match }) => [
 	{
@@ -16,18 +13,6 @@ const AuthRoutes = createRoutes(({ match }) => [
 	{
 		path: `${match.path}/signin`,
 		component: SignIn,
-	},
-	{
-		path: `${match.path}/signup`,
-		component: SignUp,
-	},
-	{
-		path: `${match.path}/change-password`,
-		component: ChangePassword,
-	},
-	{
-		path: `${match.path}/forgot-password`,
-		component: ForgotPassword,
 	},
 ])
 

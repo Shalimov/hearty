@@ -28,19 +28,6 @@ const styles = StyleSheet.create({
 		width: toPx(45 * unit),
 		marginBottom: toPx(3 * unit),
 	},
-
-	linkBoxWrapper: {
-		whiteSpace: 'nowrap',
-	},
-
-	link: {
-		...mixins.font(),
-		color: colors.color8,
-	},
-
-	linkDelimiter: {
-		margin: `0 ${toPx(unit)}`,
-	},
 })
 
 export default styles

@@ -28,6 +28,7 @@ class Validator {
 	clone() {
 		const clone = this.constructor.create()
 		clone.labelKey = this.labelKey
+		clone.localMessages = Object.create(this.localMessages)
 		clone.validationChain = this.validationChain.slice(0)
 		return clone
 	}

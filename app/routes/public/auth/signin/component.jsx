@@ -22,17 +22,6 @@ const SignInComponent = ({
 				<div className={css(styles.formContainer)}>
 					<SignInForm onSubmit={onSubmit} />
 				</div>
-				<div className={css(styles.linkBoxWrapper)}>
-					<Link to={auth.signup()}
-						className={css(styles.link)}>
-						{t('links.signup')}
-					</Link>
-					<span className={css(styles.linkDelimiter)}>|</span>
-					<Link to={auth.resetPassword()}
-						className={css(styles.link)}>
-						{t('links.forgotPassword')}?
-					</Link>
-				</div>
 			</div>
 		</div>
 	</div>

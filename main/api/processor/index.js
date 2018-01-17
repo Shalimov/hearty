@@ -7,7 +7,7 @@ class GraphQLProcessor {
 		this.schema = schema
 
 		middlewares.push(this.completeQuery.bind(this))
-		
+
 		const sealedContext = true
 		this.processor = GraphQLProcessor.createMWProcessor(
 			QueryContext.create(context, sealedContext),
@@ -22,7 +22,8 @@ class GraphQLProcessor {
 
 				const next = (error) => {
 					if (error) {
-						return Promise.reject(error)
+						next.reject(error)
+						return
 					}
 
 					const middleware = queue.shift()
@@ -32,7 +33,11 @@ class GraphQLProcessor {
 					}
 				}
 
-				return next()
+				return new Promise((resolve, reject) => {
+					next.end = resolve
+					next.reject = reject
+					next()
+				})
 			},
 		}
 	}
@@ -45,9 +50,9 @@ class GraphQLProcessor {
 		return this.processor.run(data)
 	}
 
-	async completeQuery({ id, payload }, context) {
+	async completeQuery({ id, payload }, context, next) {
 		const res = await this.executeQuery(payload, context)
-		return this.generateMessage(id, res)
+		next.end(this.generateMessage(id, res))
 	}
 
 	generateMessage(id, response) {

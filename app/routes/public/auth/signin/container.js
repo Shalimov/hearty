@@ -19,8 +19,8 @@ export default compose(
 		}
 	`),
 	graphql(qql`
-		mutation Mutation{
-			createToken(input: $credentials) {
+		mutation Mutation($input: CredentialsInput){
+			createToken(input: $input) {
 				token
 			}
 		}
@@ -30,14 +30,14 @@ export default compose(
 			try {
 				const token = await createTokenMutation({
 					variables: {
-						credentials: {
-							email: 'hello',
-							password: 'world',
+						input: {
+							email: 'work.igor.shalimov@gmail.com',
+							password: '!QAZ2wsx',
 						},
 					},
 				})
 
-				console.log(token)
+				log.info(token)
 			} catch (err) {
 				log.error(err)
 			}

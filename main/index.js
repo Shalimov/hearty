@@ -38,8 +38,8 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-	repository.init().then(() => {
-		api.init(repository)
+	repository.init().then((repo) => {
+		api.init(repo)
 	}).then(() => {
 		createWindow()
 	})

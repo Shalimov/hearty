@@ -15,7 +15,7 @@ class AuthService {
 
 	async createToken(email, password) {
 		const { users } = this.repository
-		const user = await users.findOne({ email })
+		const user = await users.findOneAsync({ email })
 
 		if (!user) {
 			throw Boom.notFound('User not found')
@@ -23,7 +23,7 @@ class AuthService {
 
 		const theSame = await bcrypt.compare(password, user.password)
 
-		if (theSame) {
+		if (!theSame) {
 			throw Boom.notFound('Wrong Email or Password')
 		}
 

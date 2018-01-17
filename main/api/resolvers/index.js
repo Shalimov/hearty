@@ -4,8 +4,9 @@ module.exports = {
 	},
 
 	Mutation: {
-		createToken: (_, { email, password }, context) => {
+		createToken: (_, { input }, context) => {
 			const { authService } = context.services
+			const { email, password } = input
 			return authService.createToken(email, password)
 		},
 	},

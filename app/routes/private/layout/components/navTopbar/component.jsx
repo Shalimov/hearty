@@ -20,7 +20,7 @@ const NavTopbarComponent = ({ user, menuItems, onItemClick }) => (
 				renderHeader={(isOpen) => (
 					<div className={css(styles.userMenuContainer)}>
 						<span className={css(styles.userMenuText)}>
-							{user.userName}
+							{user.username}
 						</span>
 						&nbsp;
 						<FontAwesome className={css(styles.icon)} size="3x" name="user-circle" />
@@ -48,7 +48,7 @@ const NavTopbarComponent = ({ user, menuItems, onItemClick }) => (
 NavTopbarComponent.propTypes = {
 	onItemClick: PropTypes.func.isRequired,
 	user: PropTypes.shape({ 
-		userName: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
 	}).isRequired,
 	menuItems: PropTypes.arrayOf(
 		PropTypes.oneOfType([PropTypes.shape(), PropTypes.func])

@@ -37,7 +37,7 @@ class AuthService {
 				if (err) {
 					reject(err)
 				} else {
-					resolve({ token })
+					resolve({ token, me: user })
 				}
 			})
 		})

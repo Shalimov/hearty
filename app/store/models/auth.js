@@ -17,9 +17,12 @@ const AuthModel = types.model('AuthModel', AuthModelScheme).actions(self => ({
 		const { token, user } = getSnapshot(self)
 
 		if (token && user) {
-			storage.setItem(STORAGE_KEYS.LINIUS_TOKEN, token)
-			storage.setItem(STORAGE_KEYS.LINIUS_USER_ID, user)
+			storage.setItem(STORAGE_KEYS.HEARTY_TOKEN, token)
 		}
+	},
+
+	clearSessionData(storage) {
+		storage.clear()
 	},
 }))
 

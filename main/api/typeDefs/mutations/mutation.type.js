@@ -10,6 +10,7 @@ const Mutation = `
 
 	type CreateTokenPayload {
 		token: String!
+		me: User
 	}
 `
 

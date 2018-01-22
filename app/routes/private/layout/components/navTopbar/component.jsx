@@ -3,16 +3,13 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { css } from 'aphrodite'
 import FontAwesome from 'react-fontawesome'
-import { Logo, Dropdown } from 'shared/components'
+import { Dropdown } from 'shared/components'
 
 import styles from './styles'
 
 const NavTopbarComponent = ({ user, menuItems, onItemClick }) => (
 	<nav className={css(styles.container)}>
 		<div className={css(styles.leftSection)}>
-			<div className={css(styles.logo)}>
-				<Logo />
-			</div>
 		</div>
 		<div className={css(styles.rightSection)}>
 			<Dropdown 

@@ -9,10 +9,8 @@ import BGImage from './bgImage'
 import Image from './image'
 import Input from './input'
 import Form from './form'
-import Logo from './logo'
 
 export {
-	Logo,
 	Form,
 	Image,
 	Input,

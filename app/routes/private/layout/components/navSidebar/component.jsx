@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { css, cssx } from 'utils/aphrodite-ext'
 import { board} from 'routes/route.map'
+import t from 'i18n'
 
 import styles from './styles'
 
@@ -14,7 +15,7 @@ const SideBarTrigger = ({ title, icon, chevronDir = 'down' }) => (
 	}, styles)}>
 		<div>
 			<FontAwesome name={icon} className={css(styles.menuItemIcon, styles.menuItemLeftIcon)} />
-			<span className={css(styles.menuItemTitle)}>{title}</span>
+			<span className={css(styles.menuItemTitle)}>{t(title)}</span>
 		</div>
 		<FontAwesome name={`chevron-${chevronDir}`} className={css(styles.menuItemIcon)} />
 	</button>
@@ -26,7 +27,7 @@ const SideBarLink = ({ url, title, icon, extraClass }) => (
 		className={css(styles.menuItemLink, extraClass)}
 		activeClassName={css(extraClass, styles.menuItemLinkActive)}>
 		{icon && <FontAwesome name={icon} className={css(styles.menuItemIcon, styles.menuItemLeftIcon)} />}
-		<span className={css(styles.menuItemTitle)}>{title}</span>
+		<span className={css(styles.menuItemTitle)}>{t(title)}</span>
 	</NavLink>
 )
 
@@ -34,7 +35,10 @@ const NavSidebarComponent = () => (
 	<aside className={css(styles.container)}>
 		<menu className={css(styles.menu)}>
 			<li className={css(styles.menuItem)}>
-				<SideBarLink url={board.index()} title="Welcome" icon="home" />
+				<SideBarLink url={board.index()} title="links.main" icon="home" />
+			</li>
+			<li className={css(styles.menuItem)}>
+				<SideBarLink url={board.index()} title="links.patients" icon="users" />
 			</li>
 			{/* <li className={css(styles.menuItem)}>
 				<Collapsible

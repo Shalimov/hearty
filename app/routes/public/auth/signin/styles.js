@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { toVw, toVh, toPx } from 'utils/styles'
+import { toPx, toPr, tags } from 'utils/styles'
 import { mixins } from 'styles/mixins'
 import { colors, measures } from 'styles/variables'
 
@@ -8,25 +8,16 @@ const { unit } = measures
 const styles = StyleSheet.create({
 	container: {
 		...mixins.flexRow(),
-	},
-
-	imageContainer: {
-		width: toVw(60),
-		height: toVh(100),
-		...mixins.clearfix(),
-	},
-
-	signinContainer: {
-		...mixins.flexRow(),
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: toVw(40),
-		overflow: 'auto',
+		height: toPr(100),
 	},
 
 	formContainer: {
-		width: toPx(45 * unit),
-		marginBottom: toPx(3 * unit),
+		border: `1px solid ${colors.color9}`,
+		padding: tags.px`${3 * unit} ${7 * unit}`,
+		borderRadius: toPx(6 * unit),
+		backgroundColor: colors.white95,
 	},
 })
 

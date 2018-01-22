@@ -4,7 +4,7 @@ import { css } from 'aphrodite'
 
 import styles from './styles'
 
-const ImageComponent = ({ name, ext = 'png'}) => (
+const ImageComponent = ({ name, ext = 'png' }) => (
 	<img src={`./img/${name}.${ext}`} className={css(styles.image)} />
 )
 

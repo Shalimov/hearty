@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
-import qql from 'graphql-tag'
+import gql from 'graphql-tag'
 import { inject, observer } from 'mobx-react'
 import { Redirect } from 'react-router-dom'
 import { compose, lifecycle } from 'recompose'
@@ -19,7 +19,7 @@ export const renderIfAuthenticated = (Component) =>
 	)))
 
 export const renderIfNotAuthenticated = compose(
-	graphql(qql`
+	graphql(gql`
 		query {
 			me {
 				_id

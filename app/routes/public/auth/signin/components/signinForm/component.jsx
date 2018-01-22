@@ -15,8 +15,7 @@ const SignInFormComponent = ({
 }) => (
 	<Form className={css(styles.form)}>
 		<fieldset>
-			<legend className={css(styles.formLabel)}>Sign in to your account</legend>
-			<p className={css(styles.formDescription)}>API usage, library access and more</p>
+			<legend className={css(styles.formLabel)}>{t('headers.signIn')}</legend>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput type="text" label={t('labels.email')} strictLong field={emailField} />
 			</div>

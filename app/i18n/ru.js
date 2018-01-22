@@ -6,6 +6,7 @@ export default {
 
 	},
 	headers: {
+		signIn: 'Добро пожаловать',
 		forgotPassword: 'Забыли пароль',
 	},
 	descriptions: {

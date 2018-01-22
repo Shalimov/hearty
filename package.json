@@ -37,7 +37,6 @@
     "bluebird": "^3.5.1",
     "boom": "^7.1.1",
     "color": "^2.0.1",
-    "dexie": "^2.0.1",
     "email-validator": "^1.1.1",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",

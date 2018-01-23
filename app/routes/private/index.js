@@ -3,10 +3,14 @@ import { renderIfAuthenticated } from 'shared/hocs/authenticated'
 
 import Layout from './layout'
 import Welcome from './welcome'
+import Patients from './patients'
 
 const PrivateRoutesRoot = createRoutes(({ match }) => [
 	{
-		exact: true,
+		path: `${match.path}/patients`,
+		component: Patients,
+	},
+	{
 		path: match.path,
 		component: Welcome,
 	},

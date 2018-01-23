@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 	
 	leftSection: {
 		flex: 1,
+		height: 'inherit',
 	},
 
 	rightSection: {

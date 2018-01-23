@@ -5,7 +5,7 @@ const BASE_PASSWORD = '!QAZ2wsx'
 
 module.exports = {
 	async init(repo) {
-		const usersCount = await repo.users.count()
+		const usersCount = await repo.users.countAsync({})
 
 		if (usersCount > 0) {
 			return

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { Image } from 'shared/components'
 import t from 'i18n'
@@ -7,9 +6,9 @@ import t from 'i18n'
 import styles from './styles'
 // import HelpSection from './components/helpSection'
 
-const WelcomeComponent = ({ username }) => (
+const WelcomeComponent = () => (
 	<div className={css(styles.container)}>
-		<h2 className={css(styles.header)}>{t('headers.welcome')} {username}</h2>
+		<h2 className={css(styles.header)}>{t('headers.welcome')}</h2>
 		<h3 className={css(styles.description)}>{t('descriptions.welcome')}</h3>
 		<div className={css(styles.row)}>
 			<div className={css(styles.apiPicBox)}>
@@ -24,9 +23,5 @@ const WelcomeComponent = ({ username }) => (
 		<hr className={css(styles.divider, styles.nthRow)} />
 	</div>
 )
-
-WelcomeComponent.propTypes = {
-	username: PropTypes.string.isRequired,
-}
 
 export default WelcomeComponent

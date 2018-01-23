@@ -1,17 +1,12 @@
+const AuthMutation = require('./auth.mutation')
+const PatientMutation = require('./patient.mutation')
+
 const Mutation = `
 	type Mutation {
 		createToken(input: CredentialsInput): CreateTokenPayload
-	}
-
-	input CredentialsInput {
-		email: String!
-		password: String!
-	}
-
-	type CreateTokenPayload {
-		token: String!
-		me: User
+		createPatient(input: PatientInput): Patient
+		updatePatient(input: PatientInput): Patient
 	}
 `
 
-module.exports = [Mutation]
+module.exports = [Mutation, AuthMutation, PatientMutation]

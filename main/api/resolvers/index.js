@@ -1,13 +1,30 @@
 module.exports = {
 	Query: {
-		me: (_obj, _args, context) => context.user,
+		me(_obj, _args, context) {
+			return context.user
+		},
+
+		patient(_obj, { id }, context) {
+			const { patientService } = context.services
+			return patientService.get(id)
+		},
 	},
 
 	Mutation: {
-		createToken: (_, { input }, context) => {
+		createToken(_, { input }, context) {
 			const { authService } = context.services
 			const { email, password } = input
 			return authService.createToken(email, password)
+		},
+
+		createPatient(_, { input: patient }, context) {
+			const { patientService } = context.services
+			return patientService.create(patient)
+		},
+
+		updatePatient(_, { input: patient }, context) {
+			const { patientService } = context.services
+			return patientService.update(patient)
 		},
 	},
 }

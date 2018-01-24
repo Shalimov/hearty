@@ -41,6 +41,9 @@ module.exports = {
 		static: [
 			'node_modules/setimmediate/setImmediate.js',
 		],
+		styles: {
+			'react-datetime': ['css/react-datetime.css'],
+		},
 	},
 
 	plugins: {

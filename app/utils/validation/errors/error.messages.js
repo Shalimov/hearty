@@ -17,10 +17,13 @@ const defaultMessages = {
 	[KEYS.STRING.ENUM]: ({ label, args }) => `${label} must be one of [${args}]`,
 	[KEYS.STRING.EMAIL]: ({ label }) => `${label} must be valid`,
 	[KEYS.STRING.PATTERN]: ({ label }) => `${label} must match the specific pattern`,
-	[KEYS.STRING.USERNAME]: ({ label }) => `${label} must contain only a-z, A-Z, 0-9, -, _ symbols`,	
+	[KEYS.STRING.USERNAME]: ({ label }) => `${label} must contain only a-z, A-Z, 0-9, -, _ symbols`,
 	[KEYS.STRING.DIGIT_LINE]: ({ label }) => `${label} must contain digits only`,
 	[KEYS.STRING.PHONE_NUMBER]: ({ label }) => `${label} must correspond the following format +XXXXXXXXXXX(X)`,
 	[KEYS.STRING.SIMPLE_PASSWORD]: ({ label }) => `${label} must include only latin symbols/digits and have at least one digit, one uppercase and lowercase letter`,
+
+	/* DATE */
+	[KEYS.DATE.TYPE]: ({ label }) => `${label} must be a date`,
 }
 
 const assignMessages = (messages) => {

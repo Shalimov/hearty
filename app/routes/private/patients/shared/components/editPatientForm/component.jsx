@@ -32,10 +32,11 @@ const EditPatientFormComponent = ({
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
-					type="text"
+					type="date"
 					label={t('labels.birthdate')}
 					strictLong
-					field={birthdateField} />
+					field={birthdateField}
+				/>
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput

@@ -19,4 +19,8 @@ export default {
 		PHONE_NUMBER: 'string.phone.number',
 		SIMPLE_PASSWORD: 'string.simple.password',
 	},
+
+	DATE: {
+		TYPE: 'date.type',
+	},
 }

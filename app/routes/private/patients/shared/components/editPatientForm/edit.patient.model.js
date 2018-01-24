@@ -7,21 +7,30 @@ const availableRegions = fp.map('value', t('regions'))
 export default ({ initialValues = {} }) => ({
 	fullnameField: {
 		initialValue: initialValues.fullname,
-		scheme: Ego.string().required(),
+		scheme: Ego.string()
+			.label(t('labels.fullname'))
+			.required(),
 	},
 
 	birthdateField: {
 		initialValue: initialValues.birthdate,
-		scheme: Ego.string().required(),
+		scheme: Ego.date()
+			.label(t('labels.birthdate'))
+			.required(),
 	},
 
 	regionField: {
 		initialValue: initialValues.region,
-		scheme: Ego.string().enum(availableRegions).required(),
+		scheme: Ego.string()
+			.label(t('labels.region'))
+			.enum(availableRegions)
+			.required(),
 	},
 
 	addressField: {
 		initialValue: initialValues.address,
-		scheme: Ego.string().required(),
+		scheme: Ego.string()
+			.label(t('labels.address'))
+			.required(),
 	},
 })

@@ -1,0 +1,7 @@
+.rdt {
+	width: inherit;
+}
+
+.rdtPicker th, .rdtPicker td {
+	vertical-align: middle;
+}

@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css, cssx } from 'utils/aphrodite-ext'
+
+import defaultRenderer from './default.renderer'
+import dateRenderer from './date.renderer'
 import styles from './styles'
 
-const EMPTY_STRING = ''
 const join = (...classNames) => classNames.join(' ')
 
 const defaultErrorRender = (error) => (
@@ -12,24 +14,21 @@ const defaultErrorRender = (error) => (
 	</div>
 )
 
+const rendererProxy = props => {
+	switch (props.type) {
+	case 'date': return dateRenderer(props)
+	default: return defaultRenderer(props)
+	}
+}
+
 const InputComponent = ({
-	id,
 	label,
-	className,
-	disabled,
-	readOnly,
 	strictShort,
 	strictLong,
-	strictHigh,
-	type = 'text',
-	value,
-	autoComplete,
-	placeholder,
-	showError,
 	error,
 	errorRender = defaultErrorRender,
-	onInternalChange,
-	onBlur,
+	renderComponent = rendererProxy,
+	...params
 }) => (
 	<div className={css(styles.inputContainer)}>
 		{label && <label className={css(styles.label)}>{label}</label>}
@@ -40,49 +39,20 @@ const InputComponent = ({
 				strictLong,
 			}, styles)
 		)}>
-			<input
-				id={id}
-				type={type}
-				className={
-					join(
-						cssx({ 
-							input: true,
-							strictHigh: strictHigh,
-							inputError: showError,
-						}, styles),
-						className
-					)
-				}
-				readOnly={readOnly}
-				placeholder={placeholder}
-				autoComplete={autoComplete}
-				disabled={disabled}
-				value={value || EMPTY_STRING}
-				onBlur={onBlur}
-				onChange={onInternalChange} />
-			{showError && errorRender(error)}
+			{renderComponent(params)}
+			{params.showError && errorRender(error)}
 		</div>
 	</div>
 )
 
 InputComponent.propTypes = {
-	id: PropTypes.string,
 	label: PropTypes.string,
-	type: PropTypes.string,
-	readOnly: PropTypes.bool,
-	disabled: PropTypes.bool,
 	strictShort: PropTypes.bool,
-	strictHigh: PropTypes.bool,
 	strictLong: PropTypes.bool,
-	className: PropTypes.string,
-	placeholder: PropTypes.string,
 	errorRender: PropTypes.func,
-	value: PropTypes.any,
-	autoComplete: PropTypes.string,
 	showError: PropTypes.bool,
 	error: PropTypes.shape({ message: PropTypes.string }),
-	onInternalChange: PropTypes.func,
-	onBlur: PropTypes.func,
+	renderComponent: PropTypes.func,
 }
 
 export default InputComponent

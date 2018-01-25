@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css, cssx } from 'utils/aphrodite-ext'
 
-import defaultRenderer from './default.renderer'
-import dateRenderer from './date.renderer'
+import defaultRenderer from './renderers'
+import selectRenderer from './renderers/select'
+import dateRenderer from './renderers/date'
 import styles from './styles'
 
 const join = (...classNames) => classNames.join(' ')
@@ -17,6 +18,7 @@ const defaultErrorRender = (error) => (
 const rendererProxy = props => {
 	switch (props.type) {
 	case 'date': return dateRenderer(props)
+	case 'select': return selectRenderer(props)
 	default: return defaultRenderer(props)
 	}
 }

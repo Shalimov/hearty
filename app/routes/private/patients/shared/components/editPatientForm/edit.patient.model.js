@@ -2,8 +2,6 @@ import fp from 'lodash/fp'
 import Ego from 'utils/validation'
 import t from 'i18n'
 
-const availableRegions = fp.map('value', t('regions'))
-
 export default ({ initialValues = {} }) => ({
 	fullnameField: {
 		initialValue: initialValues.fullname,
@@ -21,9 +19,9 @@ export default ({ initialValues = {} }) => ({
 
 	regionField: {
 		initialValue: initialValues.region,
-		scheme: Ego.string()
+		scheme: Ego.number()
+			.forProp(fp.get('value'))
 			.label(t('labels.region'))
-			.enum(availableRegions)
 			.required(),
 	},
 

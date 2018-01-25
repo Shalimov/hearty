@@ -3,9 +3,9 @@ import fp from 'lodash/fp'
 import AnyValidator from './any.validator'
 import ERROR_KEYS from '../errors/error.keys'
 
-class RefValidator extends AnyValidator {
+class DateValidator extends AnyValidator {
 	static create() {
-		return new RefValidator()
+		return new DateValidator()
 	}
 
 	date() {
@@ -13,4 +13,4 @@ class RefValidator extends AnyValidator {
 	}
 }
 
-export default RefValidator
+export default DateValidator

@@ -1,0 +1,7 @@
+.Select-control {
+	background-color: transparent;
+	border: none !important;
+	box-shadow: none !important;
+	border-radius: 0;
+	height: inherit;
+}

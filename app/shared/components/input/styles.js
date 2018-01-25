@@ -6,7 +6,23 @@ import { mixins } from 'styles/mixins'
 const { unit, half } = measures
 
 const short = toPx(16 * unit)
-const long = toPx(36 *  unit)
+const long = toPx(36 * unit)
+
+const control = {
+	...mixins.font(),
+	color: colors.color8,
+	boxSizing: 'border-box',
+	minWidth: short,
+	width: 'inherit',
+	maxWidth: long,
+	border: `1px solid ${colors.color1}`,
+	outline: 'none',
+
+	':disabled': {
+		cursor: 'not-allowed',
+		backgroundColor: colors.color9,
+	},
+}
 
 const styles = StyleSheet.create({
 	label: {
@@ -23,20 +39,8 @@ const styles = StyleSheet.create({
 	},
 
 	input: {
-		...mixins.font(),
-		color: colors.color8,
-		boxSizing: 'border-box',
+		...control,
 		padding: toPx(unit),
-		minWidth: short,
-		width: 'inherit',
-		maxWidth: long,
-		border: `1px solid ${colors.color1}`,
-		outline: 'none',
-
-		':disabled': {
-			cursor: 'not-allowed',
-			backgroundColor: colors.color9,
-		},
 	},
 
 	strictShort: {
@@ -61,6 +65,11 @@ const styles = StyleSheet.create({
 		bottom: toPx(6 * unit),
 		width: 'inherit',
 		maxWidth: long,
+	},
+
+	select: {
+		...control,
+		backgroundColor: colors.white100,
 	},
 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { cssx } from 'utils/aphrodite-ext'
 
-import styles from './styles'
+import styles from '../styles'
 
 const EMPTY_STRING = ''
 const join = (...classNames) => classNames.join(' ')

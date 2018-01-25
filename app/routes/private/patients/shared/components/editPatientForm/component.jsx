@@ -40,9 +40,15 @@ const EditPatientFormComponent = ({
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
-					type="text"
+					type="select"
 					label={t('labels.region')}
 					strictLong
+					simpleValue
+					searchable={false}
+					clearable={false}
+					labelKey="value"
+					valueKey="id"
+					options={t('regions')}
 					field={regionField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>

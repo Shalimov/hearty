@@ -23,4 +23,9 @@ export default {
 	DATE: {
 		TYPE: 'date.type',
 	},
+
+
+	NUMBER: {
+		TYPE: 'date.type',
+	},
 }

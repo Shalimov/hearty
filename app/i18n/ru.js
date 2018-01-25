@@ -1,4 +1,37 @@
+import Ego from 'utils/validation'
+
+const KEYS = Ego.ERROR_KEYS
+
 export default {
+	validation: {
+		[KEYS.DEFAULT]: () => 'Поле содержит ошибки',
+
+		/* ANY */
+		[KEYS.REQUIRED]: () => 'Поле обязательно для заполнения',
+		[KEYS.MIN]: ({ label, args }) => `${label} должно быть не менее ${args}`,
+		[KEYS.MAX]: ({ label, args }) => `${label} должно быть не более ${args}`,
+
+		/* REF */
+		[KEYS.REF.MATCH]: ({ label }) => `${label} должен совпадать`,
+
+		/* STRING */
+		[KEYS.STRING.TYPE]: ({ label }) => `${label} должно быть строкой`,
+		[KEYS.STRING.ALPHANUM]: ({ label }) => `${label} must contain only a-z A-Z 0-9 symbols`,
+		[KEYS.STRING.ENUM]: ({ label, args }) => `${label} must be one of [${args}]`,
+		[KEYS.STRING.EMAIL]: ({ label }) => `${label} должно быть корректным`,
+		[KEYS.STRING.PATTERN]: ({ label }) => `${label} must match the specific pattern`,
+		[KEYS.STRING.USERNAME]: ({ label }) => `${label} must contain only a-z, A-Z, 0-9, -, _ symbols`,
+		[KEYS.STRING.DIGIT_LINE]: ({ label }) => `${label} must contain digits only`,
+		[KEYS.STRING.PHONE_NUMBER]: ({ label }) => `${label} must correspond the following format +XXXXXXXXXXX(X)`,
+		[KEYS.STRING.SIMPLE_PASSWORD]: ({ label }) => `${label} must include only latin symbols/digits and have at least one digit, one uppercase and lowercase letter`,
+
+		/* DATE */
+		[KEYS.DATE.TYPE]: ({ label }) => `${label} должно быть датой`,
+
+		/* NUMBER */
+		[KEYS.NUMBER.TYPE]: ({ label }) => `${label} должно быть числом`,
+	},
+
 	errors: {
 
 	},
@@ -48,6 +81,7 @@ export default {
 
 	regions: [
 		{ id: 0, value: 'г. Могилев' },
-		{ id: 1, value: 'Могилевская область' }, 
+		{ id: 1, value: 'Могилевская область' },
 	],
 }
+

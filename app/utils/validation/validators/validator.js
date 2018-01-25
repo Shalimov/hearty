@@ -6,7 +6,8 @@ import ERROR_MESSAGES from '../errors/error.messages'
 class Validator {
 	static EMPTY_STRING = ''
 
-	constructor() {
+	constructor(extractor = fp.identity) {
+		this.propExtractor = extractor
 		this.labelKey = 'Value'
 		this.localMessages = {}
 		this.validationChain = []
@@ -36,8 +37,10 @@ class Validator {
 	// eslint-disable-next-line
 	wrapValidator(key, isValidFn, { args, forceCheck = false }) {
 		return (value, context) => {
-			if (forceCheck || !Validator.isBlank(value)) {
-				return [key, isValidFn(value, context), args]
+			const extractedValue = this.propExtractor(value)
+
+			if (forceCheck || !Validator.isBlank(extractedValue)) {
+				return [key, isValidFn(extractedValue, context), args]
 			}
 
 			return [key, true, args]
@@ -49,6 +52,12 @@ class Validator {
 		const clone = this.clone()
 
 		clone.validationChain.push(validator)
+		return clone
+	}
+
+	forProp(propExtractor) {
+		const clone = this.clone()
+		clone.propExtractor = propExtractor
 		return clone
 	}
 

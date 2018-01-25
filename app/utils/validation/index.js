@@ -1,6 +1,7 @@
 import AnyValidator from './validators/any.validator'
 import RefValidator from './validators/ref.validator'
 import DateValidator from './validators/date.validator'
+import NumberValidator from './validators/number.validator'
 import StringValidator from './validators/string.validator'
 import ERROR_KEYS from './errors/error.keys'
 import { assignMessages } from './errors/error.messages'
@@ -18,6 +19,10 @@ class Validation {
 
 	static date() {
 		return DateValidator.create().date()
+	}
+
+	static number() {
+		return NumberValidator.create().number()
 	}
 
 	static string() {

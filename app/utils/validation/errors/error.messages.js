@@ -24,6 +24,9 @@ const defaultMessages = {
 
 	/* DATE */
 	[KEYS.DATE.TYPE]: ({ label }) => `${label} must be a date`,
+
+	/* NUMBER */
+	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} must be a number`,
 }
 
 const assignMessages = (messages) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import DatePicker from 'react-datetime'
 import { cssx } from 'utils/aphrodite-ext'
 
-import styles from './styles'
+import styles from '../styles'
 
 const join = (...classNames) => classNames.join(' ')
 

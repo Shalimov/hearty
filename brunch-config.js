@@ -43,6 +43,8 @@ module.exports = {
 		],
 		styles: {
 			'react-datetime': ['css/react-datetime.css'],
+			'react-select': ['dist/react-select.min.css'],
+			'react-table': ['react-table.css'],
 		},
 	},
 

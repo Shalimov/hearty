@@ -11,7 +11,6 @@ const dateRenderer = ({
 	id,
 	className,
 	disabled,
-	readOnly,
 	strictHigh,
 	showError,
 	value,
@@ -19,6 +18,7 @@ const dateRenderer = ({
 	placeholder,
 	onInternalChange,
 	onBlur,
+	readOnly = true,
 	...props
 }) => (
 		<DatePicker

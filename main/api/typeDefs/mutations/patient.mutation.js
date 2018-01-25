@@ -2,7 +2,7 @@ const PatientMutation = `
 	input PatientInput {
 		_id: ID
 		fullname: String!
-		birthdate: Int!
+		birthdate: Date!
 		region: String!
 		address: String!	
 	}

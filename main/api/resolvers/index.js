@@ -1,4 +1,6 @@
-module.exports = {
+const ScalarDate = require('./scalars/date')
+
+module.exports = Object.assign({
 	Query: {
 		me(_obj, _args, context) {
 			return context.user
@@ -27,4 +29,4 @@ module.exports = {
 			return patientService.update(patient)
 		},
 	},
-}
+}, ScalarDate)

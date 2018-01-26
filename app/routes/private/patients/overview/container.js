@@ -47,27 +47,29 @@ export default compose(
 	}),
 	withHandlers({
 		onSearch: ({ setSearchValue, searchField }) => () => {
-			setSearchValue(searchField.value)
+			setSearchValue([{ id: 'all', value: searchField.value }])
 		},
 
+		// TODO: maybe use refetch to do it
 		onFetchData: ({ data }) =>
 			async (state) => {
 				if (data.loading) {
 					return
 				}
+				
+				const filterCriteria = fp.head(state.filtered) || {}
 
 				data.fetchMore({
 					variables: {
 						input: {
 							limit: DEFAULT_PAGE_SIZE,
 							skip: state.page * DEFAULT_PAGE_SIZE,
+							term: filterCriteria.value,
 						},
 					},
 					updateQuery: (previousResult, { fetchMoreResult }) => fetchMoreResult,
 				})
 
-				// const sortCriteria = fp.head(state.sorted) || {}
-				// const filterCriteria = fp.head(state.filtered) || {}
 			},
 	}),
 )(OverviewPatientComponent)

@@ -1,5 +1,5 @@
 import { withRouter } from 'react-router-dom'
-import { compose, mapProps, withHandlers } from 'recompose'
+import { compose, withProps, withHandlers } from 'recompose'
 import { inject } from 'mobx-react'
 
 import NavTopbar from './component'
@@ -7,7 +7,7 @@ import NavTopbar from './component'
 export default compose(
 	inject('applicationStateStore'),
 	withRouter,
-	mapProps(({ applicationStateStore }) => ({
+	withProps(({ applicationStateStore }) => ({
 		user: applicationStateStore.loggedUser || {},
 		menuItems: [
 			{

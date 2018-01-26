@@ -26,8 +26,8 @@ const retrieveUser = async (data, context, next) => {
 	const id = context.userId
 
 	if (id) {
-		const { users } = context.repository
-		const user = await users.findOneAsync({ _id: context.userId })
+		const { userService } = context.services
+		const user = await userService.get(id)
 		context.set('user', user)
 	}
 

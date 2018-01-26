@@ -6,4 +6,10 @@ import ruLocale from './ru'
 
 Ego.assignMessages(ruLocale.validation)
 
-export default fp.get(fp.placeholder, ruLocale)
+const translate = fp.get(fp.placeholder, ruLocale)
+
+export default translate
+export const tp = (descriptor, params) => {
+	const result = fp.find(params, translate(descriptor))
+	return result ? result.value : result
+}

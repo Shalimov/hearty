@@ -1,6 +1,3 @@
-const AuthMutation = require('./auth.mutation')
-const PatientMutation = require('./patient.mutation')
-
 const Mutation = `
 	type Mutation {
 		createToken(input: CredentialsInput): CreateTokenPayload
@@ -9,4 +6,4 @@ const Mutation = `
 	}
 `
 
-module.exports = [Mutation, AuthMutation, PatientMutation]
+module.exports = [Mutation]

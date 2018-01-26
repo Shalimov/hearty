@@ -1,20 +1,73 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { patients } from 'routes/route.map'
+import { css } from 'aphrodite'
+import PropTypes from 'prop-types'
+import ReactTable from 'react-table'
+import FontAwesome from 'react-fontawesome'
+import { Button, ValidatedInput } from 'shared/components'
+import { patients as patientsUrl } from 'routes/route.map'
 import t from 'i18n'
-// import PropTypes from 'prop-types'
-// import { css } from 'aphrodite'
 
-// import styles from './styles'
+import styles from './styles'
 
-const OverviewPatientsComponent = () => (
-	<div>
-		Overview
-		<Link to={patients.add()}>{t('links.addPatient')}</Link>
+const OverviewPatientComponent = ({
+	data: { patients = {}, loading },
+	columns,
+	filtered,
+	searchField,
+	onFetchData,
+	onSearch,
+}) => (
+	<div className={css(styles.container)}>
+		<h1 className={css(styles.header)}>{t('links.patients')}</h1>
+		<div className={css(styles.searchPanel)}>
+			<ValidatedInput strictLong strictHigh field={searchField} placeholder="Search..." />
+			<div className={css(styles.searchButtonWrapper)}>
+				<Button id="search-btn" rounded onClick={onSearch}>{t('buttons.search')}</Button>
+			</div>
+		</div>
+		<div className={css(styles.controlPanel)}>
+			<div className={css(styles.controls)}>
+				<Link id="add-user-link" to={patientsUrl.add()}>
+					<Button transparent>
+						<FontAwesome size="2x" name="plus-circle" />
+						<span className={css(styles.buttonText)}>{t('links.addPatient')}</span>
+					</Button>
+				</Link>
+			</div>
+		</div>
+		<ReactTable
+			manual
+			minRows={1}
+			className="-highlight"
+			filterable
+			filtered={filtered}
+			data={patients.content}
+			pages={patients.totalPages}
+			loading={loading}
+			onFetchData={onFetchData}
+			columns={columns}
+			pageSize={patients.pageSize}
+			showPageSizeOptions={false}
+			showPageJump={false}
+			resizable={false}
+			noDataText={t('tables.notFound')}
+			previousText={t('tables.prev')}
+			nextText={t('tables.next')}
+			loadingText={t('tables.loading')}
+			pageText={t('tables.page')}
+			ofText={t('tables.of')}
+		/>
 	</div>
 )
 
-OverviewPatientsComponent.propTypes = {
+OverviewPatientComponent.propTypes = {
+	data: PropTypes.shape().isRequired,
+	columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	filtered: PropTypes.arrayOf(PropTypes.shape()),
+	searchField: PropTypes.shape().isRequired,
+	onFetchData: PropTypes.func.isRequired,
+	onSearch: PropTypes.func.isRequired,
 }
 
-export default OverviewPatientsComponent
+export default OverviewPatientComponent

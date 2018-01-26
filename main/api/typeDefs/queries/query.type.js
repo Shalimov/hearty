@@ -5,6 +5,7 @@ const Query = `
 	type Query {
 		me: User
 		patient(id: ID): Patient
+		patients(input: PatientQueryInput): PatientQueryPayload
 	}
 `
 

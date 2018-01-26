@@ -2,7 +2,7 @@ import Ego from 'utils/validation'
 
 const KEYS = Ego.ERROR_KEYS
 
-export default {
+const descriptions = {
 	validation: {
 		[KEYS.DEFAULT]: () => 'Поле содержит ошибки',
 
@@ -37,7 +37,15 @@ export default {
 	},
 
 	common: {
+	},
 
+	tables: {
+		notFound: 'Ни одной записи не найдено',
+		loading: 'В процессе загрузки',
+		page: 'Страница',
+		of: 'из',
+		prev: 'предыдущая',
+		next: 'следующая',
 	},
 
 	headers: {
@@ -60,6 +68,7 @@ export default {
 	},
 
 	buttons: {
+		search: 'Найти',
 		save: 'Сохранить',
 		submit: 'Отправить',
 		back: 'Назад',
@@ -84,4 +93,6 @@ export default {
 		{ id: 1, value: 'Могилевская область' },
 	],
 }
+
+export default descriptions
 

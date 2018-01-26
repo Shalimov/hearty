@@ -1,43 +1,30 @@
-const Boom = require('boom')
+const fp = require('lodash/fp')
+const BaseService = require('./base')
 
-class PatientService {
+class PatientService extends BaseService {
 	constructor(repository) {
-		this.repository = repository
+		super(repository, 'patients')
 	}
 
 	static create(repository) {
 		return new PatientService(repository)
 	}
 
-	create(patient) {
-		const { patients } = this.repository
-		return patients.insertAsync(patient)
-	}
-
-	get(id) {
-		const { patients } = this.repository
-		return patients.findOneAsync({ _id: id })
-	}
-
-	async update(patient) {
-		const { patients } = this.repository
-
-		if (!patient._id) {
-			throw Boom.badData('Cannot find patient')
+	toSearchQuery(params) {
+		if (!params.term) {
+			return {}
 		}
 
-		await patients.updateAsync({ _id: patient._id }, { $set: patient })
-		return patient
-	}
+		const searchRegexString = fp.escapeRegExp(params.term)
+		const searchRegex = new RegExp(searchRegexString)
 
-	async remove(id) {
-		const { patients } = this.repository
-
-		if (!id) {
-			throw Boom.badData('Cannot find patient')
+		return {
+			$or: [{
+				fullname: searchRegex,
+			}, {
+				address: searchRegex,
+			}],
 		}
-
-		await patients.removeAsync({ _id: id })
 	}
 }
 

@@ -1,6 +1,7 @@
 import uuid from 'uuid'
 import { ApolloLink, Observable } from 'apollo-link'
 import { print } from 'graphql/language/printer'
+import log from 'utils/logger'
 import { GRAPHQL } from 'constants/graphql'
 
 // eslint-disable-next-line
@@ -29,6 +30,7 @@ class IpcLink extends ApolloLink {
 		}
 
 		if (payload.errors) {
+			log.error(payload.errors)
 			observer.error(payload.errors)
 		} else {
 			observer.next(payload)

@@ -1,5 +1,8 @@
+import fp from 'lodash/fp'
 import t, { tp } from 'i18n'
 import moment from 'moment'
+
+import { EditLink } from './component'
 
 export const columnsDescription = [{
 	Header: t('labels.fullname'),
@@ -18,5 +21,12 @@ export const columnsDescription = [{
 }, {
 	Header: t('labels.address'),
 	accessor: 'address',
+	filterable: false,
+}, {
+	id: 'edit',
+	width: 30,
+	accessor: fp.identity,
+	Cell: EditLink,
+	sortable: false,
 	filterable: false,
 }]

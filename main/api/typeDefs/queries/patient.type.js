@@ -3,7 +3,7 @@ const Patient = `
 		_id: ID!
 		fullname: String!
 		birthdate: Date!
-		region: String!
+		region: Int!
 		address: String!
 	}
 
@@ -24,7 +24,7 @@ const Patient = `
 		_id: ID
 		fullname: String!
 		birthdate: Date!
-		region: String!
+		region: Int!
 		address: String!	
 	}
 `

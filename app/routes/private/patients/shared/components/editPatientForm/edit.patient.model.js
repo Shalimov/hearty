@@ -2,6 +2,8 @@ import fp from 'lodash/fp'
 import Ego from 'utils/validation'
 import t from 'i18n'
 
+const toDate = date => date ? new Date(date) : date
+
 export default ({ initialValues = {} }) => ({
 	fullnameField: {
 		initialValue: initialValues.fullname,
@@ -11,7 +13,7 @@ export default ({ initialValues = {} }) => ({
 	},
 
 	birthdateField: {
-		initialValue: initialValues.birthdate,
+		initialValue: toDate(initialValues.birthdate),
 		scheme: Ego.date()
 			.label(t('labels.birthdate'))
 			.required(),

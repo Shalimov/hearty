@@ -10,6 +10,12 @@ import t from 'i18n'
 
 import styles from './styles'
 
+const EditLink = ({ value }) => (
+	<Link to={patientsUrl.edit(value._id)}>
+		<Button iconed><FontAwesome name="pencil" /></Button>
+	</Link>
+)
+
 const OverviewPatientComponent = ({
 	data: { patients = {}, loading },
 	columns,
@@ -70,4 +76,9 @@ OverviewPatientComponent.propTypes = {
 	onSearch: PropTypes.func.isRequired,
 }
 
+EditLink.propTypes = {
+	value: PropTypes.shape().isRequired,
+}
+
 export default OverviewPatientComponent
+export { EditLink }

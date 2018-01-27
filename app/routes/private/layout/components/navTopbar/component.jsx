@@ -18,7 +18,7 @@ const NavTopbarComponent = ({ user, menuItems, onItemClick }) => (
 				renderHeader={(isOpen) => (
 					<div className={css(styles.userMenuContainer)}>
 						<span className={css(styles.userMenuText)}>
-							{user.username}
+							{user.email}
 						</span>
 						&nbsp;
 						<FontAwesome className={css(styles.icon)} size="3x" name="user-circle" />

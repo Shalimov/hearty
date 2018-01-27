@@ -11,7 +11,7 @@ const log = require('../utils/logger')
 
 module.exports = {
 	init(repository) {
-		const services = servicesFactory.create(repository)
+		const services = servicesFactory.init(repository)
 
 		const graphQLProcessor = GraphQLProcessor.create({
 			schema: makeExecutableSchema({ typeDefs, resolvers }),

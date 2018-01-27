@@ -1,6 +1,5 @@
 import fp from 'lodash/fp'
 import Ego from 'utils/validation'
-// import { toast } from 'react-toastify'
 import { withFormModel } from 'shared/hocs'
 import { compose, withHandlers, withState, defaultProps } from 'recompose'
 import gql from 'graphql-tag'
@@ -10,6 +9,7 @@ import OverviewPatientComponent from './component'
 import { columnsDescription } from './columns.description'
 
 const DEFAULT_PAGE_SIZE = 20
+const toFilterStruct = search => [{ id: 'all', value: search }]
 
 export default compose(
 	defaultProps({
@@ -19,7 +19,7 @@ export default compose(
 	withFormModel({
 		searchField: Ego.string(),
 	}, { spreadFields: true }),
-	withState('filtered', 'setSearchValue', [{ id: 'all', value: '' }]),
+	withState('filtered', 'setSearchValue', toFilterStruct('')),
 	graphql(gql`
 		query PatientOverview($input: PatientQueryInput) {
 			patients(input: $input) {
@@ -47,7 +47,8 @@ export default compose(
 	}),
 	withHandlers({
 		onSearch: ({ setSearchValue, searchField }) => () => {
-			setSearchValue([{ id: 'all', value: searchField.value }])
+			const filter = toFilterStruct(searchField.value)
+			setSearchValue(filter)
 		},
 
 		// TODO: maybe use refetch to do it
@@ -69,7 +70,6 @@ export default compose(
 					},
 					updateQuery: (previousResult, { fetchMoreResult }) => fetchMoreResult,
 				})
-
 			},
 	}),
 )(OverviewPatientComponent)

@@ -1,5 +1,5 @@
 import fp from 'lodash/fp'
-import { compose, lifecycle, withHandlers, withState, withProps } from 'recompose'
+import { compose, lifecycle, withHandlers, withState, mapProps } from 'recompose'
 import SubmitButtonComponent from './component'
 
 let componentExists = false
@@ -41,5 +41,5 @@ export default compose(
 			componentExists = false
 		},
 	}),
-	withProps(props => fp.omit(['setSubmitState'], props)),
+	mapProps(props => fp.omit(['setSubmitState'], props)),
 )(SubmitButtonComponent)

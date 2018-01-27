@@ -4,7 +4,6 @@ const path = require('path')
 const Datastore = require('nedb')
 const bluebird = require('bluebird')
 
-const seeds = require('./seeds')
 const log = require('../utils/logger')
 
 const createDatabaseDirectory = () => {
@@ -39,8 +38,6 @@ module.exports = {
 			loadOrCreateCollection('users'),
 			loadOrCreateCollection('patients'),
 		]).then(fp.fromPairs)
-
-		await seeds.init(repository)
 
 		return repository
 	},

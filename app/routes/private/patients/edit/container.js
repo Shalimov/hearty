@@ -2,11 +2,9 @@ import { compose, withHandlers } from 'recompose'
 import { graphql } from 'react-apollo'
 import { toast } from 'react-toastify'
 import gql from 'graphql-tag'
-import mapper from 'utils/simple.mapper'
 import log from 'utils/logger'
 
 import EditPatientComponent from './component'
-import patientMapping from './patient.mapping'
 
 export default compose(
 	graphql(gql`
@@ -32,16 +30,11 @@ export default compose(
 		}),
 	}),
 	withHandlers({
-		onSubmit: ({ editPatientMutation, history, data }) => async (formData) => {
-			const changes = mapper(formData, patientMapping)
-
+		onSubmit: ({ editPatientMutation, history }) => async (patientModel) => {
 			try {
 				await editPatientMutation({
 					variables: {
-						input: {
-							_id: data.patient._id,
-							...changes,
-						},
+						input: patientModel,
 					},
 				})
 

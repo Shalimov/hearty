@@ -16,7 +16,7 @@ class PatientService extends BaseService {
 		}
 
 		const searchRegexString = fp.escapeRegExp(params.term)
-		const searchRegex = new RegExp(searchRegexString)
+		const searchRegex = new RegExp(searchRegexString, 'i')
 
 		return {
 			$or: [{

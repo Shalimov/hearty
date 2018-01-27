@@ -4,7 +4,7 @@ import t from 'i18n'
 
 const toDate = date => date ? new Date(date) : date
 
-export default ({ initialValues = {} }) => ({
+export default ({ initialValues }) => ({
 	fullnameField: {
 		initialValue: initialValues.fullname,
 		scheme: Ego.string()
@@ -34,3 +34,10 @@ export default ({ initialValues = {} }) => ({
 			.required(),
 	},
 })
+
+export const mapping = [
+	['fullnameField', 'fullname'],
+	['birthdateField', 'birthdate'],
+	['regionField', 'region'],
+	['addressField', 'address'],
+]

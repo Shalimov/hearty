@@ -17,7 +17,7 @@ const EditPatientFormComponent = ({
 	regionField,
 	addressField,
 	formModel,
-	onSubmit,
+	onInternalSubmit,
 	onCancel,
 }) => (
 	<Form className={css(styles.form)}>
@@ -71,7 +71,7 @@ const EditPatientFormComponent = ({
 			<SubmitButton
 				rounded
 				form={formModel}
-				onSubmit={onSubmit}>
+				onSubmit={onInternalSubmit}>
 				{t('buttons.save')}
 			</SubmitButton>
 		</div>
@@ -84,7 +84,7 @@ EditPatientFormComponent.propTypes = {
 	regionField: PropTypes.shape().isRequired,
 	addressField: PropTypes.shape().isRequired,
 	formModel: PropTypes.shape().isRequired,
-	onSubmit: PropTypes.func.isRequired,
+	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

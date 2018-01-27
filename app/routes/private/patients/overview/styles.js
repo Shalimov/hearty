@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 	searchPanel: {
 		...mixins.flexRow(),
-		marginBottom: toPx(7 * unit),
+		marginBottom: toPx(3 * unit),
 	},
 
 	searchButtonWrapper: {

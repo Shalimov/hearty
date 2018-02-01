@@ -1,53 +1,41 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers, defaultProps } from 'recompose'
-import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
-import Ego from 'utils/validation'
-import { withFormModel } from 'shared/hocs'
+import { compose, withHandlers, defaultProps, withProps } from 'recompose'
+import { tryAsync } from 'utils/try'
 
 import columnsDescription from './column.descrtiption'
 
+import withGraphQL from './hocs/with.graphql'
+import SubTermEditor from './components/subTermEditor'
 import DictionaryComponent from './component'
 
-const DEFAULT_PAGE_SIZE = 10
+const DEFAULT_PAGE_SIZE = 20
 
 export default compose(
 	defaultProps({
 		columns: columnsDescription,
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
-	withFormModel({
-		termField: Ego.string(),
-	}, { spreadFields: true }),
-	graphql(gql`
-		query DictionaryOverview($input: TermQueryInput) {
-			terms(input: $input) {
-				totalCount
-				totalPages
-				pageSize
-				content {
-					_id
-					term
-					subTerms {
-						term
-					}
-				}
-			}
-		}
-	`, {
-		options: {
-			variables: {
-				input: {
-					limit: DEFAULT_PAGE_SIZE,
-					skip: 0,
-				},
-			},
-		},
-	}),
+	withGraphQL,
 	withHandlers({
+		onAddTerm: ({ createTermMutation, data }) => tryAsync(async ({ term }) => {
+			await createTermMutation({
+				variables: { term },
+			})
+
+			await data.refetch()
+		}),
+
+		onAddSubterm: ({ createSubtermMutation, data }) => tryAsync(async ({ _id, term }) => {
+			await createSubtermMutation({
+				variables: { _id, term },
+			})
+
+			await data.refetch()
+		}),
+
 		// TODO: maybe use refetch to do it
 		onFetchData: ({ data }) =>
-			async (state) => {
+			tryAsync(async (state) => {
 				if (data.loading) {
 					return
 				}
@@ -64,7 +52,12 @@ export default compose(
 					},
 					updateQuery: (previousResult, { fetchMoreResult }) => fetchMoreResult,
 				})
-			},
+			}),
 	}),
+	withProps(({ onAddSubterm }) => ({
+		SubTermEditor: withProps({
+			onAddSubterm,
+		})(SubTermEditor),
+	}))
 )(DictionaryComponent)
 

@@ -20,6 +20,7 @@ const defaultRenderer = ({
 	autoComplete,
 	placeholder,
 	onInternalChange,
+	onInternalKeyDown,
 	onBlur,
 }) => (
 	<input
@@ -41,6 +42,7 @@ const defaultRenderer = ({
 		autoComplete={autoComplete}
 		disabled={disabled}
 		value={value || EMPTY_STRING}
+		onKeyDown={onInternalKeyDown}
 		onBlur={onBlur}
 		onChange={onInternalChange} />
 )

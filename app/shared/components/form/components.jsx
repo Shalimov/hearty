@@ -13,8 +13,8 @@ const FormComponent = ({ className, children, onIntenalSumbit }) => (
 )
 
 FormComponent.propTypes = {
-	className: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
+	className: PropTypes.string,
 	onIntenalSumbit: PropTypes.func,
 }
 

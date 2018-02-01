@@ -2,23 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import ReactTable from 'react-table'
-import FontAwesome from 'react-fontawesome'
-import { Button, ValidatedInput } from 'shared/components'
-import t from 'i18n'
 
 import InlineEditorPortal from './components/inlineEditorPortal'
-import SubTermEditor from './components/subTermEditor'
+import EditTermInlineForm from './components/editTermForm'
 import styles from './styles'
 
 const DictionaryComponent = ({
 	data: { terms = {}, loading },
-	termField,
 	columns,
+	onAddTerm,
 	onFetchData,
+	SubTermEditor,
 }) => (
 	<div className={css(styles.container)}>
-		<InlineEditorPortal selector=".term-table-anchor .rt-tbody .rt-tr-group">
-			<ValidatedInput field={termField} placeholder={t('buttons.addTerm')} flexible />
+		<InlineEditorPortal
+			selector=".term-table-anchor .rt-tbody .rt-tr-group"
+			elseSelector=".term-table-anchor .rt-tbody">
+			<EditTermInlineForm onSubmit={onAddTerm} />
 		</InlineEditorPortal>
 		<ReactTable
 			manual
@@ -30,15 +30,17 @@ const DictionaryComponent = ({
 			columns={columns}
 			pageSize={terms.pageSize}
 			resizable={false}
+			collapseOnDataChange={false}
 			SubComponent={SubTermEditor} />
 	</div>
 )
 
 DictionaryComponent.propTypes = {
 	data: PropTypes.shape().isRequired,
-	termField: PropTypes.shape().isRequired,
 	columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	onAddTerm: PropTypes.func.isRequired,
 	onFetchData: PropTypes.func.isRequired,
+	SubTermEditor: PropTypes.func.isRequired,
 }
 
 export default DictionaryComponent

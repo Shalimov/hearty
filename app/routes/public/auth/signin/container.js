@@ -1,10 +1,9 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers } from 'recompose'
-import { toast } from 'react-toastify'
 import { inject } from 'mobx-react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import log from 'utils/logger'
+import { tryAsync } from 'utils/try'
 import { board } from 'routes/route.map'
 
 import SignInComponent from './component'
@@ -25,23 +24,17 @@ export default compose(
 	`, { name: 'createTokenMutation' }),
 	withHandlers({
 		onSubmit: ({ history, createTokenMutation, applicationStateStore }) =>
-			async (formData) => {
-				try {
-					const { email, password } = formData
-					const { data } = await createTokenMutation({
-						variables: {
-							input: { email, password },
-						},
-					})
+			tryAsync(async (formData) => {
+				const { email, password } = formData
+				const { data } = await createTokenMutation({
+					variables: {
+						input: { email, password },
+					},
+				})
 
-					const { token, me: user } = data.createToken
-					applicationStateStore.signin(token, user)
-					history.push(board.index())
-				} catch (err) {
-					const message = fp.get('networkError.0.message', err)
-					toast.error(message)
-					log.error(err)
-				}
-			},
+				const { token, me: user } = data.createToken
+				applicationStateStore.signin(token, user)
+				history.push(board.index())
+			}, fp.get('networkError.0.message')),
 	}),
 )(SignInComponent)

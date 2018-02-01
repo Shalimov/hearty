@@ -1,8 +1,7 @@
 import { compose, withHandlers } from 'recompose'
 import { graphql } from 'react-apollo'
-import { toast } from 'react-toastify'
 import gql from 'graphql-tag'
-import log from 'utils/logger'
+import { tryAsync } from 'utils/try'
 
 import EditPatientComponent from './component'
 
@@ -30,8 +29,8 @@ export default compose(
 		}),
 	}),
 	withHandlers({
-		onSubmit: ({ editPatientMutation, history }) => async (patientModel) => {
-			try {
+		onSubmit: ({ editPatientMutation, history }) =>
+			tryAsync(async (patientModel) => {
 				await editPatientMutation({
 					variables: {
 						input: patientModel,
@@ -39,11 +38,7 @@ export default compose(
 				})
 
 				history.goBack()
-			} catch (error) {
-				toast.error(error.message)
-				log.error(error)
-			}
-		},
+			}),
 
 		onCancel: ({ history }) => () => {
 			history.goBack()

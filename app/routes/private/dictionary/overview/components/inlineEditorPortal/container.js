@@ -2,6 +2,7 @@ import { compose, lifecycle } from 'recompose'
 
 import InlineEditorPortalComponent from './component'
 
+// TODO: Could be refined
 export default compose(
 	lifecycle({
 		componentWillMount() {
@@ -12,10 +13,18 @@ export default compose(
 
 		componentDidMount() {
 			const { element } = this.state
-			const { selector } = this.props
-			const container = document.querySelector(selector)
-			const parent = container.parentNode
-			parent.insertBefore(element, container)
+			const { selector, elseSelector } = this.props
+			
+			const mainContainer = document.querySelector(selector)
+			if (mainContainer) {
+				const parent = mainContainer.parentNode
+				parent.insertBefore(element, mainContainer)
+				return
+			}
+
+			const elesContainer = document.querySelector(elseSelector)
+			elesContainer.appendChild(element)
+			return
 		},
 	})
 )(InlineEditorPortalComponent)

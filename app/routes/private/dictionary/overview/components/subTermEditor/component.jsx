@@ -1,37 +1,41 @@
-import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import ReactTable from 'react-table'
-import FontAwesome from 'react-fontawesome'
-import { Button } from 'shared/components'
-import t from 'i18n'
+import { renderNothing } from 'recompose'
 
+import InlineEditorPortal from '../inlineEditorPortal'
+import EditTermInlineForm from '../editTermForm'
 import columns from './columns.description'
 import styles from './styles'
 
-const SubTermEditorComponent = ({ subTerms }) => (
+const { Fragment } = React
+
+const SubTermEditorComponent = ({ item, onInternalAddSubterm }) => (
 	<div className={css(styles.container)}>
-		<div className={css(styles.buttonWrapper)}>
-			<Button iconed>
-				<FontAwesome name="plus" />{t('buttons.addSubTerm')}
-			</Button>
-		</div>
 		{
-			!fp.isEmpty(subTerms) && (
+			<Fragment>
+				<InlineEditorPortal
+					selector={`.${item._id} .rt-tbody .rt-tr-group`}
+					elseSelector={`.${item._id} .rt-tbody`}>
+					<EditTermInlineForm onSubmit={onInternalAddSubterm} />
+				</InlineEditorPortal>
 				<ReactTable
-					data={subTerms}
+					className={item._id}
+					data={item.subTerms}
 					columns={columns}
-					pageSize={subTerms.length}
+					pageSize={item.subTerms.length}
 					showPagination={false}
+					NoDataComponent={renderNothing()}
 				/>
-			)
+			</Fragment>
 		}
 	</div>
 )
 
 SubTermEditorComponent.propTypes = {
-	subTerms: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	item: PropTypes.shape().isRequired,
+	onInternalAddSubterm: PropTypes.func.isRequired,
 }
 
 export default SubTermEditorComponent

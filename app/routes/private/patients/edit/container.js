@@ -15,8 +15,8 @@ export default compose(
 		}
 	`, { name: 'editPatientMutation' }),
 	graphql(gql`
-		query RetrievePatientQuery($id: ID) {
-			patient(id: $id) {
+		query RetrievePatientQuery($_id: ID) {
+			patient(_id: $id) {
 				_id
 				fullname
 				birthdate
@@ -26,7 +26,7 @@ export default compose(
 		}
 	`, {
 		options: ({ match }) => ({
-			variables: { id: match.params.patientId },
+			variables: { _id: match.params.patientId },
 		}),
 	}),
 	withHandlers({

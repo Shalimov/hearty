@@ -1,5 +1,5 @@
 const fp = require('lodash/fp')
-const BaseService = require('./base')
+const BaseService = require('../base')
 
 class PatientService extends BaseService {
 	constructor(repository) {

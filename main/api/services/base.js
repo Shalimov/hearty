@@ -1,3 +1,4 @@
+const fp = require('lodash/fp')
 const Boom = require('boom')
 
 class BaseService {
@@ -10,8 +11,8 @@ class BaseService {
 		throw new Error('Should be reimplemented in derivied Models')
 	}
 
-	create(patient) {
-		return this.model.insertAsync(patient)
+	create(data) {
+		return this.model.insertAsync(data)
 	}
 
 	get(id) {
@@ -51,12 +52,14 @@ class BaseService {
 		}
 	}
 
-	async update(instance) {
+	async update(instance, updateFunc) {
 		if (!instance._id) {
 			throw Boom.badData('Cannot find record')
 		}
 
-		await this.model.updateAsync({ _id: instance._id }, { $set: instance })
+		const changes = fp.isFunction(updateFunc) ? updateFunc() : { $set: instance }
+
+		await this.model.updateAsync({ _id: instance._id }, changes)
 		return instance
 	}
 
@@ -64,8 +67,11 @@ class BaseService {
 		if (!id) {
 			throw Boom.badData('Cannot find record to remove')
 		}
-
+		
+		const record = await this.get(id)
 		await this.model.removeAsync({ _id: id })
+
+		return record
 	}
 }
 

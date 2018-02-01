@@ -1,7 +1,7 @@
 module.exports = {
-	patient(_obj, { id }, context) {
+	patient(_obj, { _id }, context) {
 		const { patientService } = context.services
-		return patientService.get(id)
+		return patientService.get(_id)
 	},
 
 	patients(_obj, { input }, context) {

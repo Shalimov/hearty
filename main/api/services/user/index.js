@@ -1,6 +1,4 @@
-const Boom = require('boom')
-
-const BaseService = require('./base')
+const BaseService = require('../base')
 
 class UserService extends BaseService {
 	constructor(repository) {

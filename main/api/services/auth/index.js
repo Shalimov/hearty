@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Boom = require('boom')
 
-const { jwtsecret, jwtperiod } = require('../../config')
+const { jwtsecret, jwtperiod } = require('../../../config')
 
 class AuthService {
 	constructor(repository) {

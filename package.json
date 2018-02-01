@@ -10,7 +10,7 @@
   "scripts": {
     "start": "./node_modules/foreman/nf.js start",
     "electron": "electron ./public/main/index.js",
-    "build": "brunch build --production",
+    "build": "brunch build",
     "eslint": "./node_modules/eslint/bin/eslint.js",
     "eslint:fix": "./node_modules/eslint/bin/eslint.js ./app/**/*.js --fix",
     "lint": "yarn eslint ./app/**/*.js",

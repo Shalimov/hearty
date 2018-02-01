@@ -63,11 +63,14 @@ const descriptions = {
 		signup: 'Регистрация',
 		forgotPassword: 'Забыли пароль',
 		main: 'Главная',
+		dictionary: 'Словарь',
 		patients: 'Пациенты',
 		addPatient: 'Добавить пациента',
 	},
 
 	buttons: {
+		addTerm: 'Добавить термин',
+		addSubTerm: 'Добавить подтермин',
 		search: 'Найти',
 		save: 'Сохранить',
 		submit: 'Отправить',
@@ -82,6 +85,9 @@ const descriptions = {
 		birthdate: 'Дата рождения',
 		region: 'Город/Регион',
 		address: 'Адрес',
+		term: 'Термин',
+		subTerm: 'Подтермин',
+		name: 'Название',
 	},
 
 	legends: {
@@ -90,7 +96,7 @@ const descriptions = {
 
 	regions: [
 		{ id: 0, value: 'г. Могилев' },
-		{ id: 1, value: 'Могилевская область' },
+		{ id: 1, value: 'Могилевский район' },
 	],
 }
 

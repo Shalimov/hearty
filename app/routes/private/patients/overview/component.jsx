@@ -44,8 +44,6 @@ const OverviewPatientComponent = ({
 		</div>
 		<ReactTable
 			manual
-			minRows={1}
-			className="-highlight"
 			filterable
 			filtered={filtered}
 			data={patients.content}
@@ -54,15 +52,8 @@ const OverviewPatientComponent = ({
 			onFetchData={onFetchData}
 			columns={columns}
 			pageSize={patients.pageSize}
-			showPageSizeOptions={false}
-			showPageJump={false}
 			resizable={false}
-			noDataText={t('tables.notFound')}
-			previousText={t('tables.prev')}
-			nextText={t('tables.next')}
-			loadingText={t('tables.loading')}
-			pageText={t('tables.page')}
-			ofText={t('tables.of')}
+			minRows={1}
 		/>
 	</div>
 )

@@ -8,6 +8,7 @@ export const auth = createPrefix('/auth', {
 export const board = createPrefix('/board', {
 	index: fp.constant(''),
 	welcome: fp.constant('/welcome'),
+	dictionary: fp.constant('/dictionary'),
 })
 
 export const patients = createPrefix(`${board.index()}/patients`, {

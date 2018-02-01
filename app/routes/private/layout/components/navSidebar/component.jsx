@@ -40,6 +40,9 @@ const NavSidebarComponent = () => (
 			<li className={css(styles.menuItem)}>
 				<SideBarLink url={patients.index()} title="links.patients" icon="users" />
 			</li>
+			<li className={css(styles.menuItem)}>
+				<SideBarLink url={board.dictionary()} title="links.dictionary" icon="book" />
+			</li>
 			{/* <li className={css(styles.menuItem)}>
 				<Collapsible
 					contentOuterClassName={css(styles.menuPaddingRemoval)}

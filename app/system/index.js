@@ -2,6 +2,7 @@ import ApplicationStateStore from 'store'
 
 import storeSetup from './store.setup'
 import appoloSetup from './apollo.setup'
+import tableSetup from './react.table.setup'
 import momentSetup from './moment.setup'
 
 export default {
@@ -11,6 +12,8 @@ export default {
 		const apolloClient = appoloSetup.init(applicationStateStore)
 
 		momentSetup.init()
+		tableSetup.init()
+		
 		return storeSetup.init(applicationStateStore)
 			.then(() => [
 				applicationStateStore,

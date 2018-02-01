@@ -4,7 +4,8 @@ import { tryAsync } from 'utils/try'
 
 import columnsDescription from './column.descrtiption'
 
-import withGraphQL from './hocs/with.graphql'
+import withMutations from './hocs/with.mutations'
+import withQueries from './hocs/with.queries'
 import SubTermEditor from './components/subTermEditor'
 import DictionaryComponent from './component'
 
@@ -15,7 +16,8 @@ export default compose(
 		columns: columnsDescription,
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
-	withGraphQL,
+	withQueries,
+	withMutations,
 	withHandlers({
 		onAddTerm: ({ createTermMutation, data }) => tryAsync(async ({ term }) => {
 			await createTermMutation({

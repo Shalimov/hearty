@@ -4,6 +4,6 @@ import SubTermEditorComponent from './component'
 
 export default compose(
 	mapProps((row) => ({
-		subTerms: row.original.elements,
+		subTerms: row.original.subTerms,
 	}))
 )(SubTermEditorComponent)

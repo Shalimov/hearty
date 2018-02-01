@@ -6,12 +6,9 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	container: {
-		padding: toPx(unit),
-	},
-
-	buttonWrapper: {
-		textAlign: 'right',
-		padding: toPx(unit),
+		// TODO: 100% mb not necessary
+		width: toPx(85 * 8),
+		padding: toPx(6 * unit),
 	},
 })
 

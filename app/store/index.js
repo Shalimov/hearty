@@ -5,7 +5,7 @@ import { types } from 'mobx-state-tree'
 import UserModel from './models/user'
 import AuthModel from './models/auth'
 
-const storage = sessionStorage
+const storage = localStorage
 
 // TODO: think over how to use token for initFromStorage
 const ApplicationStateStore = types.compose(

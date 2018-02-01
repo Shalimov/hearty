@@ -19,7 +19,7 @@ class DictionaryService extends BaseService {
 		const searchRegex = new RegExp(searchRegexString, 'i')
 
 		return {
-			name: searchRegex,
+			term: searchRegex,
 		}
 	}
 }

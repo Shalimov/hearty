@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { css, cssx } from 'utils/aphrodite-ext'
-import { board, patients } from 'routes/route.map'
+import { board, patients, dictionary } from 'routes/route.map'
 import t from 'i18n'
 
 import styles from './styles'
@@ -41,7 +41,7 @@ const NavSidebarComponent = () => (
 				<SideBarLink url={patients.index()} title="links.patients" icon="users" />
 			</li>
 			<li className={css(styles.menuItem)}>
-				<SideBarLink url={board.dictionary()} title="links.dictionary" icon="book" />
+				<SideBarLink url={dictionary.index()} title="links.dictionary" icon="book" />
 			</li>
 			{/* <li className={css(styles.menuItem)}>
 				<Collapsible

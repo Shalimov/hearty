@@ -92,6 +92,7 @@ const descriptions = {
 
 	legends: {
 		editPatient: 'Данные пациента',
+		editTerm: 'Термин',
 	},
 
 	regions: [

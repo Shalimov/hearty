@@ -13,6 +13,7 @@ const selectRenderer = ({
 	disabled,
 	readOnly,
 	strictHigh,
+	flexible,
 	showError,
 	value,
 	autoComplete,
@@ -35,6 +36,8 @@ const selectRenderer = ({
 				cssx({
 					select: true,
 					strictHigh: strictHigh,
+					strictHigh,
+					flexible,
 					inputError: showError,
 				}, styles),
 				className

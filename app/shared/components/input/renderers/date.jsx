@@ -12,6 +12,7 @@ const dateRenderer = ({
 	className,
 	disabled,
 	strictHigh,
+	flexible,
 	showError,
 	value,
 	autoComplete,
@@ -36,7 +37,8 @@ const dateRenderer = ({
 				className: join(
 					cssx({
 						input: true,
-						strictHigh: strictHigh,
+						strictHigh,
+						flexible,
 						inputError: showError,
 					}, styles),
 					className

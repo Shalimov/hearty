@@ -55,6 +55,11 @@ const styles = StyleSheet.create({
 		padding: toPx(unit + half),
 	},
 
+	flexible: {
+		width: 'inherit',
+		maxWidth: 'inherit',
+	},
+
 	inputError: {
 		backgroundColor: colors.errorColor1,
 	},

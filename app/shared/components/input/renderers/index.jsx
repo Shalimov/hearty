@@ -14,6 +14,7 @@ const defaultRenderer = ({
 	readOnly,
 	strictHigh,
 	showError,
+	flexible,
 	type = 'text',
 	value,
 	autoComplete,
@@ -28,7 +29,8 @@ const defaultRenderer = ({
 			join(
 				cssx({
 					input: true,
-					strictHigh: strictHigh,
+					strictHigh,
+					flexible,
 					inputError: showError,
 				}, styles),
 				className

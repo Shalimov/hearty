@@ -2,6 +2,8 @@ import fp from 'lodash/fp'
 import { compose, withHandlers, defaultProps } from 'recompose'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
+import Ego from 'utils/validation'
+import { withFormModel } from 'shared/hocs'
 
 import columnsDescription from './column.descrtiption'
 
@@ -14,6 +16,9 @@ export default compose(
 		columns: columnsDescription,
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
+	withFormModel({
+		termField: Ego.string(),
+	}, { spreadFields: true }),
 	graphql(gql`
 		query DictionaryOverview($input: TermQueryInput) {
 			terms(input: $input) {
@@ -23,7 +28,9 @@ export default compose(
 				content {
 					_id
 					term
-					subTerms
+					subTerms {
+						term
+					}
 				}
 			}
 		}
@@ -44,7 +51,7 @@ export default compose(
 				if (data.loading) {
 					return
 				}
-				
+
 				const filterCriteria = fp.head(state.filtered) || {}
 
 				data.fetchMore({

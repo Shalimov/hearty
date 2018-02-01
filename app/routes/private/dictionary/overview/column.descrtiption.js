@@ -3,7 +3,7 @@ import t from 'i18n'
 export default [
 	{
 		Header: t('labels.term'),
-		accessor: 'displayName',
+		accessor: 'term',
 		sortable: false,
 	},
 ]

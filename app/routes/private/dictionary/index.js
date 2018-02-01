@@ -1,11 +1,4 @@
-import createRoutes from 'shared/hocs/create-routes'
-import OverviewDictionary from './overview'
+import Dictionary from './container'
 
-const DictionaryRoutes = createRoutes(({ match }) => [
-	{
-		path: match.path,
-		component: OverviewDictionary,
-	},
-])
+export default Dictionary
 
-export default DictionaryRoutes

@@ -10,8 +10,8 @@ export default compose(
 	withHandlers({
 		onInternalAddSubterm: ({ onAddSubterm, item }) => (formData) => {
 			onAddSubterm({
-				_id: item._id,
 				...formData,
+				_id: item._id,
 			})
 		},
 	}),

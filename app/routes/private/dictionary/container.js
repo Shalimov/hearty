@@ -6,6 +6,8 @@ import columnsDescription from './column.descrtiption'
 
 import withMutations from './hocs/with.mutations'
 import withQueries from './hocs/with.queries'
+
+import EditTermInlineForm from './components/editTermInlineForm'
 import SubTermEditor from './components/subTermEditor'
 import DictionaryComponent from './component'
 
@@ -13,7 +15,6 @@ const DEFAULT_PAGE_SIZE = 20
 
 export default compose(
 	defaultProps({
-		columns: columnsDescription,
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
 	withQueries,
@@ -27,13 +28,15 @@ export default compose(
 			await data.refetch()
 		}),
 
-		onAddSubterm: ({ createSubtermMutation, data }) => tryAsync(async ({ _id, term }) => {
-			await createSubtermMutation({
-				variables: { _id, term },
-			})
-
+		onAddSubterm: ({ createSubtermMutation, data }) => tryAsync(async (dictionaryTerm) => {
+			await createSubtermMutation({ variables: dictionaryTerm })
 			await data.refetch()
 		}),
+
+		onEditTerm: ({ updateTermMutation }) =>
+			tryAsync(async (dictionaryTerm) => {
+				await updateTermMutation({ variables: dictionaryTerm })
+			}),
 
 		// TODO: maybe use refetch to do it
 		onFetchData: ({ data }) =>
@@ -56,7 +59,13 @@ export default compose(
 				})
 			}),
 	}),
-	withProps(({ onAddSubterm }) => ({
+	withProps(({ onAddSubterm, onEditTerm }) => ({
+		columns: columnsDescription(
+			withProps(({ value }) => ({
+				initialValues: value,
+				onSubmit: onEditTerm,
+			}))(EditTermInlineForm)
+		),
 		SubTermEditor: withProps({
 			onAddSubterm,
 		})(SubTermEditor),

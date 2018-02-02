@@ -9,33 +9,44 @@ export default compose(
 				_id
 			}
 		}
-	`, { name: 'createTermMutation' }),
+	`, {
+		name: 'createTermMutation',
+	}),
 	graphql(gql`
 		mutation UpdateDictionaryTermMutation($_id: ID!, $term: String!) {
 			updateTerm(_id: $_id, term: $term) {
 				_id
+				term
 			}
 		}
-	`, { name: 'updateTermMutation' }),
+	`, {
+		name: 'updateTermMutation',
+	}),
 	graphql(gql`
 		mutation RemoveDictionaryTermMutation($_id: ID!) {
 			removeTerm(_id: $_id) {
 				_id
 			}
 		}
-	`, { name: 'removeTermMutation' }),
+	`, {
+		name: 'removeTermMutation',
+	}),
 	graphql(gql`
 		mutation AddDictionarySubtermMutation($_id: ID!, $term: String!) {
 			createSubterm(_id: $_id, term: $term) {
 				_id
 			}
 		}
-	`, { name: 'createSubtermMutation' }),
+	`, {
+		name: 'createSubtermMutation',
+	}),
 	graphql(gql`
 		mutation AddDictionaryTermMutation($_id: ID!, $term: String!) {
 			removeSubterm(_id: $_id, term: $term) {
 				_id
 			}
 		}
-	`, { name: 'removeSubtermMutation' }),
+	`, {
+		name: 'removeSubtermMutation',
+	}),
 )

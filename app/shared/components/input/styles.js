@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
 	flexible: {
 		width: 'inherit',
 		maxWidth: 'inherit',
+		height: 'inherit',
 	},
 
 	inputError: {

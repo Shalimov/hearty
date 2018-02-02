@@ -57,7 +57,7 @@ class BaseService {
 			throw Boom.badData('Cannot find record')
 		}
 
-		const changes = fp.isFunction(updateFunc) ? updateFunc() : { $set: instance }
+		const changes = fp.isFunction(updateFunc) ? updateFunc() : { $set: fp.omit(['_id'], instance) }
 
 		await this.model.updateAsync({ _id: instance._id }, changes)
 		return instance
@@ -67,7 +67,7 @@ class BaseService {
 		if (!id) {
 			throw Boom.badData('Cannot find record to remove')
 		}
-		
+
 		const record = await this.get(id)
 		await this.model.removeAsync({ _id: id })
 

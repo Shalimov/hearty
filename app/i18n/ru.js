@@ -95,6 +95,10 @@ const descriptions = {
 		editTerm: 'Термин',
 	},
 
+	hints: {
+		dblClickToEdit: 'Двойной щелчок для редактирования',
+	},
+
 	regions: [
 		{ id: 0, value: 'г. Могилев' },
 		{ id: 1, value: 'Могилевский район' },

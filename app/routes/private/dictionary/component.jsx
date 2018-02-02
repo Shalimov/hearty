@@ -4,7 +4,7 @@ import { css } from 'aphrodite'
 import ReactTable from 'react-table'
 
 import InlineEditorPortal from './components/inlineEditorPortal'
-import EditTermInlineForm from './components/editTermForm'
+import EditTermInlineForm from './components/editTermInlineForm'
 import styles from './styles'
 
 const DictionaryComponent = ({
@@ -18,7 +18,7 @@ const DictionaryComponent = ({
 		<InlineEditorPortal
 			selector=".term-table-anchor .rt-tbody .rt-tr-group"
 			elseSelector=".term-table-anchor .rt-tbody">
-			<EditTermInlineForm onSubmit={onAddTerm} />
+			<EditTermInlineForm onlyEditor onSubmit={onAddTerm} />
 		</InlineEditorPortal>
 		<ReactTable
 			manual

@@ -1,4 +1,8 @@
+import { measures } from 'styles/variables'
+import { toPx } from 'utils/styles'
 import t from 'i18n'
+
+const { unit } = measures
 
 export default [
 	{
@@ -6,6 +10,7 @@ export default [
 		accessor: 'term',
 		sortable: false,
 		style: {
+			paddingLeft: toPx(2 * unit),
 			whiteSpace: 'normal',
 		},
 	},

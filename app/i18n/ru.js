@@ -37,6 +37,8 @@ const descriptions = {
 	},
 
 	common: {
+		runQuestion: 'Вы уверены что хотите выполнить данное действие?',
+		removeQuestion: 'Вы уверены что хотите удалить данную запись?',
 	},
 
 	tables: {
@@ -76,6 +78,8 @@ const descriptions = {
 		submit: 'Отправить',
 		back: 'Назад',
 		signin: 'Войти',
+		ok: 'Да',
+		no: 'Нет',
 	},
 
 	labels: {

@@ -22,6 +22,7 @@ const DictionaryComponent = ({
 		</InlineEditorPortal>
 		<ReactTable
 			manual
+			sortable={false}
 			className="term-table-anchor"
 			data={terms.content}
 			pages={terms.totalPages}

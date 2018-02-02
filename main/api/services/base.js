@@ -11,6 +11,10 @@ class BaseService {
 		throw new Error('Should be reimplemented in derivied Models')
 	}
 
+	sortByCreteria() {
+		return { createdAt: -1 }
+	}
+
 	create(data) {
 		return this.model.insertAsync(data)
 	}
@@ -35,7 +39,7 @@ class BaseService {
 		const { model } = this
 		const query = this.toSearchQuery(params)
 		const findCursor = model.find(query)
-			.sort({ _id: -1 })
+			.sort(this.sortByCreteria())
 			.skip(params.skip)
 			.limit(params.limit)
 
@@ -48,6 +52,7 @@ class BaseService {
 			totalPages: Math.ceil(totalCount / params.limit),
 			totalCount,
 			pageSize: params.limit,
+			page: Math.floor(params.skip / params.limit),
 			content,
 		}
 	}

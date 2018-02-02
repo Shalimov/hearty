@@ -1,11 +1,11 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers, defaultProps, withProps } from 'recompose'
+import { compose, withHandlers, defaultProps, withProps, withState } from 'recompose'
 import { tryAsync } from 'utils/try'
 
 import columnsDescription from './column.descrtiption'
 
 import withMutations from './hocs/with.mutations'
-import withQueries, { OverviewQuery } from './hocs/with.queries'
+import withQueries from './hocs/with.queries'
 
 import ControlsCell from './components/controlsCell'
 import EditTermInlineForm from './components/editTermInlineForm'
@@ -18,72 +18,53 @@ export default compose(
 	defaultProps({
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
+	withState('queryInput', 'setQueryInput', ({ pageSize }) => ({
+		limit: pageSize,
+		skip: 0,
+	})),
 	withQueries,
 	withMutations,
 	withHandlers({
-		onAddTerm: ({ createTermMutation, data }) => tryAsync(async (dictionaryTerm) => {
-			await createTermMutation({ variables: dictionaryTerm })
+		onAddTerm: ({ createTermMutation }) =>
+			tryAsync(dictionaryTerm => createTermMutation({
+				variables: dictionaryTerm,
+				refetchQueries: ['DictionaryOverviewQuery'],
+			})),
 
-			await data.refetch()
-		}),
-
-		onAddSubterm: ({ createSubtermMutation, data }) => tryAsync(async (dictionaryTerm) => {
-			await createSubtermMutation({ variables: dictionaryTerm })
-			await data.refetch()
-		}),
+		onAddSubterm: ({ createSubtermMutation }) =>
+			tryAsync(dictionaryTerm => createSubtermMutation({
+				variables: dictionaryTerm,
+				refetchQueries: ['DictionaryOverviewQuery'],
+			})),
 
 		onEditTerm: ({ updateTermMutation }) =>
-			tryAsync(async (dictionaryTerm) => {
-				await updateTermMutation({ variables: dictionaryTerm })
-			}),
+			tryAsync(dictionaryTerm => updateTermMutation({ variables: dictionaryTerm })),
 
-		onRemoveTerm: ({ removeTermMutation, data: queryData }) =>
-			tryAsync(async ({ _id }) => {
-				await removeTermMutation({
-					variables: { _id },
-					update: (proxy, { data: { removeTerm } }) => {
-						const storedData = proxy.readQuery({
-							query: OverviewQuery,
-							variables: queryData.variables,
-						})
-
-						const termsStore = storedData.terms
-						termsStore.content = fp.reject({ _id: removeTerm._id }, termsStore.content)
-						termsStore.totalCount -= 1 
-
-						proxy.writeQuery({
-							query: OverviewQuery,
-							variables: queryData.variables,
-							data: storedData,
-						})
-					},
-				})
-			}),
+		onRemoveTerm: ({ removeTermMutation }) =>
+			tryAsync(({ _id }) => removeTermMutation({
+				variables: { _id },
+				refetchQueries: ['DictionaryOverviewQuery'],
+			})),
 
 		onRemoveSubterm: ({ removeSubtermMutation }) =>
-			tryAsync(async ({ _id }) => {
-				await removeSubtermMutation({ variables: { _id } })
-			}),
+			tryAsync(({ _id }) => removeSubtermMutation({ variables: { _id } })),
 
-		// TODO: maybe use refetch to do it
-		onFetchData: ({ data }) =>
-			tryAsync(async (state) => {
+		onFetchData: ({ data, pageSize, loadMore, setQueryInput }) =>
+			tryAsync((state) => {
 				if (data.loading) {
 					return
 				}
 
 				const filterCriteria = fp.head(state.filtered) || {}
+				const queryInput = {
+					limit: pageSize,
+					skip: state.page * pageSize,
+					term: filterCriteria.value,
+				}
 
-				data.fetchMore({
-					variables: {
-						input: {
-							limit: DEFAULT_PAGE_SIZE,
-							skip: state.page * DEFAULT_PAGE_SIZE,
-							term: filterCriteria.value,
-						},
-					},
-					updateQuery: (previousResult, { fetchMoreResult }) => fetchMoreResult,
-				})
+				setQueryInput(queryInput)
+
+				return loadMore(queryInput)
 			}),
 	}),
 	withProps(({ onEditTerm, onRemoveTerm, onAddSubterm, onRemoveSubterm }) => {

@@ -26,6 +26,7 @@ export default compose(
 				totalCount
 				totalPages
 				pageSize
+				page
 				content {
 					_id
 					fullname

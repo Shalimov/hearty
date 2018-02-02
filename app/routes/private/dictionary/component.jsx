@@ -29,6 +29,7 @@ const DictionaryComponent = ({
 			loading={loading}
 			onFetchData={onFetchData}
 			columns={columns}
+			indexKey="_id"
 			pageSize={terms.pageSize}
 			resizable={false}
 			collapseOnDataChange={false}

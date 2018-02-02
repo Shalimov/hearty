@@ -13,7 +13,7 @@ const ConfirmModalComponent = ({
 	confirmText = t('buttons.ok'),
 	cancelText = t('buttons.no'),
 	onTrigger,
-	onConfirm,
+	onInternalConfirm,
 	onRequestClose,
 	children,
 }) => (
@@ -24,7 +24,7 @@ const ConfirmModalComponent = ({
 				<div className={css(styles.confirmButtonWrapper)}>
 					<Button small outlined rounded onClick={onRequestClose}>{cancelText}</Button>
 				</div>
-				<Button small rounded onClick={onConfirm}>{confirmText}</Button>
+				<Button small rounded onClick={onInternalConfirm}>{confirmText}</Button>
 			</div>
 		</Modal>
 		{children(onTrigger)}
@@ -37,7 +37,7 @@ ConfirmModalComponent.propTypes = {
 	confirmText: PropTypes.string,
 	cancelText: PropTypes.string,
 	onTrigger: PropTypes.func.isRequired,
-	onConfirm: PropTypes.func.isRequired,
+	onInternalConfirm: PropTypes.func.isRequired,
 	onRequestClose: PropTypes.func.isRequired,
 	children: PropTypes.func.isRequired,
 }

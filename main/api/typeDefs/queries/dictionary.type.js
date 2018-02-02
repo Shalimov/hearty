@@ -1,22 +1,15 @@
+const { createPaginationTypes } = require('../create.pagination.types')
+
+const typeName = 'Term'
+
 const Dictionary = `
-	type Term {
+	type ${typeName} {
 		_id: ID!
 		term: String!
-		subTerms: [Term]!
+		subTerms: [${typeName}]!
 	}
 
-	type TermQueryPayload {
-		totalCount: Int!
-		totalPages: Int!
-		pageSize: Int!
-		content: [Term]!
-	}
-
-	input TermQueryInput {
-		limit: Int!
-		skip: Int!
-		term: String
-	}
+	${createPaginationTypes(typeName)}
 `
 
 module.exports = Dictionary

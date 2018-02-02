@@ -1,5 +1,9 @@
+const { createPaginationTypes } = require('../create.pagination.types')
+
+const typeName = 'Patient'
+
 const Patient = `
-	type Patient {
+	type ${typeName} {
 		_id: ID!
 		fullname: String!
 		birthdate: Date!
@@ -7,20 +11,9 @@ const Patient = `
 		address: String!
 	}
 
-	type PatientQueryPayload {
-		totalCount: Int!
-		totalPages: Int!
-		pageSize: Int!
-		content: [Patient]!
-	}
+	${createPaginationTypes(typeName)}
 
-	input PatientQueryInput {
-		limit: Int!
-		skip: Int!
-		term: String
-	}
-
-	input PatientInput {
+	input ${typeName}Input {
 		_id: ID
 		fullname: String!
 		birthdate: Date!

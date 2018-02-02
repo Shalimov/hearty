@@ -13,7 +13,10 @@ const SubTermEditorComponent = ({ item, columns, onInternalAddSubterm }) => (
 		<InlineEditorPortal
 			selector={`.table_${item._id} .rt-tbody .rt-tr-group`}
 			elseSelector={`.table_${item._id} .rt-tbody`}>
-			<EditTermInlineForm onlyEditor onSubmit={onInternalAddSubterm} />
+			<EditTermInlineForm
+				isTextarea
+				onlyEditor
+				onSubmit={onInternalAddSubterm} />
 		</InlineEditorPortal>
 		<ReactTable
 			className={`table_${item._id}`}

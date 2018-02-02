@@ -7,47 +7,44 @@ const EMPTY_STRING = ''
 const join = (...classNames) => classNames.join(' ')
 
 /* eslint-disable */
-const defaultRenderer = ({
+const textareaRenderer = ({
 	id,
 	title,
 	className,
 	disabled,
 	readOnly,
-	strictHigh,
 	showError,
 	flexible,
-	type = 'text',
 	value,
-	autoComplete,
+	rows,
 	placeholder,
 	onInternalChange,
 	onInternalKeyDown,
 	onBlur,
 }) => (
-	<input
+	<textarea
 		id={id}
 		title={title}
-		type={type}
 		className={
 			join(
 				cssx({
 					input: true,
-					strictHigh,
 					flexible,
 					inputError: showError,
 				}, styles),
 				className
 			)
 		}
+		rows={rows}
 		readOnly={readOnly}
 		placeholder={placeholder}
-		autoComplete={autoComplete}
 		disabled={disabled}
 		value={value || EMPTY_STRING}
 		onKeyDown={onInternalKeyDown}
 		onBlur={onBlur}
-		onChange={onInternalChange} />
+		onChange={onInternalChange}>
+	</textarea>
 )
 /* eslint-enable */
 
-export default defaultRenderer
+export default textareaRenderer

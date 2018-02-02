@@ -4,6 +4,7 @@ import { css, cssx } from 'utils/aphrodite-ext'
 
 import defaultRenderer from './renderers'
 import selectRenderer from './renderers/select'
+import textareaRenderer from './renderers/textarea'
 import dateRenderer from './renderers/date'
 import styles from './styles'
 
@@ -19,6 +20,7 @@ const rendererProxy = props => {
 	switch (props.type) {
 	case 'date': return dateRenderer(props)
 	case 'select': return selectRenderer(props)
+	case 'textarea': return textareaRenderer(props)
 	default: return defaultRenderer(props)
 	}
 }

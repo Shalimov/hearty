@@ -7,18 +7,29 @@ import t from 'i18n'
 import styles from './styles'
 
 const EditTermInlineFormComponent = ({
+	isTextarea,
 	isEditting,
 	termField,
 	onEditMode,
 	onInternalSubmit,
-}) => (
-	isEditting ? (
+}) => {
+	const inputExtraProps = isTextarea ? {
+		title: t('hints.ctrlEnterAdd'),
+		rows: 4,
+		type: 'textarea',
+		onPressCtrlEnter: onInternalSubmit,
+	} : {
+		title: t('hints.enterAdd'),
+		onPressEnter: onInternalSubmit,
+	}
+
+	return isEditting ? (
 		<Form>
 			<ValidatedInput
 				field={termField}
 				placeholder={t('buttons.addTerm')}
 				flexible
-				onPressEnter={onInternalSubmit} />
+				{...inputExtraProps} />
 		</Form>
 	) : (
 		<div
@@ -28,9 +39,10 @@ const EditTermInlineFormComponent = ({
 			{termField.value}
 		</div>
 	)
-)
+}
 
 EditTermInlineFormComponent.propTypes = {
+	isTextarea: PropTypes.bool,
 	isEditting: PropTypes.bool.isRequired,
 	termField: PropTypes.shape().isRequired,
 	onEditMode: PropTypes.func.isRequired,

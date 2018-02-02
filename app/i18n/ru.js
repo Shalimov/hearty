@@ -101,6 +101,8 @@ const descriptions = {
 
 	hints: {
 		dblClickToEdit: 'Двойной щелчок для редактирования',
+		ctrlEnterAdd: 'Ctrl + Enter для добавления',
+		enterAdd: 'Enter для добавления',
 	},
 
 	regions: [

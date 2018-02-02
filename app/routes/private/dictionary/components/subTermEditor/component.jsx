@@ -9,27 +9,20 @@ import EditTermInlineForm from '../editTermInlineForm'
 import columns from './columns.description'
 import styles from './styles'
 
-const { Fragment } = React
-
 const SubTermEditorComponent = ({ item, onInternalAddSubterm }) => (
 	<div className={css(styles.container)}>
-		{
-			<Fragment>
-				<InlineEditorPortal
-					selector={`.table_${item._id} .rt-tbody .rt-tr-group`}
-					elseSelector={`.table_${item._id} .rt-tbody`}>
-					<EditTermInlineForm onlyEditor onSubmit={onInternalAddSubterm} />
-				</InlineEditorPortal>
-				<ReactTable
-					className={`table_${item._id}`}
-					data={item.subTerms}
-					columns={columns}
-					pageSize={item.subTerms.length}
-					showPagination={false}
-					NoDataComponent={renderNothing()}
-				/>
-			</Fragment>
-		}
+		<InlineEditorPortal
+			selector={`.table_${item._id} .rt-tbody .rt-tr-group`}
+			elseSelector={`.table_${item._id} .rt-tbody`}>
+			<EditTermInlineForm onlyEditor onSubmit={onInternalAddSubterm} />
+		</InlineEditorPortal>
+		<ReactTable
+			className={`table_${item._id}`}
+			data={item.subTerms}
+			columns={columns}
+			pageSize={item.subTerms.length}
+			showPagination={false}
+			NoDataComponent={renderNothing()} />
 	</div>
 )
 

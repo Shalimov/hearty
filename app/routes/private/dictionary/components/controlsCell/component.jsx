@@ -4,10 +4,10 @@ import { Button, ConfirmModal } from 'shared/components'
 import FontAwesome from 'react-fontawesome'
 import t from 'i18n'
 
-const ControlsCellComponent = ({ onInternalRemoveTerm }) => (
+const ControlsCellComponent = ({ onInternalRemove }) => (
 	<ConfirmModal 
 		confirmQuestionText={t('common.removeQuestion')}
-		onConfirm={onInternalRemoveTerm}>
+		onConfirm={onInternalRemove}>
 		{onTrigger => (
 			<Button iconed onClick={onTrigger}>
 				<FontAwesome name="trash" />
@@ -17,7 +17,7 @@ const ControlsCellComponent = ({ onInternalRemoveTerm }) => (
 )
 
 ControlsCellComponent.propTypes = {
-	onInternalRemoveTerm: PropTypes.func.isRequired,
+	onInternalRemove: PropTypes.func.isRequired,
 }
 
 export default ControlsCellComponent

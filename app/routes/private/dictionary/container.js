@@ -46,8 +46,12 @@ export default compose(
 				refetchQueries: ['DictionaryOverviewQuery'],
 			})),
 
+		// parent term id, subterm aka term here
 		onRemoveSubterm: ({ removeSubtermMutation }) =>
-			tryAsync(({ _id }) => removeSubtermMutation({ variables: { _id } })),
+			tryAsync(({ term }, { _id }) => removeSubtermMutation({
+				variables: { _id, term },
+				refetchQueries: ['DictionaryOverviewQuery'],
+			})),
 
 		onFetchData: ({ data, pageSize, loadMore, setQueryInput }) =>
 			tryAsync((state) => {
@@ -73,7 +77,9 @@ export default compose(
 			onSubmit: onEditTerm,
 		}))(EditTermInlineForm)
 
-		const wrappedControlCell = withProps({ onRemoveTerm })(ControlsCell)
+		const wrappedControlCell = withProps({
+			onRemove: onRemoveTerm,
+		})(ControlsCell)
 
 		return {
 			columns: columnsDescription(

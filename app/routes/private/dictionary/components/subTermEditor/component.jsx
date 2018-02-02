@@ -6,10 +6,9 @@ import { renderNothing } from 'recompose'
 
 import InlineEditorPortal from '../inlineEditorPortal'
 import EditTermInlineForm from '../editTermInlineForm'
-import columns from './columns.description'
 import styles from './styles'
 
-const SubTermEditorComponent = ({ item, onInternalAddSubterm }) => (
+const SubTermEditorComponent = ({ item, columns, onInternalAddSubterm }) => (
 	<div className={css(styles.container)}>
 		<InlineEditorPortal
 			selector={`.table_${item._id} .rt-tbody .rt-tr-group`}
@@ -28,6 +27,7 @@ const SubTermEditorComponent = ({ item, onInternalAddSubterm }) => (
 
 SubTermEditorComponent.propTypes = {
 	item: PropTypes.shape().isRequired,
+	columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	onInternalAddSubterm: PropTypes.func.isRequired,
 }
 

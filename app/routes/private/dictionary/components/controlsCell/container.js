@@ -4,8 +4,8 @@ import ControlsCellComponent from './component'
 
 export default compose(
 	withHandlers({
-		onInternalRemoveTerm: ({ onRemoveTerm, value }) => () => {
-			onRemoveTerm(value)
+		onInternalRemove: ({ onRemove, value, parent }) => () => {
+			onRemove(value, parent)
 		},
 	})
 )(ControlsCellComponent)

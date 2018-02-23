@@ -27,7 +27,7 @@ const OverviewPatientComponent = ({
 	<div className={css(styles.container)}>
 		<h1 className={css(styles.header)}>{t('links.patients')}</h1>
 		<div className={css(styles.searchPanel)}>
-			<ValidatedInput strictLong strictHigh field={searchField} placeholder="Search..." />
+			<ValidatedInput strictLong strictHigh field={searchField} placeholder={t('placeholders.search')} />
 			<div className={css(styles.searchButtonWrapper)}>
 				<Button id="search-btn" rounded onClick={onSearch}>{t('buttons.search')}</Button>
 			</div>

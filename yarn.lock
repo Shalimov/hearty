@@ -4629,6 +4629,13 @@ react-collapsible@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.0.3.tgz#b7228b002428a6e0a9f41646ea61ba28aacfcb00"
 
+react-contextmenu@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/react-contextmenu/-/react-contextmenu-2.9.2.tgz#7076075f09e4cad023a1252da347d9e6782d003a"
+  dependencies:
+    classnames "^2.2.5"
+    object-assign "^4.1.0"
+
 react-datetime@^2.11.1:
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-2.11.1.tgz#11d15081dd7d6729284e21c1b8ea7b975e3bdc7e"

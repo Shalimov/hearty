@@ -57,6 +57,7 @@
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-collapsible": "^2.0.3",
+    "react-contextmenu": "^2.9.2",
     "react-datetime": "^2.11.1",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",

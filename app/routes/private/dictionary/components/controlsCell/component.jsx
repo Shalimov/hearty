@@ -9,8 +9,10 @@ const ControlsCellComponent = ({ onInternalRemove }) => (
 		confirmQuestionText={t('common.removeQuestion')}
 		onConfirm={onInternalRemove}>
 		{onTrigger => (
-			<Button iconed onClick={onTrigger}>
-				<FontAwesome name="trash" />
+			<Button 
+				iconed
+				onClick={onTrigger}>
+				<FontAwesome title={t('hints.clickToRemove')} name="trash" />
 			</Button>
 		)}
 	</ConfirmModal>

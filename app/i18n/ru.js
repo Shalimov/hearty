@@ -56,6 +56,7 @@ const descriptions = {
 	},
 
 	descriptions: {
+		fromDictionary: 'Добавить из словаря',
 		forgotPassword: 'Если вы забыли пароль то паниковать не стоит, просто введите адрес своей почты и мы поможем вам с восстановлением.',
 		welcome: 'Рутина станет незаметной',
 		welcomeFeatures: 'Добро пожаловать в Hearty. Данная программа поможет вам справляться с рутинными задачами быстро и без труда, концентрируясь на самом важном',
@@ -102,7 +103,12 @@ const descriptions = {
 	hints: {
 		dblClickToEdit: 'Двойной щелчок для редактирования',
 		ctrlEnterAdd: 'Ctrl + Enter для добавления',
+		clickToRemove: 'Нажмите для удаления',
 		enterAdd: 'Enter для добавления',
+	},
+
+	placeholders: {
+		search: 'Поиск',
 	},
 
 	regions: [

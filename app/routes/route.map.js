@@ -18,6 +18,4 @@ export const patients = createPrefix(`${board.index()}/patients`, {
 
 export const dictionary = createPrefix(`${board.index()}/dictionary`, {
 	index: fp.constant(''),
-	add: fp.constant('/add'),
-	edit: patientId => `/${patientId}/edit`,
 })

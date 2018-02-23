@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: colors.white100,
 		padding: toPx(unit),
+		userSelect: 'initial',
 	},
 
 	buttonWrapper: {

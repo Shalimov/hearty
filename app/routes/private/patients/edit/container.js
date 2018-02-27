@@ -15,7 +15,7 @@ export default compose(
 	`, { name: 'editPatientMutation' }),
 	graphql(gql`
 		query RetrievePatientQuery($_id: ID) {
-			patient(_id: $id) {
+			patient(_id: $_id) {
 				_id
 				fullname
 				birthdate

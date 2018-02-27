@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
 	inputWrapper: {
 		position: 'relative',
-		display: 'inline-block',
+		// display: 'inline-block',
 		width: toPr(100),
 	},
 
@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
 		width: long,
 	},
 
+	noBorder: {
+		border: 0,
+	},
+
 	strictHigh: {
 		padding: toPx(unit + half),
 	},
@@ -59,6 +63,10 @@ const styles = StyleSheet.create({
 		width: 'inherit',
 		maxWidth: 'inherit',
 		height: 'inherit',
+	},
+
+	underlined: {
+		border: 'none',
 	},
 
 	inputError: {

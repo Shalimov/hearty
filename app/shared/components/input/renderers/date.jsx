@@ -13,6 +13,7 @@ const dateRenderer = ({
 	disabled,
 	strictHigh,
 	flexible,
+	noBorder,
 	showError,
 	value,
 	autoComplete,
@@ -38,6 +39,7 @@ const dateRenderer = ({
 					cssx({
 						input: true,
 						strictHigh,
+						noBorder,
 						flexible,
 						inputError: showError,
 					}, styles),

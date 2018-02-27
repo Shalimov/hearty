@@ -16,6 +16,7 @@ const defaultRenderer = ({
 	strictHigh,
 	showError,
 	flexible,
+	noBorder,
 	type = 'text',
 	value,
 	autoComplete,
@@ -33,6 +34,7 @@ const defaultRenderer = ({
 				cssx({
 					input: true,
 					strictHigh,
+					noBorder,
 					flexible,
 					inputError: showError,
 				}, styles),

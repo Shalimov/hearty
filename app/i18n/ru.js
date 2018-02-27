@@ -37,6 +37,7 @@ const descriptions = {
 	},
 
 	common: {
+		notFound: 'Ничего найти не удалось',
 		runQuestion: 'Вы уверены что хотите выполнить данное действие?',
 		removeQuestion: 'Вы уверены что хотите удалить данную запись?',
 	},
@@ -109,6 +110,9 @@ const descriptions = {
 
 	placeholders: {
 		search: 'Поиск',
+		dictionaries: {
+			search: 'Поиск в словарях',
+		},
 	},
 
 	regions: [

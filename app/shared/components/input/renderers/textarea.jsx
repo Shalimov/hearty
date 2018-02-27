@@ -15,6 +15,7 @@ const textareaRenderer = ({
 	readOnly,
 	showError,
 	flexible,
+	noBorder,
 	value,
 	rows,
 	placeholder,
@@ -29,6 +30,7 @@ const textareaRenderer = ({
 			join(
 				cssx({
 					input: true,
+					noBorder,
 					flexible,
 					inputError: showError,
 				}, styles),

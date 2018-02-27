@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { cssx, css } from 'utils/aphrodite-ext'
+import { cssx } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
 
@@ -11,9 +11,11 @@ const selectRenderer = ({
 	id,
 	className,
 	disabled,
+	underlined,
 	readOnly,
 	strictHigh,
 	flexible,
+	noBorder,
 	showError,
 	value,
 	autoComplete,
@@ -35,8 +37,8 @@ const selectRenderer = ({
 			className={join(
 				cssx({
 					select: true,
-					strictHigh: strictHigh,
 					strictHigh,
+					noBorder,
 					flexible,
 					inputError: showError,
 				}, styles),

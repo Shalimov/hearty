@@ -2,25 +2,15 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
-import FontAwesome from 'react-fontawesome'
-import { Form, ValidatedInput } from 'shared/components'
+import { Form, Input } from 'shared/components'
 import t from 'i18n'
-import { css } from 'aphrodite'
 
-import styles, { dialogStyles } from './styles'
-
-/* eslint-disable */
-const inputRenderer = props => (
-	<div className={css(styles.container)}>
-		<FontAwesome name="search" className={css(styles.icon)} />
-		<input {...props} className={[props.className, css(styles.internalInput)].join(' ')} />
-	</div>
-)
-/* eslint-enable */
+import { dialogStyles } from './styles'
 
 const DictionaryDialogComponent = ({
-	searchField,
 	applicationStateStore,
+	loadOptions,
+	onChange,
 	onRequestClose,
 }) => {
 	const isOpen = applicationStateStore.uiState.dictionaryDialogStateOpen
@@ -28,15 +18,16 @@ const DictionaryDialogComponent = ({
 	return (
 		<Modal isOpen={isOpen} style={dialogStyles} onRequestClose={onRequestClose}>
 			<Form>
-				<ValidatedInput
-					type="select"
+				<Input
+					type="select-async"
 					flexible
 					noBorder
 					autoFocus
-					wrapperStyle={{ display: 'block' }}
-					inputRenderer={inputRenderer}
-					field={searchField}
+					loadOptions={loadOptions}
+					onChange={onChange}
+					searchPromptText={t('common.typeToSearch')}
 					noResultsText={t('common.notFound')}
+					loadingPlaceholder={t('common.handlingProcess')}
 					placeholder={t('placeholders.dictionaries.search')} />
 			</Form>
 		</Modal>
@@ -46,6 +37,8 @@ const DictionaryDialogComponent = ({
 DictionaryDialogComponent.propTypes = {
 	searchField: PropTypes.shape().isRequired,
 	applicationStateStore: PropTypes.shape().isRequired,
+	loadOptions: PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
 	onRequestClose: PropTypes.func.isRequired,
 }
 

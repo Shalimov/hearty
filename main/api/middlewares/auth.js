@@ -12,7 +12,7 @@ const verifyToken = (data, context, next) => {
 		return
 	}
 
-	jwt.verify(token, jwtsecret, (error, decoded) => {
+	jwt.verify(token, jwtsecret, { ignoreExpiration: true }, (error, decoded) => {
 		if (!error) {
 			context.set('userId', decoded.userId)
 			next()

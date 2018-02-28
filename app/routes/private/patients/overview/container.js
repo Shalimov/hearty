@@ -17,7 +17,7 @@ export default compose(
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
 	withFormModel({
-		searchField: Ego.string(),
+		searchField: Ego.any(),
 	}, { spreadFields: true }),
 	withState('filtered', 'setSearchValue', toFilterStruct('')),
 	graphql(gql`

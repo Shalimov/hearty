@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select, { Async } from 'react-select'
 import { cssx } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
@@ -7,7 +7,7 @@ import styles from '../styles'
 const join = (...classNames) => classNames.join(' ')
 
 /* eslint-disable */
-const selectRenderer = ({
+const createRenderer = Component => ({
 	id,
 	className,
 	disabled,
@@ -24,33 +24,37 @@ const selectRenderer = ({
 	onBlur,
 	...props
 }) => (
-		<Select
-			placeholder=""
-			{...props}
-			inputProps={{
-				id,
-				placeholder,
-				autoComplete,
-				readOnly,
-				disabled,
-			}}
-			className={join(
-				cssx({
-					select: true,
-					strictHigh,
-					noBorder,
-					flexible,
-					inputError: showError,
-				}, styles),
-				className
-			)}
-			value={value}
-			onBlur={onBlur}
-			onChange={value => onInternalChange({
-				target: { value }
-			})}
-		/>
-	)
+	<Component
+		placeholder=""
+		{...props}
+		inputProps={{
+			id,
+			placeholder,
+			autoComplete,
+			readOnly,
+			disabled,
+		}}
+		className={join(
+			cssx({
+				select: true,
+				strictHigh,
+				noBorder,
+				flexible,
+				inputError: showError,
+			}, styles),
+			className
+		)}
+		value={value}
+		onBlur={onBlur}
+		onChange={value => onInternalChange({
+			target: { value },
+		})}
+	/>
+)
+
+const selectRenderer = createRenderer(Select)
+const asyncSelectRenderer = createRenderer(Async)
 /* eslint-enable */
 
 export default selectRenderer
+export { asyncSelectRenderer }

@@ -1,30 +1,7 @@
-import { StyleSheet } from 'aphrodite'
-import { colors, font, measures } from 'styles/variables'
-import { mixins } from 'styles/mixins'
+import { colors, measures } from 'styles/variables'
 import { toPx } from 'utils/styles'
 
 const { unit } = measures
-
-const styles = StyleSheet.create({
-	container: {
-		...mixins.flexRow(),
-		alignItems: 'center',
-		marginLeft: toPx(unit),
-	},
-
-	internalInput: {
-		...mixins.font(),
-		color: colors.color8,
-		boxSizing: 'border-box',
-		width: 'inherit',
-		border: 0,
-	},
-
-	icon: {
-		fontSize: font.font20,
-		color: colors.black40,
-	},
-})
 
 const dialogStyles = {
 	content: {
@@ -47,6 +24,5 @@ const dialogStyles = {
 	},
 }
 
-export default styles
 export { dialogStyles }
 

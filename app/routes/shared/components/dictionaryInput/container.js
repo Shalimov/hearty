@@ -8,13 +8,10 @@ export default compose(
 	withRouter,
 	inject('applicationStateStore'),
 	withHandlers({
-		openFromDictionaryDialog: ({ applicationStateStore }) => () => {
+		openFromDictionaryDialog: ({ applicationStateStore, field }) => async () => {
 			const uiState = applicationStateStore.uiState
-			uiState.setDictionaryDialogStateOpen()
-		},
-
-		onSelect: ({ field }) => (term) => {
-			field.onChangeText(term)
+			const dialogData = await uiState.setDictionaryDialogStateOpen()
+			field.onChangeText(dialogData)
 		},
 	})
 )(DictionaryInputComponent)

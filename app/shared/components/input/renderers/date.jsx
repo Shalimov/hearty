@@ -13,6 +13,7 @@ const dateRenderer = ({
 	disabled,
 	strictHigh,
 	flexible,
+	inlined,
 	noBorder,
 	showError,
 	value,
@@ -38,6 +39,7 @@ const dateRenderer = ({
 				className: join(
 					cssx({
 						input: true,
+						inlined,
 						strictHigh,
 						noBorder,
 						flexible,

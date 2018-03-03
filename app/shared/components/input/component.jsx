@@ -35,7 +35,7 @@ const InputComponent = ({
 	renderComponent = rendererProxy,
 	...params
 }) => (
-	<div className={css(styles.inputContainer)}>
+	<div className={cssx({ inlinedContainer: params.inlined }, styles)}>
 		{label && <label className={css(styles.label)}>{label}</label>}
 		<div className={join(
 			css(styles.inputWrapper),

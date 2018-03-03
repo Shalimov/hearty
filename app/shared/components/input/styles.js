@@ -51,6 +51,17 @@ const styles = StyleSheet.create({
 		width: long,
 	},
 
+	inlinedContainer: {
+		display: 'inline-block',
+	},
+
+	inlined: {
+		padding: 0,
+		border: 'none',
+		backgroundColor: colors.transparent,
+		borderBottom: `1px solid ${colors.color1}`,
+	},
+
 	noBorder: {
 		border: 0,
 	},

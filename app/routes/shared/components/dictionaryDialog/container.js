@@ -8,6 +8,7 @@ import { withFormModel } from 'shared/hocs'
 import DictionaryDialogComponent from './component'
 import searchModel from './search.model'
 
+const DELAY = 500
 const getOptions = fp.flow(
 	fp.get('content'),
 	fp.flatMap(({ term, subTerms }) => fp.map(subTerm => ({
@@ -49,7 +50,7 @@ export default compose(
 		},
 	}),
 	withHandlers({
-		loadOptions: ({ data }) => fp.debounce(500, async (search, callback) => {
+		loadOptions: ({ data }) => fp.debounce(DELAY, async (search, callback) => {
 			const { data: { terms } } = await data.refetch({
 				input: getTermQueryInput(search),
 			})

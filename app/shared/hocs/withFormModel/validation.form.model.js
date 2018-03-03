@@ -63,6 +63,11 @@ class VadlidationFormModel {
 	reset() {
 		fp.invokeMap('reset', this.fields)
 	}
+
+	addField(name, initialValue, scheme, readonly) {
+		this.fields[name] = ValidatedFieldModel.create(name, initialValue, scheme, readonly)
+		return this.fields[name]
+	}
 }
 
 export default VadlidationFormModel

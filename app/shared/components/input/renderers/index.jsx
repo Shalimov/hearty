@@ -16,6 +16,7 @@ const defaultRenderer = ({
 	strictHigh,
 	showError,
 	flexible,
+	inlined,
 	noBorder,
 	type = 'text',
 	value,
@@ -33,6 +34,7 @@ const defaultRenderer = ({
 			join(
 				cssx({
 					input: true,
+					inlined,
 					strictHigh,
 					noBorder,
 					flexible,

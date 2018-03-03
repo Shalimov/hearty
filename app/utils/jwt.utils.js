@@ -26,3 +26,15 @@ export const isJWTExpired = fp.flow(
 	extractJWTPayload,
 	({ exp }) => exp < Date.now()
 )
+
+
+export const stringHash = (str) => {
+	let hash = 5381
+	let i = str.length
+
+	while (i) {
+		hash = (hash * 33) ^ str.charCodeAt(--i)
+	}
+
+	return hash >>> 0
+}

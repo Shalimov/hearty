@@ -66,6 +66,7 @@ const descriptions = {
 	},
 
 	links: {
+		epicrisis: 'Эпикриз',
 		signup: 'Регистрация',
 		forgotPassword: 'Забыли пароль',
 		main: 'Главная',
@@ -80,6 +81,7 @@ const descriptions = {
 		search: 'Найти',
 		save: 'Сохранить',
 		submit: 'Отправить',
+		next: 'Далее',
 		back: 'Назад',
 		signin: 'Войти',
 		ok: 'Да',
@@ -87,6 +89,7 @@ const descriptions = {
 	},
 
 	labels: {
+		epicrisisNo: 'Номер эпикриза',
 		email: 'Адрес электронной почты',
 		password: 'Пароль',
 		fullname: 'ФИО',
@@ -96,11 +99,19 @@ const descriptions = {
 		term: 'Термин',
 		subTerm: 'Подтермин',
 		name: 'Название',
+		jobInfo: 'Место работы',
+		arrivalAt: 'Дата поступления',
+		departureAt: 'Дата выписки',
+		diagnosis: 'Диагноз основной',
+		diagnosisComplication: 'Осложнения',
+		followingDiagnosisPart: 'Сопутствующий',
 	},
 
 	legends: {
 		editPatient: 'Данные пациента',
 		editTerm: 'Термин',
+		patientsInfo: 'Данные пациента',
+		epicrisisInfo: 'Данные эпикриза',
 	},
 
 	hints: {

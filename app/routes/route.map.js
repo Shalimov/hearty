@@ -19,3 +19,8 @@ export const patients = createPrefix(`${board.index()}/patients`, {
 export const dictionary = createPrefix(`${board.index()}/dictionary`, {
 	index: fp.constant(''),
 })
+
+export const epicrisis = createPrefix(`${board.index()}/epicrisis`, {
+	index: fp.constant(''),
+	add: fp.constant('/add'),
+})

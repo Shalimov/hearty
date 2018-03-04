@@ -5,6 +5,7 @@ import Layout from './layout'
 import Welcome from './welcome'
 import Patients from './patients'
 import Dictionary from './dictionary'
+import Epicrisis from './epicrisis'
 
 const PrivateRoutesRoot = createRoutes(({ match }) => [
 	{
@@ -14,6 +15,10 @@ const PrivateRoutesRoot = createRoutes(({ match }) => [
 	{
 		path: `${match.path}/patients`,
 		component: Patients,
+	},
+	{
+		path: `${match.path}/epicrisis`,
+		component: Epicrisis,
 	},
 	{
 		path: match.path,

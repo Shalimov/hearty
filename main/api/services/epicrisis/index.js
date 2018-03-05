@@ -3,14 +3,20 @@ const fp = require('lodash/fp')
 const BaseService = require('../base')
 const { TEMPLATE_DIR } = require('../../../constants/system')
 
+const EXT_PATTERN = /(?:\.docx?)$/i
+
 class EpicrisisService extends BaseService {
 	constructor(repository, promisifiedFs) {
 		super(repository, 'epicrisis')
 		this.fs = promisifiedFs
 	}
 
-	static create(repository) {
-		return new EpicrisisService(repository)
+	static create(repository, promisifiedFs) {
+		return new EpicrisisService(repository, promisifiedFs)
+	}
+
+	static isDoc(value) {
+		return EXT_PATTERN.test(value)
 	}
 
 	toSearchQuery(params) {
@@ -28,6 +34,7 @@ class EpicrisisService extends BaseService {
 
 	queryTemplates() {
 		return this.fs.readdirAsync(TEMPLATE_DIR, { encoding: 'utf8' })
+			.then(fp.filter(EpicrisisService.isDoc))
 	}
 
 	printEpicrisis() {

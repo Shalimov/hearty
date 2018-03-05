@@ -105,6 +105,7 @@ const descriptions = {
 		diagnosis: 'Диагноз основной',
 		diagnosisComplication: 'Осложнения',
 		followingDiagnosisPart: 'Сопутствующий',
+		docTemplate: 'Шаблон документа',
 	},
 
 	legends: {
@@ -112,6 +113,7 @@ const descriptions = {
 		editTerm: 'Термин',
 		epicrisisInfo: 'Данные эпикриза',
 		diagnosisInfo: 'Диагноз',
+		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 
 	hints: {

@@ -9,9 +9,9 @@ import TemplatesFinder from './components/templatesFinder'
 export default compose(
 	withProps({
 		items: [
-			TemplatesFinder,
 			PatientInfo,
 			DiagnosisInfo,
+			TemplatesFinder,
 		],
 	}),
 	withHandlers({

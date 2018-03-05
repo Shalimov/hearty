@@ -30,6 +30,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "dependencies": {
+    "angular-expressions": "^0.3.0",
     "aphrodite": "^1.2.5",
     "apollo-cache-inmemory": "^1.1.5",
     "apollo-client": "^2.2.0",

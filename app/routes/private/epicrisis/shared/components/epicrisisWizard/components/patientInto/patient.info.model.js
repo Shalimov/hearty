@@ -29,7 +29,7 @@ export default ({ initialValues = {} }) => ({
 
 	regionField: {
 		initialValue: fp.get('patient.region', initialValues),
-		scheme: Ego.number()
+		scheme: Ego.string()
 			.forProp(fp.get('value'))
 			.label(t('labels.region'))
 			.required(),

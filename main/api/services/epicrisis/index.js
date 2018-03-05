@@ -1,10 +1,11 @@
 const fp = require('lodash/fp')
 
+const { generateDocument } = require('./generate.doc')
+const transformEpicrisis = require('./transform.epicrisis')
 const BaseService = require('../base')
 const { TEMPLATE_DIR } = require('../../../constants/system')
 
 const EXT_PATTERN = /(?:\.docx?)$/i
-
 class EpicrisisService extends BaseService {
 	constructor(repository, promisifiedFs) {
 		super(repository, 'epicrisis')
@@ -37,8 +38,11 @@ class EpicrisisService extends BaseService {
 			.then(fp.filter(EpicrisisService.isDoc))
 	}
 
-	printEpicrisis() {
-		throw new Error('Not implemented')
+	async printEpicrisis(_id, epicrisisTemplate) {
+		const epicrisis = await this.get(_id)
+			.then(transformEpicrisis)
+			
+		await generateDocument(epicrisisTemplate, epicrisis)
 	}
 }
 

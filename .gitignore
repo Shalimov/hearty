@@ -28,6 +28,7 @@ package-lock.json
 
 # Brunch output folder.
 public/
+output/
 
 # DB files
 dbs/*.db

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { Form, ValidatedInput, Button, SubmitButton } from 'shared/components'
+import { Form, Button, SubmitButton } from 'shared/components'
+import { DictionaryInput } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -18,7 +19,7 @@ const DiagnosisInfoComponent = ({
 		<fieldset>
 			<legend className={css(styles.formLegend)}>{t('legends.diagnosisInfo')}</legend>
 			<div className={css(styles.inputWrapper)}>
-				<ValidatedInput
+				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible
@@ -26,7 +27,7 @@ const DiagnosisInfoComponent = ({
 					field={diagnosisField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
-				<ValidatedInput
+				<DictionaryInput
 					type="textarea"
 					rows={4}
 					label={t('labels.diagnosisComplication')}
@@ -34,7 +35,7 @@ const DiagnosisInfoComponent = ({
 					field={diagnosisComplicationField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
-				<ValidatedInput
+				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible

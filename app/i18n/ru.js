@@ -42,6 +42,7 @@ const descriptions = {
 		handlingProcess: 'В процессе обработки...',
 		runQuestion: 'Вы уверены что хотите выполнить данное действие?',
 		removeQuestion: 'Вы уверены что хотите удалить данную запись?',
+		operationCompleted: 'Всё прошло успешно',
 	},
 
 	tables: {

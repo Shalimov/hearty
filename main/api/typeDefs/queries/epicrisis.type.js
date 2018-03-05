@@ -11,7 +11,7 @@ const EpicrisisType = (input = '') => `
 const EpicrisisPatient = `
 	fullname: String!
 	birthdate: Date!
-	region: Int!
+	region: String!
 	address: String!
 	jobInfo: String!
 	arrivalAt: Date!

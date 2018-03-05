@@ -73,7 +73,7 @@ const PatientIntoComponent = ({
 							searchable={false}
 							clearable={false}
 							labelKey="value"
-							valueKey="id"
+							valueKey="value"
 							options={t('regions')}
 							field={regionField} />
 					</div>

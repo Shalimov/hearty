@@ -25,14 +25,14 @@ export default compose(
 
 	withHandlers({
 		incrementStep: ({ items, currentStep, setStep, onStepChanged }) => () => {
-			if (items.length > currentStep + 1) {
+			if (items.length  > currentStep + 1) {
 				setStep(currentStep + 1)
 				onStepChanged && onStepChanged(currentStep + 1)
 			}
 		},
 
 		decrementStep: ({ currentStep, setStep, onStepChanged }) => () => {
-			if (currentStep - 1 <= 0) {
+			if (currentStep - 1 >= 0) {
 				setStep(currentStep - 1)
 				onStepChanged && onStepChanged(currentStep - 1)
 			}

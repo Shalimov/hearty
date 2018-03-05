@@ -141,6 +141,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-expressions@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/angular-expressions/-/angular-expressions-0.3.0.tgz#c73cdb5e15c32d40b16005c2941d6523ef1f141b"
+
 ansi-color@~0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/ansi-color/-/ansi-color-0.2.1.tgz#3e75c037475217544ed763a8db5709fa9ae5bf9a"

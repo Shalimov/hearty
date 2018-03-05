@@ -6,6 +6,7 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	epicrisisContainer: {
+		width: toPx(85 * unit),
 		padding: toPx(6 * unit),
 	},
 })

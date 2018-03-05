@@ -15,7 +15,7 @@ const DiagnosisInfoComponent = ({
 	onCancel,
 }) => (
 	<Form>
-		<fieldset className={css(styles.fieldset)}>
+		<fieldset>
 			<legend className={css(styles.formLegend)}>{t('legends.diagnosisInfo')}</legend>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput

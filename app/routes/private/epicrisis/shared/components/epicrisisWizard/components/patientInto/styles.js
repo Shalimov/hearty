@@ -6,10 +6,6 @@ import { toPx, toPr } from 'utils/styles'
 const { unit } = measures
 
 const styles = StyleSheet.create({
-	fieldset: {
-		width: toPx(85 * unit),
-	},
-
 	rows: {
 		...mixins.flexRow(),
 		justifyContent: 'flex-start',

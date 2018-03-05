@@ -6,6 +6,10 @@ import { toPx } from 'utils/styles'
 const { unit } = measures
 
 const styles = StyleSheet.create({
+	fieldset: {
+		width: toPx(85 * unit),
+	},
+
 	formLegend: {
 		...mixins.font({ size: font.font22, weight: font.weight.bold }),
 		marginBottom: toPx(6 * unit),

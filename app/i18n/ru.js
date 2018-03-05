@@ -110,8 +110,8 @@ const descriptions = {
 	legends: {
 		editPatient: 'Данные пациента',
 		editTerm: 'Термин',
-		patientsInfo: 'Данные пациента',
 		epicrisisInfo: 'Данные эпикриза',
+		diagnosisInfo: 'Диагноз',
 	},
 
 	hints: {

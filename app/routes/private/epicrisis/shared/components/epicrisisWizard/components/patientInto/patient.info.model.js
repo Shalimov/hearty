@@ -59,7 +59,17 @@ export default ({ initialValues = {} }) => ({
 	departureAtField: {
 		initialValue: toDate(initialValues.departureAt),
 		scheme: Ego.date()
-			.label(t('labels.departureAt'))
-			.required(),
+			.label(t('labels.departureAt')),
 	},
 })
+
+export const mapping = [
+	['epicrisisNoField', 'epicrisisNo'],
+	['fullnameField', 'fullname'],
+	['birthdateField', 'birthdate'],
+	['regionField', 'region'],
+	['addressField', 'address'],
+	['jobInfoField', 'jobInfo'],
+	['arrivalAtField', 'arrivalAt'],
+	['departureAtField', 'departureAt'],
+]

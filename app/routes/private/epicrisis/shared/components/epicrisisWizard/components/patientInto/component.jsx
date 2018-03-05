@@ -19,79 +19,74 @@ const PatientIntoComponent = ({
 	onInternalSubmit,
 	onCancel,
 }) => (
-	<Form className={css(styles.form)}>
-		<div className={css(styles.rows)}>
-			<fieldset className={css(styles.fieldset)}>
-				<legend className={css(styles.formLegend)}>{t('legends.epicrisisInfo')}</legend>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="text"
-						label={t('labels.epicrisisNo')}
-						strictLong
-						field={epicrisisNoField} />
+	<Form>
+		<fieldset className={css(styles.fieldset)}>
+			<legend className={css(styles.formLegend)}>{t('legends.epicrisisInfo')}</legend>
+			<div className={css(styles.rows)}>
+				<div className={css(styles.block)}>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="text"
+							label={t('labels.epicrisisNo')}
+							field={epicrisisNoField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="date"
+							viewMode="days"
+							label={t('labels.arrivalAt')}
+							field={arrivalAtField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="date"
+							viewMode="days"
+							label={t('labels.departureAt')}
+							field={departureAtField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="textarea"
+							rows={3}
+							label={t('labels.jobInfo')}
+							field={jobInfoField} />
+					</div>
 				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="date"
-						viewMode="days"
-						label={t('labels.arrivalAt')}
-						strictLong
-						field={arrivalAtField} />
+				<div className={css(styles.block)}>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="text"
+							label={t('labels.fullname')}
+							field={fullnameField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="date"
+							label={t('labels.birthdate')}
+							field={birthdateField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="select"
+							label={t('labels.region')}
+							simpleValue
+							searchable={false}
+							clearable={false}
+							labelKey="value"
+							valueKey="id"
+							options={t('regions')}
+							field={regionField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="textarea"
+							rows={3}
+							label={t('labels.address')}
+							field={addressField} />
+					</div>
 				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="date"
-						viewMode="days"
-						label={t('labels.departureAt')}
-						strictLong
-						field={departureAtField} />
-				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="textarea"
-						label={t('labels.jobInfo')}
-						strictLong
-						field={jobInfoField} />
-				</div>
-			</fieldset>
-			<fieldset className={css(styles.fieldset)}>
-				<legend className={css(styles.formLegend)}>{t('legends.patientsInfo')}</legend>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="text"
-						label={t('labels.fullname')}
-						strictLong
-						field={fullnameField} />
-				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="date"
-						label={t('labels.birthdate')}
-						strictLong
-						field={birthdateField} />
-				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="select"
-						label={t('labels.region')}
-						strictLong
-						simpleValue
-						searchable={false}
-						clearable={false}
-						labelKey="value"
-						valueKey="id"
-						options={t('regions')}
-						field={regionField} />
-				</div>
-				<div className={css(styles.inputWrapper)}>
-					<ValidatedInput
-						type="textarea"
-						label={t('labels.address')}
-						strictLong
-						field={addressField} />
-				</div>
-			</fieldset>
-		</div>
+			</div>
+		</fieldset>
 		<div className={css(styles.buttonGroup)}>
 			<div className={css(styles.buttonWrapper)}>
 				<Button

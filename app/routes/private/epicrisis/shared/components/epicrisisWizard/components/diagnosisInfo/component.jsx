@@ -14,28 +14,31 @@ const DiagnosisInfoComponent = ({
 	onInternalSubmit,
 	onCancel,
 }) => (
-	<Form className={css(styles.form)}>
-		<fieldset>
+	<Form>
+		<fieldset className={css(styles.fieldset)}>
 			<legend className={css(styles.formLegend)}>{t('legends.diagnosisInfo')}</legend>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
+					rows={4}
+					flexible
 					label={t('labels.diagnosis')}
-					strictLong
 					field={diagnosisField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
+					rows={4}
 					label={t('labels.diagnosisComplication')}
-					strictLong
+					flexible
 					field={diagnosisComplicationField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
-					type="date"
+					type="textarea"
+					rows={4}
+					flexible
 					label={t('labels.followingDiagnosisPart')}
-					strictLong
 					field={followingDiagnosisPartField} />
 			</div>
 			<div className={css(styles.buttonGroup)}>

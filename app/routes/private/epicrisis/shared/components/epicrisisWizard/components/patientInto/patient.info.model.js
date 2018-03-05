@@ -14,21 +14,21 @@ export default ({ initialValues = {} }) => ({
 	},
 
 	fullnameField: {
-		initialValue: initialValues.fullname,
+		initialValue: fp.get('patient.fullname', initialValues),
 		scheme: Ego.string()
 			.label(t('labels.fullname'))
 			.required(),
 	},
 
 	birthdateField: {
-		initialValue: toDate(initialValues.birthdate),
+		initialValue: toDate(fp.get('patient.birthdate', initialValues)),
 		scheme: Ego.date()
 			.label(t('labels.birthdate'))
 			.required(),
 	},
 
 	regionField: {
-		initialValue: initialValues.region,
+		initialValue: fp.get('patient.region', initialValues),
 		scheme: Ego.number()
 			.forProp(fp.get('value'))
 			.label(t('labels.region'))
@@ -36,28 +36,28 @@ export default ({ initialValues = {} }) => ({
 	},
 
 	addressField: {
-		initialValue: initialValues.address,
+		initialValue: fp.get('patient.address', initialValues),
 		scheme: Ego.string()
 			.label(t('labels.address'))
 			.required(),
 	},
 
 	jobInfoField: {
-		initialValue: initialValues.jobInfo,
+		initialValue: fp.get('patient.jobInfo', initialValues),
 		scheme: Ego.string()
 			.label(t('labels.jobInfo'))
 			.required(),
 	},
 
 	arrivalAtField: {
-		initialValue: toDate(initialValues.arrivalAt),
+		initialValue: toDate(fp.get('patient.arrivalAt', initialValues)),
 		scheme: Ego.date()
 			.label(t('labels.arrivalAt'))
 			.required(),
 	},
 
 	departureAtField: {
-		initialValue: toDate(initialValues.departureAt),
+		initialValue: toDate(fp.get('patient.departureAt', initialValues)),
 		scheme: Ego.date()
 			.label(t('labels.departureAt')),
 	},
@@ -65,11 +65,11 @@ export default ({ initialValues = {} }) => ({
 
 export const mapping = [
 	['epicrisisNoField', 'epicrisisNo'],
-	['fullnameField', 'fullname'],
-	['birthdateField', 'birthdate'],
-	['regionField', 'region'],
-	['addressField', 'address'],
-	['jobInfoField', 'jobInfo'],
-	['arrivalAtField', 'arrivalAt'],
-	['departureAtField', 'departureAt'],
+	['fullnameField', 'patient.fullname'],
+	['birthdateField', 'patient.birthdate'],
+	['regionField', 'patient.region'],
+	['addressField', 'patient.address'],
+	['jobInfoField', 'patient.jobInfo'],
+	['arrivalAtField', 'patient.arrivalAt'],
+	['departureAtField', 'patient.departureAt'],
 ]

@@ -6,20 +6,20 @@ export default ({ initialValues = {} }) => ({
 	diagnosisField: {
 		initialValue: fp.get('diagnosis.main', initialValues),
 		scheme: Ego.string()
-			.label(t('labels.diagnosis'))
+			.label(t('labels.diagnosis.main'))
 			.required(),
 	},
 
 	diagnosisComplicationField: {
 		initialValue: fp.get('diagnosis.complication', initialValues),
 		scheme: Ego.string()
-			.label(t('labels.diagnosisComplication')),
+			.label(t('labels.diagnosis.complication')),
 	},
 
 	followingDiagnosisPartField: {
 		initialValue: fp.get('diagnosis.followingPart', initialValues),
 		scheme: Ego.string()
-			.label(t('labels.followingDiagnosisPart')),
+			.label(t('labels.diagnosis.followingPart')),
 	},
 })
 

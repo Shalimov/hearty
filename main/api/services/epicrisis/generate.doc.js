@@ -30,8 +30,11 @@ const generateDocument = async (templateName, epircirisData) => {
 	const dataBuffer = doc.getZip().generate({ type: 'nodebuffer' })
 
 	const departureAt = moment(epircirisData.departureAt).format('DD_MM_YYYY')
+	const filepath = `${baseOutput}/${epircirisData.patient.fullname}-${departureAt}.${ext}`
 
-	await fs.writeFileAsync(`${baseOutput}/${epircirisData.patient.fullname}-${departureAt}.${ext}`, dataBuffer)
+	await fs.writeFileAsync(filepath, dataBuffer)
+
+	return filepath
 }
 
 module.exports = {

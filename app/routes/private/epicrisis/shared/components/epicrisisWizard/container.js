@@ -7,19 +7,10 @@ import { toast } from 'react-toastify'
 import t from 'i18n'
 
 import EpicrisisWizardComponent from './component'
-
-import PatientInfo from './components/patientInto'
-import DiagnosisInfo from './components/diagnosisInfo'
-import TemplatesFinder from './components/templatesFinder'
+import wizardItems from './wizard.items'
 
 export default compose(
-	withProps({
-		items: [
-			PatientInfo,
-			DiagnosisInfo,
-			TemplatesFinder,
-		],
-	}),
+	withProps({ items: wizardItems }),
 	graphql(gql`
 		mutation CreateEpicrisis($input: EpicrisisInput!) {
 			createEpicrisis(input: $input) {

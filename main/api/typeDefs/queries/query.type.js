@@ -1,7 +1,7 @@
 const User = require('./user.type')
 const Patient = require('./patient.type')
 const Dictionary = require('./dictionary.type')
-const Epicrisis = require('./epicrisis.type')
+const Epicrisis = require('./epicrisis')
 
 const Query = `
 	type Query {

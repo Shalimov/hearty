@@ -103,10 +103,18 @@ const descriptions = {
 		jobInfo: 'Место работы',
 		arrivalAt: 'Дата поступления',
 		departureAt: 'Дата выписки',
-		diagnosis: 'Диагноз основной',
-		diagnosisComplication: 'Осложнения',
-		followingDiagnosisPart: 'Сопутствующий',
 		docTemplate: 'Шаблон документа',
+		other: 'Другое',
+		diagnosis: {
+			main: 'Диагноз основной',
+			complication: 'Осложнения',
+			followingPart: 'Сопутствующий',
+		},
+		ecg: {
+			arrival: 'При поступлении',
+			dynamic: 'В динамике',
+			ks: 'КС',
+		},
 	},
 
 	legends: {
@@ -114,6 +122,7 @@ const descriptions = {
 		editTerm: 'Термин',
 		epicrisisInfo: 'Данные эпикриза',
 		diagnosisInfo: 'Диагноз',
+		ecgInfo: 'ЭКГ',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

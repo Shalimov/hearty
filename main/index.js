@@ -14,7 +14,7 @@ const appUrl = ENV === 'production'
 	? `file://${__dirname}/index.html`
 	: 'http://localhost:8080'
 
-function createWindow() {
+const createWindow = () => {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({ width: 1024, height: 768 })
 

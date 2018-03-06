@@ -15,6 +15,7 @@ class ValidatedFieldModel {
 	constructor(name, initialValue, scheme, readonly) {
 		this.id = ValidatedFieldModel.toId(name)
 		this.name = name
+		this.label = scheme.labelKey
 		this.readonly = readonly
 		this.value = initialValue
 		this.scheme = scheme

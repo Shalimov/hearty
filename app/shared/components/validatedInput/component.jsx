@@ -7,11 +7,13 @@ import { Input } from 'shared/components'
 const ValidatedInput = ({
 	field,
 	disabled,
+	label,
 	...props
 }) => (
 	<Input {...props}
 		id={field.id}
 		disabled={disabled || field.readonly}
+		label={label || field.label}
 		value={field.value}
 		onBlur={field.onBlur}
 		showError={field.showError}

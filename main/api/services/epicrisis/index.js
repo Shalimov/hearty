@@ -1,4 +1,5 @@
 const fp = require('lodash/fp')
+const { shell } = require('electron')
 
 const { generateDocument } = require('./generate.doc')
 const transformEpicrisis = require('./transform.epicrisis')
@@ -42,7 +43,9 @@ class EpicrisisService extends BaseService {
 		const epicrisis = await this.get(_id)
 			.then(transformEpicrisis)
 			
-		await generateDocument(epicrisisTemplate, epicrisis)
+		const resultDocFilepath = await generateDocument(epicrisisTemplate, epicrisis)
+
+		shell.openItem(resultDocFilepath)
 	}
 }
 

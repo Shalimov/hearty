@@ -27,28 +27,24 @@ const PatientIntoComponent = ({
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="text"
-							label={t('labels.epicrisisNo')}
 							field={epicrisisNoField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="date"
 							viewMode="days"
-							label={t('labels.arrivalAt')}
 							field={arrivalAtField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="date"
 							viewMode="days"
-							label={t('labels.departureAt')}
 							field={departureAtField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="textarea"
 							rows={3}
-							label={t('labels.jobInfo')}
 							field={jobInfoField} />
 					</div>
 				</div>
@@ -56,19 +52,16 @@ const PatientIntoComponent = ({
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="text"
-							label={t('labels.fullname')}
 							field={fullnameField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="date"
-							label={t('labels.birthdate')}
 							field={birthdateField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="select"
-							label={t('labels.region')}
 							simpleValue
 							searchable={false}
 							clearable={false}
@@ -81,7 +74,6 @@ const PatientIntoComponent = ({
 						<ValidatedInput
 							type="textarea"
 							rows={3}
-							label={t('labels.address')}
 							field={addressField} />
 					</div>
 				</div>

@@ -4,10 +4,16 @@ import { css } from 'aphrodite'
 import { Wizard } from 'shared/components'
 
 import styles from './styles'
+import initialData from './initial.data'
 
 const EpicrisisWizardComponent = ({ items, onSubmit, onCancel }) => (
 	<div className={css(styles.epicrisisContainer)}>
-		<Wizard startStep={0} items={items} onSubmit={onSubmit} onCancel={onCancel} />
+		<Wizard
+			startStep={0}
+			items={items}
+			initialValues={initialData}
+			onSubmit={onSubmit}
+			onCancel={onCancel} />
 	</div>
 )
 

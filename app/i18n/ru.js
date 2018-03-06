@@ -121,6 +121,11 @@ const descriptions = {
 			dynamic: 'ЭКГ в динамике',
 			ks: 'ЭХО КС',
 		},
+		xray: {
+			crgogk: 'КРГ ОГК',
+			crgSkull: 'КРГ Черепа в двух проекциях',
+			jointsRoentgenography: 'Рентгенография правого/левого коленного/тазобедренного сустава',
+		},
 	},
 
 	legends: {
@@ -130,6 +135,7 @@ const descriptions = {
 		diagnosisInfo: 'Диагноз',
 		ecgEchoInfo: 'ЭКГ & ЭХО',
 		usdScopiaInfo: 'УЗИ & -Cкорпия',
+		xrayInfo: 'Лучевая диагностика',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

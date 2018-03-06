@@ -2,6 +2,7 @@ import PatientInfo from './components/patientInto'
 import DiagnosisInfo from './components/diagnosisInfo'
 import ECGEchoInfo from './components/ecgEchoInfo'
 import USDScopiaInfo from './components/usdScopiaInfo'
+import XRayInfo from './components/xrayInfo'
 import TemplatesFinder from './components/templatesFinder'
 
 export default [
@@ -9,5 +10,6 @@ export default [
 	DiagnosisInfo,
 	ECGEchoInfo,
 	USDScopiaInfo,
+	XRayInfo,
 	TemplatesFinder,
 ]

@@ -7,17 +7,18 @@ const getComponent = item => Array.isArray(item) ? item[0] : item
 const getProps = item => Array.isArray(item) ? item[1] : EMPTY_PROPS
 
 export default compose(
-	withStateHandlers(({ startStep, items }) => ({
+	withStateHandlers(({ startStep, items, initialValues }) => ({
 		steps: items,
 		ActiveComponent: getComponent(items[startStep]),
 		activeComponentProps: getProps(items[startStep]),
-		componentData: undefined,
+		initialValues: initialValues,
+		componentData: initialValues,
 		currentStep: startStep,
 		wizardData: new Map(),
 	}), {
-		setStep: ({ steps, wizardData }) => (currentStep) => ({
+		setStep: ({ steps, wizardData, initialValues }) => (currentStep) => ({
 			currentStep,
-			componentData: wizardData.get(currentStep),
+			componentData: Object.assign(initialValues, wizardData.get(currentStep)),
 			ActiveComponent: getComponent(steps[currentStep]),
 			activeComponentProps: getProps(steps[currentStep]),
 		}),

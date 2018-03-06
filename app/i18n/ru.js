@@ -110,10 +110,10 @@ const descriptions = {
 			complication: 'Осложнения',
 			followingPart: 'Сопутствующий',
 		},
-		ecg: {
-			arrival: 'При поступлении',
-			dynamic: 'В динамике',
-			ks: 'КС',
+		ecgEcho: {
+			arrival: 'ЭКГ при поступлении',
+			dynamic: 'ЭКГ в динамике',
+			ks: 'ЭХО КС',
 		},
 	},
 
@@ -122,7 +122,7 @@ const descriptions = {
 		editTerm: 'Термин',
 		epicrisisInfo: 'Данные эпикриза',
 		diagnosisInfo: 'Диагноз',
-		ecgInfo: 'ЭКГ',
+		ecgEchoInfo: 'ЭКГ & ЭХО',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

@@ -7,45 +7,45 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const ECGInfoComponent = ({
+const ECGEchoInfoComponent = ({
 	formModel,
-	ecgArrivalField,
-	ecgDynamicField,
-	ecgKSField,
-	ecgOtherField,
+	ecgEchoArrivalField,
+	ecgEchoDynamicField,
+	ecgEchoKSField,
+	ecgEchoOtherField,
 	onInternalSubmit,
 	onCancel,
 }) => (
 	<Form>
 		<fieldset>
-			<legend className={css(styles.formLegend)}>{t('legends.ecgInfo')}</legend>
+			<legend className={css(styles.formLegend)}>{t('legends.ecgEchoInfo')}</legend>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					rows={6}
+					rows={4}
 					flexible
-					field={ecgArrivalField} />
+					field={ecgEchoArrivalField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					rows={6}
+					rows={4}
 					flexible
-					field={ecgDynamicField} />
+					field={ecgEchoDynamicField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					rows={6}
+					rows={4}
 					flexible
-					field={ecgKSField} />
+					field={ecgEchoKSField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					rows={6}
+					rows={4}
 					flexible
-					field={ecgOtherField} />
+					field={ecgEchoOtherField} />
 			</div>
 			<div className={css(styles.buttonGroup)}>
 				<div className={css(styles.buttonWrapper)}>
@@ -67,14 +67,14 @@ const ECGInfoComponent = ({
 	</Form>
 )
 
-ECGInfoComponent.propTypes = {
+ECGEchoInfoComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
-	ecgArrivalField: PropTypes.shape().isRequired,
-	ecgDynamicField: PropTypes.shape().isRequired,
-	ecgKSField: PropTypes.shape().isRequired,
-	ecgOtherField: PropTypes.shape().isRequired,
+	ecgEchoArrivalField: PropTypes.shape().isRequired,
+	ecgEchoDynamicField: PropTypes.shape().isRequired,
+	ecgEchoKSField: PropTypes.shape().isRequired,
+	ecgEchoOtherField: PropTypes.shape().isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 
-export default ECGInfoComponent
+export default ECGEchoInfoComponent

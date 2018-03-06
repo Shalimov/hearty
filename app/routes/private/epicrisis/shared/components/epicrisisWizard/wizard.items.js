@@ -3,6 +3,7 @@ import DiagnosisInfo from './components/diagnosisInfo'
 import ECGEchoInfo from './components/ecgEchoInfo'
 import USDScopiaInfo from './components/usdScopiaInfo'
 import XRayInfo from './components/xrayInfo'
+import CTInfo from './components/ctInfo'
 import TemplatesFinder from './components/templatesFinder'
 
 export default [
@@ -11,5 +12,6 @@ export default [
 	ECGEchoInfo,
 	USDScopiaInfo,
 	XRayInfo,
+	CTInfo,
 	TemplatesFinder,
 ]

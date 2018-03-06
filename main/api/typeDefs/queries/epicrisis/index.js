@@ -1,5 +1,6 @@
 const { createPaginationTypes } = require('../../create.pagination.types')
 
+const ctPart = require('./ct.part')
 const xrayPart = require('./xray.part')
 const usdScopiaPart = require('./usd.scopia.part')
 const ecgEchoPart = require('./ecg.echo.part')
@@ -15,6 +16,7 @@ const EpicrisisType = (input = '') => `
 	ecgEcho: ${typeName}ECGEcho${input}!
 	usdScopia: ${typeName}USDScopia${input}!
 	xray: ${typeName}XRay${input}!
+	ct: ${typeName}CT${input}!
 `
 
 const Epicrisis = `
@@ -28,6 +30,8 @@ const Epicrisis = `
 	${usdScopiaPart(typeName)}
 	# X-Ray
 	${xrayPart(typeName)}
+	# CT
+	${ctPart(typeName)}
 
 	# Epicrisis
 	type ${typeName} {

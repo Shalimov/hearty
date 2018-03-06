@@ -15,13 +15,13 @@ export default ({ initialValues = {} }) => ({
 			.label(t('labels.xray.crgSkull')),
 	},
 
-	xrayJointsRoentgenography: {
+	xrayJointsRoentgenographyField: {
 		initialValue: fp.get('xray.jointsRoentgenography', initialValues),
 		scheme: Ego.string()
 			.label(t('labels.xray.jointsRoentgenography')),
 	},
 
-	xrayOther: {
+	xrayOtherField: {
 		initialValue: fp.get('xray.other', initialValues),
 		scheme: Ego.string()
 			.label(t('labels.other')),
@@ -31,6 +31,6 @@ export default ({ initialValues = {} }) => ({
 export const mapping = [
 	['xrayCRGOGKField', 'xray.crgogk'],
 	['xrayCRGSkullField', 'xray.crgSkull'],
-	['xrayJointsRoentgenography', 'xray.jointsRoentgenography'],
-	['xrayOther', 'xray.other'],
+	['xrayJointsRoentgenographyField', 'xray.jointsRoentgenography'],
+	['xrayOtherField', 'xray.other'],
 ]

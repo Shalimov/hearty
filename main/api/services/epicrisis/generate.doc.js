@@ -16,13 +16,19 @@ const generateDocument = async (templateName, epircirisData) => {
 	const templatePath = path.join(TEMPLATE_DIR, templateName)
 	const baseOutput = path.join(path.resolve(TEMPLATE_DIR, '../'), 'output')
 	const content = await pfs.readFileAsync(templatePath, 'binary')
-	
+
 	const zip = new JSZip(content)
 	const doc = new Docxtemplater()
 
 	doc.loadZip(zip)
 
-	doc.setOptions({ parser: customParser })
+	doc.setOptions({
+		parser: customParser,
+		paragraphLoop: true,
+		nullGetter() {
+			return ''
+		},
+	})
 	doc.setData(epircirisData)
 
 	doc.render()

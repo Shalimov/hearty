@@ -7,45 +7,45 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const XRayInfoComponent = ({
+const CTInfoComponent = ({
 	formModel,
-	xrayCRGOGKField,
-	xrayCRGSkullField,
-	xrayJointsRoentgenographyField,
-	xrayOtherField,
+	ctHeadField,
+	ctOGKField,
+	ctOBPField,
+	ctOtherField,
 	onInternalSubmit,
 	onCancel,
 }) => (
 	<Form>
 		<fieldset>
-			<legend className={css(styles.formLegend)}>{t('legends.xrayInfo')}</legend>
+			<legend className={css(styles.formLegend)}>{t('legends.ctInfo')}</legend>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible
-					field={xrayCRGOGKField} />
+					field={ctHeadField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible
-					field={xrayCRGSkullField} />
+					field={ctOGKField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible
-					field={xrayJointsRoentgenographyField} />
+					field={ctOBPField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
 					rows={4}
 					flexible
-					field={xrayOtherField} />
+					field={ctOtherField} />
 			</div>
 			<div className={css(styles.buttonGroup)}>
 				<div className={css(styles.buttonWrapper)}>
@@ -67,14 +67,14 @@ const XRayInfoComponent = ({
 	</Form>
 )
 
-XRayInfoComponent.propTypes = {
+CTInfoComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
-	xrayCRGOGKField: PropTypes.shape().isRequired,
-	xrayCRGSkullField: PropTypes.shape().isRequired,
-	xrayJointsRoentgenographyField: PropTypes.shape().isRequired,
-	xrayOtherField: PropTypes.shape().isRequired,
+	ctHeadField: PropTypes.shape().isRequired,
+	ctOGKField: PropTypes.shape().isRequired,
+	ctOBPField: PropTypes.shape().isRequired,
+	ctOtherField: PropTypes.shape().isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 
-export default XRayInfoComponent
+export default CTInfoComponent

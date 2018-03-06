@@ -105,6 +105,12 @@ const descriptions = {
 		departureAt: 'Дата выписки',
 		docTemplate: 'Шаблон документа',
 		other: 'Другое',
+		usdScopia: {
+			obp: 'УЗИ ОБП',
+			bca: 'УЗИ БЦА',
+			fgds: 'ФГДС',
+			bronchoscopy: 'Бронхоскопия',
+		},
 		diagnosis: {
 			main: 'Диагноз основной',
 			complication: 'Осложнения',
@@ -123,6 +129,7 @@ const descriptions = {
 		epicrisisInfo: 'Данные эпикриза',
 		diagnosisInfo: 'Диагноз',
 		ecgEchoInfo: 'ЭКГ & ЭХО',
+		usdScopiaInfo: 'УЗИ & -Cкорпия',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

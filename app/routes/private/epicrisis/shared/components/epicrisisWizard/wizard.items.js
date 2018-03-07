@@ -4,6 +4,7 @@ import ECGEchoInfo from './components/ecgEchoInfo'
 import USDScopiaInfo from './components/usdScopiaInfo'
 import XRayInfo from './components/xrayInfo'
 import CTInfo from './components/ctInfo'
+import ExaminationInfo from './components/examinationInfo'
 import TemplatesFinder from './components/templatesFinder'
 
 export default [
@@ -13,5 +14,6 @@ export default [
 	USDScopiaInfo,
 	XRayInfo,
 	CTInfo,
+	ExaminationInfo,
 	TemplatesFinder,
 ]

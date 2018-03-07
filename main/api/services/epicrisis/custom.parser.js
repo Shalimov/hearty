@@ -17,7 +17,10 @@ expressions.filters.addDays = (date, days, format) => {
 }
 
 const customParser = tag => ({
-	get: tag === '.' ? i => i : s => expressions.compile(tag.replace(/’/g, '\''))(s) || null,
+	get: tag === '.' ? i => i : (s) => {
+		const result = expressions.compile(tag.replace(/’/g, '\''))(s)
+		return (result === '' || result == null) ? null : result
+	},
 })
 
 module.exports = {

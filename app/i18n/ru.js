@@ -131,6 +131,16 @@ const descriptions = {
 			ogk: 'РКТ ОГК с контрастированием/без контрастирования',
 			obp: 'РКТ ОБП с контрастированием/без контрастирования',
 		},
+		examination: {
+			ophthalmologist: 'Офтальмолог',
+			entDoctor: 'ЛОР-Врач',
+			urological: 'Уролог',
+			physiotherapist: 'Физиотерапевта',
+			psychiatric: 'Психиатр',
+			surgeon: 'Хирург',
+			oncologist: 'Онколог',
+			midwife: 'Акушер-Гинеколог/Акушер',
+		},
 	},
 
 	legends: {
@@ -142,6 +152,7 @@ const descriptions = {
 		usdScopiaInfo: 'УЗИ & -Cкорпия',
 		xrayInfo: 'Лучевая диагностика',
 		ctInfo: 'Компьютерная томография',
+		examinationInfo: 'Осмотр специалистов',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

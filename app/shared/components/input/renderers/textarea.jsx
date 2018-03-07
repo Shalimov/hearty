@@ -1,4 +1,5 @@
 import React from 'react'
+import fp from 'lodash/fp'
 import { cssx } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
@@ -7,8 +8,13 @@ const EMPTY_STRING = ''
 const join = (...classNames) => classNames.join(' ')
 
 // TODO: Mb it worth to move textarea as standalone component
+const SuspendUntilTransition = 250
 const onFocusScrollToElement = (event) => {
-	event.target.scrollIntoView(false)
+	const textarea = event.target
+	const grandparent = fp.get('parentElement.parentElement', textarea)
+	setTimeout(() => {
+		fp.invoke('scrollIntoView', grandparent)
+	}, SuspendUntilTransition)
 }
 
 /* eslint-disable */
@@ -48,7 +54,7 @@ const textareaRenderer = ({
 		readOnly={readOnly}
 		placeholder={placeholder}
 		disabled={disabled}
-		onFocus={onFocusScrollToElement}
+		onFocus={expandOnFocus && onFocusScrollToElement}
 		value={value || EMPTY_STRING}
 		onKeyDown={onInternalKeyDown}
 		onBlur={onBlur}

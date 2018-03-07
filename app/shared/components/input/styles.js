@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 		transition: 'all .5s ease-out',
 		
 		':focus': {
-			height: toVh(65),
+			height: toVh(50),
 		},
 	},
 

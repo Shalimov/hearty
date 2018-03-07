@@ -6,6 +6,11 @@ import styles from '../styles'
 const EMPTY_STRING = ''
 const join = (...classNames) => classNames.join(' ')
 
+// TODO: Mb it worth to move textarea as standalone component
+const onFocusScrollToElement = (event) => {
+	event.target.scrollIntoView(false)
+}
+
 /* eslint-disable */
 const textareaRenderer = ({
 	id,
@@ -16,6 +21,7 @@ const textareaRenderer = ({
 	showError,
 	flexible,
 	noBorder,
+	expandOnFocus,
 	value,
 	rows,
 	placeholder,
@@ -32,6 +38,7 @@ const textareaRenderer = ({
 					input: true,
 					noBorder,
 					flexible,
+					expandOnFocus,
 					inputError: showError,
 				}, styles),
 				className
@@ -41,6 +48,7 @@ const textareaRenderer = ({
 		readOnly={readOnly}
 		placeholder={placeholder}
 		disabled={disabled}
+		onFocus={onFocusScrollToElement}
 		value={value || EMPTY_STRING}
 		onKeyDown={onInternalKeyDown}
 		onBlur={onBlur}

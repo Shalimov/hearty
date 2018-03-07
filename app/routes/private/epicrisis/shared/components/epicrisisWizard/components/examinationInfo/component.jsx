@@ -27,6 +27,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinagionOphthalmologistField} />
@@ -34,6 +35,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationENTDoctorField} />
@@ -41,6 +43,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationUrologicalField} />
@@ -48,6 +51,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationPhysiotherapistField} />
@@ -55,6 +59,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationPsychiatricField} />
@@ -62,6 +67,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationSurgeonField} />
@@ -69,6 +75,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationOncologistField} />
@@ -76,6 +83,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationMidwifeField} />
@@ -83,6 +91,7 @@ const ExaminationInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={examinationOtherField} />

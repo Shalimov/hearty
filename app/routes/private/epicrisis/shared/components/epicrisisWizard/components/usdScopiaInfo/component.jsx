@@ -23,6 +23,7 @@ const USDScopiaInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={usdScopiaOBPField} />
@@ -30,6 +31,7 @@ const USDScopiaInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={usdScopiaBCAField} />
@@ -37,6 +39,7 @@ const USDScopiaInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={usdScopiaFGDSField} />
@@ -44,6 +47,7 @@ const USDScopiaInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={usdScopiaBronchoscopyField} />
@@ -51,6 +55,7 @@ const USDScopiaInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={usdScopiaOtherField} />

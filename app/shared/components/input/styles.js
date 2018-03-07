@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { toPx, toPr } from 'utils/styles'
+import { toPx, toPr, toVh } from 'utils/styles'
 import { colors, measures, font } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 
@@ -32,6 +32,16 @@ const styles = StyleSheet.create({
 		marginBottom: toPx(half),
 	},
 
+	// Textarea only
+	expandOnFocus: {
+		height: toPx(12 * unit),
+		transition: 'all .5s ease-out',
+		
+		':focus': {
+			height: toVh(65),
+		},
+	},
+
 	inputWrapper: {
 		position: 'relative',
 		// display: 'inline-block',
@@ -40,6 +50,8 @@ const styles = StyleSheet.create({
 
 	input: {
 		...control,
+		// Textaread only
+		resize: 'none',
 		padding: toPx(unit),
 	},
 

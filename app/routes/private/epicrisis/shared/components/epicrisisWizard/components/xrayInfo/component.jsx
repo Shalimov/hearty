@@ -22,6 +22,7 @@ const XRayInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={xrayCRGOGKField} />
@@ -29,6 +30,7 @@ const XRayInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={xrayCRGSkullField} />
@@ -36,6 +38,7 @@ const XRayInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={xrayJointsRoentgenographyField} />
@@ -43,6 +46,7 @@ const XRayInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					expandOnFocus
 					rows={4}
 					flexible
 					field={xrayOtherField} />

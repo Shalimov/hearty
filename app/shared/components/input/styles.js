@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { toPx, toPr, toVh } from 'utils/styles'
+import { toPx, toPr } from 'utils/styles'
 import { colors, measures, font } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 
@@ -30,16 +30,6 @@ const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 		display: 'block',
 		marginBottom: toPx(half),
-	},
-
-	// Textarea only
-	expandOnFocus: {
-		height: toPx(12 * unit),
-		transition: 'all .5s ease-out',
-		
-		':focus': {
-			height: toVh(50),
-		},
 	},
 
 	inputWrapper: {

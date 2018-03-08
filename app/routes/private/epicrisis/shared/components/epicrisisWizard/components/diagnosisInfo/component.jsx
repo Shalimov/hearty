@@ -21,7 +21,7 @@ const DiagnosisInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandOnFocus
+					expandable
 					rows={4}
 					flexible
 					field={diagnosisField} />
@@ -29,7 +29,7 @@ const DiagnosisInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandOnFocus
+					expandable
 					rows={4}
 					flexible
 					field={diagnosisComplicationField} />
@@ -37,7 +37,7 @@ const DiagnosisInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandOnFocus
+					expandable
 					rows={4}
 					flexible
 					field={followingDiagnosisPartField} />

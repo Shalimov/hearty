@@ -26,7 +26,10 @@ export default compose(
 	withHandlers({
 		onSubmit: ({ printEpicrisis, createEpicrisis }) =>
 			tryAsync(async (wizardData) => {
-				const epicrisisData = fp.omit(['template'], wizardData)
+				const epicrisisData = fp.omit([
+					'template',
+					'selectedMedicineFields',
+				], wizardData)
 
 				const { data } = await createEpicrisis({
 					variables: { input: epicrisisData },

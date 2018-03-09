@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { css, cssx } from 'utils/aphrodite-ext'
 
 import defaultRenderer from './renderers'
+import toggleRenderer from './renderers/toggle'
 import selectRenderer, { asyncSelectRenderer } from './renderers/select'
 import textareaRenderer from './renderers/textarea'
 import dateRenderer from './renderers/date'
@@ -22,6 +23,7 @@ const rendererProxy = props => {
 	case 'select-async': return asyncSelectRenderer(props)
 	case 'select': return selectRenderer(props)
 	case 'textarea': return textareaRenderer(props)
+	case 'toggle': return toggleRenderer(props)
 	default: return defaultRenderer(props)
 	}
 }

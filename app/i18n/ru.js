@@ -156,6 +156,7 @@ const descriptions = {
 		xrayInfo: 'Лучевая диагностика',
 		ctInfo: 'Компьютерная томография',
 		examinationInfo: 'Осмотр специалистов',
+		medicineSelection: 'Рекомендуемые медикаменты',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

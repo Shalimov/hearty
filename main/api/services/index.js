@@ -1,6 +1,5 @@
 const AuthService = require('./auth')
 const UserService = require('./user')
-const PatientService = require('./patient')
 const EpicrisisService = require('./epicrisis')
 const DictionaryService = require('./dictionary')
 const bluebird = require('bluebird')
@@ -17,7 +16,6 @@ module.exports = {
 		return {
 			authService: AuthService.create(repository),
 			userService: UserService.create(repository),
-			patientService: PatientService.create(repository),
 			epicrisisService: EpicrisisService.create(fakeRepository, promisifiedFs),
 			dictionaryService: DictionaryService.create(repository),
 		}

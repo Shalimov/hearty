@@ -13,7 +13,7 @@ const ValidatedInput = ({
 	<Input {...props}
 		id={field.id}
 		disabled={disabled || field.readonly}
-		label={label || field.label}
+		label={label === undefined ? field.label : label}
 		value={field.value}
 		onBlur={field.onBlur}
 		showError={field.showError}

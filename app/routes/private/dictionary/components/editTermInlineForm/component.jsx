@@ -27,6 +27,7 @@ const EditTermInlineFormComponent = ({
 		<Form>
 			<ValidatedInput
 				field={termField}
+				label={null}
 				placeholder={t('buttons.addTerm')}
 				flexible
 				{...inputExtraProps} />

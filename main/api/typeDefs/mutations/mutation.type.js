@@ -2,10 +2,6 @@ const Mutation = `
 	type Mutation {
 		createToken(input: CredentialsInput): CreateTokenPayload
 		
-		# patients
-		createPatient(input: PatientInput!): Patient
-		updatePatient(input: PatientInput!): Patient
-		
 		# epicrisis
 		createEpicrisis(input: EpicrisisInput!): Epicrisis
 		updateEpicrisis(input: EpicrisisInput!): Epicrisis

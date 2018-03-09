@@ -36,7 +36,7 @@ module.exports = {
 
 		const repository = await Promise.all([
 			loadOrCreateCollection('users'),
-			loadOrCreateCollection('patients'),
+			loadOrCreateCollection('medicineGroups'),
 			loadOrCreateCollection('dictionary'),
 		]).then(fp.fromPairs)
 

@@ -8,7 +8,7 @@ import EditInlineForm from './components/editInlineForm'
 import styles from './styles'
 
 const MedicineComponent = ({
-	data: { medicamentGroups = {}, loading },
+	data: { medicineGroups = {}, loading },
 	columns,
 	onAddGroup,
 	onFetchData,
@@ -24,13 +24,13 @@ const MedicineComponent = ({
 			manual
 			sortable={false}
 			className="medicine-table-anchor"
-			data={medicamentGroups.content}
-			pages={medicamentGroups.totalPages}
+			data={medicineGroups.content}
+			pages={medicineGroups.totalPages}
 			loading={loading}
 			onFetchData={onFetchData}
 			columns={columns}
 			indexKey="_id"
-			pageSize={medicamentGroups.pageSize}
+			pageSize={medicineGroups.pageSize}
 			resizable={false}
 			collapseOnDataChange={false}
 			SubComponent={MedicineEditor} />

@@ -32,8 +32,8 @@ export default compose(
 		name: 'removeMedicineGroupMutation',
 	}),
 	graphql(gql`
-		mutation AddMedicineMutation($_id: ID!, $medicine: String!) {
-			createMedicine(_id: $_id, medicine: $medicine) {
+		mutation AddMedicineMutation($_id: ID!, $name: String!) {
+			createMedicine(_id: $_id, name: $name) {
 				_id
 			}
 		}

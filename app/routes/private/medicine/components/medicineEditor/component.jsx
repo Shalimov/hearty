@@ -19,9 +19,9 @@ const MedicineEditorComponent = ({ item, columns, onInternalAddMedicine }) => (
 		</InlineEditorPortal>
 		<ReactTable
 			className={`table_${item._id}`}
-			data={item.medicine}
+			data={item.listOfMedicaments}
 			columns={columns}
-			pageSize={item.medicine.length}
+			pageSize={item.listOfMedicaments.length}
 			showPagination={false}
 			NoDataComponent={renderNothing()} />
 	</div>

@@ -37,18 +37,19 @@ export default compose(
 				refetchQueries: ['MedicineGroupOverviewQuery'],
 			})),
 
-		onEditGroup: ({ updateGroupMutation }) =>
-			tryAsync(({ _id, value: groupName }) => updateGroupMutation({ variables: { _id, groupName } })),
+		onEditGroup: ({ updateMedicineGroupMutation }) =>
+			tryAsync(({ _id, value: groupName }) =>
+				updateMedicineGroupMutation({ variables: { _id, groupName } })),
 
-		onRemoveGroup: ({ removeGroupMutation }) =>
-			tryAsync(({ _id }) => removeGroupMutation({
+		onRemoveGroup: ({ removeMedicineGroupMutation }) =>
+			tryAsync(({ _id }) => removeMedicineGroupMutation({
 				variables: { _id },
 				refetchQueries: ['MedicineGroupOverviewQuery'],
 			})),
 
 		// parent _id
 		onRemoveMedicine: ({ removeMedicineMutation }) =>
-			tryAsync(({ value: name }, { _id }) => removeMedicineMutation({
+			tryAsync(({ name }, { _id }) => removeMedicineMutation({
 				variables: { _id, name },
 				refetchQueries: ['MedicineGroupOverviewQuery'],
 			})),

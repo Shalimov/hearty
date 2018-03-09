@@ -4,7 +4,7 @@ import t from 'i18n'
 export default (EditableCellTemplate, ControlsCellTemplate) => [
 	{
 		Header: t('labels.group'),
-		id: 'group',
+		id: 'groupName',
 		accessor: fp.identity,
 		Cell: EditableCellTemplate,
 	},

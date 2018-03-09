@@ -8,6 +8,15 @@ const Mutation = `
 		removeEpicrisis(_id: ID!): Epicrisis
 		printEpicrisis(_id: ID!, epicrisisTemplate: String!): Boolean
 
+		# medicineGroups
+		createMedicineGroup(groupName: String!): MedicineGroup
+		updateMedicineGroup(_id: ID!, groupName: String!): MedicineGroup
+		removeMedicineGroup(_id: ID!): MedicineGroup
+
+		# medicine
+		createMedicine(_id: ID!, name: String!): MedicineGroup
+		removeMedicine(_id: ID!, name: String!): MedicineGroup
+
 		# terms
 		createTerm(term: String!): Term
 		updateTerm(_id: ID!, term: String!): Term

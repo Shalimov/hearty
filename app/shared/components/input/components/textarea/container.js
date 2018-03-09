@@ -5,11 +5,13 @@ import TextareaComponent from './component'
 export default compose(
 	withState('isExpanded', 'setMode', false),
 	withHandlers({
-		onInternalKeyDown: ({ setMode, expandable }) => (event) => {
+		onInternalKeyDown: ({ setMode, expandable, onKeyDown }) => (event) => {
 			const KEY_F = 70
 			if (expandable && event.ctrlKey && event.keyCode === KEY_F) {
 				setMode(true)
 			}
+
+			onKeyDown(event)
 		},
 
 		onInternalBlur: ({ onBlur, setMode }) => (event) => {

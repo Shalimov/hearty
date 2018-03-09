@@ -41,6 +41,9 @@ const NavSidebarComponent = () => (
 				<SideBarLink url={patients.index()} title="links.patients" icon="users" />
 			</li>
 			<li className={css(styles.menuItem)}>
+				<SideBarLink url={dictionary.index()} title="links.medicine" icon="medkit" />
+			</li>
+			<li className={css(styles.menuItem)}>
 				<SideBarLink url={dictionary.index()} title="links.dictionary" icon="book" />
 			</li>
 			<li className={css(styles.menuItem)}>

@@ -17,6 +17,7 @@ const EditInlineFormComponent = ({
 			field={field}
 			label={null}
 			flexible
+			placeholder={t('placeholders.addName')}
 			title={t('hints.enterAdd')}
 			onPressEnter={onInternalSubmit} />
 	</Form>

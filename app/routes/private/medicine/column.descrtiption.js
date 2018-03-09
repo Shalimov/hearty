@@ -3,7 +3,7 @@ import t from 'i18n'
 
 export default (EditableCellTemplate, ControlsCellTemplate) => [
 	{
-		Header: t('labels.group'),
+		Header: t('labels.medicineGroup'),
 		id: 'groupName',
 		accessor: fp.identity,
 		Cell: EditableCellTemplate,

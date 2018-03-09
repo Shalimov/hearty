@@ -73,6 +73,7 @@ const descriptions = {
 		main: 'Главная',
 		dictionary: 'Словарь',
 		patients: 'Пациенты',
+		medicine: 'Лекарства',
 		addPatient: 'Добавить пациента',
 	},
 
@@ -100,6 +101,8 @@ const descriptions = {
 		term: 'Термин',
 		subTerm: 'Подтермин',
 		name: 'Название',
+		medicine: 'Название лекарства',
+		medicineGroup: 'Название группы лекарств',
 		jobInfo: 'Место работы',
 		arrivalAt: 'Дата поступления',
 		departureAt: 'Дата выписки',
@@ -165,6 +168,7 @@ const descriptions = {
 
 	placeholders: {
 		search: 'Поиск',
+		addName: 'Добавить наименование',
 		dictionaries: {
 			search: 'Поиск в словарях',
 		},

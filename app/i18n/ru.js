@@ -108,6 +108,8 @@ const descriptions = {
 		departureAt: 'Дата выписки',
 		docTemplate: 'Шаблон документа',
 		other: 'Другое',
+		recommended: 'Рекомендованно',
+		summary: 'Итого',
 		usdScopia: {
 			obp: 'УЗИ ОБП',
 			bca: 'УЗИ БЦА',
@@ -159,6 +161,8 @@ const descriptions = {
 		medicineSelection: 'Рекомендуемые медикаменты',
 		medicineTakingRec: 'Рекомендации по применению',
 		chooseDocTemplate: 'Выбор шаблона документа',
+		recommended: 'Рекомендованно',
+		summary: 'В заключении',
 	},
 
 	hints: {

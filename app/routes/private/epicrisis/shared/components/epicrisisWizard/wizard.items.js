@@ -5,7 +5,9 @@ import USDScopiaInfo from './components/usdScopiaInfo'
 import XRayInfo from './components/xrayInfo'
 import CTInfo from './components/ctInfo'
 import ExaminationInfo from './components/examinationInfo'
+import RecommendedInfo from './components/recommendedInfo'
 import MedicineInfo from './components/medicineInfo'
+import SummaryInfo from './components/summaryInfo'
 import TemplatesFinder from './components/templatesFinder'
 
 export default [
@@ -16,6 +18,8 @@ export default [
 	XRayInfo,
 	CTInfo,
 	ExaminationInfo,
+	RecommendedInfo,
 	...MedicineInfo, // two steps
+	SummaryInfo,
 	TemplatesFinder,
 ]

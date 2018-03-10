@@ -2,8 +2,7 @@ import React from 'react'
 import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { Form, Button, SubmitButton } from 'shared/components'
-import { DictionaryInput } from 'routes/shared/components'
+import { Form, Button, SubmitButton, ValidatedInput } from 'shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -20,7 +19,7 @@ const MedicineTakingRecommendationComponent = ({
 			{
 				fp.map((field) => (
 					<div key={field.id} className={css(styles.inputWrapper)}>
-						<DictionaryInput
+						<ValidatedInput
 							type="textarea"
 							rows={2}
 							flexible

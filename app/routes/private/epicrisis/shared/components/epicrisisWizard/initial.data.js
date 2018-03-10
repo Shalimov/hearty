@@ -50,4 +50,14 @@ export default {
 		midwife: 'Заключение акушра/акушера-гинеколога',
 		other: 'Заключение других специалистов',
 	},
+	medicineRecommendations: [
+		{
+			medicine: 'Маргноферм',
+			recommendation: '1 таблетка 2 раза в день',
+		},
+		{
+			medicine: 'Растр',
+			recommendation: '2 таблетки 3 раза в день',
+		},
+	],
 }

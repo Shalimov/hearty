@@ -54,12 +54,17 @@ export default compose(
 				return
 			}
 
-			const switchOn = fp.includes(fp.placeholder, initialValues.selectedMedicineFields)
+			const { selectedMedicineFields, medicineRecommendations } = initialValues
+			const selectedFields = selectedMedicineFields ?  
+				selectedMedicineFields :
+				fp.map('medicine', medicineRecommendations)
+				
+			const isSelectedMedicine = fp.includes(fp.placeholder, selectedFields)
 			const content = fp.get('medicineGroups.content', data)
 
 			fp.each((group) => {
 				for (const { name } of group.listOfMedicaments) {
-					formModel.addField(name, switchOn(name), Ego.boolean().label(name))
+					formModel.addField(name, isSelectedMedicine(name), Ego.boolean().label(name))
 				}
 			}, content)
 		},

@@ -1,5 +1,6 @@
 const { createPaginationTypes } = require('../../create.pagination.types')
 
+const treatmentPart = require('./treatment.part')
 const medicineRecommendationPart = require('./medicine.recommendations.part')
 const examinationPart = require('./examination.part')
 const ctPart = require('./ct.part')
@@ -13,6 +14,8 @@ const typeName = 'Epicrisis'
 
 const EpicrisisType = (input = '') => `
 	epicrisisNo: Int!
+
+	# complex fields
 	patient: ${typeName}Patient${input}!
 	diagnosis: ${typeName}Diagnosis${input}!
 	ecgEcho: ${typeName}ECGEcho${input}!
@@ -21,6 +24,11 @@ const EpicrisisType = (input = '') => `
 	ct: ${typeName}CT${input}!
 	examination: ${typeName}Examination${input}!
 	medicineRecommendations: [${typeName}MedicineRecommendation${input}!]
+	treatment: [${typeName}Treatment${input}!]
+
+	# simple fields
+	recommended: String!
+	summary: String!
 `
 
 const Epicrisis = `
@@ -40,6 +48,8 @@ const Epicrisis = `
 	${examinationPart(typeName)}
 	# Medicine Recommendation
 	${medicineRecommendationPart(typeName)}
+	# Treatment
+	${treatmentPart(typeName)}
 
 	# Epicrisis
 	type ${typeName} {

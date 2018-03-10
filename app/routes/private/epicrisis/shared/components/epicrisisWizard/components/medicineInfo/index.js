@@ -1,4 +1,4 @@
 import MedicineTakingRecommendation from './medicineTakingRecommendation'
-import MedicineSelection from './medicineSelection'
+import MedicineSelectionBoard from './medicineSelectionBoard'
 
-export default [MedicineSelection, MedicineTakingRecommendation]
+export default [MedicineSelectionBoard, MedicineTakingRecommendation]

@@ -1,5 +1,5 @@
 import fp from 'lodash/fp'
-import { compose, lifecycle, withHandlers } from 'recompose'
+import { compose, lifecycle, withHandlers, defaultProps } from 'recompose'
 import { withFormModel } from 'shared/hocs'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -15,6 +15,9 @@ const getSelectedKeys = fp.flow(
 
 // TODO: Refactoring
 export default compose(
+	defaultProps({
+		transformBeforeSubmit: fp.identity,
+	}),
 	graphql(gql`
 		query MedicineGroupsInfoRetrieve($input: MedicineGroupQueryInput) {
 			medicineGroups(input: $input) {
@@ -39,9 +42,12 @@ export default compose(
 	}),
 	withFormModel({}),
 	withHandlers({
-		onInternalSubmit: ({ onSubmit }) => (selectedValues) => {
-			onSubmit({ selectedMedicineFields: getSelectedKeys(selectedValues) })
-		},
+		onInternalSubmit: ({ onSubmit, storeKey, transformBeforeSubmit }) =>
+			(selectedValues) => {
+				onSubmit({
+					[storeKey]: transformBeforeSubmit(getSelectedKeys(selectedValues)),
+				})
+			},
 	}),
 	lifecycle({
 		componentWillMount() {
@@ -49,16 +55,12 @@ export default compose(
 			this.componentWillReceiveProps(this.props)
 		},
 
-		componentWillReceiveProps({ data, formModel, initialValues }) {
+		componentWillReceiveProps({ data, formModel, extractSelectedFields }) {
 			if (data.loading) {
 				return
 			}
 
-			const { selectedMedicineFields, medicineRecommendations } = initialValues
-			const selectedFields = selectedMedicineFields ?  
-				selectedMedicineFields :
-				fp.map('medicine', medicineRecommendations)
-				
+			const selectedFields = extractSelectedFields()
 			const isSelectedMedicine = fp.includes(fp.placeholder, selectedFields)
 			const content = fp.get('medicineGroups.content', data)
 

@@ -6,16 +6,30 @@ import Ego from 'utils/validation'
 import MedicineTakingRecommendationComponent from './component'
 
 const createModel = fp.flow(
-	fp.map(name => [name, Ego.string().label(name).required()]),
+	fp.map(({ name, value }) => [
+		name,
+		{
+			initialValue: value,
+			scheme: Ego.string().label(name).required(),
+		},
+	]),
 	fp.fromPairs
 )
 
-// TODO: Refactoring
+// TODO: Refactoring & initial values
 export default compose(
-	withFormModel(({ wizardData }) => {
+	withFormModel(({ wizardData, initialValues }) => {
 		const wizardDataArray = [...wizardData.values()]
 		const { selectedMedicineFields } = Object.assign(...wizardDataArray)
-		return createModel(selectedMedicineFields)
+		const { medicineRecommendations } = initialValues
+		
+		const groupedRecommendations = fp.groupBy('medicine', medicineRecommendations)
+		const selectedFields = fp.map(name => ({
+			value: fp.get('recommendation', fp.head(groupedRecommendations[name])),
+			name,
+		}), selectedMedicineFields)
+
+		return createModel(selectedFields)
 	}),
 	withHandlers({
 		onInternalSubmit: ({ onSubmit }) => (formData) => {

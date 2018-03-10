@@ -19,6 +19,7 @@ const RecommendedInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
+					label={null}
 					expandable
 					rows={4}
 					flexible

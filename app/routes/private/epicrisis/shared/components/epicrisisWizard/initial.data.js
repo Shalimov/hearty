@@ -50,6 +50,12 @@ export default {
 		midwife: 'Заключение акушра/акушера-гинеколога',
 		other: 'Заключение других специалистов',
 	},
+	treatment: [
+		{
+			description: 'Маргноферм',
+		},
+	],
+	recommended: 'Делать всё что нужно когда нужно',
 	medicineRecommendations: [
 		{
 			medicine: 'Маргноферм',
@@ -60,4 +66,5 @@ export default {
 			recommendation: '2 таблетки 3 раза в день',
 		},
 	],
+	summary: 'В целом всё ок',
 }

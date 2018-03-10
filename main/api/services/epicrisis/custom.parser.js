@@ -1,9 +1,18 @@
 const expressions = require('angular-expressions')
 const moment = require('moment')
+const fp = require('lodash/fp')
 
 // const EMPTY_STRING = ''
 
 // define your filter functions here, for example, to be able to write {clientname | lower}
+expressions.filters.mapjoin = (collection, key, delimiter = ', ') => {
+	if (!Array.isArray(collection)) {
+		return collection
+	}
+
+	return fp.map(key, collection).join(delimiter)
+}
+
 expressions.filters.date = (date, format) => {
 	if (date) {
 		return moment(date).format(format)

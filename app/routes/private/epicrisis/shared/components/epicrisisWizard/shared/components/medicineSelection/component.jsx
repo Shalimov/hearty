@@ -11,6 +11,7 @@ const rejectEmpty = fp.reject(fp.flow(fp.get('listOfMedicaments'), fp.isEmpty))
 
 // TODO: Refactoring
 const MedicineSelectionComponent = ({
+	legend,
 	data: { medicineGroups = {}, loading },
 	formModel,
 	onInternalSubmit,
@@ -19,7 +20,7 @@ const MedicineSelectionComponent = ({
 	<ContentLoader isLoading={loading}>
 		<Form>
 			<fieldset>
-				<legend className={css(styles.formLegend)}>{t('legends.medicineSelection')}</legend>
+				<legend className={css(styles.formLegend)}>{legend}</legend>
 				<div className={css(styles.tablesList)}>
 					{
 						fp.map(group => (
@@ -70,6 +71,7 @@ const MedicineSelectionComponent = ({
 )
 
 MedicineSelectionComponent.propTypes = {
+	legend: PropTypes.string.isRequired,
 	data: PropTypes.shape().isRequired,
 	formModel: PropTypes.shape().isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,

@@ -160,9 +160,10 @@ const descriptions = {
 		examinationInfo: 'Осмотр специалистов',
 		medicineSelection: 'Рекомендуемые медикаменты',
 		medicineTakingRec: 'Рекомендации по применению',
-		chooseDocTemplate: 'Выбор шаблона документа',
+		treatment: 'Информации о лечении',
 		recommended: 'Рекомендованно',
 		summary: 'В заключении',
+		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 
 	hints: {

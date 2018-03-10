@@ -20,6 +20,7 @@ const SummaryInfoComponent = ({
 				<DictionaryInput
 					type="textarea"
 					expandable
+					label={null}
 					rows={4}
 					flexible
 					field={summaryField} />

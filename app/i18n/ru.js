@@ -157,6 +157,7 @@ const descriptions = {
 		ctInfo: 'Компьютерная томография',
 		examinationInfo: 'Осмотр специалистов',
 		medicineSelection: 'Рекомендуемые медикаменты',
+		medicineTakingRec: 'Рекомендации по применению',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

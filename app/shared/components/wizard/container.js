@@ -18,6 +18,7 @@ export default compose(
 	}), {
 		setStep: ({ steps, wizardData, initialValues }) => (currentStep) => ({
 			currentStep,
+			wizardData,
 			componentData: Object.assign(initialValues, wizardData.get(currentStep)),
 			ActiveComponent: getComponent(steps[currentStep]),
 			activeComponentProps: getProps(steps[currentStep]),

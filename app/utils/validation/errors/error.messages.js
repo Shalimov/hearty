@@ -27,6 +27,9 @@ const defaultMessages = {
 
 	/* NUMBER */
 	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} must be a number`,
+
+	/* BOOLEAN */
+	[KEYS.BOOLEAN.TYPE]: ({ label }) => `${label} must be a number`,
 }
 
 const assignMessages = (messages) => {

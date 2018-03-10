@@ -9,6 +9,7 @@ import styles from './styles'
 
 const rejectEmpty = fp.reject(fp.flow(fp.get('listOfMedicaments'), fp.isEmpty))
 
+// TODO: Refactoring
 const MedicineSelectionComponent = ({
 	data: { medicineGroups = {}, loading },
 	formModel,

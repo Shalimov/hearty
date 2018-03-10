@@ -5,10 +5,12 @@ const WizardComponent = ({
 	ActiveComponent,
 	activeComponentProps,
 	componentData,
+	wizardData,
 	onInternalSubmit,
 	onInternalCancel,
 }) => (
 	<ActiveComponent
+		wizardData={wizardData}
 		initialValues={componentData}
 		onSubmit={onInternalSubmit}
 		onCancel={onInternalCancel} 
@@ -16,6 +18,7 @@ const WizardComponent = ({
 )
 
 WizardComponent.propTypes = {
+	wizardData: PropTypes.shape(),
 	componentData: PropTypes.shape(),
 	activeComponentProps: PropTypes.shape(),
 	ActiveComponent: PropTypes.func.isRequired,

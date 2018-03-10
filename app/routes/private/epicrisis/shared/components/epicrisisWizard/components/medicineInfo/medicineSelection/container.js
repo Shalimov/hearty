@@ -10,9 +10,10 @@ import MedicineSelectionComponent from './component'
 const getSelectedKeys = fp.flow(
 	fp.entries,
 	fp.filter(fp.flow(fp.nth(1), Boolean)),
-	fp.map(fp.nth(0))
+	fp.map(fp.first)
 )
 
+// TODO: Refactoring
 export default compose(
 	graphql(gql`
 		query MedicineGroupsInfoRetrieve($input: MedicineGroupQueryInput) {
@@ -43,16 +44,22 @@ export default compose(
 		},
 	}),
 	lifecycle({
-		componentWillReceiveProps({ data, formModel }) {
+		componentWillMount() {
+			// it makes sense when user click back
+			this.componentWillReceiveProps(this.props)
+		},
+
+		componentWillReceiveProps({ data, formModel, initialValues }) {
 			if (data.loading) {
 				return
 			}
-			
+
+			const switchOn = fp.includes(fp.placeholder, initialValues.selectedMedicineFields)
 			const content = fp.get('medicineGroups.content', data)
 
 			fp.each((group) => {
 				for (const { name } of group.listOfMedicaments) {
-					formModel.addField(name, undefined, Ego.any())
+					formModel.addField(name, switchOn(name), Ego.boolean().label(name))
 				}
 			}, content)
 		},

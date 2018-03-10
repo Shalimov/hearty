@@ -24,8 +24,11 @@ export default {
 		TYPE: 'date.type',
 	},
 
-
 	NUMBER: {
-		TYPE: 'date.type',
+		TYPE: 'number.type',
+	},
+	
+	BOOLEAN: {
+		TYPE: 'boolean.type',
 	},
 }

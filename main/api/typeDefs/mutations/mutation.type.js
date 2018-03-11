@@ -8,6 +8,11 @@ const Mutation = `
 		removeEpicrisis(_id: ID!): Epicrisis
 		printEpicrisis(_id: ID!, epicrisisTemplate: String!): Boolean
 
+		# analysis
+		createAnalysis(input: AnalysisInput!): Analysis
+		updateAnalysis(input: AnalysisInput!): Analysis
+		removeAnalysis(_id: ID!): Analysis
+
 		# medicineGroups
 		createMedicineGroup(groupName: String!): MedicineGroup
 		updateMedicineGroup(_id: ID!, groupName: String!): MedicineGroup

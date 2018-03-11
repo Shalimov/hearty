@@ -5,11 +5,13 @@ import t from 'i18n'
 
 const { unit } = measures
 
-export default (ControlsCellTemplate) => [
+export default (ControlsCellTemplate, SubtermTemplate) => [
 	{
 		Header: t('labels.name'),
-		accessor: 'term',
+		id: 'term',
+		accessor: fp.identity,
 		sortable: false,
+		Cell: SubtermTemplate,
 		style: {
 			paddingLeft: toPx(2 * unit),
 			whiteSpace: 'normal',

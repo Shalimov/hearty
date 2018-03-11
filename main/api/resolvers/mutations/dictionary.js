@@ -16,7 +16,16 @@ module.exports = {
 
 	createSubterm(_, { _id, term }, context) {
 		const { dictionaryService } = context.services
-		return dictionaryService.update({ _id }, () => ({ $addToSet: { subTerms: { term } } }))
+		const { content, tags } = dictionaryService.splitIntoTagsAndContent(term)
+		
+		return dictionaryService.update({ _id }, () => ({
+			$addToSet: {
+				subTerms: {
+					term: content,
+					tags,
+				},
+			},
+		}))
 	},
 
 	removeSubterm(_, { _id, term }, context) {

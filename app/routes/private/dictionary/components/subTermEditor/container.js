@@ -3,7 +3,7 @@ import { compose, mapProps, withHandlers, withProps } from 'recompose'
 import columnsDescription from './columns.description'
 
 import ControlsCell from '../controlsCell'
-import SubTermEditorComponent from './component'
+import SubTermEditorComponent, { SubTermTemplate } from './component'
 
 export default compose(
 	mapProps(row => ({
@@ -12,10 +12,10 @@ export default compose(
 		onRemoveSubterm: row.onRemoveSubterm,
 	})),
 	withHandlers({
-		onInternalAddSubterm: ({ onAddSubterm, item }) => (formData) => {
+		onInternalAddSubterm: ({ onAddSubterm, item }) => ({ term }) => {
 			onAddSubterm({
-				...formData,
 				_id: item._id,
+				term,
 			})
 		},
 	}),
@@ -26,7 +26,7 @@ export default compose(
 		})(ControlsCell)
 
 		return {
-			columns: columnsDescription(wrappedControlCell),
+			columns: columnsDescription(wrappedControlCell, SubTermTemplate),
 		}
 	})
 )(SubTermEditorComponent)

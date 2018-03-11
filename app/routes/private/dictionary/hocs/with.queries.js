@@ -15,6 +15,7 @@ export default compose(
 					term
 					subTerms {
 						term
+						tags
 					}
 				}
 			}

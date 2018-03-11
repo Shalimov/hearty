@@ -38,13 +38,13 @@ const NavSidebarComponent = () => (
 				<SideBarLink url={board.index()} title="links.main" icon="home" />
 			</li>
 			<li className={css(styles.menuItem)}>
+				<SideBarLink url={epicrisis.index()} title="links.epicrisis" icon="file-text" />
+			</li>
+			<li className={css(styles.menuItem)}>
 				<SideBarLink url={medicine.index()} title="links.medicine" icon="medkit" />
 			</li>
 			<li className={css(styles.menuItem)}>
 				<SideBarLink url={dictionary.index()} title="links.dictionary" icon="book" />
-			</li>
-			<li className={css(styles.menuItem)}>
-				<SideBarLink url={epicrisis.index()} title="links.epicrisis" icon="file-text" />
 			</li>
 			{/* <li className={css(styles.menuItem)}>
 				<Collapsible

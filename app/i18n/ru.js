@@ -57,9 +57,15 @@ const descriptions = {
 	headers: {
 		welcome: 'Добро пожаловать',
 		forgotPassword: 'Забыли пароль',
+		analyses: 'Анализы',
+		medicine: 'Лекарства',
+		dictionary: 'Словарь терминов',
 	},
 
 	descriptions: {
+		dictionary: 'В словаре вы можете хранить данные, которые можно будет использовать в процессе заполнения эпикриза.',
+		analyses: 'Здесь вы можете ввести шаблоны для анализов, котороые будут доступны при заполнении эпикриза.',
+		medicine: 'Здесь вы можете ввести лекарства, которые будут доступны при заполнении эпикриза.',
 		fromDictionary: 'Добавить из словаря',
 		forgotPassword: 'Если вы забыли пароль то паниковать не стоит, просто введите адрес своей почты и мы поможем вам с восстановлением.',
 		welcome: 'Рутина станет незаметной',
@@ -112,6 +118,7 @@ const descriptions = {
 		other: 'Другое',
 		recommended: 'Рекомендованно',
 		summary: 'Итого',
+		type: 'Тип',
 		analysis: {
 			pattern: 'Шаблон',
 			basic: 'Базовый',
@@ -172,6 +179,8 @@ const descriptions = {
 		addAnalysis: 'Добавить анализ',
 		editAnalysis: 'Изменить анализ',
 		chooseDocTemplate: 'Выбор шаблона документа',
+		basic: 'Базовый',
+		additional: 'Дополнительный',
 	},
 
 	hints: {
@@ -179,6 +188,7 @@ const descriptions = {
 		ctrlEnterAdd: 'Ctrl + Enter для добавления',
 		clickToRemove: 'Нажмите для удаления',
 		enterAdd: 'Enter для добавления',
+		clickToEdit: 'Редактировать',
 	},
 
 	placeholders: {

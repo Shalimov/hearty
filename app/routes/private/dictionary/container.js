@@ -12,7 +12,7 @@ import EditTermInlineForm from './components/editTermInlineForm'
 import SubTermEditor from './components/subTermEditor'
 import DictionaryComponent from './component'
 
-const DEFAULT_PAGE_SIZE = 20
+const DEFAULT_PAGE_SIZE = 15
 
 export default compose(
 	defaultProps({

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import ReactTable from 'react-table'
+import t from 'i18n'
 
 import InlineEditorPortal from './components/inlineEditorPortal'
 import EditTermInlineForm from './components/editTermInlineForm'
@@ -15,6 +16,8 @@ const DictionaryComponent = ({
 	SubTermEditor,
 }) => (
 	<div className={css(styles.container)}>
+		<h2 className={css(styles.header)}>{t('headers.dictionary')}</h2>
+		<p className={css(styles.description)}>{t('descriptions.dictionary')}</p>
 		<InlineEditorPortal
 			selector=".term-table-anchor .rt-tbody .rt-tr-group"
 			elseSelector=".term-table-anchor .rt-tbody">

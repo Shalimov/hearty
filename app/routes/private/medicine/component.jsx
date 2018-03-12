@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import ReactTable from 'react-table'
+import t from 'i18n'
 
 import InlineEditorPortal from './components/inlineEditorPortal'
 import EditInlineForm from './components/editInlineForm'
@@ -15,6 +16,8 @@ const MedicineComponent = ({
 	MedicineEditor,
 }) => (
 	<div className={css(styles.container)}>
+		<h2 className={css(styles.header)}>{t('headers.medicine')}</h2>
+		<p className={css(styles.description)}>{t('descriptions.medicine')}</p>
 		<InlineEditorPortal
 			selector=".medicine-table-anchor .rt-tbody .rt-tr-group"
 			elseSelector=".medicine-table-anchor .rt-tbody">

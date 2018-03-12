@@ -7,7 +7,7 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	container: {
-		padding: toPx(unit),
+		padding: toPx(6 * unit),
 	},
 
 	buttonWrapper: {
@@ -16,7 +16,12 @@ const styles = StyleSheet.create({
 	},
 
 	header: {
-		...mixins.font({ size: font.font30, weight: font.weight.bold }),
+		...mixins.font({ size: font.font26, weight: font.weight.bold }),
+		marginBottom: toPx(unit),
+	},
+
+	description: {
+		...mixins.font({ size: font.font20, weight: font.weight.normal }),
 		marginBottom: toPx(4 * unit),
 	},
 

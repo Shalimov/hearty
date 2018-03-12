@@ -1,14 +1,22 @@
-import { compose, withProps, withHandlers } from 'recompose'
+import { compose, withProps, withHandlers, defaultProps, withState } from 'recompose'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { tryAsync } from 'utils/try'
 
 import OverviewAnalysesComponent from './component'
 import columns from './columns.descriptor'
 import Controls from './components/controls'
 
-const DEFAULT_LIMIT = 15
+const DEFAULT_PAGE_SIZE = 15
 
 export default compose(
+	defaultProps({
+		pageSize: DEFAULT_PAGE_SIZE,
+	}),
+	withState('queryInput', 'setQueryInput', ({ pageSize }) => ({
+		limit: pageSize,
+		skip: 0,
+	})),
 	graphql(gql`
 		query AnalysisOverviewQuery($input: AnalysisQueryInput) {
 			analyses(input: $input) {
@@ -25,34 +33,50 @@ export default compose(
 			}
 		}
 	`, {
-		options: {
+		options: ({ queryInput }) => ({
 			variables: {
-				input: {
-					limit: DEFAULT_LIMIT,
-					skip: 0,
-				},
+				input: queryInput,
 			},
-		},
+		}),
+
+		props: ({ data }) => ({
+			data,
+			loadMore(input) {
+				data.fetchMore({
+					variables: { input },
+					updateQuery: (prevResult, { fetchMoreResult }) => fetchMoreResult,
+				})
+			},
+		}),
 	}),
+	graphql(gql`
+		mutation RemoveAnalysisMutation($_id: ID!) {
+			removeAnalysis(_id: $_id) {
+				_id
+			}
+		}
+	`, { name: 'removeAnalysisMutation' }),
 	withHandlers({
-		onRemove: () => () => {
+		onRemove: ({ removeAnalysisMutation }) =>
+			tryAsync(async (_id) => {
+				removeAnalysisMutation({
+					variables: { _id },
+					refetchQueries: ['AnalysisOverviewQuery'],
+				})
+			}),
 
-		},
-
-		onFetchData: ({ data }) => (state) => {
+		onFetchData: ({ data, pageSize, setQueryInput, loadMore }) => (state) => {
 			if (data.loading) {
 				return
 			}
 
-			data.fetchMore({
-				variables: {
-					input: {
-						limit: DEFAULT_LIMIT,
-						skip: state.page * DEFAULT_LIMIT,
-					},
-				},
-				updateQuery: (prevResult, { fetchMoreResult }) => fetchMoreResult,
-			})
+			const input = {
+				limit: pageSize,
+				skip: state.page * pageSize,
+			}
+
+			setQueryInput(input)
+			loadMore(input)
 		},
 	}),
 	withProps(({ onRemove }) => {

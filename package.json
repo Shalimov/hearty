@@ -17,6 +17,7 @@
     "precommit": "yarn eslint:fix && yarn lint",
     "gen:base:users": "node ./scripts/gen.base.users.js",
     "gen:patients": "node ./scripts/gen.patients.js",
+    "gen:analyses": "node ./scripts/gen.analyses.js",
     "gen:terms": "node ./scripts/gen.terms.js"
   },
   "repository": "",

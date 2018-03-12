@@ -7,6 +7,7 @@ import toggleRenderer from './renderers/toggle'
 import selectRenderer, { asyncSelectRenderer } from './renderers/select'
 import textareaRenderer from './renderers/textarea'
 import dateRenderer from './renderers/date'
+import counterRenderer from './renderers/counter'
 import styles from './styles'
 
 const join = (...classNames) => classNames.join(' ')
@@ -20,6 +21,7 @@ const defaultErrorRender = (error) => (
 const rendererProxy = props => {
 	switch (props.type) {
 	case 'date': return dateRenderer(props)
+	case 'counter': return counterRenderer(props)
 	case 'select-async': return asyncSelectRenderer(props)
 	case 'select': return selectRenderer(props)
 	case 'textarea': return textareaRenderer(props)

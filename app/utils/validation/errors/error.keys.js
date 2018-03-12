@@ -26,6 +26,8 @@ export default {
 
 	NUMBER: {
 		TYPE: 'number.type',
+		MIN: 'number.min',
+		MAX: 'number.max',
 	},
 	
 	BOOLEAN: {

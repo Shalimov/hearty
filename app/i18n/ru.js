@@ -60,6 +60,8 @@ const descriptions = {
 		analyses: 'Анализы',
 		medicine: 'Лекарства',
 		dictionary: 'Словарь терминов',
+		basic: 'Базовые',
+		additional: 'Дополнительные',
 	},
 
 	descriptions: {
@@ -178,6 +180,7 @@ const descriptions = {
 		summary: 'В заключении',
 		addAnalysis: 'Добавить анализ',
 		editAnalysis: 'Изменить анализ',
+		analysesSelection: 'Включить анализы',
 		chooseDocTemplate: 'Выбор шаблона документа',
 		basic: 'Базовый',
 		additional: 'Дополнительный',

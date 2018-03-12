@@ -18,6 +18,8 @@ const defaultRenderer = ({
 	flexible,
 	inlined,
 	noBorder,
+	min,
+	max,
 	type = 'text',
 	value,
 	autoComplete,
@@ -44,10 +46,12 @@ const defaultRenderer = ({
 			)
 		}
 		readOnly={readOnly}
+		min={min}
+		max={max}
 		placeholder={placeholder}
 		autoComplete={autoComplete}
 		disabled={disabled}
-		value={value || EMPTY_STRING}
+		value={value === undefined ? EMPTY_STRING : value}
 		onKeyDown={onInternalKeyDown}
 		onBlur={onBlur}
 		onChange={onInternalChange} />

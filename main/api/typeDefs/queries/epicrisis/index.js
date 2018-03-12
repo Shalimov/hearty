@@ -3,6 +3,7 @@ const { createPaginationTypes } = require('../../create.pagination.types')
 const treatmentPart = require('./treatment.part')
 const medicineRecommendationPart = require('./medicine.recommendations.part')
 const examinationPart = require('./examination.part')
+const analysisPart = require('./analisis.part')
 const ctPart = require('./ct.part')
 const xrayPart = require('./xray.part')
 const usdScopiaPart = require('./usd.scopia.part')
@@ -25,6 +26,7 @@ const EpicrisisType = (input = '') => `
 	examination: ${typeName}Examination${input}!
 	medicineRecommendations: [${typeName}MedicineRecommendation${input}!]
 	treatment: [${typeName}Treatment${input}!]
+	analyses: [${typeName}Analysis${input}!]
 
 	# simple fields
 	recommended: String!
@@ -50,6 +52,8 @@ const Epicrisis = `
 	${medicineRecommendationPart(typeName)}
 	# Treatment
 	${treatmentPart(typeName)}
+	# Analysis
+	${analysisPart(typeName)}
 
 	# Epicrisis
 	type ${typeName} {

@@ -74,7 +74,9 @@ const descriptions = {
 		dictionary: 'Словарь',
 		patients: 'Пациенты',
 		medicine: 'Лекарства',
+		analysis: 'Анализы',
 		addPatient: 'Добавить пациента',
+		addAnalysis: 'Добавить анализ',
 	},
 
 	buttons: {
@@ -110,6 +112,10 @@ const descriptions = {
 		other: 'Другое',
 		recommended: 'Рекомендованно',
 		summary: 'Итого',
+		analysis: {
+			pattern: 'Шаблон',
+			basic: 'Базовый',
+		},
 		usdScopia: {
 			obp: 'УЗИ ОБП',
 			bca: 'УЗИ БЦА',
@@ -163,6 +169,8 @@ const descriptions = {
 		treatment: 'Информации о лечении',
 		recommended: 'Рекомендованно',
 		summary: 'В заключении',
+		addAnalysis: 'Добавить анализ',
+		editAnalysis: 'Изменить анализ',
 		chooseDocTemplate: 'Выбор шаблона документа',
 	},
 

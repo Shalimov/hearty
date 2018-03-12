@@ -3,11 +3,16 @@ import { renderIfAuthenticated } from 'shared/hocs/authenticated'
 
 import Layout from './layout'
 import Welcome from './welcome'
+import Analysis from './analysis'
 import Dictionary from './dictionary'
 import Medicine from './medicine'
 import Epicrisis from './epicrisis'
 
 const PrivateRoutesRoot = createRoutes(({ match }) => [
+	{
+		path: `${match.path}/analysis`,
+		component: Analysis,
+	},
 	{
 		path: `${match.path}/medicine`,
 		component: Medicine,

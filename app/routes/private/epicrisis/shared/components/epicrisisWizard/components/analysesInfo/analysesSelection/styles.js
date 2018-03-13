@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
 		padding: toPx(2 * unit),
 		position: 'relative',
 	},
+
+	link: {
+		color: colors.color2,
+	},
 })
 
 export default styles

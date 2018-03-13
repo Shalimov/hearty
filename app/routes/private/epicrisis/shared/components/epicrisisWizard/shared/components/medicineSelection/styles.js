@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
 		display: 'inline-block',
 		marginRight: toPx(3 * unit),
 	},
+
+	link: {
+		color: colors.color2,
+	},
 })
 
 export default styles

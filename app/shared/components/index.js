@@ -2,6 +2,7 @@ import ValidatedInput from './validatedInput'
 import ContentLoader from './contentLoader'
 import SubmitButton from './submitButton'
 import ConfirmModal from './confirmModal'
+import EmptyArea from './emptyArea'
 import Dropdown from './dropdown'
 import Tooltip from './tooltip'
 import Button from './button'
@@ -20,6 +21,7 @@ export {
 	BGImage,
 	Tooltip,
 	Dropdown,
+	EmptyArea,
 	ConfirmModal,
 	SubmitButton,
 	ContentLoader,

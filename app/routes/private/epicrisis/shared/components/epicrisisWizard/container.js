@@ -29,6 +29,7 @@ export default compose(
 				const epicrisisData = fp.omit([
 					'template',
 					'selectedMedicineFields',
+					'selectedAnalyses',
 				], wizardData)
 
 				const { data } = await createEpicrisis({

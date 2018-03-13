@@ -36,6 +36,7 @@ export default compose(
 		}
 	`, {
 		options: {
+			fetchPolicy: 'cache-and-network',
 			variables: {
 				input: {
 					limit: 50,

@@ -1,4 +1,5 @@
 import React from 'react'
+import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { css } from 'aphrodite'
@@ -22,8 +23,10 @@ const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 			</Button>
 		</Link>
 		<Button
+			disabled={!fp.has('patient.departureAt', value)}
 			title={t('hints.clickToPrint')}
-			iconed onClick={onInternalPrint}>
+			iconed 
+			onClick={onInternalPrint}>
 			<FontAwesome name="print"
 				className={css(styles.link, styles.icon)} />
 		</Button>
@@ -32,7 +35,8 @@ const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 				onTrigger => (
 					<Button
 						title={t('hints.clickToRemove')}
-						iconed onClick={onTrigger}>
+						iconed 
+						onClick={onTrigger}>
 						<FontAwesome name="trash"
 							className={css(styles.link, styles.icon)} />
 					</Button>

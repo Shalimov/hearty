@@ -84,6 +84,12 @@ const styles = StyleSheet.create({
 		':hover': {
 			backgroundColor: colors.transparent,
 		},
+
+		':disabled': {
+			backgroundColor: colors.transparent,
+			color: colors.color3,
+			cursor: 'not-allowed',
+		},
 	},
 })
 

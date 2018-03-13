@@ -32,6 +32,7 @@ export default compose(
 		}
 	`, {
 		options: {
+			fetchPolicy: 'cache-and-network',
 			variables: {
 				input: {
 					skip: 0,

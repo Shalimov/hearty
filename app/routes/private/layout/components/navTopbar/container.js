@@ -1,6 +1,7 @@
 import { withRouter } from 'react-router-dom'
 import { compose, withProps, withHandlers } from 'recompose'
 import { inject } from 'mobx-react'
+import t from 'i18n'
 
 import NavTopbar from './component'
 
@@ -12,7 +13,7 @@ export default compose(
 		menuItems: [
 			{
 				icon: 'times-circle-o',
-				title: 'Logout',
+				title: t('buttons.logout'),
 				onClick() {
 					applicationStateStore.signout()
 				},

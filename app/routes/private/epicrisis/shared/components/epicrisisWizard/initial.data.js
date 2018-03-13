@@ -52,23 +52,23 @@ export default {
 	},
 	treatment: [
 		{
-			description: 'Маргноферм',
+			description: 'Стопдиар',
 		},
 	],
 	recommended: 'Делать всё что нужно когда нужно',
 	medicineRecommendations: [
 		{
-			medicine: 'Маргноферм',
+			medicine: 'Стопдиар',
 			recommendation: '1 таблетка 2 раза в день',
 		},
 		{
-			medicine: 'Растр',
+			medicine: 'Аэртал',
 			recommendation: '2 таблетки 3 раза в день',
 		},
 	],
 	analyses: [
 		{
-			name: 'шаблон 1',
+			name: 'ОАК',
 			description: 'Привет мир $input можно и так жить $date ха ха ха',
 		},
 	],

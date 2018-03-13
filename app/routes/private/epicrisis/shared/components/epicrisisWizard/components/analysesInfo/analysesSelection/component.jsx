@@ -16,7 +16,22 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const splitAnalysesInto = fp.partition('basic')
+const splitAnalysesInto = fp.flow(
+	fp.partition('basic'),
+	([basic, other]) => {
+		const result = []
+
+		if (!fp.isEmpty(basic)) {
+			result.push([basic, t('headers.basic')])
+		}
+
+		if (!fp.isEmpty(other)) {
+			result.push([other, t('headers.additional')])
+		}
+
+		return result
+	},
+)
 
 const AnalysesSelectionComponent = ({
 	data: { analyses = {}, loading },
@@ -25,7 +40,7 @@ const AnalysesSelectionComponent = ({
 	onCancel,
 }) => {
 	const hasNoAnalyses = fp.isEmpty(analyses.content)
-	const [basicAnalyses, otherAnalyses] = splitAnalysesInto(analyses.content)
+	const analysesInfo = splitAnalysesInto(analyses.content)
 
 	const generateAnalyses = fp.map(analysis => (
 		<tr key={analysis._id}>
@@ -49,7 +64,7 @@ const AnalysesSelectionComponent = ({
 				hasNoAnalyses ? (
 					<EmptyArea>
 						{t('errors.noAnalyses')}&nbsp;
-						<Link 
+						<Link
 							to={analysis.index()}
 							className={css(styles.link)}>
 							{t('links.follow')}
@@ -60,18 +75,16 @@ const AnalysesSelectionComponent = ({
 						<fieldset>
 							<legend className={css(styles.formLegend)}>{t('legends.analysesSelection')}</legend>
 							<div className={css(styles.tablesGrid)}>
-								<table className={css(styles.table)}>
-									<caption className={css(styles.caption)}>{t('headers.basic')}</caption>
-									<tbody>
-										{generateAnalyses(basicAnalyses)}
-									</tbody>
-								</table>
-								<table className={css(styles.table)}>
-									<caption className={css(styles.caption)}>{t('headers.additional')}</caption>
-									<tbody>
-										{generateAnalyses(otherAnalyses)}
-									</tbody>
-								</table>
+								{
+									fp.map(([collection, caption]) => (
+										<table key={caption} className={css(styles.table)}>
+											<caption className={css(styles.caption)}>{caption}</caption>
+											<tbody>
+												{generateAnalyses(collection)}
+											</tbody>
+										</table>
+									), analysesInfo)
+								}
 							</div>
 							<div className={css(styles.buttonGroup)}>
 								<div className={css(styles.buttonWrapper)}>

@@ -10,7 +10,7 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const ControlsComponent = ({ value, onInternalRemove }) => (
+const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 	<div className={css(styles.controls)}>
 		<Link
 			title={t('hints.clickToEdit')}
@@ -21,6 +21,12 @@ const ControlsComponent = ({ value, onInternalRemove }) => (
 					className={css(styles.icon)} />
 			</Button>
 		</Link>
+		<Button
+			title={t('hints.clickToPrint')}
+			iconed onClick={onInternalPrint}>
+			<FontAwesome name="print"
+				className={css(styles.link, styles.icon)} />
+		</Button>
 		<ConfirmModal onConfirm={onInternalRemove}>
 			{
 				onTrigger => (
@@ -38,6 +44,7 @@ const ControlsComponent = ({ value, onInternalRemove }) => (
 
 ControlsComponent.propTypes = {
 	value: PropTypes.shape().isRequired,
+	onInternalPrint: PropTypes.func.isRequired,
 	onInternalRemove: PropTypes.func.isRequired,
 }
 

@@ -59,7 +59,22 @@ export default compose(
 			}
 		}
 	`, { name: 'removeEpicrisisMutation' }),
+	graphql(gql`
+		mutation PrintDocTemplate($_id: ID!, $epicrisisTemplate: String!) {
+			printEpicrisis(_id: $_id, epicrisisTemplate: $epicrisisTemplate)
+		}
+	`, { name: 'printEpicrisis' }),
 	withHandlers({
+		onPrint: ({ printEpicrisis }) =>
+			tryAsync(async ({ _id, templateName }) => {
+				await printEpicrisis({
+					variables: {
+						epicrisisTemplate: templateName,
+						_id,
+					},
+				})
+			}),
+
 		onRemove: ({ removeEpicrisisMutation }) =>
 			tryAsync(async (_id) => {
 				removeEpicrisisMutation({
@@ -82,8 +97,8 @@ export default compose(
 			loadMore(input)
 		},
 	}),
-	withProps(({ onRemove }) => {
-		const propsWrapper = withProps({ onRemove })
+	withProps(({ onRemove, onPrint }) => {
+		const propsWrapper = withProps({ onRemove, onPrint })
 
 		return {
 			columns: columns(propsWrapper(Controls)),

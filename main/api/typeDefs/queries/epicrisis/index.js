@@ -13,8 +13,9 @@ const patientPart = require('./patient.part')
 
 const typeName = 'Epicrisis'
 
+// TODO: Check it epicrisi no type
 const EpicrisisType = (input = '') => `
-	epicrisisNo: Int!
+	epicrisisNo: String!
 
 	# complex fields
 	patient: ${typeName}Patient${input}!

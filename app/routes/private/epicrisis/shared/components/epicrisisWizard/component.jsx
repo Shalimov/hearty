@@ -4,14 +4,13 @@ import { css } from 'aphrodite'
 import { Wizard } from 'shared/components'
 
 import styles from './styles'
-import initialData from './initial.data'
 
-const EpicrisisWizardComponent = ({ items, onInternalSubmit, onCancel }) => (
+const EpicrisisWizardComponent = ({ items, initialValues, onInternalSubmit, onCancel }) => (
 	<div className={css(styles.epicrisisContainer)}>
 		<Wizard
 			startStep={0}
 			items={items}
-			initialValues={initialData}
+			initialValues={initialValues}
 			onSubmit={onInternalSubmit}
 			onCancel={onCancel} />
 	</div>
@@ -24,6 +23,7 @@ EpicrisisWizardComponent.propTypes = {
 			PropTypes.arrayOf(PropTypes.any),
 		])
 	),
+	initialValues: PropTypes.shape(),
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }

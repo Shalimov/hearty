@@ -126,6 +126,10 @@ const descriptions = {
 		recommended: 'Рекомендованно',
 		summary: 'Итого',
 		type: 'Тип',
+		epicrisis: {
+			done: 'Выписан',
+			draft: 'Черновик',
+		},
 		analysis: {
 			pattern: 'Шаблон',
 			basic: 'Базовый',
@@ -198,6 +202,7 @@ const descriptions = {
 		clickToRemove: 'Нажмите для удаления',
 		enterAdd: 'Enter для добавления',
 		clickToEdit: 'Редактировать',
+		clickToPrint: 'Распечатать',
 	},
 
 	placeholders: {

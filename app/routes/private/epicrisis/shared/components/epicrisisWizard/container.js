@@ -6,9 +6,9 @@ import wizardItems from './wizard.items'
 
 export default compose(
 	withProps({ items: wizardItems }),
-
 	withHandlers({
-		onInternalSubmit: ({ onSubmit }) => (wizardData) => {
+		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData) => {
+			const _id = fp.get('_id', initialValues)
 			const epicrisisData = fp.omit([
 				'template',
 				'selectedMedicineFields',
@@ -16,7 +16,7 @@ export default compose(
 			], wizardData)
 
 			// TODO: temp
-			onSubmit(epicrisisData, wizardData)
+			onSubmit({ ...epicrisisData, _id }, wizardData)
 		},
 	})
 )(EpicrisisWizardComponent)

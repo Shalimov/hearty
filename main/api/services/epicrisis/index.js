@@ -7,9 +7,10 @@ const BaseService = require('../base')
 const { TEMPLATE_DIR } = require('../../../constants/system')
 
 const EXT_PATTERN = /(?:\.docx?)$/i
+
 class EpicrisisService extends BaseService {
 	constructor(repository, promisifiedFs) {
-		super(repository, 'epicrisis')
+		super(repository, 'epicrises')
 		this.fs = promisifiedFs
 	}
 

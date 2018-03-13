@@ -15,29 +15,19 @@ export default compose(
 			}
 		}
 	`, { name: 'createEpicrisis' }),
-	graphql(gql`
-		mutation PrintDocTemplate($_id: ID!, $epicrisisTemplate: String!) {
-			printEpicrisis(_id: $_id, epicrisisTemplate: $epicrisisTemplate)
-		}
-	`, { name: 'printEpicrisis' }),
 	withHandlers({
 		onCancel: ({ history }) => () => {
 			history.goBack()
 		},
 
-		onSubmit: ({ createEpicrisis, printEpicrisis }) =>
-			tryAsync(async (epicrisisData, wizardData) => {
+		onSubmit: ({ createEpicrisis, history }) =>
+			tryAsync(async (epicrisisData) => {
 
-				const { data } = await createEpicrisis({
+				await createEpicrisis({
 					variables: { input: epicrisisData },
 				})
 
-				await printEpicrisis({
-					variables: {
-						_id: data.createEpicrisis._id,
-						epicrisisTemplate: wizardData.template.name,
-					},
-				})
+				history.goBack()
 
 				toast.success(t('common.operationCompleted'))
 			}),

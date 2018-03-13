@@ -15,10 +15,10 @@ export default compose(
 			history.goBack()
 		},
 
-		onSubmit: ({ editEpicrisisMutation, history }) =>
+		onSubmit: ({ updateEpicrisisMutation, history }) =>
 			tryAsync(async (epicrisisData) => {
 
-				await editEpicrisisMutation({
+				await updateEpicrisisMutation({
 					variables: { input: epicrisisData },
 				})
 

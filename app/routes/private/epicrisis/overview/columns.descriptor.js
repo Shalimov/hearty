@@ -20,7 +20,7 @@ export default (Controls) => [
 		),
 	},
 	{
-		Header: t('labels.arrivalAt'),
+		Header: t('labels.departureAt'),
 		id: 'departureAt',
 		accessor: fp.flow(
 			fp.get('patient.departureAt'),

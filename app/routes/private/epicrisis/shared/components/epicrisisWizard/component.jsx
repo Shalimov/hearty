@@ -5,7 +5,12 @@ import { Wizard } from 'shared/components'
 
 import styles from './styles'
 
-const EpicrisisWizardComponent = ({ items, initialValues, onInternalSubmit, onCancel }) => (
+const EpicrisisWizardComponent = ({
+	items,
+	initialValues = {},
+	onInternalSubmit,
+	onCancel,
+}) => (
 	<div className={css(styles.epicrisisContainer)}>
 		<Wizard
 			startStep={0}

@@ -80,13 +80,13 @@ const queryHoc = graphql(gql`
 })
 
 const mutationHoc = graphql(gql`
-	mutation EditEpicrisisMutation($input: EpicrisisInput!) {
-		editEpicrisis(input: $input) {
+	mutation UpdateEpicrisisMutation($input: EpicrisisInput!) {
+		updateEpicrisis(input: $input) {
 			_id
 		}
 	}
 `, {
-	name: 'editEpicrisisMutation',
+	name: 'updateEpicrisisMutation',
 })
 
 

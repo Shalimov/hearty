@@ -181,6 +181,7 @@ const descriptions = {
 		addAnalysis: 'Добавить анализ',
 		editAnalysis: 'Изменить анализ',
 		analysesSelection: 'Включить анализы',
+		analysesEditing: 'Внести анализы',
 		chooseDocTemplate: 'Выбор шаблона документа',
 		basic: 'Базовый',
 		additional: 'Дополнительный',

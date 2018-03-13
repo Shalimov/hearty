@@ -66,5 +66,11 @@ export default {
 			recommendation: '2 таблетки 3 раза в день',
 		},
 	],
+	analyses: [
+		{
+			name: 'шаблон 1',
+			description: 'Привет мир $input можно и так жить $date ха ха ха',
+		},
+	],
 	summary: 'В целом всё ок',
 }

@@ -7,6 +7,17 @@ import Ego from 'utils/validation'
 
 import AnalysesSelectionComponent from './component'
 
+const getInitialValues = (selectedAnalyses, analyses) => {
+	if (selectedAnalyses) {
+		return fp.reduce((map, value) => {
+			map[value.name] = value.repeatCount
+			return map
+		}, {}, selectedAnalyses)
+	}
+
+	return fp.countBy('name', analyses)
+}
+
 export default compose(
 	graphql(gql`
 		query AnalysisOverviewQuery($input: AnalysisQueryInput) {
@@ -35,7 +46,19 @@ export default compose(
 	}),
 	withFormModel({}),
 	withHandlers({
-		onInternalSubmit: () => () => {
+		onInternalSubmit: ({ data, onSubmit }) => {
+			const analysesMap = fp.groupBy('name', data.analyses.content)
+			return fp.flow(
+				fp.entries,
+				fp.filter(fp.flow(fp.nth(1), Boolean)),
+				fp.map(([name, repeatCount]) => ({
+					name,
+					repeatCount,
+					analysis: fp.head(analysesMap[name]),
+				})),
+				selectedAnalyses => ({ selectedAnalyses }),
+				onSubmit
+			)
 		},
 	}),
 	lifecycle({
@@ -44,18 +67,21 @@ export default compose(
 			this.componentWillReceiveProps(this.props)
 		},
 
-		componentWillReceiveProps({ data, formModel }) {
+		componentWillReceiveProps({ data, formModel, initialValues }) {
 			if (data.loading) {
 				return
 			}
 
+			const { selectedAnalyses, analyses } = initialValues
 			const content = fp.get('content', data.analyses)
-			
+			const initialValuesMap = getInitialValues(selectedAnalyses, analyses)
+			const hasNoInitialValues = fp.isEmpty(initialValuesMap)
+
 			for (const { name, basic } of content) {
-				const initialCount = basic ? 1 : 0
+				const initialCount = (basic && hasNoInitialValues) ? 1 : 0
 				formModel.addField(
-					name, 
-					initialCount, 
+					name,
+					initialValuesMap[name] || initialCount,
 					Ego.number()
 						.min(0)
 						.max(5)
@@ -63,16 +89,6 @@ export default compose(
 						.label(name)
 				)
 			}
-
-			// const selectedFields = 
-			// const isSelectedMedicine = fp.includes(fp.placeholder, selectedFields)
-			// const content = fp.get('medicineGroups.content', data)
-
-			// fp.each((group) => {
-			// 	for (const { name } of group.listOfMedicaments) {
-			// 		formModel.addField(name, isSelectedMedicine(name), Ego.number().label(name))
-			// 	}
-			// }, content)
 		},
 	})
 )(AnalysesSelectionComponent)

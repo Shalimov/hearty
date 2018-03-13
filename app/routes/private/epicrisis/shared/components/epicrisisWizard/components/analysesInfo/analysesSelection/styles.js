@@ -10,11 +10,7 @@ const styles = StyleSheet.create({
 		...mixins.font({ size: font.font22, weight: font.weight.bold }),
 		marginBottom: toPx(6 * unit),
 	},
-
-	inputWrapper: {
-		marginBottom: toPx(4 * unit),
-	},
-
+	
 	buttonGroup: {
 		marginRight: toPx(5 * unit),
 		paddingTop: toPx(unit),

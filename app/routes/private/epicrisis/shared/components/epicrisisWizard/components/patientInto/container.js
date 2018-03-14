@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { compose, withHandlers } from 'recompose'
 import { withFormModel } from 'shared/hocs'
 import mapper from 'utils/simple.mapper'
@@ -8,6 +9,7 @@ import PatientIntoComponent from './component'
 export default compose(
 	withFormModel(patientInfoModel, { spreadFields: true }),
 	withHandlers({
+		isValidDate: () => date => moment().isAfter(date),
 		onInternalSubmit: ({ formModel, onSubmit }) => () => {
 			const mappedModel = mapper(formModel.value, mapping)
 			return onSubmit(mappedModel)

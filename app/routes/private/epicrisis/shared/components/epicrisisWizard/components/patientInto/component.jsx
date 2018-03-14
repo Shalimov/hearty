@@ -15,6 +15,7 @@ const PatientIntoComponent = ({
 	jobInfoField,
 	addressField,
 	arrivalAtField,
+	isValidDate,
 	onInternalSubmit,
 	onCancel,
 }) => (
@@ -31,6 +32,7 @@ const PatientIntoComponent = ({
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
 							type="date"
+							isValidDate={isValidDate}
 							field={birthdateField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
@@ -61,6 +63,7 @@ const PatientIntoComponent = ({
 						<ValidatedInput
 							type="date"
 							viewMode="days"
+							isValidDate={isValidDate}
 							field={arrivalAtField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>
@@ -100,6 +103,7 @@ PatientIntoComponent.propTypes = {
 	jobInfoField: PropTypes.shape().isRequired,
 	addressField: PropTypes.shape().isRequired,
 	arrivalAtField: PropTypes.shape().isRequired,
+	isValidDate: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }

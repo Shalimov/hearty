@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { Form, Button, SubmitButton, ValidatedInput } from 'shared/components'
@@ -11,6 +12,7 @@ const SummaryInfoComponent = ({
 	formModel,
 	summaryField,
 	departureAtField,
+	isValidDate,
 	onInternalSubmitAndPrint,
 	onInternalSubmit,
 	onCancel,
@@ -32,7 +34,10 @@ const SummaryInfoComponent = ({
 				<ValidatedInput
 					type="date"
 					viewMode="days"
+					isValidDate={isValidDate}
 					field={departureAtField} />
+				{/* workaround to make disabled attribute works, it's inside a function */}
+				<input type="hidden" value={departureAtField.value} />
 			</div>
 			<div className={css(styles.buttonGroup)}>
 				<div className={css(styles.buttonWrapper)}>
@@ -57,7 +62,7 @@ const SummaryInfoComponent = ({
 							<SubmitButton
 								rounded
 								form={formModel}
-								disabled={!departureAtField.value}
+								disabled={departureAtField.value == null}
 								onSubmit={onTrigger}>
 								{t('buttons.saveAndPrint')}
 							</SubmitButton>
@@ -73,9 +78,10 @@ SummaryInfoComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
 	summaryField: PropTypes.shape().isRequired,
 	departureAtField: PropTypes.shape().isRequired,
+	isValidDate: PropTypes.func.isRequired,
 	onInternalSubmitAndPrint: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 
-export default SummaryInfoComponent
+export default observer(SummaryInfoComponent)

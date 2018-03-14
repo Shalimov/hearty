@@ -23,9 +23,9 @@ const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 			</Button>
 		</Link>
 		<Button
-			disabled={!fp.has('patient.departureAt', value)}
+			disabled={!fp.get('patient.departureAt', value)}
 			title={t('hints.clickToPrint')}
-			iconed 
+			iconed
 			onClick={onInternalPrint}>
 			<FontAwesome name="print"
 				className={css(styles.link, styles.icon)} />
@@ -35,7 +35,7 @@ const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 				onTrigger => (
 					<Button
 						title={t('hints.clickToRemove')}
-						iconed 
+						iconed
 						onClick={onTrigger}>
 						<FontAwesome name="trash"
 							className={css(styles.link, styles.icon)} />

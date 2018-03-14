@@ -1,9 +1,9 @@
 import React from 'react'
-import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
-import { css, cssx } from 'utils/aphrodite-ext'
 import { Wizard } from 'shared/components'
+import { css } from 'aphrodite'
 
+import WizardPager from './components/wizardPager'
 import styles from './styles'
 
 const EpicrisisWizardComponent = ({
@@ -19,25 +19,11 @@ const EpicrisisWizardComponent = ({
 	onCancel,
 }) => (
 	<div ref={onContainerRef} className={css(styles.epicrisisContainer)}>
-		<div className={css(styles.pager)}>
-			<ul className={css(styles.pageIndicatorList)}>
-				{
-					fp.times(index => (
-						<li
-							key={`page-${index}`}
-							className={cssx({
-								pageIndicator: true,
-								selectionEnabled: stepSelection,
-								current: currentStep === index,
-								rest: currentStep < index,
-							}, styles)}
-							onClick={onExternalSetStep(index)}>
-							{fp.padCharsStart('0', 2, index + 1)}
-						</li>
-					), items.length)
-				}
-			</ul>
-		</div>
+		<WizardPager
+			stepSelection={stepSelection}
+			currentStep={currentStep}
+			pagesCount={items.length}
+			onExternalSetStep={onExternalSetStep} />
 		<Wizard
 			onWillMount={onWizardWillMount}
 			startStep={currentStep}

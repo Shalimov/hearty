@@ -10,7 +10,6 @@ import TreatmentInfo from './components/treatmentInfo'
 import RecommendedInfo from './components/recommendedInfo'
 import MedicineInfo from './components/medicineInfo'
 import SummaryInfo from './components/summaryInfo'
-import TemplatesFinder from './components/templatesFinder'
 
 export default [
 	PatientInfo,
@@ -25,5 +24,4 @@ export default [
 	RecommendedInfo,
 	...MedicineInfo, // two steps
 	SummaryInfo,
-	TemplatesFinder,
 ]

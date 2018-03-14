@@ -97,6 +97,7 @@ const descriptions = {
 		addSubTerm: 'Добавить подтермин',
 		search: 'Найти',
 		save: 'Сохранить',
+		saveAndPrint: 'Сохранить и распечатать',
 		submit: 'Отправить',
 		next: 'Далее',
 		back: 'Назад',

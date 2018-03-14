@@ -8,12 +8,14 @@ const WizardComponent = ({
 	wizardData,
 	onInternalSubmit,
 	onInternalCancel,
+	...props
 }) => (
 	<ActiveComponent
+		{...props}
 		wizardData={wizardData}
 		initialValues={componentData}
 		onSubmit={onInternalSubmit}
-		onCancel={onInternalCancel} 
+		onCancel={onInternalCancel}
 		{...activeComponentProps} />
 )
 

@@ -4,7 +4,6 @@ import { Image } from 'shared/components'
 import t from 'i18n'
 
 import styles from './styles'
-// import HelpSection from './components/helpSection'
 
 const WelcomeComponent = () => (
 	<div className={css(styles.container)}>

@@ -1,5 +1,11 @@
 import fp from 'lodash/fp'
-import { compose, withProps, withHandlers, lifecycle } from 'recompose'
+import {
+	compose,
+	withProps,
+	withHandlers,
+	withState,
+	lifecycle,
+} from 'recompose'
 
 import EpicrisisWizardComponent from './component'
 import wizardItems from './wizard.items'
@@ -7,14 +13,16 @@ import wizardItems from './wizard.items'
 let containerRef = null
 
 export default compose(
+	withState('currentStep', 'setCurrentStep', 0),
 	withProps({ items: wizardItems }),
 	withHandlers({
 		onContainerRef: () => (ref) => {
 			containerRef = ref
 		},
 
-		onStepChanged: () => () => {
+		onStepChanged: ({ setCurrentStep }) => (currentStep) => {
 			fp.invoke('scrollIntoView', containerRef)
+			setCurrentStep(currentStep)
 		},
 
 		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData) => {
@@ -25,8 +33,7 @@ export default compose(
 				'selectedAnalyses',
 			], wizardData)
 
-			// TODO: temp
-			onSubmit({ ...epicrisisData, _id }, wizardData)
+			onSubmit({ ...epicrisisData, _id })
 		},
 	}),
 	lifecycle({

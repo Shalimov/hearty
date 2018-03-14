@@ -38,7 +38,7 @@ const SummaryInfoComponent = ({
 					rounded
 					form={formModel}
 					onSubmit={onInternalSubmit}>
-					{t('buttons.next')}
+					{t('buttons.save')}
 				</SubmitButton>
 			</div>
 		</fieldset>

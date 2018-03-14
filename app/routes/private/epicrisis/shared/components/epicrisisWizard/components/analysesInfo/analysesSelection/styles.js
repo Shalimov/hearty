@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
 
 	caption: {
 		...mixins.font({ size: font.font18, weight: font.weight.bold }),
-		border: `1px solid ${colors.color1}`,
+		border: `1px solid ${colors.color6}`,
 		padding: toPx(2 * unit),
 	},
 
 	cell: {
 		...mixins.font({ size: font.font14, weight: font.weight.normal }),
-		border: `1px solid ${colors.color1}`,
+		border: `1px solid ${colors.color6}`,
 		textAlign: 'left',
 		verticalAlign: 'middle',
 		padding: toPx(2 * unit),

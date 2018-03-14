@@ -11,6 +11,10 @@ const blackPalette = createPalette('black', 0, 0, 0)(completePaletteColoursCount
 const errorColor = '#FFE9E9'
 
 export const colors = {
+	gradients: {
+		color1: 'linear-gradient(to left, #8e9eab, #eef2f3)',
+	},
+
 	color1: '#D9D9D9',
 	color2: '#3459A6',
 	color3: '#BFBFBF',

@@ -10,6 +10,7 @@ const long = toPx(36 * unit)
 
 const control = {
 	...mixins.font(),
+	backgroundColor: colors.white40,
 	color: colors.color8,
 	boxSizing: 'border-box',
 	minWidth: short,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
 
 	select: {
 		...control,
-		backgroundColor: colors.white100,
+		backgroundColor: colors.white40,
 	},
 })
 

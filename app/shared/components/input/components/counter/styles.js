@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 		border: `1px solid ${colors.color1}`,
 		borderRadius: '50px',
 		alignItems: 'center',
-		backgroundColor: colors.white50,
+		backgroundColor: colors.white40,
 	},
 
 	counterValue: {

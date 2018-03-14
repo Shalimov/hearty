@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 	innerView: {
 		flex: 1,
 		position: 'relative',
-		backgroundColor: colors.color9,
+		background: colors.gradients.color1,
 		overflowY: 'auto',
 	},
 })

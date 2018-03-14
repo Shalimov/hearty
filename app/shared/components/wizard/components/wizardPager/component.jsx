@@ -6,10 +6,8 @@ import { css, cssx } from 'utils/aphrodite-ext'
 import styles from './styles'
 
 const WizardPagerComponent = ({
-	stepSelection,
 	currentStep,
 	pagesCount,
-	onExternalSetStep,
 }) => (
 	<div className={css(styles.pager)}>
 		<ul className={css(styles.pageIndicatorList)}>
@@ -19,11 +17,9 @@ const WizardPagerComponent = ({
 						key={`page-${index}`}
 						className={cssx({
 							pageIndicator: true,
-							selectionEnabled: stepSelection,
 							current: currentStep === index,
 							rest: currentStep < index,
-						}, styles)}
-						onClick={onExternalSetStep(index)}>
+						}, styles)}>
 						{fp.padCharsStart('0', 2, index + 1)}
 					</li>
 				), pagesCount)

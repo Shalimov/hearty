@@ -23,7 +23,7 @@ export default compose(
 	withHandlers({
 		onInternalSubmit: ({ formModel, onSubmit }) => () => {
 			const { choosenTemplateField } = formModel.value
-			return onSubmit({ template: { name: choosenTemplateField }})
+			return onSubmit({ templateName: choosenTemplateField })
 		},
 	})
 )(TemplatesFinderComponent)

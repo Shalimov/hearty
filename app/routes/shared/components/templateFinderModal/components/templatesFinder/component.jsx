@@ -13,6 +13,7 @@ const TemplatesFinderComponent = ({
 	data,
 	choosenTemplateField,
 	formModel,
+	submitText = t('buttons.print'),
 	onInternalSubmit,
 	onCancel,
 }) => (
@@ -44,7 +45,7 @@ const TemplatesFinderComponent = ({
 					rounded
 					form={formModel}
 					onSubmit={onInternalSubmit}>
-					{t('buttons.next')}
+					{submitText}
 				</SubmitButton>
 			</div>
 		</fieldset>
@@ -52,6 +53,7 @@ const TemplatesFinderComponent = ({
 )
 
 TemplatesFinderComponent.propTypes = {
+	submitText: PropTypes.string,
 	data: PropTypes.shape().isRequired,
 	choosenTemplateField: PropTypes.shape().isRequired,
 	formModel: PropTypes.shape().isRequired,

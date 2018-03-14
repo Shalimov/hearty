@@ -1,4 +1,4 @@
-import WizardPager from './container'
+import WizardPager from './component'
 
 export default WizardPager
 

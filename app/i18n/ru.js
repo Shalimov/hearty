@@ -102,6 +102,7 @@ const descriptions = {
 		next: 'Далее',
 		back: 'Назад',
 		signin: 'Войти',
+		print: 'Печатать',
 		ok: 'Да',
 		no: 'Нет',
 		logout: 'Выйти',

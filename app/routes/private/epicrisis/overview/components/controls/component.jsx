@@ -6,6 +6,7 @@ import { css } from 'aphrodite'
 import { Button } from 'shared/components'
 import FontAwesome from 'react-fontawesome'
 import { epicrisis } from 'routes/route.map'
+import { TemplateFinderModal } from 'routes/shared/components'
 import { ConfirmModal } from 'shared/components'
 import t from 'i18n'
 
@@ -22,14 +23,20 @@ const ControlsComponent = ({ value, onInternalPrint, onInternalRemove }) => (
 					className={css(styles.icon)} />
 			</Button>
 		</Link>
-		<Button
-			disabled={!fp.get('patient.departureAt', value)}
-			title={t('hints.clickToPrint')}
-			iconed
-			onClick={onInternalPrint}>
-			<FontAwesome name="print"
-				className={css(styles.link, styles.icon)} />
-		</Button>
+		<TemplateFinderModal onSubmit={onInternalPrint}>
+			{
+				onTrigger => (
+					<Button
+						disabled={!fp.get('patient.departureAt', value)}
+						title={t('hints.clickToPrint')}
+						iconed
+						onClick={onTrigger}>
+						<FontAwesome name="print"
+							className={css(styles.link, styles.icon)} />
+					</Button>
+				)
+			}
+		</TemplateFinderModal>
 		<ConfirmModal onConfirm={onInternalRemove}>
 			{
 				onTrigger => (

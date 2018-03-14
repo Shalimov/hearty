@@ -4,9 +4,9 @@ import ControlsComponent from './component'
 
 export default compose(
 	withHandlers({
-		onInternalPrint: ({ onPrint, value }) => () => {
+		onInternalPrint: ({ onPrint, value }) => ({ templateName }) => {
 			// TODO: fix it
-			onPrint({ _id: value._id, templateName: 'main.docx' })
+			onPrint({ _id: value._id, templateName })
 		},
 
 		onInternalRemove: ({ onRemove, value }) => () => {

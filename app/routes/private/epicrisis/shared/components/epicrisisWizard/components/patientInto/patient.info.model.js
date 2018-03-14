@@ -8,8 +8,11 @@ export default ({ initialValues = {} }) => ({
 	epicrisisNoField: {
 		initialValue: initialValues.epicrisisNo,
 		scheme: Ego.string()
-			.digitLine()
+			.pattern(/^\d+(?:[|-]\d+)?$/)
 			.label(t('labels.epicrisisNo'))
+			.messages({
+				[Ego.ERROR_KEYS.STRING.PATTERN]: fp.constant(t('errors.epicrisis.epicNo')),
+			})
 			.required(),
 	},
 

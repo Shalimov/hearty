@@ -7,7 +7,7 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: colors.white100,
+		backgroundColor: colors.white40,
 		padding: toPx(unit),
 		userSelect: 'initial',
 	},

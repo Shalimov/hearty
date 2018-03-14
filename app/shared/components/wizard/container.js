@@ -1,5 +1,5 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers, withStateHandlers } from 'recompose'
+import { compose, withHandlers, withStateHandlers, lifecycle } from 'recompose'
 
 import WizardComponent from './companent'
 
@@ -27,8 +27,15 @@ export default compose(
 	}),
 
 	withHandlers({
+		setStepOutside: ({ items, setStep, onStepChanged }) => (step) => {
+			if (items.length > step && step >= 0) {
+				setStep(step)
+				onStepChanged && onStepChanged(step)
+			}
+		},
+
 		incrementStep: ({ items, currentStep, setStep, onStepChanged }) => () => {
-			if (items.length  > currentStep + 1) {
+			if (items.length > currentStep + 1) {
 				setStep(currentStep + 1)
 				onStepChanged && onStepChanged(currentStep + 1)
 			}
@@ -76,4 +83,13 @@ export default compose(
 			}
 		},
 	}),
+	lifecycle({
+		componentWillMount() {
+			const { onWillMount, setStepOutside } = this.props
+
+			if (onWillMount) {
+				onWillMount({ setStepOutside })
+			}
+		},
+	})
 )(WizardComponent)

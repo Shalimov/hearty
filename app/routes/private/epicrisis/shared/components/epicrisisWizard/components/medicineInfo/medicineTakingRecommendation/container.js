@@ -20,7 +20,7 @@ const createModel = fp.flow(
 export default compose(
 	withFormModel(({ wizardData, initialValues }) => {
 		const wizardDataArray = [...wizardData.values()]
-		const { selectedMedicineFields } = Object.assign(...wizardDataArray)
+		const { selectedMedicineFields } = Object.assign({}, ...wizardDataArray)
 		const { medicineRecommendations } = initialValues
 		
 		const groupedRecommendations = fp.groupBy('medicine', medicineRecommendations)

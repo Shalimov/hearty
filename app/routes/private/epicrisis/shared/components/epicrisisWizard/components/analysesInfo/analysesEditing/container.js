@@ -14,7 +14,7 @@ const extractFieldName = (label) => {
 export default compose(
 	withFormModel(({ wizardData, initialValues }) => {
 		const wizardDataArray = [...wizardData.values()]
-		const { selectedAnalyses } = Object.assign(...wizardDataArray)
+		const { selectedAnalyses } = Object.assign({}, ...wizardDataArray)
 		const { analyses } = initialValues
 		const analysesMap = fp.groupBy('name', analyses)
 

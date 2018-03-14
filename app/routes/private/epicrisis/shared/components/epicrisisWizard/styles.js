@@ -20,15 +20,24 @@ const styles = StyleSheet.create({
 	pageIndicator: {
 		display: 'inline-block',
 		padding: toPx(unit),
-		border: `1px solid ${colors.color2}`,
+		border: `1px solid ${colors.color6}`,
 		borderRadius: toPx(50),
 		marginRight: toPx(unit),
 		cursor: 'default',
 	},
 
+	selectionEnabled: {
+		cursor: 'pointer',
+	},
+
 	current: {
 		color: colors.white100,
 		backgroundColor: colors.color2,
+	},
+
+	rest: {
+		color: colors.white100,
+		backgroundColor: colors.black15,
 	},
 })
 

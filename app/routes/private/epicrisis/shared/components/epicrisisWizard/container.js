@@ -11,6 +11,7 @@ import EpicrisisWizardComponent from './component'
 import wizardItems from './wizard.items'
 
 let containerRef = null
+let wizardRef = null
 
 export default compose(
 	withState('currentStep', 'setCurrentStep', 0),
@@ -18,6 +19,16 @@ export default compose(
 	withHandlers({
 		onContainerRef: () => (ref) => {
 			containerRef = ref
+		},
+
+		onWizardWillMount: () => (wizardRefObject) => {
+			wizardRef = wizardRefObject
+		},
+
+		onExternalSetStep: ({ stepSelection }) => (step) => () => {
+			if (stepSelection) {
+				wizardRef.setStepOutside(step)
+			}
 		},
 
 		onStepChanged: ({ setCurrentStep }) => (currentStep) => {
@@ -39,6 +50,7 @@ export default compose(
 	lifecycle({
 		componentWillMount() {
 			containerRef = null
+			wizardRef = null
 		},
 	})
 )(EpicrisisWizardComponent)

@@ -58,19 +58,23 @@ export default compose(
 				_id
 			}
 		}
-	`, { name: 'removeEpicrisisMutation' }),
+	`, {
+		name: 'removeEpicrisisMutation',
+	}),
 	graphql(gql`
 		mutation PrintDocTemplate($_id: ID!, $epicrisisTemplate: String!) {
 			printEpicrisis(_id: $_id, epicrisisTemplate: $epicrisisTemplate)
 		}
-	`, { name: 'printEpicrisis' }),
+	`, {
+		name: 'printEpicrisisMutation',
+	}),
 	withHandlers({
-		onPrint: ({ printEpicrisis }) =>
+		onPrint: ({ printEpicrisisMutation }) =>
 			tryAsync(async ({ _id, templateName }) => {
-				await printEpicrisis({
+				await printEpicrisisMutation({
 					variables: {
-						epicrisisTemplate: templateName,
 						_id,
+						epicrisisTemplate: templateName,
 					},
 				})
 			}),

@@ -1,7 +1,6 @@
+import fp from 'lodash/fp'
 import { compose, withHandlers, withState } from 'recompose'
-import { toast } from 'react-toastify'
 import { tryAsync } from 'utils/try'
-import t from 'i18n'
 
 import { queryHoc, mutationHoc } from './graphql.hocs'
 import EditEpicrisisComponent from './component'
@@ -15,16 +14,24 @@ export default compose(
 			history.goBack()
 		},
 
-		onSubmit: ({ updateEpicrisisMutation, history }) =>
-			tryAsync(async (epicrisisData) => {
+		onSubmit: ({ updateEpicrisisMutation, printEpicrisisMutation, history }) =>
+			tryAsync(async (epicrisisData, options) => {
+				const templateName = fp.get('templateName', options)
 
 				await updateEpicrisisMutation({
 					variables: { input: epicrisisData },
 				})
 
-				history.goBack()
+				if (fp.isString(templateName)) {
+					await printEpicrisisMutation({
+						variables: {
+							_id: epicrisisData._id,
+							epicrisisTemplate: templateName,
+						},
+					})
+				}
 
-				toast.success(t('common.operationCompleted'))
+				history.goBack()
 			}),
 	})
 )(EditEpicrisisComponent)

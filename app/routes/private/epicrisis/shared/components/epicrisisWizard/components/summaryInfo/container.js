@@ -12,5 +12,10 @@ export default compose(
 			const mappedModel = mapper(formModel.value, mapping)
 			return onSubmit(mappedModel)
 		},
+		
+		onInternalSubmitAndPrint: ({ formModel, onSubmit }) => ({ templateName }) => {
+			const mappedModel = mapper(formModel.value, mapping)
+			return onSubmit(mappedModel, { templateName })
+		},
 	})
 )(SummaryInfoComponent)

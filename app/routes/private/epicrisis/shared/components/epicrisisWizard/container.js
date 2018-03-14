@@ -36,7 +36,7 @@ export default compose(
 			setCurrentStep(currentStep)
 		},
 
-		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData) => {
+		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData, options) => {
 			const _id = fp.get('_id', initialValues)
 			const epicrisisData = fp.omit([
 				'template',
@@ -44,7 +44,7 @@ export default compose(
 				'selectedAnalyses',
 			], wizardData)
 
-			onSubmit({ ...epicrisisData, _id })
+			return onSubmit({ ...epicrisisData, _id }, options)
 		},
 	}),
 	lifecycle({

@@ -1,5 +1,6 @@
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import fp from 'lodash/fp'
 
 const queryHoc = graphql(gql`
 	query RetrieveEpicrisisQuery($_id: ID!) {
@@ -79,15 +80,23 @@ const queryHoc = graphql(gql`
 	}),
 })
 
-const mutationHoc = graphql(gql`
-	mutation UpdateEpicrisisMutation($input: EpicrisisInput!) {
-		updateEpicrisis(input: $input) {
-			_id
+const mutationHoc = fp.flow(
+	graphql(gql`
+		mutation PrintDocTemplate($_id: ID!, $epicrisisTemplate: String!) {
+			printEpicrisis(_id: $_id, epicrisisTemplate: $epicrisisTemplate)
 		}
-	}
-`, {
-	name: 'updateEpicrisisMutation',
-})
-
+	`, { 
+		name: 'printEpicrisisMutation', 
+	}),
+	graphql(gql`
+		mutation UpdateEpicrisisMutation($input: EpicrisisInput!) {
+			updateEpicrisis(input: $input) {
+				_id
+			}
+		}
+	`, {
+		name: 'updateEpicrisisMutation',
+	})
+)
 
 export { queryHoc, mutationHoc }

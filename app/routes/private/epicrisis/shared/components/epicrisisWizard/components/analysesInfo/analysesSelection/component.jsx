@@ -39,7 +39,7 @@ const AnalysesSelectionComponent = ({
 	onInternalSubmit,
 	onCancel,
 }) => {
-	const hasNoAnalyses = fp.isEmpty(analyses.content)
+	const hasNoAnalyses = fp.isEmpty(formModel.fields)
 	const analysesInfo = splitAnalysesInto(analyses.content)
 
 	const generateAnalyses = fp.map(analysis => (

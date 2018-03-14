@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { Form, Button, SubmitButton, ValidatedInput } from 'shared/components'
-import { DictionaryInput } from 'routes/shared/components'
+import { DictionaryInput, TemplateFinderModal } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -11,6 +11,7 @@ const SummaryInfoComponent = ({
 	formModel,
 	summaryField,
 	departureAtField,
+	onInternalSubmitAndPrint,
 	onInternalSubmit,
 	onCancel,
 }) => (
@@ -50,13 +51,19 @@ const SummaryInfoComponent = ({
 						{t('buttons.save')}
 					</SubmitButton>
 				</div>
-				<SubmitButton
-					rounded
-					form={formModel}
-					disabled={!departureAtField.value}
-					onSubmit={onInternalSubmit}>
-					{t('buttons.saveAndPrint')}
-				</SubmitButton>
+				<TemplateFinderModal onSubmit={onInternalSubmitAndPrint}>
+					{
+						onTrigger => (
+							<SubmitButton
+								rounded
+								form={formModel}
+								disabled={!departureAtField.value}
+								onSubmit={onTrigger}>
+								{t('buttons.saveAndPrint')}
+							</SubmitButton>
+						)
+					}
+				</TemplateFinderModal>
 			</div>
 		</fieldset>
 	</Form>
@@ -66,6 +73,7 @@ SummaryInfoComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
 	summaryField: PropTypes.shape().isRequired,
 	departureAtField: PropTypes.shape().isRequired,
+	onInternalSubmitAndPrint: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }

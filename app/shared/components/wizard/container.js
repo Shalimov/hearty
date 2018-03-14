@@ -56,7 +56,7 @@ export default compose(
 			onSubmit,
 			wizardData,
 			incrementStep,
-		}) => (formData) => {
+		}) => (formData, options) => {
 			const isLastStep = currentStep === (items.length - 1)
 
 			wizardData.set(currentStep, formData)
@@ -66,7 +66,7 @@ export default compose(
 				return undefined
 			}
 
-			return onSubmit(fp.mergeAllWith({}, [...wizardData.values()]), wizardData)
+			return onSubmit(fp.mergeAllWith({}, [...wizardData.values()]), options)
 		},
 
 		onInternalCancel: ({

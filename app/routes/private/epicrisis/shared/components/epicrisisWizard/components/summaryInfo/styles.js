@@ -8,7 +8,7 @@ const { unit } = measures
 const styles = StyleSheet.create({
 	formLegend: {
 		...mixins.font({ size: font.font22, weight: font.weight.bold }),
-		marginBottom: toPx(6 * unit),
+		marginBottom: toPx(2 * unit),
 	},
 
 	inputWrapper: {
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
 
 	hint: {
 		...mixins.font({ size: font.font12, weight: font.weight.bold }),
-		fontStyle: 'italic',
 		marginBottom: toPx(2 * unit),
 
 		':before': {

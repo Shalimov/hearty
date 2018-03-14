@@ -8,6 +8,8 @@ import t from 'i18n'
 
 import styles from './styles'
 
+const EMPTY_STRING = ''
+
 const SummaryInfoComponent = ({
 	formModel,
 	summaryField,
@@ -37,7 +39,7 @@ const SummaryInfoComponent = ({
 					isValidDate={isValidDate}
 					field={departureAtField} />
 				{/* workaround to make disabled attribute works, it's inside a function */}
-				<input type="hidden" value={departureAtField.value} />
+				<input type="hidden" value={departureAtField.value || EMPTY_STRING} />
 			</div>
 			<div className={css(styles.buttonGroup)}>
 				<div className={css(styles.buttonWrapper)}>

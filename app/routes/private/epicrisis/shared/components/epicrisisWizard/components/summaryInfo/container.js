@@ -1,5 +1,5 @@
-import moment from 'moment'
-import { compose, withHandlers } from 'recompose'
+import fp from 'lodash/fp'
+import { compose, withHandlers, withProps } from 'recompose'
 import { withFormModel } from 'shared/hocs'
 import mapper from 'utils/simple.mapper'
 
@@ -8,16 +8,19 @@ import SummaryInfoComponent from './component'
 
 export default compose(
 	withFormModel(summaryModel, { spreadFields: true }),
+	withProps(({ wizardData }) => ({
+		patient: fp.get('patient', Object.assign({}, ...wizardData.values())),
+	})),
 	withHandlers({
-		isValidDate: () => date => moment()
-			.startOf('day')
-			.isSameOrBefore(date.startOf('day')),
+		isValidDate: ({ patient }) => date => {
+			return date.isSameOrAfter(patient.arrivalAt)
+		},
 
 		onInternalSubmit: ({ formModel, onSubmit }) => () => {
 			const mappedModel = mapper(formModel.value, mapping)
 			return onSubmit(mappedModel)
 		},
-		
+
 		onInternalSubmitAndPrint: ({ formModel, onSubmit }) => ({ templateName }) => {
 			const mappedModel = mapper(formModel.value, mapping)
 			return onSubmit(mappedModel, { templateName })

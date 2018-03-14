@@ -29,10 +29,8 @@ const WizardPagerComponent = ({
 )
 
 WizardPagerComponent.propTypes = {
-	stepSelection: PropTypes.bool,
 	currentStep: PropTypes.number.isRequired,
 	pagesCount: PropTypes.number.isRequired,
-	onExternalSetStep: PropTypes.func.isRequired,
 }
 
 export default WizardPagerComponent

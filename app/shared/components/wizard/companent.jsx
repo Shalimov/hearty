@@ -33,7 +33,7 @@ WizardComponent.propTypes = {
 	componentData: PropTypes.shape(),
 	activeComponentProps: PropTypes.shape(),
 	currentStep: PropTypes.number.isRequired,
-	steps: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	steps: PropTypes.any,
 	ActiveComponent: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onInternalCancel: PropTypes.func.isRequired,

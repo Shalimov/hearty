@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
 		display: 'inline-block',
 		marginRight: toPx(3 * unit),
 	},
+
+	hint: {
+		...mixins.font({ size: font.font12, weight: font.weight.bold }),
+		fontStyle: 'italic',
+		marginBottom: toPx(2 * unit),
+
+		':before': {
+			content: '"*"',
+		},
+	},
 })
 
 export default styles

@@ -55,12 +55,6 @@ export default ({ initialValues = {} }) => ({
 			.label(t('labels.arrivalAt'))
 			.required(),
 	},
-
-	departureAtField: {
-		initialValue: toDate(fp.get('patient.departureAt', initialValues)),
-		scheme: Ego.date()
-			.label(t('labels.departureAt')),
-	},
 })
 
 export const mapping = [
@@ -71,5 +65,4 @@ export const mapping = [
 	['addressField', 'patient.address'],
 	['jobInfoField', 'patient.jobInfo'],
 	['arrivalAtField', 'patient.arrivalAt'],
-	['departureAtField', 'patient.departureAt'],
 ]

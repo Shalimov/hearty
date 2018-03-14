@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
 
 import WizardComponent from './companent'
@@ -58,7 +59,7 @@ export default compose(
 				return undefined
 			}
 
-			return onSubmit(Object.assign({}, ...wizardData.values()), wizardData)
+			return onSubmit(fp.mergeAllWith({}, [...wizardData.values()]), wizardData)
 		},
 
 		onInternalCancel: ({

@@ -15,7 +15,6 @@ const PatientIntoComponent = ({
 	jobInfoField,
 	addressField,
 	arrivalAtField,
-	departureAtField,
 	onInternalSubmit,
 	onCancel,
 }) => (
@@ -23,31 +22,6 @@ const PatientIntoComponent = ({
 		<fieldset>
 			<legend className={css(styles.formLegend)}>{t('legends.epicrisisInfo')}</legend>
 			<div className={css(styles.rows)}>
-				<div className={css(styles.block)}>
-					<div className={css(styles.inputWrapper)}>
-						<ValidatedInput
-							type="text"
-							field={epicrisisNoField} />
-					</div>
-					<div className={css(styles.inputWrapper)}>
-						<ValidatedInput
-							type="date"
-							viewMode="days"
-							field={arrivalAtField} />
-					</div>
-					<div className={css(styles.inputWrapper)}>
-						<ValidatedInput
-							type="date"
-							viewMode="days"
-							field={departureAtField} />
-					</div>
-					<div className={css(styles.inputWrapper)}>
-						<ValidatedInput
-							type="textarea"
-							rows={3}
-							field={jobInfoField} />
-					</div>
-				</div>
 				<div className={css(styles.block)}>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
@@ -75,6 +49,25 @@ const PatientIntoComponent = ({
 							type="textarea"
 							rows={3}
 							field={addressField} />
+					</div>
+				</div>
+				<div className={css(styles.block)}>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="text"
+							field={epicrisisNoField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="date"
+							viewMode="days"
+							field={arrivalAtField} />
+					</div>
+					<div className={css(styles.inputWrapper)}>
+						<ValidatedInput
+							type="textarea"
+							rows={3}
+							field={jobInfoField} />
 					</div>
 				</div>
 			</div>
@@ -107,7 +100,6 @@ PatientIntoComponent.propTypes = {
 	jobInfoField: PropTypes.shape().isRequired,
 	addressField: PropTypes.shape().isRequired,
 	arrivalAtField: PropTypes.shape().isRequired,
-	departureAtField: PropTypes.shape().isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }

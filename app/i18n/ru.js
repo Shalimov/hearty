@@ -205,6 +205,7 @@ const descriptions = {
 		enterAdd: 'Enter для добавления',
 		clickToEdit: 'Редактировать',
 		clickToPrint: 'Распечатать',
+		departureAtImportant: 'Для распечатки документа эпикриз должен содержать дату выписки.',
 	},
 
 	placeholders: {

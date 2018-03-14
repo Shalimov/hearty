@@ -5,32 +5,41 @@ import { css, cssx } from 'utils/aphrodite-ext'
 
 import styles from './styles'
 
+const getWizardStepName = fp.flow(
+	item => Array.isArray(item) ? item[0] : item,
+	fp.prop('wizardStepName'),
+)
+
 const WizardPagerComponent = ({
+	steps,
 	currentStep,
-	pagesCount,
+	onSetStep,
 }) => (
 	<div className={css(styles.pager)}>
 		<ul className={css(styles.pageIndicatorList)}>
 			{
 				fp.times(index => (
 					<li
+						data-title={getWizardStepName(steps[index])}
 						key={`page-${index}`}
 						className={cssx({
 							pageIndicator: true,
 							current: currentStep === index,
 							rest: currentStep < index,
-						}, styles)}>
+						}, styles)}
+						onClick={() => { onSetStep(index) }}>
 						{fp.padCharsStart('0', 2, index + 1)}
 					</li>
-				), pagesCount)
+				), steps.length)
 			}
 		</ul>
 	</div>
 )
 
 WizardPagerComponent.propTypes = {
+	steps: PropTypes.any,
 	currentStep: PropTypes.number.isRequired,
-	pagesCount: PropTypes.number.isRequired,
+	onSetStep: PropTypes.func.isRequired,
 }
 
 export default WizardPagerComponent

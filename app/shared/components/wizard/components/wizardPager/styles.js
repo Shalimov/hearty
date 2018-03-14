@@ -1,7 +1,7 @@
 import { StyleSheet } from 'aphrodite'
 import { colors, measures } from 'styles/variables'
 import { mixins } from 'styles/mixins'
-import { toPx } from 'utils/styles'
+import { toPx, tags } from 'utils/styles'
 
 const { unit } = measures
 
@@ -19,6 +19,32 @@ const styles = StyleSheet.create({
 		borderRadius: toPx(50),
 		marginRight: toPx(unit),
 		cursor: 'default',
+		position: 'relative',
+
+		':hover:before': {
+			border: 'solid',
+			borderColor: `${colors.black30} transparent`,
+			borderWidth: tags.px`${6} ${6} 0 ${6}`,
+			bottom: toPx(30),
+			content: '""',
+			left: toPx(10),
+			position: 'absolute',
+			zIndex: 99,
+		},
+
+		':hover:after': {
+			maxWidth: toPx(30 * unit),
+			content: 'attr(data-title)',
+			position: 'absolute',
+			backgroundColor: colors.black30,
+			color: colors.white100,
+			borderRadius: toPx(unit),
+			padding: toPx(unit),
+			bottom: toPx(36),
+			whiteSpace: 'nowrap',
+			left: 0,
+			zIndex: 99,
+		},
 	},
 
 	selectionEnabled: {

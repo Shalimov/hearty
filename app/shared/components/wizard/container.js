@@ -27,6 +27,13 @@ export default compose(
 	}),
 
 	withHandlers({
+		onSetStep: ({ items, setStep, onStepChanged, hasStepSelector }) => (step) => {
+			if (hasStepSelector && items.length > step && step >= 0) {
+				setStep(step)
+				onStepChanged && onStepChanged(step)
+			}
+		},
+
 		incrementStep: ({ items, currentStep, setStep, onStepChanged }) => () => {
 			if (items.length > currentStep + 1) {
 				setStep(currentStep + 1)

@@ -42,6 +42,7 @@ module.exports = {
 			'node_modules/setimmediate/setImmediate.js',
 		],
 		styles: {
+			'font-awesome': ['css/font-awesome.min.css'],
 			'react-datetime': ['css/react-datetime.css'],
 			'react-select': ['dist/react-select.min.css'],
 			'react-table': ['react-table.css'],
@@ -60,6 +61,7 @@ module.exports = {
 		},
 		copycat: {
 			[MAIN_ROOT]: 'main',
+			fonts: ['node_modules/font-awesome/fonts'],
 			verbose: false,
 			onlyChanged: true,
 		},

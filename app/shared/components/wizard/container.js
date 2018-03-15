@@ -1,7 +1,6 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { wizardExternalOpts } from 'shared/hocs'
-import { omitRecoursive } from 'utils/omit.recoursive'
 
 import WizardComponent from './companent'
 
@@ -9,6 +8,7 @@ const EMPTY_PROPS = {}
 const getComponent = item => Array.isArray(item) ? item[0] : item
 const getProps = item => Array.isArray(item) ? item[1] : EMPTY_PROPS
 
+// TODO: Rebuild it afterall
 export default compose(
 	withStateHandlers(({ startStep, items, initialValues }) => ({
 		steps: items,
@@ -67,7 +67,6 @@ export default compose(
 	withHandlers({
 		onInternalSubmit: ({
 			currentStep,
-			initialValues,
 			items,
 			onSubmit,
 			wizardData,
@@ -84,10 +83,9 @@ export default compose(
 				return undefined
 			}
 
-			const wizardCombinedData = fp.mergeAll([initialValues, ...wizardData.values()])
-			const cleanData = omitRecoursive(['__typename'], wizardCombinedData)
+			const wizardCombinedData = fp.mergeAll([...wizardData.values()])
 
-			return onSubmit(cleanData, options)
+			return onSubmit(wizardCombinedData, options)
 		},
 
 		onInternalCancel: ({

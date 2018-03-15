@@ -44,6 +44,7 @@
     "color": "^2.0.1",
     "docxtemplater": "^3.2.4",
     "email-validator": "^1.1.1",
+    "font-awesome": "^4.7.0",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",

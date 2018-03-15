@@ -12,7 +12,7 @@ export default compose(
 		patient: fp.get('patient', Object.assign({}, ...wizardData.values())),
 	})),
 	withWizard({
-		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
+		transformSubmitData: (_props, formData) => mapper(formData, mapping),
 	}),
 	withHandlers({
 		isValidDate: ({ patient }) => date => {

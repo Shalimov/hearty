@@ -5,6 +5,7 @@ import {
 	withHandlers,
 	lifecycle,
 } from 'recompose'
+import { omitRecoursive } from 'utils/omit.recoursive'
 
 import EpicrisisWizardComponent from './component'
 import wizardItems from './wizard.items'
@@ -23,14 +24,14 @@ export default compose(
 		},
 
 		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData, options) => {
-			const _id = fp.get('_id', initialValues)
-			const epicrisisData = fp.omit([
-				'template',
+			const combinedData = fp.mergeAll([initialValues, wizardData])
+			const cleanEpicrisisData = omitRecoursive([
 				'selectedMedicineFields',
 				'selectedAnalyses',
-			], wizardData)
+				'__typename',
+			], combinedData)
 
-			return onSubmit({ ...epicrisisData, _id }, options)
+			return onSubmit(cleanEpicrisisData, options)
 		},
 	}),
 	lifecycle({

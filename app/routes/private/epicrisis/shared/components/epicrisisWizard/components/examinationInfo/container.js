@@ -1,5 +1,5 @@
-import { compose, withHandlers } from 'recompose'
-import { withFormModel } from 'shared/hocs'
+import { compose } from 'recompose'
+import { withFormModel, withWizard } from 'shared/hocs'
 import mapper from 'utils/simple.mapper'
 
 import examinationModel, { mapping } from './examination.model'
@@ -7,10 +7,7 @@ import ExaminationInfoComponent from './component'
 
 export default compose(
 	withFormModel(examinationModel, { spreadFields: true }),
-	withHandlers({
-		onInternalSubmit: ({ formModel, onSubmit }) => () => {
-			const mappedModel = mapper(formModel.value, mapping)
-			return onSubmit(mappedModel)
-		},
+	withWizard({
+		transformSubmitData: formData => mapper(formData, mapping),
 	})
 )(ExaminationInfoComponent)

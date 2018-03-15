@@ -12,7 +12,7 @@ const DiagnosisInfoComponent = ({
 	diagnosisField,
 	diagnosisComplicationField,
 	followingDiagnosisPartField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -54,7 +54,7 @@ const DiagnosisInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -67,7 +67,7 @@ DiagnosisInfoComponent.propTypes = {
 	diagnosisField: PropTypes.shape().isRequired,
 	diagnosisComplicationField: PropTypes.shape().isRequired,
 	followingDiagnosisPartField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

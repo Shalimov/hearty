@@ -13,7 +13,7 @@ const CTInfoComponent = ({
 	ctOGKField,
 	ctOBPField,
 	ctOtherField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -63,7 +63,7 @@ const CTInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -77,7 +77,7 @@ CTInfoComponent.propTypes = {
 	ctOGKField: PropTypes.shape().isRequired,
 	ctOBPField: PropTypes.shape().isRequired,
 	ctOtherField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

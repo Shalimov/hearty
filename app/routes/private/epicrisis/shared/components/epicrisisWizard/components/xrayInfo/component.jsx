@@ -13,7 +13,7 @@ const XRayInfoComponent = ({
 	xrayCRGSkullField,
 	xrayJointsRoentgenographyField,
 	xrayOtherField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -63,7 +63,7 @@ const XRayInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -77,7 +77,7 @@ XRayInfoComponent.propTypes = {
 	xrayCRGSkullField: PropTypes.shape().isRequired,
 	xrayJointsRoentgenographyField: PropTypes.shape().isRequired,
 	xrayOtherField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

@@ -14,7 +14,7 @@ const USDScopiaInfoComponent = ({
 	usdScopiaFGDSField,
 	usdScopiaBronchoscopyField,
 	usdScopiaOtherField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -72,7 +72,7 @@ const USDScopiaInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -87,7 +87,7 @@ USDScopiaInfoComponent.propTypes = {
 	usdScopiaFGDSField: PropTypes.shape().isRequired,
 	usdScopiaBronchoscopyField: PropTypes.shape().isRequired,
 	usdScopiaOtherField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

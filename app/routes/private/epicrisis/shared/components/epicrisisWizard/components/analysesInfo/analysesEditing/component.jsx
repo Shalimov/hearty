@@ -9,7 +9,7 @@ import styles from './styles'
 
 const AnalysesEditingComponent = ({
 	formModel,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -39,7 +39,7 @@ const AnalysesEditingComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -49,7 +49,7 @@ const AnalysesEditingComponent = ({
 
 AnalysesEditingComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

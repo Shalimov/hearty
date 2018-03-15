@@ -13,7 +13,7 @@ const ECGEchoInfoComponent = ({
 	ecgEchoDynamicField,
 	ecgEchoKSField,
 	ecgEchoOtherField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -63,7 +63,7 @@ const ECGEchoInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -77,7 +77,7 @@ ECGEchoInfoComponent.propTypes = {
 	ecgEchoDynamicField: PropTypes.shape().isRequired,
 	ecgEchoKSField: PropTypes.shape().isRequired,
 	ecgEchoOtherField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

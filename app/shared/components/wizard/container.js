@@ -1,5 +1,6 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
+import { wizardExternalOpts } from 'shared/hocs'
 
 import WizardComponent from './companent'
 
@@ -48,18 +49,42 @@ export default compose(
 			}
 		},
 	}),
-
+	wizardExternalOpts,
 	withHandlers({
+		onPagerStepForward: ({
+			externalOpts,
+			currentStep,
+			wizardData,
+			incrementStep,
+		}) => () => {
+			const { transformSubmitData, currentFormData } = externalOpts
+			wizardData.set(currentStep, transformSubmitData(currentFormData))
+			incrementStep()
+		},
+
+		onPagerStepBack: ({
+			externalOpts,
+			currentStep,
+			wizardData,
+			decrementStep,
+		}) => () => {
+			const { transformSubmitData, currentFormData } = externalOpts
+			wizardData.set(currentStep, transformSubmitData(currentFormData))
+			decrementStep()
+		},
+
 		onInternalSubmit: ({
 			currentStep,
 			items,
 			onSubmit,
 			wizardData,
 			incrementStep,
+			externalOpts,
 		}) => (formData, options) => {
 			const isLastStep = currentStep === (items.length - 1)
+			const { transformSubmitData } = externalOpts
 
-			wizardData.set(currentStep, formData)
+			wizardData.set(currentStep, transformSubmitData(formData))
 
 			if (!isLastStep) {
 				incrementStep()

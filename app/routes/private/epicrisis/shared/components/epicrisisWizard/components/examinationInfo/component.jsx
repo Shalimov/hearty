@@ -18,7 +18,7 @@ const ExaminationInfoComponent = ({
 	examinationOncologistField,
 	examinationMidwifeField,
 	examinationOtherField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -108,7 +108,7 @@ const ExaminationInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -127,7 +127,7 @@ ExaminationInfoComponent.propTypes = {
 	examinationOncologistField: PropTypes.shape().isRequired,
 	examinationMidwifeField: PropTypes.shape().isRequired,
 	examinationOtherField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

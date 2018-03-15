@@ -16,7 +16,7 @@ const PatientIntoComponent = ({
 	addressField,
 	arrivalAtField,
 	isValidDate,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -87,7 +87,7 @@ const PatientIntoComponent = ({
 			<SubmitButton
 				rounded
 				form={formModel}
-				onSubmit={onInternalSubmit}>
+				onSubmit={onSubmit}>
 				{t('buttons.next')}
 			</SubmitButton>
 		</div>
@@ -104,7 +104,7 @@ PatientIntoComponent.propTypes = {
 	addressField: PropTypes.shape().isRequired,
 	arrivalAtField: PropTypes.shape().isRequired,
 	isValidDate: PropTypes.func.isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

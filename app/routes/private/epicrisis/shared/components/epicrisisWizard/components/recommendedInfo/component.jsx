@@ -10,7 +10,7 @@ import styles from './styles'
 const RecommendedInfoComponent = ({
 	formModel,
 	recommendedField,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -37,7 +37,7 @@ const RecommendedInfoComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -48,7 +48,7 @@ const RecommendedInfoComponent = ({
 RecommendedInfoComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
 	recommendedField: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

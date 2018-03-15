@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers } from 'recompose'
-import { withFormModel } from 'shared/hocs'
+import { compose } from 'recompose'
+import { withFormModel, withWizard } from 'shared/hocs'
 import Ego from 'utils/validation'
 
 import AnalysesEditingComponent from './component'
@@ -31,15 +31,14 @@ export default compose(
 
 		return fp.fromPairs(pairs)
 	}),
-	withHandlers({
-		onInternalSubmit: ({ onSubmit }) => fp.flow(
+	withWizard({
+		transformSubmitData: fp.flow(
 			fp.entries,
 			fp.map(([name, description]) => ({
 				name: extractFieldName(name),
 				description,
 			})),
 			analyses => ({ analyses }),
-			onSubmit
 		),
 	})
 )(AnalysesEditingComponent)

@@ -43,8 +43,8 @@ export default compose(
 	}),
 	withFormModel({}),
 	withWizard({
-		transformSubmitData: ({ storeKey, transformBeforeSubmit, formModel }) => ({
-			[storeKey]: transformBeforeSubmit(getSelectedKeys(formModel.value)),
+		transformSubmitData: ({ storeKey, transformBeforeSubmit }, formData) => ({
+			[storeKey]: transformBeforeSubmit(getSelectedKeys(formData)),
 		}),
 	}),
 	lifecycle({

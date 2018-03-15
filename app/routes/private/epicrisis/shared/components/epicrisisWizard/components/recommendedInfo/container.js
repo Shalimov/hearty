@@ -8,6 +8,6 @@ import RecommendedInfoComponent from './component'
 export default compose(
 	withFormModel(recommendedModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
+		transformSubmitData: (_props, formData) => mapper(formData, mapping),
 	})
 )(RecommendedInfoComponent)

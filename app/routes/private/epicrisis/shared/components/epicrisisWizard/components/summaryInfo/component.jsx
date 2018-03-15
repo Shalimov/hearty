@@ -16,7 +16,7 @@ const SummaryInfoComponent = ({
 	departureAtField,
 	isValidDate,
 	onInternalSubmitAndPrint,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -54,7 +54,7 @@ const SummaryInfoComponent = ({
 					<SubmitButton
 						rounded
 						form={formModel}
-						onSubmit={onInternalSubmit}>
+						onSubmit={onSubmit}>
 						{t('buttons.save')}
 					</SubmitButton>
 				</div>
@@ -82,7 +82,7 @@ SummaryInfoComponent.propTypes = {
 	departureAtField: PropTypes.shape().isRequired,
 	isValidDate: PropTypes.func.isRequired,
 	onInternalSubmitAndPrint: PropTypes.func.isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

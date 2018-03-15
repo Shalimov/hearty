@@ -1,6 +1,7 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { wizardExternalOpts } from 'shared/hocs'
+import { omitRecoursive } from 'utils/omit.recoursive'
 
 import WizardComponent from './companent'
 
@@ -26,10 +27,24 @@ export default compose(
 			activeComponentProps: getProps(steps[currentStep]),
 		}),
 	}),
-
+	wizardExternalOpts,
 	withHandlers({
-		onSetStep: ({ items, setStep, onStepChanged, hasStepSelector }) => (step) => {
-			if (hasStepSelector && items.length > step && step >= 0) {
+		onSetStep: ({
+			items,
+			setStep,
+			wizardData,
+			currentStep,
+			externalOpts,
+			onStepChanged,
+			availableStepSelection,
+		}) => (step) => {
+			if (availableStepSelection && items.length > step && step >= 0) {
+				const { transformSubmitData, childComponentProps } = externalOpts
+
+				// TODO: Temp solution
+				const formData = fp.get('formModel.value', childComponentProps)
+				wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
+
 				setStep(step)
 				onStepChanged && onStepChanged(step)
 			}
@@ -49,10 +64,10 @@ export default compose(
 			}
 		},
 	}),
-	wizardExternalOpts,
 	withHandlers({
 		onInternalSubmit: ({
 			currentStep,
+			initialValues,
 			items,
 			onSubmit,
 			wizardData,
@@ -60,16 +75,19 @@ export default compose(
 			externalOpts,
 		}) => (formData, options) => {
 			const isLastStep = currentStep === (items.length - 1)
-			const { transformSubmitData } = externalOpts
+			const { transformSubmitData, childComponentProps } = externalOpts
 
-			wizardData.set(currentStep, transformSubmitData(formData))
+			wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
 
 			if (!isLastStep) {
 				incrementStep()
 				return undefined
 			}
 
-			return onSubmit(fp.mergeAllWith({}, [...wizardData.values()]), options)
+			const wizardCombinedData = fp.mergeAll([initialValues, ...wizardData.values()])
+			const cleanData = omitRecoursive(['__typename'], wizardCombinedData)
+
+			return onSubmit(cleanData, options)
 		},
 
 		onInternalCancel: ({

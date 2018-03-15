@@ -8,6 +8,7 @@ import EpicrisisWizard from '../shared/components/epicrisisWizard'
 const EditEpicrisisComponent = ({ data, onSubmit, onCancel }) => (
 	<ContentLoader isLoading={data.loading}>
 		<EpicrisisWizard
+			availableStepSelection={true}
 			initialValues={fp.clone(data.epicrisis)}
 			onSubmit={onSubmit}
 			onCancel={onCancel} />

@@ -47,7 +47,7 @@ export default compose(
 	}),
 	withFormModel({}),
 	withWizard({
-		transformSubmitData: ({ data, formModel }) => {
+		transformSubmitData: ({ data }, formData) => {
 			const analysesMap = fp.groupBy('name', data.analyses.content)
 			return fp.flow(
 				fp.entries,
@@ -58,7 +58,7 @@ export default compose(
 					analysis: fp.head(analysesMap[name]),
 				})),
 				selectedAnalyses => ({ selectedAnalyses }),
-			)(formModel.value)
+			)(formData)
 		},
 	}),
 	lifecycle({

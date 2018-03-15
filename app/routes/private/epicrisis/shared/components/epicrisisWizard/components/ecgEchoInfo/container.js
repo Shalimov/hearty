@@ -8,6 +8,6 @@ import ECGEchoInfoComponent from './component'
 export default compose(
 	withFormModel(ecgEchoModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
+		transformSubmitData: (_props, formData) => mapper(formData, mapping),
 	})
 )(ECGEchoInfoComponent)

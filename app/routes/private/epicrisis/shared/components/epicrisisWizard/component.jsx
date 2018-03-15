@@ -7,6 +7,7 @@ import styles from './styles'
 
 const EpicrisisWizardComponent = ({
 	items,
+	availableStepSelection,
 	initialValues = {},
 	onStepChanged,
 	onContainerRef,
@@ -17,6 +18,7 @@ const EpicrisisWizardComponent = ({
 		<Wizard
 			startStep={0}
 			items={items}
+			availableStepSelection={availableStepSelection}
 			initialValues={initialValues}
 			onStepChanged={onStepChanged}
 			onSubmit={onInternalSubmit}
@@ -32,6 +34,7 @@ EpicrisisWizardComponent.propTypes = {
 		])
 	),
 	initialValues: PropTypes.shape(),
+	availableStepSelection: PropTypes.bool,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onStepChanged: PropTypes.func.isRequired,
 	onContainerRef: PropTypes.func.isRequired,

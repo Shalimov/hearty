@@ -8,6 +8,6 @@ import ExaminationInfoComponent from './component'
 export default compose(
 	withFormModel(examinationModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
+		transformSubmitData: (_props, formData) => mapper(formData, mapping),
 	})
 )(ExaminationInfoComponent)

@@ -8,6 +8,6 @@ import DiagnosisInfoComponent from './component'
 export default compose(
 	withFormModel(diagnosisModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
+		transformSubmitData: (_props, formData) => mapper(formData, mapping),
 	})
 )(DiagnosisInfoComponent)

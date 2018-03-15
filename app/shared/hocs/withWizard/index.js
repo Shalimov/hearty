@@ -17,7 +17,7 @@ export const wizardExternalOpts = withProps({
 		get(traget, prop) {
 			const options = optionsMap.get(focusedComponent)
 
-			if(!options) {
+			if (!options) {
 				return options
 			}
 
@@ -30,23 +30,25 @@ export const wizardExternalOpts = withProps({
 	}),
 })
 
-export const withWizard = (recievedOptions) => (Component) => {
-	optionsMap.set(Component, Object.assign({}, externalOptsDefault, recievedOptions))
+export const withWizard = (recievedOptions) =>
+	(Component) => {
+		const preparedOptions = Object.assign({}, externalOptsDefault, recievedOptions)
+		
+		return lifecycle({
+			componentDidMount() {
+				focusedComponent = Component
+				optionsMap.set(focusedComponent, preparedOptions)
+				this.componentWillReceiveProps(this.props)
+			},
 
-	return lifecycle({
-		componentDidMount() {
-			focusedComponent = Component
-			this.componentWillReceiveProps(this.props)
-		},
+			componentWillReceiveProps(nextProps) {
+				preparedOptions[childComponentProps] = nextProps
+			},
 
-		componentWillReceiveProps(nextProps) {
-			const externalOpts = optionsMap.get(focusedComponent)
-			externalOpts[childComponentProps] = nextProps
-		},
+			componentWillUnmount() {
+				optionsMap.set(focusedComponent, externalOptsDefault)
+				focusedComponent = null
+			},
+		})(Component)
+	}
 
-		componentWillUnmount() {
-			optionsMap.set(focusedComponent, externalOptsDefault)
-			focusedComponent = null
-		},
-	})(Component)
-}

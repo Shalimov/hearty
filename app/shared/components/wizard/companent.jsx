@@ -13,16 +13,12 @@ const WizardComponent = ({
 	onSetStep,
 	onInternalSubmit,
 	onInternalCancel,
-	onPagerStepForward,
-	onPagerStepBack,
 	...props
 }) => (
 	<Fragment>
 		<WizardPager
 			steps={steps}
 			currentStep={currentStep}
-			onStepForward={onPagerStepForward}
-			onStepBack={onPagerStepBack}
 			onSetStep={onSetStep} />
 		<ActiveComponent
 			{...props}
@@ -42,8 +38,6 @@ WizardComponent.propTypes = {
 	steps: PropTypes.any,
 	ActiveComponent: PropTypes.func.isRequired,
 	onSetStep: PropTypes.func.isRequired,
-	onPagerStepForward: PropTypes.func.isRequired,
-	onPagerStepBack: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onInternalCancel: PropTypes.func.isRequired,
 }

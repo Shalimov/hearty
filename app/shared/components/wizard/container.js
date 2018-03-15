@@ -51,28 +51,6 @@ export default compose(
 	}),
 	wizardExternalOpts,
 	withHandlers({
-		onPagerStepForward: ({
-			externalOpts,
-			currentStep,
-			wizardData,
-			incrementStep,
-		}) => () => {
-			const { transformSubmitData, currentFormData } = externalOpts
-			wizardData.set(currentStep, transformSubmitData(currentFormData))
-			incrementStep()
-		},
-
-		onPagerStepBack: ({
-			externalOpts,
-			currentStep,
-			wizardData,
-			decrementStep,
-		}) => () => {
-			const { transformSubmitData, currentFormData } = externalOpts
-			wizardData.set(currentStep, transformSubmitData(currentFormData))
-			decrementStep()
-		},
-
 		onInternalSubmit: ({
 			currentStep,
 			items,

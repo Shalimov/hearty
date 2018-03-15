@@ -1,14 +1,11 @@
 import { StyleSheet } from 'aphrodite'
 import { colors, measures } from 'styles/variables'
-import { mixins } from 'styles/mixins'
 import { toPx, tags } from 'utils/styles'
 
 const { unit } = measures
 
 const styles = StyleSheet.create({
 	pager: {
-		...mixins.flexRow(),
-		alignItems: 'center',
 		marginBottom: toPx(2 * unit),
 	},
 

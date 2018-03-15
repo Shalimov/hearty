@@ -1,36 +1,52 @@
 import fp from 'lodash/fp'
 import { lifecycle, withProps } from 'recompose'
 
-const childComponentProps = Symbol('childComponentProps')
+const childComponentPropsKey = 'childComponentProps'
+const childComponentProps = Symbol(childComponentPropsKey)
 
-const externalOpts = Object.seal({
+let focusedComponent = null
+const optionsMap = Reflect.construct(WeakMap, [])
+
+const externalOptsDefault = Object.seal({
 	transformSubmitData: fp.identity,
 	[childComponentProps]: null,
-	
-	get childComponentProps() {
-		return this[childComponentProps]
-	},
 })
 
 export const wizardExternalOpts = withProps({
-	externalOpts,
+	externalOpts: new Proxy({}, {
+		get(traget, prop) {
+			const options = optionsMap.get(focusedComponent)
+
+			if(!options) {
+				return options
+			}
+
+			if (prop === childComponentPropsKey) {
+				return options[childComponentProps]
+			}
+
+			return options[prop]
+		},
+	}),
 })
 
-export const withWizard = (recievedOptions) => {
-	Object.assign(externalOpts, recievedOptions)
+export const withWizard = (recievedOptions) => (Component) => {
+	optionsMap.set(Component, Object.assign({}, externalOptsDefault, recievedOptions))
 
 	return lifecycle({
 		componentDidMount() {
+			focusedComponent = Component
 			this.componentWillReceiveProps(this.props)
 		},
 
 		componentWillReceiveProps(nextProps) {
+			const externalOpts = optionsMap.get(focusedComponent)
 			externalOpts[childComponentProps] = nextProps
 		},
 
 		componentWillUnmount() {
-			externalOpts.transformSubmitData = fp.identity
-			externalOpts[childComponentProps] = null
+			optionsMap.set(focusedComponent, externalOptsDefault)
+			focusedComponent = null
 		},
-	})
+	})(Component)
 }

@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers, lifecycle } from 'recompose'
-import { withFormModel } from 'shared/hocs'
+import { compose, lifecycle } from 'recompose'
+import { withFormModel, withWizard } from 'shared/hocs'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Ego from 'utils/validation'
@@ -46,8 +46,8 @@ export default compose(
 		},
 	}),
 	withFormModel({}),
-	withHandlers({
-		onInternalSubmit: ({ data, onSubmit }) => {
+	withWizard({
+		transformSubmitData: ({ data, formModel }) => {
 			const analysesMap = fp.groupBy('name', data.analyses.content)
 			return fp.flow(
 				fp.entries,
@@ -58,8 +58,7 @@ export default compose(
 					analysis: fp.head(analysesMap[name]),
 				})),
 				selectedAnalyses => ({ selectedAnalyses }),
-				onSubmit
-			)
+			)(formModel.value)
 		},
 	}),
 	lifecycle({

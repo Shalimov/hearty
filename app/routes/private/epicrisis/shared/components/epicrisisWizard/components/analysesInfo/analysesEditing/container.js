@@ -33,6 +33,7 @@ export default compose(
 	}),
 	withWizard({
 		transformSubmitData: fp.flow(
+			fp.get('formModel.value'),
 			fp.entries,
 			fp.map(([name, description]) => ({
 				name: extractFieldName(name),

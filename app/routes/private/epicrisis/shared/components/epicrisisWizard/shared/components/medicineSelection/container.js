@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
-import { compose, lifecycle, withHandlers, defaultProps } from 'recompose'
-import { withFormModel } from 'shared/hocs'
+import { compose, lifecycle, defaultProps } from 'recompose'
+import { withFormModel, withWizard } from 'shared/hocs'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Ego from 'utils/validation'
@@ -42,13 +42,10 @@ export default compose(
 		},
 	}),
 	withFormModel({}),
-	withHandlers({
-		onInternalSubmit: ({ onSubmit, storeKey, transformBeforeSubmit }) =>
-			(selectedValues) => {
-				onSubmit({
-					[storeKey]: transformBeforeSubmit(getSelectedKeys(selectedValues)),
-				})
-			},
+	withWizard({
+		transformSubmitData: ({ storeKey, transformBeforeSubmit, formModel }) => ({
+			[storeKey]: transformBeforeSubmit(getSelectedKeys(formModel.value)),
+		}),
 	}),
 	lifecycle({
 		componentWillMount() {

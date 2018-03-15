@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
-import { compose, withHandlers } from 'recompose'
-import { withFormModel } from 'shared/hocs'
+import { compose } from 'recompose'
+import { withFormModel, withWizard } from 'shared/hocs'
 import Ego from 'utils/validation'
 
 import MedicineTakingRecommendationComponent from './component'
@@ -22,7 +22,7 @@ export default compose(
 		const wizardDataArray = [...wizardData.values()]
 		const { selectedMedicineFields } = Object.assign({}, ...wizardDataArray)
 		const { medicineRecommendations } = initialValues
-		
+
 		const groupedRecommendations = fp.groupBy('medicine', medicineRecommendations)
 		const selectedFields = fp.map(name => ({
 			value: fp.get('recommendation', fp.head(groupedRecommendations[name])),
@@ -31,16 +31,12 @@ export default compose(
 
 		return createModel(selectedFields)
 	}),
-	withHandlers({
-		onInternalSubmit: ({ onSubmit }) => (formData) => {
-			const getMedicineRecommendations =  fp.flow(
-				fp.entries,
-				fp.map(([key, value]) => ({ medicine: key, recommendation: value }))
-			)
-
-			onSubmit({
-				medicineRecommendations: getMedicineRecommendations(formData),
-			})
-		},
+	withWizard({
+		transformSubmitData: fp.flow(
+			fp.get('formModel.value'),
+			fp.entries,
+			fp.map(([key, value]) => ({ medicine: key, recommendation: value })),
+			medicineRecommendations => ({ medicineRecommendations })
+		),
 	})
 )(MedicineTakingRecommendationComponent)

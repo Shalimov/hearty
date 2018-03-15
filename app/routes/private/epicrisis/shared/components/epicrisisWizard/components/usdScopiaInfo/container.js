@@ -8,6 +8,6 @@ import USDScopiaInfoComponent from './component'
 export default compose(
 	withFormModel(usdScopiaModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: formData => mapper(formData, mapping),
+		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
 	})
 )(USDScopiaInfoComponent)

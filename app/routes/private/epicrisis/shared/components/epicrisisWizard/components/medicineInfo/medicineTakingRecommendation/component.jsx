@@ -10,7 +10,7 @@ import styles from './styles'
 // TODO: Refactoring
 const MedicineTakingRecommendationComponent = ({
 	formModel,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => (
 	<Form>
@@ -39,7 +39,7 @@ const MedicineTakingRecommendationComponent = ({
 				<SubmitButton
 					rounded
 					form={formModel}
-					onSubmit={onInternalSubmit}>
+					onSubmit={onSubmit}>
 					{t('buttons.next')}
 				</SubmitButton>
 			</div>
@@ -49,7 +49,7 @@ const MedicineTakingRecommendationComponent = ({
 
 MedicineTakingRecommendationComponent.propTypes = {
 	formModel: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

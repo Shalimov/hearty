@@ -9,7 +9,7 @@ import PatientIntoComponent from './component'
 export default compose(
 	withFormModel(patientInfoModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: formData => mapper(formData, mapping),
+		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
 	}),
 	withHandlers({
 		isValidDate: () => date => moment().isAfter(date),

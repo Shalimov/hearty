@@ -36,7 +36,7 @@ const splitAnalysesInto = fp.flow(
 const AnalysesSelectionComponent = ({
 	data: { analyses = {}, loading },
 	formModel,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => {
 	const hasNoAnalyses = fp.isEmpty(formModel.fields)
@@ -98,7 +98,7 @@ const AnalysesSelectionComponent = ({
 								<SubmitButton
 									rounded
 									form={formModel}
-									onSubmit={onInternalSubmit}>
+									onSubmit={onSubmit}>
 									{t('buttons.next')}
 								</SubmitButton>
 							</div>
@@ -113,7 +113,7 @@ const AnalysesSelectionComponent = ({
 AnalysesSelectionComponent.propTypes = {
 	data: PropTypes.shape().isRequired,
 	formModel: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

@@ -23,7 +23,7 @@ const MedicineSelectionComponent = ({
 	legend,
 	data: { medicineGroups = {}, loading },
 	formModel,
-	onInternalSubmit,
+	onSubmit,
 	onCancel,
 }) => {
 	const hasNoFields = fp.isEmpty(formModel.fields)
@@ -84,7 +84,7 @@ const MedicineSelectionComponent = ({
 								<SubmitButton
 									rounded
 									form={formModel}
-									onSubmit={onInternalSubmit}>
+									onSubmit={onSubmit}>
 									{t('buttons.next')}
 								</SubmitButton>
 							</div>
@@ -100,7 +100,7 @@ MedicineSelectionComponent.propTypes = {
 	legend: PropTypes.string.isRequired,
 	data: PropTypes.shape().isRequired,
 	formModel: PropTypes.shape().isRequired,
-	onInternalSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }
 

@@ -1,15 +1,14 @@
 import fp from 'lodash/fp'
 import { lifecycle, withProps } from 'recompose'
 
-const formDataSymbol = Symbol('formDataSymbol')
+const childComponentProps = Symbol('childComponentProps')
 
 const externalOpts = Object.seal({
 	transformSubmitData: fp.identity,
-	formModelName: 'formModel',
-	[formDataSymbol]: null,
-
-	get currentFormData() {
-		return this[formDataSymbol]
+	[childComponentProps]: null,
+	
+	get childComponentProps() {
+		return this[childComponentProps]
 	},
 })
 
@@ -26,13 +25,12 @@ export const withWizard = (recievedOptions) => {
 		},
 
 		componentWillReceiveProps(nextProps) {
-			externalOpts[formDataSymbol] = fp.get(`${externalOpts.formModelName}.value`, nextProps)
+			externalOpts[childComponentProps] = nextProps
 		},
 
 		componentWillUnmount() {
 			externalOpts.transformSubmitData = fp.identity
-			externalOpts.formModelName = 'formModelName'
-			externalOpts[formDataSymbol] = null
+			externalOpts[childComponentProps] = null
 		},
 	})
 }

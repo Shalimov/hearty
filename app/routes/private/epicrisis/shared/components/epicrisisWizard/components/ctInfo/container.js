@@ -8,6 +8,6 @@ import CTInfoComponent from './component'
 export default compose(
 	withFormModel(ctModel, { spreadFields: true }),
 	withWizard({
-		transformSubmitData: formData => mapper(formData, mapping),
+		transformSubmitData: ({ formModel }) => mapper(formModel.value, mapping),
 	})
 )(CTInfoComponent)

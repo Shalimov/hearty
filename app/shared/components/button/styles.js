@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
 		},
 	},
 
+	tiny: {
+		padding: `${half}px ${unit}px`,
+	},
+
 	small: {
 		padding: `${unit + half}px ${3 * unit}px`,
 	},
@@ -53,6 +57,17 @@ const styles = StyleSheet.create({
 
 	rounded: {
 		borderRadius: toPx(50),
+	},
+
+	white: {
+		backgroundColor: colors.white100,
+		border: 'none',
+		color: colors.color4,
+
+		':hover': {
+			backgroundColor: colors.white95,
+			border: 'none',
+		},
 	},
 
 	outlined: {

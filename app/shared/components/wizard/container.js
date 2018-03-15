@@ -1,6 +1,8 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { wizardExternalOpts } from 'shared/hocs'
+import { toast } from 'react-toastify'
+import t from 'i18n'
 
 import WizardComponent from './companent'
 
@@ -29,27 +31,6 @@ export default compose(
 	}),
 	wizardExternalOpts,
 	withHandlers({
-		onSetStep: ({
-			items,
-			setStep,
-			wizardData,
-			currentStep,
-			externalOpts,
-			onStepChanged,
-			availableStepSelection,
-		}) => (step) => {
-			if (availableStepSelection && items.length > step && step >= 0) {
-				const { transformSubmitData, childComponentProps } = externalOpts
-
-				// TODO: Temp solution
-				const formData = fp.get('formModel.value', childComponentProps)
-				wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
-
-				setStep(step)
-				onStepChanged && onStepChanged(step)
-			}
-		},
-
 		incrementStep: ({ items, currentStep, setStep, onStepChanged }) => () => {
 			if (items.length > currentStep + 1) {
 				setStep(currentStep + 1)
@@ -65,6 +46,33 @@ export default compose(
 		},
 	}),
 	withHandlers({
+		onSetStep: ({
+			items,
+			setStep,
+			wizardData,
+			currentStep,
+			externalOpts,
+			onStepChanged,
+			availableStepSelection,
+		}) => (step) => {
+			if (availableStepSelection && items.length > step && step >= 0) {
+				const { transformSubmitData, childComponentProps } = externalOpts
+
+				const isDataInvalid = fp.get('formModel.isInvalid', childComponentProps)
+
+				if (isDataInvalid) {
+					toast.error(t('errors.epicrisis.validation'))
+				} else {
+					// TODO: Temp solution
+					const formData = fp.get('formModel.value', childComponentProps)
+					wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
+
+					setStep(step)
+					onStepChanged && onStepChanged(step)
+				}
+			}
+		},
+
 		onInternalSubmit: ({
 			currentStep,
 			items,

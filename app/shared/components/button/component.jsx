@@ -4,12 +4,14 @@ import { cssx } from 'utils/aphrodite-ext'
 import styles from './styles'
 
 const ButtonComponent = ({
+	tiny,
 	small,
 	large,
 	long,
 	rounded,
 	wrapper,
 	iconed,
+	white,
 	outlined,
 	transparent,
 	children,
@@ -22,12 +24,14 @@ const ButtonComponent = ({
 		type={type}
 		className={cssx(new Map([
 			['btn', true],
-			['small', small],
 			['medium', medium],
+			['tiny', tiny],
+			['small', small],
 			['large', large],
 			['wrapper', wrapper],
 			['long', long],
 			['iconed', iconed],
+			['white', white],
 			['rounded', rounded],
 			['outlined', outlined],
 			['transparent', transparent],
@@ -45,6 +49,8 @@ ButtonComponent.propTypes = {
 	wrapper: PropTypes.bool,
 	outlined: PropTypes.bool,
 	transparent: PropTypes.bool,
+	white: PropTypes.bool,
+	tiny: PropTypes.bool,
 	small: PropTypes.bool,
 	medium: PropTypes.bool,
 	large: PropTypes.bool,

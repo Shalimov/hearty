@@ -22,14 +22,15 @@ export default compose(
 		const wizardDataArray = [...wizardData.values()]
 		const { selectedMedicineFields } = Object.assign({}, ...wizardDataArray)
 		const { medicineRecommendations } = initialValues
+		const selectedFields = selectedMedicineFields || fp.map('medicine', medicineRecommendations)
 
 		const groupedRecommendations = fp.groupBy('medicine', medicineRecommendations)
-		const selectedFields = fp.map(name => ({
+		const formFields = fp.map(name => ({
 			value: fp.get('recommendation', fp.head(groupedRecommendations[name])),
 			name,
-		}), selectedMedicineFields)
+		}), selectedFields)
 
-		return createModel(selectedFields)
+		return createModel(formFields)
 	}),
 	withWizard({
 		transformSubmitData: fp.flow(

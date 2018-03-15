@@ -5,11 +5,21 @@ import Ego from 'utils/validation'
 
 import AnalysesEditingComponent from './component'
 
+const fpWithoutCap = fp.convert({ cap: false })
+
 const createFieldName = (label, index) => `${label}_${index}`
 const extractFieldName = (label) => {
 	const index = label.lastIndexOf('_')
 	return index === -1 ? label : label.substring(0, index)
 }
+
+const createFromAnalyses = fpWithoutCap.map(({ name, description }, index) => [
+	createFieldName(name, index),
+	{
+		initialValue: description,
+		scheme: Ego.string().label(name).required(),
+	},
+])
 
 export default compose(
 	withFormModel(({ wizardData, initialValues }) => {
@@ -18,18 +28,24 @@ export default compose(
 		const { analyses } = initialValues
 		const analysesMap = fp.groupBy('name', analyses)
 
-		const pairs = fp.flatMap(
-			({ name, analysis, repeatCount }) => fp.times(index => [
-				createFieldName(name, index),
-				{
-					initialValue: fp.getOr(analysis.pattern, `${index}.description`, analysesMap[name]),
-					scheme: Ego.string().label(name).required(),
-				},
-			], repeatCount),
-			selectedAnalyses
-		)
+		let fieldPairs = null
 
-		return fp.fromPairs(pairs)
+		if (selectedAnalyses) {
+			fieldPairs = fp.flatMap(
+				({ name, analysis, repeatCount }) => fp.times(index => [
+					createFieldName(name, index),
+					{
+						initialValue: fp.getOr(analysis.pattern, `${index}.description`, analysesMap[name]),
+						scheme: Ego.string().label(name).required(),
+					},
+				], repeatCount),
+				selectedAnalyses
+			)
+		} else {
+			fieldPairs = createFromAnalyses(analyses)
+		}
+
+		return fp.fromPairs(fieldPairs)
 	}),
 	withWizard({
 		transformSubmitData: fp.flow(

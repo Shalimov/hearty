@@ -8,8 +8,7 @@ export default ({ initialValues = {} }) => ({
 	summaryField: {
 		initialValue: fp.get('summary', initialValues),
 		scheme: Ego.string()
-			.label(t('labels.summary'))
-			.required(),
+			.label(t('labels.summary')),
 	},
 	departureAtField: {
 		initialValue: toDate(fp.get('patient.departureAt', initialValues)),

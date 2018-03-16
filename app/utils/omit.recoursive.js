@@ -1,4 +1,5 @@
 import fp from 'lodash/fp'
+import moment from 'moment'
 
 export const omitRecoursive = (fields, values) => {
 	const fifo = [values]
@@ -8,8 +9,9 @@ export const omitRecoursive = (fields, values) => {
 
 		for (const key in src) {
 			const node = src[key]
-
-			if (fp.isObject(node)) {
+			const isNode = !(moment.isDate(node) || moment.isMoment(node)) && fp.isObject(node)
+			
+			if (isNode) {
 				src[key] = Array.isArray(node) ? node : fp.omit(fields, node)
 				fifo.unshift(src[key])
 			}

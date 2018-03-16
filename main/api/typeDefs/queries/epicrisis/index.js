@@ -30,8 +30,8 @@ const EpicrisisType = (input = '') => `
 	analyses: [${typeName}Analysis${input}!]
 
 	# simple fields
-	recommended: String!
-	summary: String!
+	recommended: String
+	summary: String
 `
 
 const Epicrisis = `

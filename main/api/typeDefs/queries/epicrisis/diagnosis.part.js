@@ -1,5 +1,5 @@
 const EpicrisisDiagnosis = `
-	main: String!
+	main: String
 	complication: String
 	followingPart: String
 `

@@ -6,8 +6,7 @@ export default ({ initialValues = {} }) => ({
 	diagnosisField: {
 		initialValue: fp.get('diagnosis.main', initialValues),
 		scheme: Ego.string()
-			.label(t('labels.diagnosis.main'))
-			.required(),
+			.label(t('labels.diagnosis.main')),
 	},
 
 	diagnosisComplicationField: {

@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 
 		':hover:before': {
+			display: 'none',
 			border: 'solid',
 			borderColor: `${colors.black30} transparent`,
 			borderWidth: tags.px`${6} ${6} 0 ${6}`,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 
 		':hover:after': {
 			maxWidth: toPx(30 * unit),
-			content: 'attr(data-title)',
+			display: 'none',
 			position: 'absolute',
 			backgroundColor: colors.black30,
 			color: colors.white100,
@@ -44,13 +45,23 @@ const styles = StyleSheet.create({
 		},
 	},
 
-	selectionEnabled: {
+	selectable: {
 		cursor: 'pointer',
+
+		':hover:before': {
+			display: 'initial',
+		},
+
+		':hover:after': {
+			display: 'initial',
+			content: 'attr(data-title)',
+		},
 	},
 
 	current: {
 		color: colors.white100,
 		backgroundColor: colors.color2,
+		transition: 'background-color 1s',
 	},
 
 	rest: {

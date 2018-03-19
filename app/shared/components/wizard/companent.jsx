@@ -5,6 +5,7 @@ import WizardPager from './components/wizardPager'
 
 const WizardComponent = ({
 	ActiveComponent,
+	availableStepSelection,
 	activeComponentProps,
 	componentData,
 	currentStep,
@@ -17,6 +18,7 @@ const WizardComponent = ({
 }) => (
 	<Fragment>
 		<WizardPager
+			availableStepSelection={availableStepSelection}
 			steps={steps}
 			currentStep={currentStep}
 			onSetStep={onSetStep} />
@@ -35,6 +37,7 @@ WizardComponent.propTypes = {
 	componentData: PropTypes.shape(),
 	activeComponentProps: PropTypes.shape(),
 	currentStep: PropTypes.number.isRequired,
+	availableStepSelection: PropTypes.bool,
 	steps: PropTypes.any,
 	ActiveComponent: PropTypes.func.isRequired,
 	onSetStep: PropTypes.func.isRequired,

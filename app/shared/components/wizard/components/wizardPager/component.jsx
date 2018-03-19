@@ -11,6 +11,7 @@ const getWizardStepName = fp.flow(
 )
 
 const WizardPagerComponent = ({
+	availableStepSelection,
 	steps,
 	currentStep,
 	onSetStep,
@@ -26,6 +27,7 @@ const WizardPagerComponent = ({
 							pageIndicator: true,
 							current: currentStep === index,
 							rest: currentStep < index,
+							selectable: availableStepSelection,
 						}, styles)}
 						onClick={() => { onSetStep(index) }}>
 						{fp.padCharsStart('0', 2, index + 1)}
@@ -38,6 +40,7 @@ const WizardPagerComponent = ({
 
 WizardPagerComponent.propTypes = {
 	steps: PropTypes.any,
+	availableStepSelection: PropTypes.bool,
 	currentStep: PropTypes.number.isRequired,
 	onSetStep: PropTypes.func.isRequired,
 }

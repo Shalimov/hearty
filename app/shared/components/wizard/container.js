@@ -58,13 +58,16 @@ export default compose(
 			if (availableStepSelection && items.length > step && step >= 0) {
 				const { transformSubmitData, childComponentProps } = externalOpts
 
-				const isDataInvalid = fp.get('formModel.isInvalid', childComponentProps)
+				const childFormModel = fp.get('formModel', childComponentProps)
+				const isDataInvalid = fp.get('isInvalid', childFormModel)
+				childComponentProps.formModel.setTouched(true)
 
 				if (isDataInvalid) {
+					fp.invokeArgs('setTouched', [true], childFormModel)
 					toast.error(t('errors.epicrisis.validation'))
 				} else {
 					// TODO: Temp solution
-					const formData = fp.get('formModel.value', childComponentProps)
+					const formData = fp.get('value', childFormModel)
 					wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
 
 					setStep(step)

@@ -1,24 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from 'aphrodite'
 import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu'
-import { Button, ValidatedInput } from 'shared/components'
+import { ValidatedInput } from 'shared/components'
 import t from 'i18n'
+
+import styles from './styles'
 
 const { Fragment } = React
 
 const DictionaryInputComponent = ({ openFromDictionaryDialog, ...params }) => {
 	const id = `dictionary-context-${params.field.id}`
-	
+
 	return (
 		<Fragment>
 			<ContextMenuTrigger id={id}>
 				<ValidatedInput {...params} />
 			</ContextMenuTrigger>
 			<ContextMenu id={id}>
-				<MenuItem>
-					<Button iconed onClick={openFromDictionaryDialog}>
+				<MenuItem onClick={openFromDictionaryDialog}>
+					<span className={css(styles.text)}>
 						{t('descriptions.fromDictionary')}
-					</Button>
+					</span>
 				</MenuItem>
 			</ContextMenu>
 		</Fragment>

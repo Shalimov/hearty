@@ -1,12 +1,10 @@
 import { StyleSheet } from 'aphrodite'
-import { colors, font } from 'styles/variables'
+import { font } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 
 const styles = StyleSheet.create({
-	link: {
+	text: {
 		...mixins.font({ size: font.font16, weight: font.weight.bold }),
-		color: colors.black100,
-		textDecoration: 'none',
 	},
 })
 

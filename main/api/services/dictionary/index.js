@@ -36,11 +36,7 @@ class DictionaryService extends BaseService {
 		const searchRegex = new RegExp(searchRegexString, 'i')
 
 		return {
-			$or: [{
-				term: searchRegex,
-			}, {
-				'subTerms.term': searchRegex,
-			}],
+			term: searchRegex,
 		}
 	}
 }

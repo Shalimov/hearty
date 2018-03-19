@@ -8,21 +8,14 @@ import { withFormModel } from 'shared/hocs'
 import DictionaryDialogComponent from './component'
 import searchModel from './search.model'
 
-const DELAY = 500
-const getOptions = fp.flow(
-	fp.get('content'),
-	fp.flatMap(({ term, subTerms }) => fp.map(subTerm => ({
-		label: `${term} - ${subTerm.term}`,
-		value: subTerm.term,
-	}), subTerms))
-)
-
 const getTermQueryInput = term => ({
 	skip: 0,
 	limit: 20,
 	term,
 })
+const DELAY = 500
 
+// TODO: should be improved
 export default compose(
 	inject('applicationStateStore'),
 	withFormModel(searchModel, { spreadFields: true }),
@@ -38,6 +31,7 @@ export default compose(
 					term
 					subTerms {
 						term
+						tags
 					}
 				}
 			}
@@ -50,19 +44,28 @@ export default compose(
 		},
 	}),
 	withHandlers({
-		loadOptions: ({ data }) => fp.debounce(DELAY, async (search, callback) => {
+		onTermSearch: ({ data }) => fp.debounce(DELAY, async (value, callback) => {
+
 			const { data: { terms } } = await data.refetch({
-				input: getTermQueryInput(search),
+				input: getTermQueryInput(value),
 			})
 
-			callback(null, {
-				options: getOptions(terms),
-			})
+			callback(fp.prop('content', terms))
 		}),
 
-		onChange: ({ applicationStateStore }) => ({ target }) => {
-			const { value: selectedTerm } = target.value
-			applicationStateStore.uiState.setDictionaryDialogStateClose(selectedTerm)
+		onSubtermSearch: () => (value, activeItem, callback) => {
+			callback(fp.flow(
+				fp.prop('subTerms'),
+				fp.filter(fp.flow(
+					fp.prop('term'),
+					fp.includes(value),
+				))
+			)(activeItem))
+		},
+
+		onChange: ({ applicationStateStore }) => ({ term }) => {
+			// const { value: selectedTerm } = target.value
+			applicationStateStore.uiState.setDictionaryDialogStateClose(term)
 		},
 
 		onRequestClose: ({ applicationStateStore }) => () => {

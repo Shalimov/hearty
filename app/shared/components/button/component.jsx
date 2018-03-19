@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { cssx } from 'utils/aphrodite-ext'
+import { cssx, join } from 'utils/aphrodite-ext'
 import styles from './styles'
 
 const ButtonComponent = ({
@@ -14,6 +14,7 @@ const ButtonComponent = ({
 	white,
 	outlined,
 	transparent,
+	className,
 	children,
 	medium = true,
 	type = 'button',
@@ -22,27 +23,32 @@ const ButtonComponent = ({
 	<button
 		{...props}
 		type={type}
-		className={cssx(new Map([
-			['btn', true],
-			['medium', medium],
-			['tiny', tiny],
-			['small', small],
-			['large', large],
-			['wrapper', wrapper],
-			['long', long],
-			['iconed', iconed],
-			['white', white],
-			['rounded', rounded],
-			['outlined', outlined],
-			['transparent', transparent],
-		]), styles)}
-	>
+		className={
+			join(
+				cssx(new Map([
+					['btn', true],
+					['medium', medium],
+					['tiny', tiny],
+					['small', small],
+					['large', large],
+					['wrapper', wrapper],
+					['long', long],
+					['iconed', iconed],
+					['white', white],
+					['rounded', rounded],
+					['outlined', outlined],
+					['transparent', transparent],
+				]), styles),
+				className,
+			)
+		}>
 		{children}
 	</button>
 )
 
 ButtonComponent.propTypes = {
 	type: PropTypes.string,
+	className: PropTypes.string,
 	rounded: PropTypes.bool,
 	long: PropTypes.bool,
 	iconed: PropTypes.bool,

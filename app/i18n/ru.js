@@ -220,6 +220,8 @@ const descriptions = {
 		addName: 'Добавить наименование',
 		dictionaries: {
 			search: 'Поиск в словарях',
+			searchTerm: 'Поиск термина',
+			searchSubterm: 'Поиск подтермина',
 		},
 	},
 

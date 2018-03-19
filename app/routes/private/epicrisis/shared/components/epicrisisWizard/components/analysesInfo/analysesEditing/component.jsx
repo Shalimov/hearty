@@ -2,7 +2,13 @@ import React from 'react'
 import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { Form, ValidatedInput, SubmitButton, Button } from 'shared/components'
+import {
+	Form,
+	ValidatedInput,
+	SubmitButton,
+	Button,
+	EmptyArea,
+} from 'shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -11,7 +17,29 @@ const AnalysesEditingComponent = ({
 	formModel,
 	onSubmit,
 	onCancel,
-}) => (
+}) => fp.isEmpty(formModel.fields) ? (
+	<EmptyArea>
+		<p>{t('descriptions.epicrisisAnalysesExcluded')}</p>
+		<div className={css(styles.buttonGroup, styles.attachToRight)}>
+			<div className={css(styles.buttonWrapper)}>
+				<Button
+					tiny
+					outlined
+					rounded
+					onClick={onCancel}>
+					{t('buttons.back')}
+				</Button>
+			</div>
+			<SubmitButton
+				tiny
+				rounded
+				form={formModel}
+				onSubmit={onSubmit}>
+				{t('buttons.next')}
+			</SubmitButton>
+		</div>
+	</EmptyArea>
+) : (
 	<Form>
 		<fieldset>
 			<legend className={css(styles.formLegend)}>{t('legends.analysesEditing')}</legend>

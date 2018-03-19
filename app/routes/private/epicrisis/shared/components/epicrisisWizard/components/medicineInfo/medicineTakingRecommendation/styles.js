@@ -15,14 +15,17 @@ const styles = StyleSheet.create({
 		marginBottom: toPx(4 * unit),
 	},
 
+	attachToRight: {
+		textAlign: 'right',
+	},
+
 	buttonGroup: {
-		marginRight: toPx(5 * unit),
 		paddingTop: toPx(unit),
 	},
 
 	buttonWrapper: {
 		display: 'inline-block',
-		marginRight: toPx(3 * unit),
+		marginRight: toPx(2 * unit),
 	},
 })
 

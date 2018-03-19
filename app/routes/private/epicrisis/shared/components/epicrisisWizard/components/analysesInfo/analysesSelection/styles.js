@@ -12,13 +12,12 @@ const styles = StyleSheet.create({
 	},
 	
 	buttonGroup: {
-		marginRight: toPx(5 * unit),
 		paddingTop: toPx(unit),
 	},
 
 	buttonWrapper: {
 		display: 'inline-block',
-		marginRight: toPx(3 * unit),
+		marginRight: toPx(2 * unit),
 	},
 
 	tablesGrid: {

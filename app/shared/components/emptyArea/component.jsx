@@ -5,10 +5,9 @@ import FontAwesome from 'react-fontawesome'
 
 import styles from './styles'
 
-const EmptyAreaComponent = ({ children }) => (
+const EmptyAreaComponent = ({ children, icon }) => (
 	<div className={css(styles.container)}>
-		<FontAwesome name="exclamation-circle"
-			className={css(styles.icon)} />
+		{icon && <FontAwesome name={icon} className={css(styles.icon)} />}
 		<div className={css(styles.messagebox)}>
 			{children}
 		</div>
@@ -16,6 +15,7 @@ const EmptyAreaComponent = ({ children }) => (
 )
 
 EmptyAreaComponent.propTypes = {
+	icon: PropTypes.string,
 	children: PropTypes.node.isRequired,
 }
 

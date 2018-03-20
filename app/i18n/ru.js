@@ -42,6 +42,8 @@ const descriptions = {
 	},
 
 	common: {
+		createTerm: 'Создать термин',
+		findExistingTerm: 'Найти существующий термин',
 		typeToSearch: 'Начните ввод чтоб получить информацию',
 		notFound: 'Ничего найти не удалось',
 		handlingProcess: 'В процессе обработки...',
@@ -57,6 +59,11 @@ const descriptions = {
 		of: 'из',
 		prev: 'предыдущая',
 		next: 'следующая',
+	},
+
+	contextMenu: {
+		pasteFromDictionary: 'Вставить из словаря',
+		storeInDictionary: 'Сохранить в словаре',
 	},
 
 	headers: {
@@ -182,6 +189,7 @@ const descriptions = {
 	},
 
 	legends: {
+		addToDictionary: 'Добавить в словарь',
 		editPatient: 'Данные пациента',
 		editTerm: 'Термин',
 		epicrisisInfo: 'Данные эпикриза',

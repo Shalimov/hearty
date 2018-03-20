@@ -9,7 +9,11 @@ import styles from './styles'
 
 const { Fragment } = React
 
-const DictionaryInputComponent = ({ openFromDictionaryDialog, ...params }) => {
+const DictionaryInputComponent = ({
+	openFromDictionaryDialog,
+	openStoreInDictionaryDialog,
+	...params
+}) => {
 	const id = `dictionary-context-${params.field.id}`
 
 	return (
@@ -20,7 +24,12 @@ const DictionaryInputComponent = ({ openFromDictionaryDialog, ...params }) => {
 			<ContextMenu id={id}>
 				<MenuItem onClick={openFromDictionaryDialog}>
 					<span className={css(styles.text)}>
-						{t('descriptions.fromDictionary')}
+						{t('contextMenu.pasteFromDictionary')}
+					</span>
+				</MenuItem>
+				<MenuItem onClick={openStoreInDictionaryDialog}>
+					<span className={css(styles.text)}>
+						{t('contextMenu.storeInDictionary')}
 					</span>
 				</MenuItem>
 			</ContextMenu>
@@ -30,6 +39,7 @@ const DictionaryInputComponent = ({ openFromDictionaryDialog, ...params }) => {
 
 DictionaryInputComponent.propTypes = {
 	openFromDictionaryDialog: PropTypes.func.isRequired,
+	openStoreInDictionaryDialog: PropTypes.func.isRequired,
 }
 
 export default DictionaryInputComponent

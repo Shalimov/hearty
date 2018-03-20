@@ -1,5 +1,5 @@
 import React from 'react'
-import Select, { Async } from 'react-select'
+import Select, { Async, AsyncCreatable } from 'react-select'
 import { cssx } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
@@ -54,7 +54,8 @@ const createRenderer = Component => ({
 
 const selectRenderer = createRenderer(Select)
 const asyncSelectRenderer = createRenderer(Async)
+const asyncCreatableSelectRenderer = createRenderer(AsyncCreatable)
 /* eslint-enable */
 
 export default selectRenderer
-export { asyncSelectRenderer }
+export { asyncSelectRenderer, asyncCreatableSelectRenderer }

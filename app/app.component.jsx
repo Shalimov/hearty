@@ -5,6 +5,7 @@ import { ApolloProvider } from 'react-apollo'
 import { HashRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { ContentLoader } from 'shared/components'
+import { DialogProvider } from 'shared/hocs'
 
 import ApplicationRoutes from './routes'
 
@@ -17,13 +18,15 @@ const ApplicationComponent = ({
 	<ContentLoader isLoading={isInitializing} fixed>
 		<ToastContainer />
 		{!isInitializing && <ApolloProvider client={apolloClient}>
-			<Provider
-				applicationStateStore={applicationStateStore}
-				{...services}>
-				<Router>
-					<ApplicationRoutes />
-				</Router>
-			</Provider>
+			<DialogProvider>
+				<Provider
+					applicationStateStore={applicationStateStore}
+					{...services}>
+					<Router>
+						<ApplicationRoutes />
+					</Router>
+				</Provider>
+			</DialogProvider>
 		</ApolloProvider>}
 	</ContentLoader>
 )

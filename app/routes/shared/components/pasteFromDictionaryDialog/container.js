@@ -1,11 +1,10 @@
 import fp from 'lodash/fp'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { compose, withHandlers } from 'recompose'
-import { inject } from 'mobx-react'
-import { withFormModel } from 'shared/hocs'
+import { compose, withHandlers, withState } from 'recompose'
+import { withFormModel, connectDialogToHub } from 'shared/hocs'
 
-import DictionaryDialogComponent from './component'
+import PasteFromDictionaryDialogComponent from './component'
 import searchModel from './search.model'
 
 const getTermQueryInput = term => ({
@@ -17,7 +16,6 @@ const DELAY = 500
 
 // TODO: should be improved
 export default compose(
-	inject('applicationStateStore'),
 	withFormModel(searchModel, { spreadFields: true }),
 	graphql(gql`
 		query RetrieveFromDictionary($input: TermQueryInput) {
@@ -43,6 +41,17 @@ export default compose(
 			},
 		},
 	}),
+	withState('isOpen', 'setOpenState', false),
+	connectDialogToHub({
+		dialogId: 'pasteFromDictionaryDialog',
+		open: ({ setOpenState }) => () => {
+			setOpenState(true)
+		},
+
+		close: ({ setOpenState }) => () => {
+			setOpenState(false)
+		},
+	}),
 	withHandlers({
 		onTermSearch: ({ data }) => fp.debounce(DELAY, async (value, callback) => {
 
@@ -58,18 +67,20 @@ export default compose(
 				fp.prop('subTerms'),
 				fp.filter(fp.flow(
 					fp.prop('term'),
-					fp.includes(value),
+					fp.toLower,
+					fp.includes(fp.toLower(value)),
 				))
 			)(activeItem))
 		},
 
-		onChange: ({ applicationStateStore }) => ({ term }) => {
-			// const { value: selectedTerm } = target.value
-			applicationStateStore.uiState.setDictionaryDialogStateClose(term)
+		onChange: ({ setOpenState, emitDialogAction }) => ({ term }) => {
+			setOpenState(false)
+			emitDialogAction('data', term)
 		},
 
-		onRequestClose: ({ applicationStateStore }) => () => {
-			applicationStateStore.uiState.setDictionaryDialogStateClose(null)
+		onRequestClose: ({ setOpenState, emitDialogAction }) => () => {
+			setOpenState(false)
+			emitDialogAction('data')
 		},
 	})
-)(DictionaryDialogComponent)
+)(PasteFromDictionaryDialogComponent)

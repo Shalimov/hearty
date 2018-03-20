@@ -4,14 +4,12 @@ import { types } from 'mobx-state-tree'
 
 import UserModel from './models/user'
 import AuthModel from './models/auth'
-import UiStateModel from './models/ui.state'
 
 const storage = localStorage
 
 // TODO: think over how to use token for initFromStorage
 const ApplicationStateStore = types.model({
 	isSigningIn: types.optional(types.boolean, false),
-	uiState: types.optional(UiStateModel, UiStateModel.create()),
 	auth: types.maybe(AuthModel),
 	users: types.optional(types.map(UserModel), {}),
 }).actions(self => ({

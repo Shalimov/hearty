@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { DictionaryDialog, StoreInDictionaryDialog } from 'routes/shared/components'
+import { PasteFromDictionaryDialog, StoreInDictionaryDialog } from 'routes/shared/components'
 
 import NavSidebar from './components/navSidebar'
 import NavTopbar from './components/navTopbar'
@@ -10,7 +10,7 @@ import styles from './styles'
 const LayoutComponent = ({ children }) => (
 	<div className={css(styles.column)}>
 		<StoreInDictionaryDialog />
-		<DictionaryDialog />
+		<PasteFromDictionaryDialog />
 		<NavTopbar />
 		<div className={css(styles.row)}>
 			<NavSidebar />

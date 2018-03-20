@@ -1,8 +1,10 @@
 import fp from 'lodash/fp'
+import { EventEmitter } from 'events'
 import { Children } from 'react'
 import PropTypes from 'prop-types'
 import { compose, lifecycle, withContext, getContext, mapProps } from 'recompose'
 
+// TODO remove node emitter here
 const contextType = {
 	dialogHub: PropTypes.shape(),
 }
@@ -20,12 +22,12 @@ const connectDialogToHub = ({
 	dialogId,
 	open = noop,
 	close = noop,
-	getData = noop,
 }) => {
 	return compose(
 		getContext(contextType),
 		lifecycle({
 			componentDidMount() {
+				const emitter = new EventEmitter()
 				const { dialogHub, id } = this.props
 				const elementId = dialogId || id
 
@@ -37,10 +39,18 @@ const connectDialogToHub = ({
 					throw new Error(`dialog with the id ${elementId} is already in dialog hub`)
 				}
 
-				dialogHub.set(elementId, {
+				const controls = {
 					open: open(this.props),
 					close: close(this.props),
-					getData: getData(this.props),
+					onceData: emitter.once.bind(emitter, 'data'),
+				}
+
+				dialogHub.set(elementId, controls)
+
+				this.setState({
+					emitDialogAction(action, data) {
+						emitter.emit(action, data)
+					},
 				})
 			},
 

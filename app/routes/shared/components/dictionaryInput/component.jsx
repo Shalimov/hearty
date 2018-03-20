@@ -10,19 +10,20 @@ import styles from './styles'
 const { Fragment } = React
 
 const DictionaryInputComponent = ({
-	openFromDictionaryDialog,
+	openPasteFromDictionaryDialog,
 	openStoreInDictionaryDialog,
 	...params
 }) => {
 	const id = `dictionary-context-${params.field.id}`
-
+	
+	// Set smartTab mode by default for textarea types
 	return (
 		<Fragment>
 			<ContextMenuTrigger id={id}>
-				<ValidatedInput {...params} />
+				<ValidatedInput smartTab={true} {...params} />
 			</ContextMenuTrigger>
 			<ContextMenu id={id}>
-				<MenuItem onClick={openFromDictionaryDialog}>
+				<MenuItem onClick={openPasteFromDictionaryDialog}>
 					<span className={css(styles.text)}>
 						{t('contextMenu.pasteFromDictionary')}
 					</span>
@@ -38,7 +39,7 @@ const DictionaryInputComponent = ({
 }
 
 DictionaryInputComponent.propTypes = {
-	openFromDictionaryDialog: PropTypes.func.isRequired,
+	openPasteFromDictionaryDialog: PropTypes.func.isRequired,
 	openStoreInDictionaryDialog: PropTypes.func.isRequired,
 }
 

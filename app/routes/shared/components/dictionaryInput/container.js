@@ -1,5 +1,4 @@
 import { compose, withHandlers } from 'recompose'
-import { inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 import { withDialog } from 'shared/hocs'
 
@@ -7,13 +6,16 @@ import DictionaryInputComponent from './component'
 
 export default compose(
 	withRouter,
-	inject('applicationStateStore'),
+	withDialog('pasteFromDictionaryDialog', { as: 'pasteFromDictionaryDialog' }),
 	withDialog('storeInDictionaryDialog', { as: 'storeInDictionaryDialog' }),
 	withHandlers({
-		openFromDictionaryDialog: ({ applicationStateStore, field }) => async () => {
-			const uiState = applicationStateStore.uiState
-			const dialogData = await uiState.setDictionaryDialogStateOpen()
-			field.onChangeText(dialogData)
+		openPasteFromDictionaryDialog: ({ pasteFromDictionaryDialog, field }) => async () => {
+			pasteFromDictionaryDialog.open()
+
+			// TODO: this is workaround to transmit data between dialog and input and should be improved
+			pasteFromDictionaryDialog.onceData((term) => {
+				field.onChangeText(term)
+			})
 		},
 
 		openStoreInDictionaryDialog: ({ storeInDictionaryDialog, field }) => async () => {

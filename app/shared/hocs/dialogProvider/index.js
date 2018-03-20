@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import { Children } from 'react'
 import PropTypes from 'prop-types'
 import { compose, lifecycle, withContext, getContext, mapProps } from 'recompose'
@@ -6,6 +7,7 @@ const contextType = {
 	dialogHub: PropTypes.shape(),
 }
 
+const noop = () => fp.noop
 const FromChildrenComponent = ({ children }) => Children.only(children)
 const DialogProvider = withContext(
 	contextType,
@@ -16,9 +18,9 @@ const DialogProvider = withContext(
 
 const connectDialogToHub = ({
 	dialogId,
-	open,
-	close,
-	getData,
+	open = noop,
+	close = noop,
+	getData = noop,
 }) => {
 	return compose(
 		getContext(contextType),

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { observer } from 'mobx-react'
 import Modal from 'react-modal'
 
 import StoreInDictionaryForm from './components/storeInDictionaryForm'
@@ -31,4 +30,4 @@ StoreInDictionaryDialogComponent.propTypes = {
 	onRequestClose: PropTypes.func.isRequired,
 }
 
-export default observer(StoreInDictionaryDialogComponent)
+export default StoreInDictionaryDialogComponent

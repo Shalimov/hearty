@@ -41,7 +41,7 @@ export default compose(
 		name: 'createSubtermMutation',
 	}),
 	graphql(gql`
-		mutation AddDictionaryTermMutation($_id: ID!, $term: String!) {
+		mutation RemoveDictionaryTermMutation($_id: ID!, $term: String!) {
 			removeSubterm(_id: $_id, term: $term) {
 				_id
 			}

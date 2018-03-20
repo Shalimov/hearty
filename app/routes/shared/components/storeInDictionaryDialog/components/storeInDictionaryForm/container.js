@@ -58,19 +58,16 @@ export default compose(
 		},
 
 		onInternalSubmit: ({ onSubmit }) => (formData) => {
-			const formattedData = mapper(formData, mapping)
+			const { term: termObject, subterm } = mapper(formData, mapping)
+			const { value: _id, label: term } = termObject
+			const realId = _id !== term ? _id : undefined
+			
+			onSubmit({
+				_id: realId,
+				term,
+				subterm,
+			})
 
-			if (fp.isObject(formattedData.term)) {
-				const { value: _id, label: term } = formattedData.term
-
-				onSubmit({
-					_id,
-					term,
-					subterm: formData.subterm,
-				})
-			}
-
-			onSubmit(formattedData)
 		},
 	}),
 )(StoreInDictionaryFormComponent)

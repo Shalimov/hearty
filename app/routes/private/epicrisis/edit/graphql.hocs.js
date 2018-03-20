@@ -74,6 +74,7 @@ const queryHoc = graphql(gql`
 	}
 `, {
 	options: ({ match }) => ({
+		fetchPolicy: 'cache-and-network',
 		variables: {
 			_id: match.params.epicrisisId,
 		},

@@ -1,4 +1,4 @@
-const smartTagPattern = /\$(?:input|date|\{.+\})/g
+const smartTagPattern = /\$(?:input|date)/g
 const smartTagEndingPattern = /(?:\$|\s)/g
 
 const search = (str, regexp, pos = 0) => {

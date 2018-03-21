@@ -5,9 +5,9 @@ const isSmartMask = text => {
 	return smartMaskPattern.test(text)
 }
 
-const isInputDenied = char => char !== '@'
+const isInputDenied = char => char !== '?'
 const nextInputPosition = (text, [, end], currentPosition) => {
-	const nextPosIndex = text.indexOf('@', currentPosition + 1)
+	const nextPosIndex = text.indexOf('?', currentPosition + 1)
 
 	if (nextPosIndex === -1 || nextPosIndex > end) {
 		return -1
@@ -16,49 +16,29 @@ const nextInputPosition = (text, [, end], currentPosition) => {
 	return nextPosIndex
 }
 
-const getMaskStartEndRange = (text, inputPosition) => {
-	const { length } = text
-	const bracketsChecker = []
-	let startPosition = inputPosition
-	let endPosition = inputPosition
+const getMaskRange = (text, inputPosition = 0) => {
+	const START_MARKER = '${'
+	const END_MARKER = '}'
+	const startIndex = text.lastIndexOf(START_MARKER, inputPosition)
 
-	const isStartPosition = (text, startPosition) => {
-		return text.charAt(startPosition) === '$' && text.charAt(startPosition + 1) === '{'
-	}
-	const isItEndPosition = (text, endPosition) => text.charAt(endPosition) === '}'
-
-	do {
-		if (isStartPosition(text, startPosition)) {
-			break
-		}
-
-		if (text.charAt(startPosition) === '{') {
-			bracketsChecker.push(startPosition)
-		}
-
-		startPosition -= 1
-	} while (startPosition >= 0)
-
-	do {
-		if (isItEndPosition(text, endPosition)) {
-			bracketsChecker.push(endPosition)
-			break
-		}
-
-		endPosition += 1
-	} while (endPosition < length)
-
-
-	if (bracketsChecker.length > 2 || startPosition < 0 || endPosition >= length) {
+	if (startIndex === -1) {
 		return null
 	}
 
+	const endIndex = text.indexOf(END_MARKER, inputPosition)
 
-	return [startPosition, endPosition + 1]
+	if (endIndex === -1) {
+		return null
+	}
+
+	return [
+		startIndex + START_MARKER.length,
+		endIndex,
+	]
 }
 
 const maskEnvMeta = (text, inputPosition) => {
-	const range = getMaskStartEndRange(text, inputPosition)
+	const range = getMaskRange(text, inputPosition)
 
 	if (!range) {
 		return {
@@ -66,14 +46,21 @@ const maskEnvMeta = (text, inputPosition) => {
 			isInsideRange: false,
 			isInputDenied: false,
 			nextInputPosition: -1,
+			completed: true,
 		}
 	}
+
+	const [start] = range
+	const nextPosition = nextInputPosition(text, range, inputPosition)
+	const hasNoEditableParts = nextPosition === -1 &&
+		nextInputPosition(text, [start, inputPosition - 1], start) === -1
 
 	return {
 		range,
 		isInsideRange: true,
 		isInputDenied: isInputDenied(text.charAt(inputPosition)),
-		nextInputPosition: nextInputPosition(text, range, inputPosition),
+		nextInputPosition: nextPosition,
+		completed: hasNoEditableParts,
 	}
 }
 

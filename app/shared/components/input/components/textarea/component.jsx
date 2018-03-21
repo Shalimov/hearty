@@ -21,6 +21,7 @@ const TextareaComponent = ({
 	placeholder,
 	onInternalKeyDown,
 	onInternalBlur,
+	onClick,
 	onChange,
 }) => (
 	<textarea
@@ -46,6 +47,7 @@ const TextareaComponent = ({
 		placeholder={placeholder}
 		disabled={disabled}
 		value={value}
+		onClick={onClick}
 		onKeyDown={onInternalKeyDown}
 		onBlur={onInternalBlur}
 		onChange={onChange}>
@@ -68,6 +70,7 @@ TextareaComponent.propTypes = {
 	placeholder: PropTypes.string,
 	onInternalKeyDown: PropTypes.func.isRequired,
 	onInternalBlur: PropTypes.func,
+	onClick: PropTypes.func.isRequired,
 	onChange: PropTypes.func,
 }
 

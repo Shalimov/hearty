@@ -19,9 +19,9 @@ export default compose(
 			return date.isSameOrAfter(patient.arrivalAt)
 		},
 
-		onInternalSubmitAndPrint: ({ formModel, onSubmit }) => ({ templateName }) => {
-			const mappedModel = mapper(formModel.value, mapping)
-			return onSubmit(mappedModel, { templateName })
-		},
+		onInternalSubmitAndPrint: ({ formModel, onSubmit }) =>
+			({ templateName }) => {
+				return onSubmit(formModel.value, { templateName })
+			},
 	})
 )(SummaryInfoComponent)

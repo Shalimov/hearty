@@ -1,4 +1,5 @@
 
+import { Simulate } from 'react-dom/test-utils'
 import {
 	isArrowLeft,
 	isArrowRight,
@@ -15,10 +16,12 @@ const updateTextarea = (textarea, range) => {
 
 	textarea.value = updatedContent
 	textarea.selectionStart = textarea.selectionEnd = contentFirstPart.length
+
+	Simulate.change(textarea)
 }
 
 const delayedTextareaUpdate = (textarea, range) =>
-	setImmediate(updateTextarea, textarea, range)
+	setTimeout(updateTextarea, 50, textarea, range)
 
 // TODO here is a POC
 export const smartKeyDownHandler = (event, afterSmartTab) => {
@@ -35,16 +38,18 @@ export const smartKeyDownHandler = (event, afterSmartTab) => {
 		isInsideRange,
 		completed,
 		nextInputPosition,
+		prevInputPosition,
 	} = maskEnvMeta(content, selection)
 
 	if (!isInsideRange) { return }
 
 	if (isArrowUpDown(event.key) || isArrowLeft(event.key)) {
 		const correctedStartIndex = range[0] - 2
-		textarea.selectionStart = textarea.selectionEnd = correctedStartIndex
+		const startIndex = prevInputPosition !== -1 ? prevInputPosition : correctedStartIndex
+		textarea.selectionStart = textarea.selectionEnd = startIndex
 		return
 	} else if (isArrowRight(event.key)) {
-		const endIndex = range[1]
+		const endIndex = nextInputPosition !== -1 ? nextInputPosition - 1 : range[1]
 		textarea.selectionStart = textarea.selectionEnd = endIndex
 		return
 	}

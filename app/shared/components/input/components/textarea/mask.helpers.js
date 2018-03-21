@@ -1,19 +1,30 @@
 const smartMaskPattern = /\$\{.+\}/
+const PLACEHOLDER = '?'
 
 const isSmartMask = text => {
 	smartMaskPattern.lastIndex = 0
 	return smartMaskPattern.test(text)
 }
 
-const isInputDenied = char => char !== '?'
+const isInputDenied = char => char !== PLACEHOLDER
 const nextInputPosition = (text, [, end], currentPosition) => {
-	const nextPosIndex = text.indexOf('?', currentPosition + 1)
+	const nextPosIndex = text.indexOf(PLACEHOLDER, currentPosition + 1)
 
 	if (nextPosIndex === -1 || nextPosIndex > end) {
 		return -1
 	}
 
 	return nextPosIndex
+}
+
+const prevInputPosition = (text, [start], currentPosition) => {
+	const prevPosIndex = text.lastIndexOf(PLACEHOLDER, currentPosition)
+
+	if (prevPosIndex === -1 || prevPosIndex < start) {
+		return -1
+	}
+
+	return prevPosIndex
 }
 
 const getMaskRange = (text, inputPosition = 0) => {
@@ -46,12 +57,14 @@ const maskEnvMeta = (text, inputPosition) => {
 			isInsideRange: false,
 			isInputDenied: false,
 			nextInputPosition: -1,
+			prevInputPosition: -1,
 			completed: true,
 		}
 	}
 
 	const [start] = range
 	const nextPosition = nextInputPosition(text, range, inputPosition)
+	const prevPosition = prevInputPosition(text, range, inputPosition)
 	const hasNoEditableParts = nextPosition === -1 &&
 		nextInputPosition(text, [start, inputPosition - 1], start) === -1
 
@@ -60,6 +73,7 @@ const maskEnvMeta = (text, inputPosition) => {
 		isInsideRange: true,
 		isInputDenied: isInputDenied(text.charAt(inputPosition)),
 		nextInputPosition: nextPosition,
+		prevInputPosition: prevPosition,
 		completed: hasNoEditableParts,
 	}
 }

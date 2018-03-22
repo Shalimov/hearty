@@ -29,8 +29,8 @@ const TemplateFinderModalComponent = ({
 )
 
 TemplateFinderModalComponent.propTypes = {
+	submitText: PropTypes.string,
 	isOpen: PropTypes.bool.isRequired,
-	submitText: PropTypes.string.isRequired,
 	onTrigger: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onRequestClose: PropTypes.func.isRequired,

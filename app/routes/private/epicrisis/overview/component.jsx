@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import { epicrisis } from 'routes/route.map'
-import { Button } from 'shared/components'
+import { Button, Input } from 'shared/components'
 import t from 'i18n'
 import ReactTable from 'react-table'
 
@@ -12,17 +12,27 @@ import styles from './styles'
 const OverviewEpicrisisComponent = ({
 	data: { epicrises = {}, loading },
 	columns,
+	searchValue,
+	filterValue,
 	onFetchData,
+	onSearchChange,
 }) => (
 	<div className={css(styles.container)}>
 		<h2 className={css(styles.header)}>{t('headers.epicrises')}</h2>
 		<p className={css(styles.description)}>{t('descriptions.epicrises')}</p>
-		<div className={css(styles.linkWrapper)}>
-			<Link to={epicrisis.add()}>
-				<Button rounded outlined>
-					{t('links.addEpicrisis')}
-				</Button>
-			</Link>
+		<div className={css(styles.controls)}>
+			<Input type="text"
+				strictLong
+				value={searchValue}
+				placeholder={t('placeholders.search')}
+				onChange={onSearchChange} />
+			<div className={css(styles.linkWrapper)}>
+				<Link to={epicrisis.add()}>
+					<Button rounded outlined>
+						{t('links.addEpicrisis')}
+					</Button>
+				</Link>
+			</div>
 		</div>
 		<ReactTable
 			manual
@@ -30,6 +40,8 @@ const OverviewEpicrisisComponent = ({
 			sortable={false}
 			indexKey="_id"
 			className="-highlight"
+			filterable
+			filtered={filterValue}
 			data={epicrises.content}
 			pages={epicrises.totalPages}
 			loading={loading}
@@ -43,6 +55,9 @@ const OverviewEpicrisisComponent = ({
 OverviewEpicrisisComponent.propTypes = {
 	data: PropTypes.shape().isRequired,
 	columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	searchValue: PropTypes.string,
+	filterValue: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+	onSearchChange: PropTypes.func.isRequired,
 	onFetchData: PropTypes.func.isRequired,
 }
 

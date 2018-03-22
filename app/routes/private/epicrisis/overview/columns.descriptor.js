@@ -6,10 +6,12 @@ export default (Controls) => [
 	{
 		Header: t('labels.epicrisisNo'),
 		accessor: 'epicrisisNo',
+		filterable: false,
 	},
 	{
 		Header: t('labels.fullname'),
 		accessor: 'patient.fullname',
+		filterable: false,
 	},
 	{
 		Header: t('labels.arrivalAt'),
@@ -18,6 +20,7 @@ export default (Controls) => [
 			fp.get('patient.arrivalAt'),
 			arrivalAt => moment(arrivalAt).format('DD/MM/YYYY') 
 		),
+		filterable: false,
 	},
 	{
 		Header: t('labels.departureAt'),
@@ -28,6 +31,7 @@ export default (Controls) => [
 				moment(departureAt).format('DD/MM/YYYY') :
 				'-||-'
 		),
+		filterable: false,
 	},
 	{
 		Header: t('labels.type'),
@@ -38,11 +42,13 @@ export default (Controls) => [
 				t('labels.epicrisis.done') : 
 				t('labels.epicrisis.draft')
 		),
+		filterable: false,
 	},
 	{
 		id: 'edit',
 		width: 120,
 		accessor: fp.identity,
 		Cell: Controls,
+		filterable: false,
 	},
 ]

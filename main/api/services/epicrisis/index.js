@@ -35,7 +35,7 @@ class EpicrisisService extends BaseService {
 		const searchRegex = new RegExp(searchRegexString, 'i')
 
 		return {
-			fullname: searchRegex,
+			'patient.fullname': searchRegex,
 		}
 	}
 
@@ -47,7 +47,7 @@ class EpicrisisService extends BaseService {
 	async printEpicrisis(_id, epicrisisTemplate) {
 		const epicrisis = await this.get(_id)
 			.then(transformEpicrisis)
-			
+
 		const resultDocFilepath = await generateDocument(epicrisisTemplate, epicrisis)
 
 		shell.openItem(resultDocFilepath)

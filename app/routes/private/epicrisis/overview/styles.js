@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
 		marginBottom: toPx(4 * unit),
 	},
 
+	controls: {
+		...mixins.flexRow(),
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	},
+
 	linkWrapper: {
 		textAlign: 'right',
 		margin: toPx(2 * unit),

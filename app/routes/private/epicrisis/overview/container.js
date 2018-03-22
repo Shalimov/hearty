@@ -1,4 +1,11 @@
-import { compose, withProps, withHandlers, defaultProps, withState } from 'recompose'
+import fp from 'lodash/fp'
+import {
+	compose,
+	withProps,
+	withHandlers,
+	defaultProps,
+	withStateHandlers,
+} from 'recompose'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { tryAsync } from 'utils/try'
@@ -8,15 +15,26 @@ import columns from './columns.descriptor'
 import Controls from './components/controls'
 
 const DEFAULT_PAGE_SIZE = 15
+const SEARCH_DELAY = 600
+const createSearchObject = (search = '') => [{ id: 'all', value: search }]
 
 export default compose(
 	defaultProps({
 		pageSize: DEFAULT_PAGE_SIZE,
 	}),
-	withState('queryInput', 'setQueryInput', ({ pageSize }) => ({
-		limit: pageSize,
-		skip: 0,
-	})),
+	withStateHandlers(({ pageSize }) => ({
+		queryInput: {
+			limit: pageSize,
+			skip: 0,
+			term: null,
+		},
+		filterValue: createSearchObject(),
+		searchValue: '',
+	}), {
+		setQueryInput: () => ({ limit, skip, term }) => ({ limit, skip, term }),
+		setFilterValue: () => searchValue => ({ filterValue: createSearchObject(searchValue) }),
+		setSearchValue: () => searchValue => ({ searchValue }),
+	}),
 	graphql(gql`
 		query EpicrisisOverviewQuery($input: EpicrisisQueryInput) {
 			epicrises(input: $input) {
@@ -69,6 +87,18 @@ export default compose(
 		name: 'printEpicrisisMutation',
 	}),
 	withHandlers({
+		onFilterUpdate: ({ setFilterValue }) => fp.debounce(SEARCH_DELAY, (searchValue) => {
+			setFilterValue(searchValue)
+		}),
+	}),
+	withHandlers({
+		onSearchChange: ({ setSearchValue, onFilterUpdate }) => (event) => {
+			const searchValue = event.target.value
+
+			setSearchValue(searchValue)
+			onFilterUpdate(searchValue)
+		},
+
 		onPrint: ({ printEpicrisisMutation }) =>
 			tryAsync(async ({ _id, templateName }) => {
 				await printEpicrisisMutation({
@@ -95,6 +125,7 @@ export default compose(
 			const input = {
 				limit: pageSize,
 				skip: state.page * pageSize,
+				term: fp.last(state.filtered).value,
 			}
 
 			setQueryInput(input)

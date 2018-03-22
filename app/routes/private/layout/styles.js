@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		position: 'relative',
 		background: colors.gradients.color1,
+		overflowX: 'hidden',		
 		overflowY: 'auto',
 	},
 })

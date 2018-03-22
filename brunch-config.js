@@ -11,20 +11,20 @@ module.exports = {
 	modules: {
 		wrapper: 'commonjs',
 		autoRequire: {
-			'app.js': ['main'],
+			'js/app.js': ['main'],
 		},
 	},
 
 	files: {
 		javascripts: {
 			joinTo: {
-				'vendor.js': /^(?!app)/,
-				'app.js': /^app/,
+				'js/vendor.js': /^(?!app)/,
+				'js/app.js': /^app/,
 			},
 		},
 
 		stylesheets: {
-			joinTo: 'app.css',
+			joinTo: 'css/app.css',
 		},
 	},
 

@@ -12,8 +12,11 @@
 			"cwd": "${workspaceRoot}",
 			"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
 			"args": [
-				"./main/index.js"
-			]
+				"./main/index.js",
+			],
+			"env": {
+				"NODE_ENV": "development"
+			}
 		},
 		{
 			"type": "node",

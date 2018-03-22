@@ -1,4 +1,5 @@
 const electron = require('electron')
+const path = require('path')
 
 const system = require('./system')
 
@@ -9,10 +10,11 @@ const BrowserWindow = electron.BrowserWindow
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-const ENV = process.env.NODE_ENV || 'development'
-const appUrl = ENV === 'production'
-	? `file://${__dirname}/index.html`
-	: 'http://localhost:8080'
+// TODO: make development by default
+const ENV = process.env.NODE_ENV
+const appUrl = ENV === 'development'
+	? 'http://localhost:8080'
+	: `file://${path.resolve(__dirname, '..')}/index.html`
 
 const createWindow = () => {
 	// Create the browser window.

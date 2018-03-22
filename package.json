@@ -42,7 +42,7 @@
     "bluebird": "^3.5.1",
     "boom": "^7.1.1",
     "color": "^2.0.1",
-    "docxtemplater": "^3.2.4",
+    "docxtemplater": "^3.6.0",
     "email-validator": "^1.1.1",
     "font-awesome": "^4.7.0",
     "graphql": "^0.12.3",

@@ -8,6 +8,7 @@ import { dialogStyles } from './styles'
 
 const TemplateFinderModalComponent = ({
 	isOpen,
+	submitText,
 	onTrigger,
 	onInternalSubmit,
 	onRequestClose,
@@ -19,6 +20,7 @@ const TemplateFinderModalComponent = ({
 			style={dialogStyles}
 			onRequestClose={onRequestClose}>
 			<TemplateFinder
+				submitText={submitText}
 				onSubmit={onInternalSubmit}
 				onCancel={onRequestClose} />
 		</Modal>
@@ -28,6 +30,7 @@ const TemplateFinderModalComponent = ({
 
 TemplateFinderModalComponent.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
+	submitText: PropTypes.string.isRequired,
 	onTrigger: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onRequestClose: PropTypes.func.isRequired,

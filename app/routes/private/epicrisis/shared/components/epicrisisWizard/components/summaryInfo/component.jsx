@@ -58,7 +58,9 @@ const SummaryInfoComponent = ({
 						{t('buttons.save')}
 					</SubmitButton>
 				</div>
-				<TemplateFinderModal onSubmit={onInternalSubmitAndPrint}>
+				<TemplateFinderModal
+					submitText={t('buttons.saveAndPrint')}
+					onSubmit={onInternalSubmitAndPrint}>
 					{
 						onTrigger => (
 							<SubmitButton

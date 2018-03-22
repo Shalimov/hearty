@@ -22,6 +22,10 @@ class EpicrisisService extends BaseService {
 		return EXT_PATTERN.test(value)
 	}
 
+	sortByCreteria() {
+		return { 'patient.departureAt': -1 }
+	}
+
 	toSearchQuery(params) {
 		if (!params.term) {
 			return {}

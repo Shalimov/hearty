@@ -70,8 +70,7 @@ module.exports = {
 				'react',
 				['env', {
 					targets: {
-						// TODO: change to 2 Chrome vers
-						browsers: ['last 2 versions'],
+						browsers: ['last 2 Chrome versions'],
 					},
 				}],
 				'stage-2',

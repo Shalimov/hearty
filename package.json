@@ -10,7 +10,7 @@
   "scripts": {
     "start": "electron-forge start",
     "electron": "electron ./public/main/index.js",
-    "build": "brunch build",
+    "build": "./node_modules/gulp/bin/gulp.js build",
     "eslint": "./node_modules/eslint/bin/eslint.js",
     "eslint:fix": "./node_modules/eslint/bin/eslint.js ./app/**/*.js --fix",
     "lint": "yarn eslint ./app/**/*.js",
@@ -19,7 +19,7 @@
     "gen:analyses": "node ./scripts/gen.analyses.js",
     "gen:terms": "node ./scripts/gen.terms.js",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "yarn build && electron-forge make"
   },
   "repository": "",
   "keywords": [
@@ -99,9 +99,11 @@
     "eslint": "^4.13.0",
     "eslint-plugin-react": "^7.5.1",
     "foreman": "^2.0.0",
+    "gulp": "^3.9.1",
     "husky": "^0.14.3",
     "jest": "^22.0.4",
     "replacer-brunch": "^1.0.1",
+    "run-sequence": "^2.2.1",
     "uglify-js-brunch": "^2"
   },
   "config": {
@@ -115,8 +117,8 @@
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "yarn",
-        "dir": "./public"
+        "dir": "./public",
+        "packageManager": "yarn"
       },
       "electronWinstallerConfig": {
         "name": "hearty"
@@ -128,7 +130,7 @@
         "name": "Hearty",
         "manufacturer": "SIVTech",
         "version": "1.0.0",
-        "outputDirectory": "/bin"
+        "outputDirectory": "/out"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},

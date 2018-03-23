@@ -116,7 +116,7 @@
       },
       "electronPackagerConfig": {
         "packageManager": "yarn",
-        "dir": "public"
+        "dir": "./public"
       },
       "electronWinstallerConfig": {
         "name": "hearty"

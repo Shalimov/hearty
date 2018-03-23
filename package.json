@@ -108,14 +108,10 @@
     "forge": {
       "make_targets": {
         "win32": [
-          "squirrel"
+          "wix"
         ],
         "darwin": [
           "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
         ]
       },
       "electronPackagerConfig": {
@@ -123,6 +119,15 @@
       },
       "electronWinstallerConfig": {
         "name": "hearty"
+      },
+      "electronWixMSIConfig": {
+        "appDirectory": "/public",
+        "description": "Epicrisis generator",
+        "exe": "hearty",
+        "name": "Hearty",
+        "manufacturer": "SIVTech",
+        "version": "1.0.0",
+        "outputDirectory": "/bin"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},

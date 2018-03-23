@@ -35,3 +35,6 @@ dbs/*.db
 
 # Exclude public routes
 !app/routes/public
+
+# Compiled Sources
+bin/

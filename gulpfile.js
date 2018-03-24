@@ -11,8 +11,16 @@ gulp.task('brunch:build', (callback) => {
 
 gulp.task('copy:node_modules', copyPipe('node_modules/**/*.*', 'build/node_modules'))
 gulp.task('copy:public', copyPipe('public/**/*.*', 'build/public'))
+gulp.task('copy:hooks', copyPipe('hooks/*.*', 'build/hooks'))
+gulp.task('copy:scripts', copyPipe('scripts/*.*', 'build/scripts'))
 gulp.task('copy:package', copyPipe('package.json', 'build'))
 
-gulp.task('copy:assets', ['copy:node_modules', 'copy:public', 'copy:package'])
+gulp.task('copy:assets', [
+	'copy:node_modules',
+	'copy:public',
+	'copy:scripts',
+	'copy:hooks',
+	'copy:package',
+])
 
 gulp.task('build', fpsequence('brunch:build', 'copy:assets'))

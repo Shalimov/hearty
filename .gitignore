@@ -37,4 +37,4 @@ dbs/*.db
 !app/routes/public
 
 # Compiled Sources
-bin/
+build/

@@ -119,7 +119,7 @@
       "electronPackagerConfig": {
         "dir": "./public",
         "packageManager": "yarn",
-        "afterExtract": "./hooks/packager.after.extract.js"
+        "afterExtract": ["./hooks/packager.after.extract.js"]
       },
       "electronWinstallerConfig": {
         "name": "hearty"

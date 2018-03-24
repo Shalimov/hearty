@@ -4,7 +4,7 @@ import {
 	getSmartTagRange,
 	hasSmartTag,
 } from './helpers'
-import { maskEnvMeta } from './mask.helpers'
+import { maskEnvMeta } from './helpers/mask'
 import { smartKeyDownHandler } from './handlers/smarKeyDownHandler'
 import TextareaComponent from './component'
 

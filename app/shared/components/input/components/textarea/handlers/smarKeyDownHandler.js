@@ -5,7 +5,7 @@ import {
 	isArrowRight,
 	isArrowUpDown,
 } from '../helpers'
-import { maskEnvMeta } from '../mask.helpers'
+import { maskEnvMeta } from '../helpers/mask'
 
 const updateTextarea = (textarea, range) => {
 	const content = textarea.value

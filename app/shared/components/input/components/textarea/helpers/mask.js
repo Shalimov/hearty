@@ -42,6 +42,12 @@ const getMaskRange = (text, inputPosition = 0) => {
 		return null
 	}
 
+	const closestStartMarker = text.lastIndexOf(START_MARKER, endIndex)
+
+	if (startIndex !== closestStartMarker) {
+		return null
+	}
+
 	return [
 		startIndex + START_MARKER.length,
 		endIndex,

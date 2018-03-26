@@ -3,9 +3,16 @@ export default {
 		url: location.origin,
 	},
 
-	defaultUserSettings: {
-		shortcuts: {
-			'textarea': {
+	userSettings: {
+		availableShortcuts: {
+			textarea: [
+				{ command: 'expandArea', uniq: true },
+				{ command: 'nextOccurence', uniq: true },
+				{ command: 'definedPaste', uniq: false },
+			],
+		},
+		defaultShortcuts: {
+			textarea: {
 				moduleName: 'textarea',
 				actions: {
 					'CTRL+F': {

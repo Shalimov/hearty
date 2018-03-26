@@ -7,8 +7,13 @@ import Analysis from './analysis'
 import Dictionary from './dictionary'
 import Medicine from './medicine'
 import Epicrisis from './epicrisis'
+import Settings from './settings'
 
 const PrivateRoutesRoot = createRoutes(({ match }) => [
+	{
+		path: `${match.path}/settings`,
+		component: Settings,
+	},
 	{
 		path: `${match.path}/analysis`,
 		component: Analysis,

@@ -65,6 +65,12 @@ const descriptions = {
 		of: 'из',
 		prev: 'предыдущая',
 		next: 'следующая',
+
+		captions: {
+			shortcuts: {
+				textarea: 'Редактор текста',
+			},
+		},
 	},
 
 	contextMenu: {
@@ -81,6 +87,12 @@ const descriptions = {
 		dictionary: 'Словарь терминов',
 		basic: 'Базовые',
 		additional: 'Дополнительные',
+		shortcuts: {
+			index: 'Горячие клавиши',
+			key: 'Комбинация',
+			command: 'Комманда',
+			extra: 'Дополнительно',
+		},
 	},
 
 	descriptions: {
@@ -94,6 +106,16 @@ const descriptions = {
 		forgotPassword: 'Если вы забыли пароль то паниковать не стоит, просто введите адрес своей почты и мы поможем вам с восстановлением.',
 		welcome: 'Рутина станет незаметной',
 		welcomeFeatures: 'Добро пожаловать в Hearty. Данная программа поможет вам справляться с рутинными задачами быстро и без труда, концентрируясь на самом важном',
+
+		shortcuts: {
+			commands: {
+				textarea: {
+					expandArea: 'Увеличить размер',
+					nextOccurence: 'Найти ближайшую метку',
+					definedPaste: 'Вставить шаблон',
+				},
+			},
+		},
 	},
 
 	links: {
@@ -116,6 +138,7 @@ const descriptions = {
 		addSubTerm: 'Добавить подтермин',
 		search: 'Найти',
 		save: 'Сохранить',
+		settings: 'Настройки',
 		saveAndPrint: 'Сохранить и распечатать',
 		submit: 'Отправить',
 		next: 'Далее',

@@ -2,7 +2,7 @@ import { types, getSnapshot, applySnapshot } from 'mobx-state-tree'
 import { STORAGE_KEYS } from 'constants/storage.keys'
 import config from 'config'
 
-const { defaultUserSettings } = config
+const { userSettings } = config
 
 const ShortcutModuleActionParamsScheme = {
 	value: types.string,
@@ -51,7 +51,7 @@ const createShortcutsModel = (permanentStoarge) => types.model({
 		const rawShortcuts = permanentStoarge.getItem(key)
 		const userShortcuts = rawShortcuts ?
 			JSON.parse(rawShortcuts) :
-			defaultUserSettings.shortcuts
+			userSettings.defaultShortcuts
 
 		self.shortcuts = {}
 		applySnapshot(self.shortcuts, userShortcuts)

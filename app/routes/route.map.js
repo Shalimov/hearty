@@ -10,6 +10,10 @@ export const board = createPrefix('/board', {
 	welcome: fp.constant('/welcome'),
 })
 
+export const settings = createPrefix(`${board.index()}/settings`, {
+	shortcuts: fp.constant('/shortcuts'),
+})
+
 export const medicine = createPrefix(`${board.index()}/medicine`, {
 	index: fp.constant(''),
 })

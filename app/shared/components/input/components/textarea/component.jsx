@@ -13,7 +13,6 @@ const TextareaComponent = ({
 	readOnly,
 	showError,
 	flexible,
-	expandable,
 	isExpanded,
 	noBorder,
 	value,
@@ -36,7 +35,7 @@ const TextareaComponent = ({
 					inputError: showError,
 				}, globalStyles),
 				cssx({
-					expandable,
+					expandable: true,
 					expandedArea: isExpanded,
 				}, localStyles),
 				className
@@ -59,7 +58,6 @@ TextareaComponent.propTypes = {
 	title: PropTypes.string,
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
-	expandable: PropTypes.bool,
 	isExpanded: PropTypes.bool,
 	readOnly: PropTypes.bool,
 	showError: PropTypes.bool,

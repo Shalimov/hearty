@@ -26,7 +26,6 @@ const SummaryInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					label={null}
 					rows={4}
 					flexible

@@ -15,19 +15,17 @@
     "eslint:fix": "./node_modules/eslint/bin/eslint.js ./app/**/*.js --fix",
     "lint": "yarn eslint ./app/**/*.js",
     "precommit": "yarn eslint:fix && yarn lint",
+    "package": "electron-forge package",
+    "make": "yarn build && electron-forge make",
     "gen:base:users": "node ./scripts/gen.base.users.js",
     "gen:analyses": "node ./scripts/gen.analyses.js",
-    "gen:terms": "node ./scripts/gen.terms.js",
-    "package": "electron-forge package",
-    "make": "yarn build && electron-forge make"
+    "gen:terms": "node ./scripts/gen.terms.js"
   },
   "repository": "",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "epicrisis",
+    "medicine",
+    "tool"
   ],
   "author": "igor.shalimov",
   "license": "CC0-1.0",
@@ -51,6 +49,7 @@
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",
+    "is-hotkey": "^0.1.2",
     "jsonwebtoken": "^8.1.0",
     "jszip": "2",
     "lodash": "^4.17.4",
@@ -119,7 +118,9 @@
       "electronPackagerConfig": {
         "dir": "./public",
         "packageManager": "yarn",
-        "afterExtract": ["./hooks/packager.after.extract.js"]
+        "afterExtract": [
+          "./hooks/packager.after.extract.js"
+        ]
       },
       "electronWinstallerConfig": {
         "name": "hearty"

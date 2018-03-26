@@ -23,7 +23,6 @@ const StoreInDictionaryFormComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="creatable-async"
-					expandable
 					flexible
 					loadOptions={loadOptions}
 					field={termField}
@@ -36,7 +35,6 @@ const StoreInDictionaryFormComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={subtermField} />

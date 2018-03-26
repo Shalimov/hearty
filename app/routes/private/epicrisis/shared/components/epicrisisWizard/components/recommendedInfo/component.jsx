@@ -20,7 +20,6 @@ const RecommendedInfoComponent = ({
 				<DictionaryInput
 					type="textarea"
 					label={null}
-					expandable
 					rows={4}
 					flexible
 					field={recommendedField} />

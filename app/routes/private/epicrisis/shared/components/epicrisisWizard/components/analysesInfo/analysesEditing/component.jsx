@@ -50,7 +50,6 @@ const AnalysesEditingComponent = ({
 							type="textarea"
 							rows={3}
 							flexible
-							smartTab
 							field={field} />
 					</div>
 				), formModel.fields)

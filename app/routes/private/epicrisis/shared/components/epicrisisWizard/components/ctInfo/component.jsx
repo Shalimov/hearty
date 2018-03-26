@@ -22,7 +22,6 @@ const CTInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ctHeadField} />
@@ -30,7 +29,6 @@ const CTInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ctOGKField} />
@@ -38,7 +36,6 @@ const CTInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ctOBPField} />
@@ -46,7 +43,6 @@ const CTInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ctOtherField} />

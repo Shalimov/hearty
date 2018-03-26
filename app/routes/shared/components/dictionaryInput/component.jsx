@@ -20,7 +20,7 @@ const DictionaryInputComponent = ({
 	return (
 		<Fragment>
 			<ContextMenuTrigger id={id}>
-				<ValidatedInput smartTab={true} {...params} />
+				<ValidatedInput {...params} />
 			</ContextMenuTrigger>
 			<ContextMenu id={id}>
 				<MenuItem onClick={openPasteFromDictionaryDialog}>

@@ -24,12 +24,12 @@ const delayedTextareaUpdate = (textarea, range) =>
 	setTimeout(updateTextarea, 50, textarea, range)
 
 // TODO here is a POC
-export const smartKeyDownHandler = (event, afterSmartTab) => {
-	if (!afterSmartTab && event.ctrlKey) { return }
+export const smartKeyDownHandler = (event, needCorrection) => {
+	if (!needCorrection && event.ctrlKey) { return }
 
 	const textarea = event.target
 	const content = textarea.value
-	const selection = afterSmartTab ?
+	const selection = needCorrection ?
 		textarea.selectionStart + 1 :
 		textarea.selectionEnd
 	const {

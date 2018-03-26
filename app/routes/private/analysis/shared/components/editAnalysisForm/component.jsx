@@ -26,7 +26,6 @@ const EditAnalysisFormComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
-					expandable
 					flexible
 					rows={4}
 					field={patternField} />

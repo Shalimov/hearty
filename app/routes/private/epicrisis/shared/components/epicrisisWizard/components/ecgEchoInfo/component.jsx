@@ -22,7 +22,6 @@ const ECGEchoInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ecgEchoArrivalField} />
@@ -30,7 +29,6 @@ const ECGEchoInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ecgEchoDynamicField} />
@@ -38,7 +36,6 @@ const ECGEchoInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ecgEchoKSField} />
@@ -46,7 +43,6 @@ const ECGEchoInfoComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<DictionaryInput
 					type="textarea"
-					expandable
 					rows={4}
 					flexible
 					field={ecgEchoOtherField} />

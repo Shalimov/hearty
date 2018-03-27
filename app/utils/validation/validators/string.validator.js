@@ -14,6 +14,7 @@ class StringValidator extends RefValidator {
 	static ALPHNUM_PATTERN = /^[a-zA-Z0-9\s]+$/
 	static PHONE_NUMBER = /^\+\d{11,12}$/
 	static USERNAME_PATTERN = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+	static URL = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%\\+.~#?&//=]*)/
 
 	static create() {
 		return new StringValidator()
@@ -27,6 +28,13 @@ class StringValidator extends RefValidator {
 		return this.pushValidator(
 			ERROR_KEYS.STRING.EMAIL,
 			value => isEmail.validate(value)
+		)
+	}
+
+	url() {
+		return this.pushValidator(
+			ERROR_KEYS.STRING.URL,
+			value => StringValidator.URL.test(value)
 		)
 	}
 

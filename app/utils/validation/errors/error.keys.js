@@ -10,6 +10,7 @@ export default {
 
 	STRING: {
 		TYPE: 'string.type',
+		URL: 'string.url',
 		ENUM: 'string.enum',
 		EMAIL: 'string.email',
 		PATTERN: 'string.pattern',
@@ -25,12 +26,14 @@ export default {
 	},
 
 	NUMBER: {
-		TYPE: 'number.type',
-		MIN: 'number.min',
-		MAX: 'number.max',
+		TYPE: 'date.type',
 	},
-	
-	BOOLEAN: {
-		TYPE: 'boolean.type',
+
+	ARRAY: {
+		TYPE: 'array.type',
+	},
+
+	SHAPE: {
+		TYPE: 'shape.type',
 	},
 }

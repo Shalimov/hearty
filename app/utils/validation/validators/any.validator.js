@@ -35,6 +35,25 @@ class AnyValidator extends Validator {
 			{ forceCheck: true }
 		)
 	}
+
+	requireIfExist(accessor) {
+		const isFullfilled = fp.negate(Validator.isBlank)
+		return this.pushValidator(
+			ERROR_KEYS.REQUIRED,
+			(value, ctx) => isFullfilled(accessor(ctx)) && isFullfilled(value),
+			{ forceCheck: true }
+		)
+	}
+
+	requireIfNotExist(accessor) {
+		const isFullfilled = fp.negate(Validator.isBlank)
+
+		return this.pushValidator(
+			ERROR_KEYS.REQUIRED,
+			(value, ctx) => isFullfilled(accessor(ctx)) || isFullfilled(value),
+			{ forceCheck: true }
+		)
+	}
 }
 
 export default AnyValidator

@@ -11,22 +11,6 @@ class NumberValidator extends AnyValidator {
 	number() {
 		return this.pushValidator(ERROR_KEYS.NUMBER.TYPE, fp.isNumber)
 	}
-
-	min(minValue) {
-		return this.pushValidator(
-			ERROR_KEYS.NUMBER.MIN,
-			value => value >= minValue,
-			{ args: minValue }
-		)
-	}
-
-	max(maxValue) {
-		return this.pushValidator(
-			ERROR_KEYS.NUMBER.MAX,
-			value => value <= maxValue,
-			{ args: maxValue }
-		)
-	}
 }
 
 export default NumberValidator

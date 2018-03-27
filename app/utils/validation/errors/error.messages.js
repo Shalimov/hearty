@@ -15,6 +15,7 @@ const defaultMessages = {
 	[KEYS.STRING.TYPE]: ({ label }) => `${label} must be a string`,
 	[KEYS.STRING.ALPHANUM]: ({ label }) => `${label} must contain only a-z A-Z 0-9 symbols`,
 	[KEYS.STRING.ENUM]: ({ label, args }) => `${label} must be one of [${args}]`,
+	[KEYS.STRING.URL]: ({ label }) => `${label} must be a valid url`,
 	[KEYS.STRING.EMAIL]: ({ label }) => `${label} must be valid`,
 	[KEYS.STRING.PATTERN]: ({ label }) => `${label} must match the specific pattern`,
 	[KEYS.STRING.USERNAME]: ({ label }) => `${label} must contain only a-z, A-Z, 0-9, -, _ symbols`,
@@ -27,11 +28,12 @@ const defaultMessages = {
 
 	/* NUMBER */
 	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} must be a number`,
-	[KEYS.NUMBER.MIN]: ({ label, args }) => `${label} must be a greater than ${args}`,
-	[KEYS.NUMBER.MAX]: ({ label, args }) => `${label} must be a lower than ${args}`,
 
-	/* BOOLEAN */
-	[KEYS.BOOLEAN.TYPE]: ({ label }) => `${label} must be a number`,
+	/* SHAPE */
+	[KEYS.SHAPE.TYPE]: ({ label }) => `${label} must be an shape`,
+
+	/* ARRAY */
+	[KEYS.ARRAY.TYPE]: ({ label }) => `${label} must be an array`,
 }
 
 const assignMessages = (messages) => {

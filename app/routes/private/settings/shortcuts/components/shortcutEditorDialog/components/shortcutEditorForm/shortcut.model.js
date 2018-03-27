@@ -1,6 +1,8 @@
 import fp from 'lodash/fp'
 import Ego from 'utils/validation'
+import { TEXTAREA } from 'constants/shortcuts.commands'
 import t from 'i18n'
+
 
 export default ({ combination, command, params }) => ({
 	combinationField: {
@@ -18,7 +20,10 @@ export default ({ combination, command, params }) => ({
 	valueParamField: {
 		initialValue: fp.get('value', params),
 		scheme: Ego.string()
-			.label(t('labels.shortcuts.parameters')),
+			.label(t('labels.shortcuts.parameters'))
+			.requiredIf((value, ctx) => {
+				return ctx.fields.commandField.value === TEXTAREA.DEFINED_PASTE
+			}),
 	},
 })
 

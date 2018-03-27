@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { cssx, join } from 'utils/aphrodite-ext'
@@ -44,6 +45,7 @@ const ShortcutComponent = ({
 		disabled={disabled}
 		value={value}
 		onKeyDown={onInternalKeyDown}
+		onChange={fp.noop}
 		onBlur={onBlur} />
 )
 

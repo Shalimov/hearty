@@ -26,6 +26,9 @@ const defaultMessages = {
 	/* DATE */
 	[KEYS.DATE.TYPE]: ({ label }) => `${label} must be a date`,
 
+	/* BOOLEAN */
+	[KEYS.BOOLEAN.TYPE]: ({ label }) => `${label} must be a boolean`,
+
 	/* NUMBER */
 	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} must be a number`,
 

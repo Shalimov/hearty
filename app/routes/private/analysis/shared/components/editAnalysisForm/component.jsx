@@ -26,6 +26,7 @@ const EditAnalysisFormComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
+					enableTemplates={false}
 					flexible
 					rows={4}
 					field={patternField} />

@@ -1,5 +1,6 @@
 import AnyValidator from './validators/any.validator'
 import RefValidator from './validators/ref.validator'
+import BooleanValidator from './validators/bool.validator'
 import DateValidator from './validators/date.validator'
 import NumberValidator from './validators/number.validator'
 import StringValidator from './validators/string.validator'
@@ -18,6 +19,10 @@ class Validation {
 
 	static ref() {
 		return RefValidator.create().ref()
+	}
+
+	static boolean() {
+		return BooleanValidator.create().boolean()
 	}
 
 	static date() {

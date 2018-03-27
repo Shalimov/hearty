@@ -1,6 +1,7 @@
 import { Simulate } from 'react-dom/test-utils'
-import { compose, withHandlers, withState } from 'recompose'
+import { compose, withHandlers, withState, defaultProps } from 'recompose'
 import { withHotkeys } from 'shared/hocs'
+import { TEXTAREA } from 'constants/shortcuts.commands'
 
 import {
 	getSmartTagRange,
@@ -17,10 +18,10 @@ const putAt = (str, substr, spos, epos = spos) => {
 	return `${firstPart}${substr}${lastPart}`
 }
 
-const DEFINED_PASTE_ACTION = 'DEFINED_PASTE'
-const NEXT_OCCURENCE_ACTION = 'NEXT_OCCURENCE'
-
 export default compose(
+	defaultProps({
+		enableTemplates: true,
+	}),
 	withState('isExpanded', 'setExpandedMode', false),
 	withHotkeys('textarea', {
 		onExpandArea: ({ setExpandedMode }) => {
@@ -39,7 +40,7 @@ export default compose(
 				textarea.selectionEnd = end
 			}
 
-			return NEXT_OCCURENCE_ACTION
+			return TEXTAREA.NEXT_OCCURENCE
 		},
 
 		onDefinedPaste: (props, params, event) => {
@@ -57,9 +58,6 @@ export default compose(
 			Simulate.change(textarea)
 
 			event.preventDefault()
-			event.stopPropagation()
-
-			return DEFINED_PASTE_ACTION
 		},
 	}),
 	withHandlers({
@@ -79,14 +77,17 @@ export default compose(
 
 		// TODO HERE IS HARDCORE) smart patterns is really heavy feature
 		// to remove opaque behavior just remove smartKeyDownHandler & afterSmartTab variable
-		onInternalKeyDown: ({ onKeyDown, onHotkey }) => (event) => {
+		onInternalKeyDown: ({ enableTemplates, onKeyDown, onHotkey }) => (event) => {
 			const actionName = onHotkey(event)
-			if (actionName === DEFINED_PASTE_ACTION) {
+
+			if (event.defaultPrevented) {
 				return
 			}
 
-			const afterNextOccurence = actionName === NEXT_OCCURENCE_ACTION
-			smartKeyDownHandler(event, afterNextOccurence)
+			if (enableTemplates) {
+				const afterNextOccurence = actionName === TEXTAREA.NEXT_OCCURENCE
+				smartKeyDownHandler(event, afterNextOccurence)
+			}
 
 			onKeyDown(event)
 		},

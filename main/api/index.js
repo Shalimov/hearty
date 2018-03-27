@@ -14,7 +14,11 @@ module.exports = {
 		const services = servicesFactory.init(repository)
 
 		const graphQLProcessor = GraphQLProcessor.create({
-			schema: makeExecutableSchema({ typeDefs, resolvers }),
+			schema: makeExecutableSchema({ 
+				typeDefs,
+				resolvers,
+				logger: { log: (error) => { log.error(error) } }, 
+			}),
 			context: { repository, services },
 			middlewares: [verifyToken, retrieveUser],
 		})

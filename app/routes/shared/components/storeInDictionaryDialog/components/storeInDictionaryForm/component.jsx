@@ -35,6 +35,7 @@ const StoreInDictionaryFormComponent = ({
 			<div className={css(styles.inputWrapper)}>
 				<ValidatedInput
 					type="textarea"
+					enableTemplates={false}
 					rows={4}
 					flexible
 					field={subtermField} />

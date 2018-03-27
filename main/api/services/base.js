@@ -1,6 +1,8 @@
 const fp = require('lodash/fp')
 const Boom = require('boom')
 
+const { BASE } = require('../../constants/error.keys')
+
 class BaseService {
 	constructor(repository, modelName) {
 		this.repository = repository
@@ -59,7 +61,7 @@ class BaseService {
 
 	async update(instance, updateFunc) {
 		if (!instance._id) {
-			throw Boom.badData('Cannot find record')
+			throw Boom.badData(BASE.BAD_DATA)
 		}
 
 		const changes = fp.isFunction(updateFunc) ? updateFunc() : { $set: fp.omit(['_id'], instance) }
@@ -70,7 +72,7 @@ class BaseService {
 
 	async remove(id) {
 		if (!id) {
-			throw Boom.badData('Cannot find record to remove')
+			throw Boom.badData(BASE.BAD_DATA)
 		}
 
 		const record = await this.get(id)

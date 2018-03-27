@@ -17,6 +17,7 @@ const EditTermInlineFormComponent = ({
 		title: t('hints.ctrlEnterAdd'),
 		rows: 4,
 		type: 'textarea',
+		enableTemplates: false,
 		onPressCtrlEnter: onInternalSubmit,
 	} : {
 		title: t('hints.enterAdd'),

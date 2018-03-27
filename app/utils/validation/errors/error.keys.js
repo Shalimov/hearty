@@ -21,6 +21,10 @@ export default {
 		SIMPLE_PASSWORD: 'string.simple.password',
 	},
 
+	BOOLEAN: {
+		TYPE: 'boolean.type',
+	},
+
 	DATE: {
 		TYPE: 'date.type',
 	},

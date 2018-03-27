@@ -38,3 +38,6 @@ dbs/*.db
 
 # Compiled Sources
 build/
+
+# Logs
+logs/

@@ -75,7 +75,9 @@
     "react-toastify": "^3.1.2",
     "react-toggle": "^4.0.2",
     "recompose": "^0.26.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "winston": "^3.0.0-rc3",
+    "winston-daily-rotate-file": "^3.0.1"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",

@@ -22,7 +22,7 @@ const AuthModel = types.model('AuthModel', AuthModelScheme).actions(self => ({
 	},
 
 	clearSessionData(storage) {
-		storage.clear()
+		storage.removeItem(STORAGE_KEYS.HEARTY_TOKEN)
 	},
 }))
 

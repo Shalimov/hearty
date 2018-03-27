@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { toPx, lighten, darken } from 'utils/styles'
+import { toPx, toPr, lighten, darken } from 'utils/styles'
 import { colors, measures, font } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
 
 	large: {
 		padding: `${unit + half}px ${3 * unit}px`,
+	},
+
+	fullbox: {
+		width: toPr(100),
 	},
 
 	wrapper: {

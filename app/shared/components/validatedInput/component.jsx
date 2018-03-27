@@ -8,6 +8,7 @@ const ValidatedInput = ({
 	field,
 	disabled,
 	label,
+	onInternalChange,
 	...props
 }) => (
 	<Input {...props}
@@ -18,7 +19,7 @@ const ValidatedInput = ({
 		onBlur={field.onBlur}
 		showError={field.showError}
 		error={field.error}
-		onChange={field.onChange} />
+		onChange={onInternalChange} />
 )
 
 ValidatedInput.propTypes = {
@@ -29,6 +30,7 @@ ValidatedInput.propTypes = {
 	strictShort: PropTypes.bool,
 	strictLong: PropTypes.bool,
 	className: PropTypes.string,
+	onInternalChange: PropTypes.func,
 	errorRender: PropTypes.func,
 }
 

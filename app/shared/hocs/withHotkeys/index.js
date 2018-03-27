@@ -51,7 +51,7 @@ export default (moduleName, rawHandlersMap, options) => {
 				const shortcutEntries = [...moduleShortcutsMap.actions.values()]
 
 				return (event) => {
-					const action = shortcutEntries.find(({ binding }) => isHotkey(binding, event))
+					const action = shortcutEntries.find(({ combination }) => isHotkey(combination, event))
 
 					if (!action) {
 						return undefined

@@ -11,6 +11,8 @@ import selectRenderer, {
 import textareaRenderer from './renderers/textarea'
 import dateRenderer from './renderers/date'
 import counterRenderer from './renderers/counter'
+import shortcutRenderer from './renderers/shortcut'
+
 import styles from './styles'
 
 const join = (...classNames) => classNames.join(' ')
@@ -25,6 +27,7 @@ const rendererProxy = props => {
 	switch (props.type) {
 	case 'date': return dateRenderer(props)
 	case 'counter': return counterRenderer(props)
+	case 'shortcut': return shortcutRenderer(props)
 	case 'select-async': return asyncSelectRenderer(props)
 	case 'creatable-async': return asyncCreatableSelectRenderer(props)
 	case 'select': return selectRenderer(props)

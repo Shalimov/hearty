@@ -1,7 +1,7 @@
 import { StyleSheet } from 'aphrodite'
 import { colors, font, measures } from 'styles/variables'
 import { mixins } from 'styles/mixins'
-import { toPx, toPr } from 'utils/styles'
+import { toPx, tags } from 'utils/styles'
 
 const { unit } = measures
 
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 	table: {
 		borderCollapse: 'collapse',
-		width: toPr(100),
+		width: toPx(80 * unit),
 		marginTop: toPx(3 * unit),
 	},
 
@@ -35,6 +35,32 @@ const styles = StyleSheet.create({
 		...mixins.font(),
 		border: `1px solid ${colors.color1}`,
 		padding: toPx(unit),
+	},
+
+	buttonCellBox: {
+		display: 'inline-block',
+		padding: tags.px`0 ${unit}`,
+	},
+
+	noPadding: {
+		padding: 0,
+	},
+
+	centrized: {
+		textAlign: 'center',
+	},
+
+	addButtonContent: {
+		display: 'block',
+		padding: toPx(unit),
+
+		':hover': {
+			backgroundColor: colors.white50,
+		},
+
+		':active': {
+			backgroundColor: colors.black10,
+		},
 	},
 })
 

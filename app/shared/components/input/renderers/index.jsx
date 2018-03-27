@@ -26,6 +26,7 @@ const defaultRenderer = ({
 	placeholder,
 	onInternalChange,
 	onInternalKeyDown,
+	onKeyPress,
 	onBlur,
 }) => (
 	<input
@@ -53,6 +54,7 @@ const defaultRenderer = ({
 		disabled={disabled}
 		value={value === undefined ? EMPTY_STRING : value}
 		onKeyDown={onInternalKeyDown}
+		onKeyPress={onKeyPress}
 		onBlur={onBlur}
 		onChange={onInternalChange} />
 )

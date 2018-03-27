@@ -1,3 +1,3 @@
-import ValidatedInput from './component'
+import ValidatedInput from './container'
 
 export default ValidatedInput

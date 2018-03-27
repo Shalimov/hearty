@@ -134,6 +134,7 @@ const descriptions = {
 	},
 
 	buttons: {
+		add: 'Добавить',
 		addTerm: 'Добавить термин',
 		addSubTerm: 'Добавить подтермин',
 		search: 'Найти',
@@ -171,6 +172,11 @@ const descriptions = {
 		recommended: 'Рекомендованно',
 		summary: 'Итого',
 		type: 'Тип',
+		shortcuts: {
+			combination: 'Комбинация',
+			command: 'Команда',
+			parameters: 'Параметры',
+		},
 		epicrisis: {
 			done: 'Выписан',
 			draft: 'Черновик',
@@ -240,6 +246,9 @@ const descriptions = {
 		chooseDocTemplate: 'Выбор шаблона документа',
 		basic: 'Базовый',
 		additional: 'Дополнительный',
+		shortcuts: {
+			editor: 'Нажмите нужную комбинацию для выбора',
+		},
 	},
 
 	hints: {

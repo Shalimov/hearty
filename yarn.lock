@@ -2947,7 +2947,7 @@ electron-compile@*, electron-compile@^6.4.2:
     spawn-rx "^2.0.3"
     yargs "^4.8.1"
 
-electron-compilers@*:
+electron-compilers@*, electron-compilers@^5.9.0:
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/electron-compilers/-/electron-compilers-5.9.0.tgz#953dc14e24fb15b37d5e90de2c39d753f3f8140e"
   dependencies:

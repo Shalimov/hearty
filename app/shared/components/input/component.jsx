@@ -12,6 +12,7 @@ import textareaRenderer from './renderers/textarea'
 import dateRenderer from './renderers/date'
 import counterRenderer from './renderers/counter'
 import shortcutRenderer from './renderers/shortcut'
+import maskRenderer from './renderers/mask'
 
 import styles from './styles'
 
@@ -33,6 +34,7 @@ const rendererProxy = props => {
 	case 'select': return selectRenderer(props)
 	case 'textarea': return textareaRenderer(props)
 	case 'toggle': return toggleRenderer(props)
+	case 'mask': return maskRenderer(props)
 	default: return defaultRenderer(props)
 	}
 }

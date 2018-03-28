@@ -17,6 +17,17 @@ const DELAY = 500
 // TODO: should be improved
 export default compose(
 	withFormModel(searchModel, { spreadFields: true }),
+	withState('isOpen', 'setOpenState', false),
+	connectDialogToHub({
+		dialogId: 'pasteFromDictionaryDialog',
+		open: ({ setOpenState }) => () => {
+			setOpenState(true)
+		},
+
+		close: ({ setOpenState }) => () => {
+			setOpenState(false)
+		},
+	}),
 	graphql(gql`
 		query RetrieveFromDictionary($input: TermQueryInput) {
 			terms(input: $input) {
@@ -39,17 +50,6 @@ export default compose(
 			variables: {
 				input: getTermQueryInput(),
 			},
-		},
-	}),
-	withState('isOpen', 'setOpenState', false),
-	connectDialogToHub({
-		dialogId: 'pasteFromDictionaryDialog',
-		open: ({ setOpenState }) => () => {
-			setOpenState(true)
-		},
-
-		close: ({ setOpenState }) => () => {
-			setOpenState(false)
 		},
 	}),
 	withHandlers({

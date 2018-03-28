@@ -1,10 +1,8 @@
 import React from 'react'
 import DatePicker from 'react-datetime'
-import { cssx } from 'utils/aphrodite-ext'
+import { cssx, join } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
-
-const join = (...classNames) => classNames.join(' ')
 
 /* eslint-disable */
 const dateRenderer = ({

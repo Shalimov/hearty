@@ -1,10 +1,8 @@
 import React from 'react'
 import Select, { Async, AsyncCreatable } from 'react-select'
-import { cssx } from 'utils/aphrodite-ext'
+import { cssx, join } from 'utils/aphrodite-ext'
 
 import styles from '../styles'
-
-const join = (...classNames) => classNames.join(' ')
 
 /* eslint-disable */
 const createRenderer = Component => ({

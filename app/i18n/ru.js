@@ -133,7 +133,7 @@ const descriptions = {
 		email: 'Адрес электронной почты',
 		password: 'Пароль',
 		fullname: 'ФИО',
-		birthdate: 'Дата рождения',
+		birthdate: 'Год рождения',
 		region: 'Город/Регион',
 		address: 'Адрес',
 		term: 'Термин',

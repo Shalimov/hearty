@@ -31,8 +31,8 @@ const PatientIntoComponent = ({
 					</div>
 					<div className={css(styles.inputWrapper)}>
 						<ValidatedInput
-							type="date"
-							isValidDate={isValidDate}
+							type="mask"
+							mask="9999"
 							field={birthdateField} />
 					</div>
 					<div className={css(styles.inputWrapper)}>

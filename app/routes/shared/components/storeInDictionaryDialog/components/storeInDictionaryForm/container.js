@@ -21,6 +21,7 @@ const getTermQueryInput = term => ({
 })
 
 export default compose(
+	withFormModel(termModel, { spreadFields: true }),
 	graphql(gql`
 		query RetrieveFromDictionary($input: TermQueryInput) {
 			terms(input: $input) {
@@ -45,7 +46,6 @@ export default compose(
 			},
 		},
 	}),
-	withFormModel(termModel, { spreadFields: true }),
 	withHandlers({
 		loadOptions: ({ data }) => async (search, callback) => {
 			const { data: { terms } } = await data.refetch({

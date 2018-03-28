@@ -2,7 +2,6 @@ const fp = require('lodash/fp')
 const { shell } = require('electron')
 
 const { generateDocument } = require('./generate.doc')
-const transformEpicrisis = require('./transform.epicrisis')
 const BaseService = require('../base')
 const { TEMPLATE_DIR } = require('../../../constants/system')
 
@@ -46,8 +45,6 @@ class EpicrisisService extends BaseService {
 
 	async printEpicrisis(_id, epicrisisTemplate) {
 		const epicrisis = await this.get(_id)
-			.then(transformEpicrisis)
-
 		const resultDocFilepath = await generateDocument(epicrisisTemplate, epicrisis)
 
 		shell.openItem(resultDocFilepath)

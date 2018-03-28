@@ -1,12 +1,13 @@
 import React from 'react'
 import { cssx, join } from 'utils/aphrodite-ext'
+import InputMask from 'react-input-mask'
 
 import styles from '../styles'
 
 const EMPTY_STRING = ''
 
 /* eslint-disable */
-const defaultRenderer = ({
+const maskRenderer = ({
 	id,
 	title,
 	className,
@@ -17,9 +18,7 @@ const defaultRenderer = ({
 	flexible,
 	inlined,
 	noBorder,
-	min,
-	max,
-	type = 'text',
+	mask,
 	value,
 	autoComplete,
 	placeholder,
@@ -28,10 +27,10 @@ const defaultRenderer = ({
 	onKeyPress,
 	onBlur,
 }) => (
-	<input
+	<InputMask
 		id={id}
 		title={title}
-		type={type}
+		type="text"
 		className={
 			join(
 				cssx({
@@ -45,9 +44,8 @@ const defaultRenderer = ({
 				className
 			)
 		}
+		mask={mask}
 		readOnly={readOnly}
-		min={min}
-		max={max}
 		placeholder={placeholder}
 		autoComplete={autoComplete}
 		disabled={disabled}
@@ -59,4 +57,4 @@ const defaultRenderer = ({
 )
 /* eslint-enable */
 
-export default defaultRenderer
+export default maskRenderer

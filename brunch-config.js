@@ -70,7 +70,7 @@ module.exports = {
 				'react',
 				['env', {
 					targets: {
-						browsers: ['last versions'],
+						browsers: ['last 2 versions'],
 					},
 				}],
 				'stage-2',

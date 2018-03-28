@@ -1,7 +1,6 @@
 import fp from 'lodash/fp'
 
 const smartTagPattern = /\$(?:text|\{.+\})/g
-const smartTagEndingPattern = /(?:\$|\s)/g
 
 const isArrowKey = fp.startsWith('Arrow')
 const isArrowUpDown = fp.includes(fp.placeholder, ['ArrowUp', 'ArrowDown'])
@@ -22,8 +21,7 @@ const getSmartTagRange = (text, offset = 0) => {
 	const tagStartPosition = search(text, smartTagPattern, offset)
 
 	if (tagStartPosition !== -1) {
-		const tagEndPosition = search(text, smartTagEndingPattern, tagStartPosition + 1)
-		return [tagStartPosition, tagEndPosition]
+		return [tagStartPosition, tagStartPosition + 5]
 	}
 
 	return null

@@ -24,7 +24,7 @@ export default ({ initialValues = {} }) => ({
 	},
 
 	birthdateField: {
-		initialValue: fp.get('patient.birthdate', initialValues),
+		initialValue: fp.toString(fp.get('patient.birthdate', initialValues)),
 		scheme: Ego.string()
 			.label(t('labels.birthdate'))
 			.required(),

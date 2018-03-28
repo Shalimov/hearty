@@ -67,7 +67,6 @@ export default compose(
 				term,
 				subterm,
 			})
-
 		},
 	}),
 )(StoreInDictionaryFormComponent)

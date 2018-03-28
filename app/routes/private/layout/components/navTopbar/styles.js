@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 		boxShadow: `0 1px 5px ${colors.black15}`,
 		paddingLeft: toPx(3 * unit),
 		paddingRight: toPx(3 * unit),
+		borderBottom: `1px solid ${colors.color4}`,
 	},
 	
 	leftSection: {

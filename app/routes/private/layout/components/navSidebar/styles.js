@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { toPx, toPr, tags } from 'utils/styles'
+import { toPx, toPr, tags, lighten } from 'utils/styles'
 import { colors, measures, font } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 
@@ -10,7 +10,7 @@ const menuPaddingSize = 4 * unit
 // TODO: Fix styles here, pretify them and refine
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: colors.color4,
+		background: colors.gradients.color2,
 		width: toPx(32 * unit),
 	},
 
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
 	},
 
 	menuItemLeftIcon: {
-		color: colors.color2,
+		color: colors.white100,
 	},
 
 	menuItemLinkActive: {
-		color: colors.color2,
+		color: lighten(colors.color2, 50),
 	},
 
 	menuItemTitle: {

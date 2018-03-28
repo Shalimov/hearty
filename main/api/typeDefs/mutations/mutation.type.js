@@ -7,6 +7,7 @@ const Mutation = `
 		updateEpicrisis(input: EpicrisisInput!): Epicrisis
 		removeEpicrisis(_id: ID!): Epicrisis
 		printEpicrisis(_id: ID!, epicrisisTemplate: String!): Boolean
+		openEpicrisesFolder: Boolean
 
 		# analysis
 		createAnalysis(input: AnalysisInput!): Analysis

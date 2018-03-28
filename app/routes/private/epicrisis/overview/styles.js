@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import { font, measures } from 'styles/variables'
+import { colors, font, measures } from 'styles/variables'
 import { mixins } from 'styles/mixins'
 import { toPx } from 'utils/styles'
 
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
 	linkWrapper: {
 		textAlign: 'right',
 		margin: toPx(2 * unit),
+		display: 'inline-block',
+	},
+
+	icon: {
+		fontSize: font.font24,
+		color: colors.color2,
 	},
 })
 

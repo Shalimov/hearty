@@ -4,6 +4,7 @@ import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import { analysis } from 'routes/route.map'
 import { Button } from 'shared/components'
+import FontAwesome from 'react-fontawesome'
 import t from 'i18n'
 import ReactTable from 'react-table'
 
@@ -19,8 +20,8 @@ const OverviewAnalysesComponent = ({
 		<p className={css(styles.description)}>{t('descriptions.analyses')}</p>
 		<div className={css(styles.linkWrapper)}>
 			<Link to={analysis.add()}>
-				<Button rounded outlined>
-					{t('links.addAnalysis')}
+				<Button iconed title={t('links.addAnalysis')}>
+					<FontAwesome name="plus-square" className={css(styles.icon)} />
 				</Button>
 			</Link>
 		</div>

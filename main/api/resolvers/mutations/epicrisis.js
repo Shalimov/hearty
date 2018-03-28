@@ -18,4 +18,9 @@ module.exports = {
 		const { epicrisisService } = context.services
 		return epicrisisService.printEpicrisis(_id, epicrisisTemplate)
 	},
+
+	openEpicrisesFolder(_obj, _params, context) {
+		const { epicrisisService } = context.services
+		return epicrisisService.openEpicrisesFolder()
+	},
 }

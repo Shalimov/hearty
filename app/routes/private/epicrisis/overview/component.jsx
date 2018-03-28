@@ -4,6 +4,7 @@ import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import { epicrisis } from 'routes/route.map'
 import { Button, Input } from 'shared/components'
+import FontAwesome from 'react-fontawesome'
 import t from 'i18n'
 import ReactTable from 'react-table'
 
@@ -15,6 +16,7 @@ const OverviewEpicrisisComponent = ({
 	searchValue,
 	filterValue,
 	onFetchData,
+	onOpenFolder,
 	onSearchChange,
 }) => (
 	<div className={css(styles.container)}>
@@ -26,12 +28,21 @@ const OverviewEpicrisisComponent = ({
 				value={searchValue}
 				placeholder={t('placeholders.search')}
 				onChange={onSearchChange} />
-			<div className={css(styles.linkWrapper)}>
-				<Link to={epicrisis.add()}>
-					<Button rounded outlined>
-						{t('links.addEpicrisis')}
+			<div>
+				<div className={css(styles.linkWrapper)}>
+					<Link to={epicrisis.add()}>
+						<Button iconed title={t('links.addEpicrisis')}>
+							<FontAwesome name="plus-square" className={css(styles.icon)} />
+						</Button>
+					</Link>
+				</div>
+				<div className={css(styles.linkWrapper)}>
+					<Button iconed
+						title={t('buttons.epicrisis.openFolder')}
+						onClick={onOpenFolder}>
+						<FontAwesome name="folder-open" className={css(styles.icon)} />
 					</Button>
-				</Link>
+				</div>
 			</div>
 		</div>
 		<ReactTable
@@ -58,6 +69,7 @@ OverviewEpicrisisComponent.propTypes = {
 	searchValue: PropTypes.string,
 	filterValue: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	onSearchChange: PropTypes.func.isRequired,
+	onOpenFolder: PropTypes.func.isRequired,
 	onFetchData: PropTypes.func.isRequired,
 }
 

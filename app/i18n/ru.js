@@ -126,6 +126,9 @@ const descriptions = {
 		ok: 'Да',
 		no: 'Нет',
 		logout: 'Выйти',
+		epicrisis: {
+			openFolder: 'Открыть каталог с выписками',
+		},
 	},
 
 	labels: {

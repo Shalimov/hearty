@@ -86,6 +86,13 @@ export default compose(
 	`, {
 		name: 'printEpicrisisMutation',
 	}),
+	graphql(gql`
+		mutation OpenEpicrisesFolder {
+			openEpicrisesFolder
+		}
+	`, {
+		name: 'openEpicrisesFolder',
+	}),
 	withHandlers({
 		onFilterUpdate: ({ setFilterValue }) => fp.debounce(SEARCH_DELAY, (searchValue) => {
 			setFilterValue(searchValue)
@@ -98,6 +105,9 @@ export default compose(
 			setSearchValue(searchValue)
 			onFilterUpdate(searchValue)
 		},
+
+		onOpenFolder: ({ openEpicrisesFolder }) =>
+			tryAsync(() => openEpicrisesFolder()),
 
 		onPrint: ({ printEpicrisisMutation }) =>
 			tryAsync(async ({ _id, templateName }) => {

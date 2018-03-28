@@ -3,18 +3,18 @@ const { shell } = require('electron')
 
 const { generateDocument } = require('./generate.doc')
 const BaseService = require('../base')
-const { TEMPLATE_DIR } = require('../../../constants/system')
+const { TEMPLATE_DIR, PROCESSED_TEMPLATE_DIR } = require('../../../constants/system')
 
 const EXT_PATTERN = /(?:\.docx?)$/i
 
 class EpicrisisService extends BaseService {
-	constructor(repository, promisifiedFs) {
+	constructor(repository, fs) {
 		super(repository, 'epicrises')
-		this.fs = promisifiedFs
+		this.fs = fs
 	}
 
-	static create(repository, promisifiedFs) {
-		return new EpicrisisService(repository, promisifiedFs)
+	static create(repository, fs) {
+		return new EpicrisisService(repository, fs)
 	}
 
 	static isDoc(value) {
@@ -39,7 +39,7 @@ class EpicrisisService extends BaseService {
 	}
 
 	queryTemplates() {
-		return this.fs.readdirAsync(TEMPLATE_DIR, { encoding: 'utf8' })
+		return this.fs.readdir(TEMPLATE_DIR, { encoding: 'utf8' })
 			.then(fp.filter(EpicrisisService.isDoc))
 	}
 
@@ -48,6 +48,11 @@ class EpicrisisService extends BaseService {
 		const resultDocFilepath = await generateDocument(epicrisisTemplate, epicrisis)
 
 		shell.openItem(resultDocFilepath)
+	}
+
+	async openEpicrisesFolder() {
+		await this.fs.ensureDir(PROCESSED_TEMPLATE_DIR)
+		shell.openItem(PROCESSED_TEMPLATE_DIR)
 	}
 }
 

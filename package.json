@@ -46,6 +46,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "email-validator": "^1.1.1",
     "font-awesome": "^4.7.0",
+    "fs-extra": "^5.0.0",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",
@@ -111,7 +112,7 @@
     "forge": {
       "make_targets": {
         "win32": [
-          "wix"
+          "zip"
         ],
         "darwin": [
           "zip"

@@ -1,13 +1,19 @@
-// const repo = require('../public/main/repo')
-// const seeds = require('../public/main/repo/seeds')
-// const log = require('../public/main/utils/logger')
+const fs = require('fs-extra')
+const { resolve } = require('path')
 
-const afterExtractHook = (buildPath, elVers, platform, arch, callback) => {
-	// await repo.init().then(seeds.init).catch((error) => {
-	// 	log.error(error)
-	// })
+const afterExtractHook = async (buildPath, elVers, platform, arch, callback) => {
+	const docsDir = resolve(__dirname, '../docs')
+	const dbsDir = resolve(__dirname, '../dbs')
 
-	callback()
+	try {
+		await Promise.all([
+			fs.move(docsDir, `${buildPath}/docs`),
+			fs.move(dbsDir, `${buildPath}/dbs`),
+		])
+		callback()
+	} catch (err) {
+		callback(err)
+	}
 }
 
 module.exports = afterExtractHook

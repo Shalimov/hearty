@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { Form, ValidatedInput, SubmitButton, Button } from 'shared/components'
+import { DictionaryInput } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -24,7 +25,7 @@ const EditAnalysisFormComponent = ({
 					field={nameField} />
 			</div>
 			<div className={css(styles.inputWrapper)}>
-				<ValidatedInput
+				<DictionaryInput
 					type="textarea"
 					enableTemplates={false}
 					flexible

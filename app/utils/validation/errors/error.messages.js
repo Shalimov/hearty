@@ -31,7 +31,9 @@ const defaultMessages = {
 
 	/* NUMBER */
 	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} must be a number`,
-
+	[KEYS.NUMBER.MIN]: ({ label, args }) => `${label} must be a greater than ${args}`,
+	[KEYS.NUMBER.MAX]: ({ label, args }) => `${label} must be a lower than ${args}`,
+	
 	/* SHAPE */
 	[KEYS.SHAPE.TYPE]: ({ label }) => `${label} must be an shape`,
 

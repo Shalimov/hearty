@@ -13,6 +13,19 @@ expressions.filters.mapjoin = (collection, key, delimiter = ', ') => {
 	return fp.map(key, collection).join(delimiter)
 }
 
+expressions.filters.initials = (fullname) => {
+	const [familyName, firstName, middleName] = fp.split(/\s+/, fullname)
+	
+	if (!(fp.isString(firstName) && fp.isString(middleName))) {
+		return fullname
+	}
+
+	const firstLetter = fp.toUpper(firstName.charAt(0))
+	const middleLetter = fp.toUpper(middleName.charAt(0))
+
+	return `${fp.upperFirst(familyName)} ${firstLetter}.${middleLetter}.`
+}
+
 expressions.filters.date = (date, format) => {
 	if (date) {
 		return moment(date).format(format)

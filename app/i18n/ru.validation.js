@@ -3,40 +3,42 @@ import Ego from 'utils/validation'
 const KEYS = Ego.ERROR_KEYS
 
 export default {
-	[KEYS.DEFAULT]: ({ label }) => `${label} содержит ошибки`,
+	[KEYS.DEFAULT]: () => 'Значение поля содержит ошибки',
 
 	/* ANY */
-	[KEYS.REQUIRED]: ({ label }) => `${label} обязательно для заполнения`,
-	[KEYS.MIN]: ({ label, args }) => `${label} должно быть не меньше ${args}`,
-	[KEYS.MAX]: ({ label, args }) => `${label} должно быть не больше ${args}`,
+	[KEYS.REQUIRED]: () => 'Поле обязательно для заполнения',
+	[KEYS.MIN]: ({ args }) => `Значение поля должно быть не меньше ${args}`,
+	[KEYS.MAX]: ({ args }) => `Значение поля должно быть не больше ${args}`,
 
 	/* REF */
-	[KEYS.REF.MATCH]: ({ label }) => `${label} должно соответствовать`,
+	[KEYS.REF.MATCH]: () => 'Значение поля должно соответствовать',
 
 	/* STRING */
-	[KEYS.STRING.TYPE]: ({ label }) => `${label} должно быть строкой`,
-	[KEYS.STRING.ALPHANUM]: ({ label }) => `${label} должно содержать только латинские символы и цифры`,
-	[KEYS.STRING.ENUM]: ({ label, args }) => `${label} должно быть одним из [${args}]`,
-	[KEYS.STRING.URL]: ({ label }) => `${label} должно быть интернет адресом`,
-	[KEYS.STRING.EMAIL]: ({ label }) => `${label} должно быть адресом электронной почты`,
-	[KEYS.STRING.PATTERN]: ({ label }) => `${label} должно соответствовать шаблону`,
-	[KEYS.STRING.USERNAME]: ({ label }) => `${label} должно содержать только a-z, A-Z, 0-9, -, _ символы`,
-	[KEYS.STRING.DIGIT_LINE]: ({ label }) => `${label} должно содержать только цифры`,
-	[KEYS.STRING.PHONE_NUMBER]: ({ label }) => `${label} должно соответствовать формату +XXXXXXXXXXX(X)`,
-	[KEYS.STRING.SIMPLE_PASSWORD]: ({ label }) => `${label} должно содержать верхний/нижний регистр и цифры`,
+	[KEYS.STRING.TYPE]: () => 'Значение поля должно быть строкой',
+	[KEYS.STRING.ALPHANUM]: () => 'Значение поля должно содержать только латинские символы и цифры',
+	[KEYS.STRING.ENUM]: ({ args }) => `Значение поля должно быть одним из [${args}]`,
+	[KEYS.STRING.URL]: () => 'Значение поля должно быть интернет адресом',
+	[KEYS.STRING.EMAIL]: () => 'Значение поля должно быть адресом электронной почты',
+	[KEYS.STRING.PATTERN]: () => 'Значение поля должно соответствовать шаблону',
+	[KEYS.STRING.USERNAME]: () => 'Значение поля должно содержать только a-z, A-Z, 0-9, -, _ символы',
+	[KEYS.STRING.DIGIT_LINE]: () => 'Значение поля должно содержать только цифры',
+	[KEYS.STRING.PHONE_NUMBER]: () => 'Значение поля должно соответствовать формату +XXXXXXXXXXX(X)',
+	[KEYS.STRING.SIMPLE_PASSWORD]: () => 'Значение поля должно содержать верхний/нижний регистр и цифры',
 
 	/* DATE */
-	[KEYS.DATE.TYPE]: ({ label }) => `${label} должно быть датой`,
+	[KEYS.DATE.TYPE]: () => 'Значение поля должно быть датой',
 
 	/* BOOLEAN */
-	[KEYS.BOOLEAN.TYPE]: ({ label }) => `${label} должно быть да/нет`,
+	[KEYS.BOOLEAN.TYPE]: () => 'Значение поля должно быть да/нет',
 
 	/* NUMBER */
-	[KEYS.NUMBER.TYPE]: ({ label }) => `${label} должно быть числом`,
+	[KEYS.NUMBER.TYPE]: () => 'Значение поля должно быть числом',
+	[KEYS.NUMBER.MIN]: ({ args }) => `Значение поля должно содержать значение больше чем ${args}`,
+	[KEYS.NUMBER.MAX]: ({ args }) => `Значение поля должно содержать значение меньше чем ${args}`,
 
 	/* SHAPE */
-	[KEYS.SHAPE.TYPE]: ({ label }) => `${label} должно быть сложным объектом`,
+	[KEYS.SHAPE.TYPE]: () => 'Значение поля должно быть сложным объектом',
 
 	/* ARRAY */
-	[KEYS.ARRAY.TYPE]: ({ label }) => `${label} должно быть массивом`,
+	[KEYS.ARRAY.TYPE]: () => 'Значение поля должно быть массивом',
 }

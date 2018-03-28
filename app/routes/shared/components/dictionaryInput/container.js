@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import { compose, withHandlers } from 'recompose'
 import { withRouter } from 'react-router-dom'
 import { withDialog } from 'shared/hocs'
@@ -14,7 +15,9 @@ export default compose(
 
 			// TODO: this is workaround to transmit data between dialog and input and should be improved
 			pasteFromDictionaryDialog.onceData((term) => {
-				field.onChangeText(term)
+				if (fp.isString(term)) {
+					field.onChangeText(term)
+				}
 			})
 		},
 

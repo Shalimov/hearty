@@ -31,6 +31,8 @@ export default {
 
 	NUMBER: {
 		TYPE: 'date.type',
+		MIN: 'number.min',
+		MAX: 'number.max',
 	},
 
 	ARRAY: {

@@ -63,7 +63,7 @@ export default ({ initialValues = {} }) => ({
 export const mapping = [
 	['epicrisisNoField', 'epicrisisNo'],
 	['fullnameField', 'patient.fullname'],
-	['birthdateField', 'patient.birthdate'],
+	['birthdateField', 'patient.birthdate', Number],
 	['regionField', 'patient.region'],
 	['addressField', 'patient.address'],
 	['jobInfoField', 'patient.jobInfo'],

@@ -1,6 +1,6 @@
 const EpicrisisPatient = `
 	fullname: String!
-	birthdate: String!
+	birthdate: Int!
 	region: String!
 	address: String!
 	jobInfo: String!

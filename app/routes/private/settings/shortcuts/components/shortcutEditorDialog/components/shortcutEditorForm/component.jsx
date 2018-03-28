@@ -48,6 +48,7 @@ const ShortcutEditorFormComponent = ({
 				parametrizedCommands.has(commandField.value) && (
 					<div className={css(styles.inputWrapper)}>
 						<DictionaryInput type="textarea"
+							enableTemplates={false}
 							flexible
 							field={valueParamField} />
 					</div>

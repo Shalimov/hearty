@@ -1,11 +1,13 @@
 import { StyleSheet } from 'aphrodite'
 import { colors, measures } from 'styles/variables'
 import { toPx, tags } from 'utils/styles'
+import { mixins } from 'styles/mixins';
 
 const { unit } = measures
 
 const styles = StyleSheet.create({
 	pager: {
+		...mixins.flexRow(),
 		marginBottom: toPx(2 * unit),
 	},
 
@@ -21,9 +23,9 @@ const styles = StyleSheet.create({
 		':hover:before': {
 			display: 'none',
 			border: 'solid',
-			borderColor: `${colors.black30} transparent`,
-			borderWidth: tags.px`${6} ${6} 0 ${6}`,
-			bottom: toPx(30),
+			borderColor: `${colors.black50} transparent`,
+			borderWidth: tags.px`0 ${6} ${6} ${6}`,
+			top: toPx(30),
 			content: '""',
 			left: toPx(10),
 			position: 'absolute',
@@ -34,11 +36,11 @@ const styles = StyleSheet.create({
 			maxWidth: toPx(30 * unit),
 			display: 'none',
 			position: 'absolute',
-			backgroundColor: colors.black30,
+			backgroundColor: colors.black50,
 			color: colors.white100,
 			borderRadius: toPx(unit),
 			padding: toPx(unit),
-			bottom: toPx(36),
+			top: toPx(36),
 			whiteSpace: 'nowrap',
 			left: 0,
 			zIndex: 99,
@@ -67,6 +69,10 @@ const styles = StyleSheet.create({
 	rest: {
 		color: colors.white100,
 		backgroundColor: colors.black15,
+	},
+
+	leftArrow: {
+		marginRight: toPx(unit),
 	},
 })
 

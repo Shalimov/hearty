@@ -21,6 +21,8 @@ const WizardComponent = ({
 			availableStepSelection={availableStepSelection}
 			steps={steps}
 			currentStep={currentStep}
+			onNext={onInternalSubmit}
+			onPrev={onInternalCancel}
 			onSetStep={onSetStep} />
 		<ActiveComponent
 			{...props}

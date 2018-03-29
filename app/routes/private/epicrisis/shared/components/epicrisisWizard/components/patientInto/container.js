@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { compose, withHandlers } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { withFormModel } from 'shared/hocs'
+import { withWizardHooks } from 'shared/hocs'
 import mapper from 'utils/simple.mapper'
 
 import patientInfoModel, { mapping } from './patient.info.model'
@@ -8,8 +9,18 @@ import PatientIntoComponent from './component'
 
 export default compose(
 	withFormModel(patientInfoModel, { spreadFields: true }),
-	withWizard({
-		transformSubmitData: (_props, formData) => mapper(formData, mapping),
+	withWizardHooks({
+		onRequestData: ({ formModel }) => (done) => {
+			done(null, mapper(formModel.value, mapping))
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
+		},
 	}),
 	withHandlers({
 		isValidDate: () => date => moment().isAfter(date),

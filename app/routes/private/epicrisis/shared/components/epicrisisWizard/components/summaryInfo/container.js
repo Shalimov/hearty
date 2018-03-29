@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withProps } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { withFormModel, withWizardHooks } from 'shared/hocs'
 import mapper from 'utils/simple.mapper'
 
 import summaryModel, { mapping } from './summary.model'
@@ -11,8 +11,18 @@ export default compose(
 	withProps(({ wizardData }) => ({
 		patient: fp.get('patient', Object.assign({}, ...wizardData.values())),
 	})),
-	withWizard({
-		transformSubmitData: (_props, formData) => mapper(formData, mapping),
+	withWizardHooks({
+		onRequestData: ({ formModel }) => (done) => {
+			done(null, mapper(formModel.value, mapping))
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
+		},
 	}),
 	withHandlers({
 		isValidDate: ({ patient }) => date => {

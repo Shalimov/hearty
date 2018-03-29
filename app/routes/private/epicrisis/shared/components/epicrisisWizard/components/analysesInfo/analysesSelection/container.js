@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
 import { compose, lifecycle } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { withFormModel, withWizardHooks } from 'shared/hocs'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Ego from 'utils/validation'
@@ -19,6 +19,7 @@ const getInitialValues = (selectedAnalyses, analyses) => {
 }
 
 export default compose(
+	withFormModel({}),
 	graphql(gql`
 		query AnalysisOverviewQuery($input: AnalysisQueryInput) {
 			analyses(input: $input) {
@@ -45,11 +46,10 @@ export default compose(
 			},
 		},
 	}),
-	withFormModel({}),
-	withWizard({
-		transformSubmitData: ({ data }, formData) => {
+	withWizardHooks({
+		onRequestData: ({ formModel, data }) => (done) => {
 			const analysesMap = fp.groupBy('name', data.analyses.content)
-			return fp.flow(
+			const formData = fp.flow(
 				fp.entries,
 				fp.filter(fp.flow(fp.nth(1), Boolean)),
 				fp.map(([name, repeatCount]) => ({
@@ -58,7 +58,17 @@ export default compose(
 					analysis: fp.head(analysesMap[name]),
 				})),
 				selectedAnalyses => ({ selectedAnalyses }),
-			)(formData)
+			)(formModel.value)
+
+			done(null, formData)
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
 		},
 	}),
 	lifecycle({
@@ -66,6 +76,7 @@ export default compose(
 			// it makes sense when user click back
 			this.componentWillReceiveProps(this.props)
 		},
+
 
 		componentWillReceiveProps({ data, formModel, initialValues }) {
 			if (data.loading) {

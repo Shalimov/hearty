@@ -1,54 +1,69 @@
 import fp from 'lodash/fp'
-import { lifecycle, withProps } from 'recompose'
+import { compose, withContext, getContext, lifecycle, mapProps } from 'recompose'
+import PropTypes from 'prop-types'
 
-const childComponentPropsKey = 'childComponentProps'
-const childComponentProps = Symbol(childComponentPropsKey)
-
-let focusedComponent = null
-const optionsMap = Reflect.construct(WeakMap, [])
-
-const externalOptsDefault = Object.seal({
-	transformSubmitData: fp.identity,
-	[childComponentProps]: null,
+const wrapHook = hook => () => new Promise((resolve, reject) => {
+	hook((err, result) => {
+		if (err) {
+			reject(err)
+		} else {
+			resolve(result)
+		}
+	})
 })
 
-export const wizardExternalOpts = withProps({
-	externalOpts: new Proxy({}, {
-		get(traget, prop) {
-			const options = optionsMap.get(focusedComponent)
+const defaultHooks = {
+	wizardHooks: {
+		onRequestData: fp.noop,
+		onBeforeNext: fp.noop,
+		// onBeforePrev: fp.noop,
+	},
+}
 
-			if (!options) {
-				return options
-			}
+const contextType = {
+	wizardHooks: PropTypes.shape({
+		onRequestData: PropTypes.func.isRequired,
+		onBeforeNext: PropTypes.func.isRequired,
+		// onBeforePrev: PropTypes.func.isRequired,
+	}).isRequired,
+}
+// Wizard what we need
+// onRequestData
+// onBeforeNext
+// onBeforePrev
 
-			if (prop === childComponentPropsKey) {
-				return options[childComponentProps]
-			}
+const updateHooks = (hooks, props) => {
+	const { wizardHooks } = props
+	wizardHooks.onRequestData = wrapHook(hooks.onRequestData(props))
+	wizardHooks.onBeforeNext = wrapHook(hooks.onBeforeNext(props))
+}
 
-			return options[prop]
+const connectWizard = compose(
+	withContext(contextType, () => ({ ...defaultHooks })),
+	getContext(contextType)
+)
+
+const withWizardHooks = hooks => compose(
+	getContext(contextType),
+	lifecycle({
+		componentDidMount() {
+			updateHooks(hooks, this.props)
+		},
+
+		componentDidUpdate() {
+			updateHooks(hooks, this.props)
+		},
+
+		componentWillUnmount() {
+			const { wizardHooks } = this.props
+			Object.assign(wizardHooks, defaultHooks)
 		},
 	}),
-})
+	mapProps(fp.omit('wizardHooks')),
+)
 
-export const withWizard = (recievedOptions) =>
-	(Component) => {
-		const preparedOptions = Object.assign({}, externalOptsDefault, recievedOptions)
-		
-		return lifecycle({
-			componentDidMount() {
-				focusedComponent = Component
-				optionsMap.set(focusedComponent, preparedOptions)
-				this.componentWillReceiveProps(this.props)
-			},
 
-			componentWillReceiveProps(nextProps) {
-				preparedOptions[childComponentProps] = nextProps
-			},
-
-			componentWillUnmount() {
-				optionsMap.set(focusedComponent, externalOptsDefault)
-				focusedComponent = null
-			},
-		})(Component)
-	}
-
+export {
+	connectWizard,
+	withWizardHooks,
+}

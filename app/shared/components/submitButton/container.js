@@ -2,7 +2,7 @@ import fp from 'lodash/fp'
 import { compose, lifecycle, withHandlers, withState, mapProps } from 'recompose'
 import SubmitButtonComponent from './component'
 
-let componentExists = false
+const componentAliveSet = new WeakSet()
 
 export default compose(
 	withState('isSubmitting', 'setSubmitState', false),
@@ -23,7 +23,7 @@ export default compose(
 				setSubmitState(true)
 
 				const submitTracking = () => {
-					if (componentExists) {
+					if (componentAliveSet.has(form)) {
 						setSubmitState(false)
 					}
 				}
@@ -34,11 +34,13 @@ export default compose(
 	}),
 	lifecycle({
 		componentDidMount() {
-			componentExists = true
+			const { form } = this.props
+			componentAliveSet.add(form)
 		},
 
 		componentWillUnmount() {
-			componentExists = false
+			const { form } = this.props
+			componentAliveSet.delete(form)
 		},
 	}),
 	mapProps(props => fp.omit(['setSubmitState'], props)),

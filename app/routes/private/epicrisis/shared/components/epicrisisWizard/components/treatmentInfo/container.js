@@ -6,7 +6,7 @@ import TreatmentInfoComponent from './component'
 export default compose(
 	withProps(({ initialValues }) => ({
 		storeKey: 'treatment',
-		transformBeforeSubmit: fp.map((description) => ({ description })), 
+		postTransform: fp.map(description => ({ description })),
 		extractSelectedFields: () => {
 			const { treatment } = initialValues
 			return fp.map('description', treatment)

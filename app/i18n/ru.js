@@ -158,7 +158,7 @@ const descriptions = {
 			parameters: 'Параметры',
 		},
 		epicrisis: {
-			done: 'Выписан',
+			done: 'Готов к печати',
 			draft: 'Черновик',
 		},
 		analysis: {
@@ -234,7 +234,7 @@ const descriptions = {
 	hints: {
 		dblClickToEdit: 'Двойной щелчок для редактирования',
 		ctrlEnterAdd: 'Ctrl + Enter для добавления',
-		clickToRemove: 'Нажмите для удаления',
+		clickToRemove: 'Удалить',
 		enterAdd: 'Enter для добавления',
 		clickToEdit: 'Редактировать',
 		clickToPrint: 'Распечатать',

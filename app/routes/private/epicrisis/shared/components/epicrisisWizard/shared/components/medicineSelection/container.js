@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
-import { compose, lifecycle, defaultProps } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { compose, lifecycle } from 'recompose'
+import { withFormModel, withWizardHooks } from 'shared/hocs'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Ego from 'utils/validation'
@@ -15,9 +15,7 @@ const getSelectedKeys = fp.flow(
 
 // TODO: Refactoring
 export default compose(
-	defaultProps({
-		transformBeforeSubmit: fp.identity,
-	}),
+	withFormModel({}),
 	graphql(gql`
 		query MedicineGroupsInfoRetrieve($input: MedicineGroupQueryInput) {
 			medicineGroups(input: $input) {
@@ -41,11 +39,22 @@ export default compose(
 			},
 		},
 	}),
-	withFormModel({}),
-	withWizard({
-		transformSubmitData: ({ storeKey, transformBeforeSubmit }, formData) => ({
-			[storeKey]: transformBeforeSubmit(getSelectedKeys(formData)),
-		}),
+	withWizardHooks({
+		onRequestData: ({
+			storeKey,
+			formModel,
+			postTransform = fp.identity,
+		}) => (done) => {
+			done(null, { [storeKey]: postTransform(getSelectedKeys(formModel.value)) })
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
+		},
 	}),
 	lifecycle({
 		componentWillMount() {

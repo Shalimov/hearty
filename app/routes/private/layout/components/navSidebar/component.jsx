@@ -27,9 +27,9 @@ const SideBarTrigger = ({ title, icon, chevronDir = 'down' }) => (
 	</button>
 )
 
-const SideBarLink = ({ url, title, icon, extraClass }) => (
+const SideBarLink = ({ url, title, icon, exact = false, extraClass }) => (
 	<NavLink to={url}
-		exact
+		exact={exact}
 		className={css(styles.menuItemLink, extraClass)}
 		activeClassName={css(extraClass, styles.menuItemLinkActive)}>
 		{icon && <FontAwesome name={icon} className={css(styles.menuItemIcon, styles.menuItemLeftIcon)} />}
@@ -41,7 +41,7 @@ const NavSidebarComponent = () => (
 	<aside className={css(styles.container)}>
 		<menu className={css(styles.menu)}>
 			<li className={css(styles.menuItem)}>
-				<SideBarLink url={board.index()} title="links.main" icon="home" />
+				<SideBarLink url={board.index()} title="links.main" exact={true} icon="home" />
 			</li>
 			<li className={css(styles.menuItem)}>
 				<SideBarLink url={epicrisis.index()} title="links.epicrisis" icon="file-text" />
@@ -80,6 +80,7 @@ SideBarTrigger.propTypes = {
 SideBarLink.propTypes = {
 	url: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
+	exact: PropTypes.bool,
 	extraClass: PropTypes.shape(),
 	icon: PropTypes.string,
 }

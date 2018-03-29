@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
 import { compose } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { withFormModel, withWizardHooks } from 'shared/hocs'
 import Ego from 'utils/validation'
 
 import AnalysesEditingComponent from './component'
@@ -20,6 +20,16 @@ const createFromAnalyses = fpWithoutCap.map(({ name, description }, index) => [
 		scheme: Ego.string().label(name).required(),
 	},
 ])
+
+const toFormData = fp.flow(
+	fp.get('formModel.value'),
+	fp.entries,
+	fp.map(([name, description]) => ({
+		name: extractFieldName(name),
+		description,
+	})),
+	analyses => ({ analyses }),
+)
 
 export default compose(
 	withFormModel(({ wizardData, initialValues }) => {
@@ -47,15 +57,17 @@ export default compose(
 
 		return fp.fromPairs(fieldPairs)
 	}),
-	withWizard({
-		transformSubmitData: fp.flow(
-			fp.get('formModel.value'),
-			fp.entries,
-			fp.map(([name, description]) => ({
-				name: extractFieldName(name),
-				description,
-			})),
-			analyses => ({ analyses }),
-		),
-	})
+	withWizardHooks({
+		onRequestData: ({ formModel }) => (done) => {
+			done(null, toFormData(formModel.value))
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
+		},
+	}),
 )(AnalysesEditingComponent)

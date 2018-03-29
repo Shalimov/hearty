@@ -1,8 +1,6 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
-import { wizardExternalOpts } from 'shared/hocs'
-import { toast } from 'react-toastify'
-import t from 'i18n'
+import { connectWizard } from 'shared/hocs'
 
 import WizardComponent from './companent'
 
@@ -29,7 +27,7 @@ export default compose(
 			activeComponentProps: getProps(steps[currentStep]),
 		}),
 	}),
-	wizardExternalOpts,
+	connectWizard,
 	withHandlers({
 		incrementStep: ({ items, currentStep, setStep, onStepChanged }) => () => {
 			if (items.length > currentStep + 1) {
@@ -51,28 +49,21 @@ export default compose(
 			setStep,
 			wizardData,
 			currentStep,
-			externalOpts,
+			wizardHooks,
 			onStepChanged,
 			availableStepSelection,
-		}) => (step) => {
+		}) => async (step) => {
 			if (availableStepSelection && items.length > step && step >= 0) {
-				const { transformSubmitData, childComponentProps } = externalOpts
+				const data = await wizardHooks.onRequestData()
+				const isPossibleToStepNext = await wizardHooks.onBeforeNext()
 
-				const childFormModel = fp.get('formModel', childComponentProps)
-				const isDataInvalid = fp.get('isInvalid', childFormModel)
-				childComponentProps.formModel.setTouched(true)
-
-				if (isDataInvalid) {
-					fp.invokeArgs('setTouched', [true], childFormModel)
-					toast.error(t('errors.epicrisis.validation'))
-				} else {
-					// TODO: Temp solution
-					const formData = fp.get('value', childFormModel)
-					wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
-
-					setStep(step)
-					onStepChanged && onStepChanged(step)
+				if (!isPossibleToStepNext) {
+					return undefined
 				}
+
+				wizardData.set(currentStep, data)
+				setStep(step)
+				onStepChanged && onStepChanged(step)
 			}
 		},
 
@@ -81,13 +72,18 @@ export default compose(
 			items,
 			onSubmit,
 			wizardData,
+			wizardHooks,
 			incrementStep,
-			externalOpts,
-		}) => (formData, options) => {
+		}) => async (_data, options) => {
 			const isLastStep = currentStep === (items.length - 1)
-			const { transformSubmitData, childComponentProps } = externalOpts
+			const data = await wizardHooks.onRequestData()
+			const isPossibleToStepNext = await wizardHooks.onBeforeNext()
 
-			wizardData.set(currentStep, transformSubmitData(childComponentProps, formData))
+			if (!isPossibleToStepNext) {
+				return undefined
+			}
+
+			wizardData.set(currentStep, data)
 
 			if (!isLastStep) {
 				incrementStep()

@@ -1,6 +1,6 @@
 import fp from 'lodash/fp'
 import { compose } from 'recompose'
-import { withFormModel, withWizard } from 'shared/hocs'
+import { withFormModel, withWizardHooks } from 'shared/hocs'
 import Ego from 'utils/validation'
 
 import MedicineTakingRecommendationComponent from './component'
@@ -16,6 +16,11 @@ const createModel = fp.flow(
 	fp.fromPairs
 )
 
+const toFormData = fp.flow(
+	fp.entries,
+	fp.map(([key, value]) => ({ medicine: key, recommendation: value })),
+	medicineRecommendations => ({ medicineRecommendations })
+)
 // TODO: Refactoring & initial values
 export default compose(
 	withFormModel(({ wizardData, initialValues }) => {
@@ -32,12 +37,17 @@ export default compose(
 
 		return createModel(formFields)
 	}),
-	withWizard({
-		transformSubmitData: fp.flow(
-			fp.get('formModel.value'),
-			fp.entries,
-			fp.map(([key, value]) => ({ medicine: key, recommendation: value })),
-			medicineRecommendations => ({ medicineRecommendations })
-		),
+	withWizardHooks({
+		onRequestData: ({ formModel }) => (done) => {
+			done(null, toFormData(formModel.value))
+		},
+
+		onBeforeNext: ({ formModel }) => (done) => {
+			const { isValid } = formModel
+
+			formModel.setTouched(true)
+
+			done(null, isValid)
+		},
 	})
 )(MedicineTakingRecommendationComponent)

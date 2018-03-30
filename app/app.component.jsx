@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'mobx-react'
 import { ApolloProvider } from 'react-apollo'
-import { HashRouter as Router } from 'react-router-dom'
+import { MemoryRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { ContentLoader } from 'shared/components'
 import { DialogProvider } from 'shared/hocs'
@@ -13,6 +13,7 @@ const ApplicationComponent = ({
 	services,
 	apolloClient,
 	isInitializing,
+	getUserConfirmation,
 	applicationStateStore,
 }) => (
 	<ContentLoader isLoading={isInitializing} fixed>
@@ -22,7 +23,7 @@ const ApplicationComponent = ({
 				<Provider
 					applicationStateStore={applicationStateStore}
 					{...services}>
-					<Router>
+					<Router getUserConfirmation={getUserConfirmation}>
 						<ApplicationRoutes />
 					</Router>
 				</Provider>
@@ -36,6 +37,7 @@ ApplicationComponent.propTypes = {
 	apolloClient: PropTypes.shape(),
 	services: PropTypes.shape(),
 	applicationStateStore: PropTypes.shape(),
+	getUserConfirmation: PropTypes.func.isRequired,
 }
 
 export default ApplicationComponent

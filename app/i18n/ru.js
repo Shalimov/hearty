@@ -22,6 +22,10 @@ const descriptions = {
 		dictionary: {
 			saved: 'Сохранено в словаре',
 		},
+
+		forms: {
+			preventTransition: 'Все ваши измненения не будут сохранены. Вы уверены что хотите перейти?',
+		},
 	},
 
 	common: {

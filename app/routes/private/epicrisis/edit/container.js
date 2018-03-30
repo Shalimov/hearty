@@ -1,6 +1,7 @@
 import fp from 'lodash/fp'
 import { compose, withHandlers, withState } from 'recompose'
 import { tryAsync } from 'utils/try'
+import { epicrisis } from 'routes/route.map'
 
 import { queryHoc, mutationHoc } from './graphql.hocs'
 import EditEpicrisisComponent from './component'
@@ -11,7 +12,7 @@ export default compose(
 	withState('epicrisisCopy', 'setEpicrisis', null),
 	withHandlers({
 		onCancel: ({ history }) => () => {
-			history.goBack()
+			history.push(epicrisis.index(), { skipConfirm: true })
 		},
 
 		onSubmit: ({ updateEpicrisisMutation, printEpicrisisMutation, history }) =>
@@ -31,7 +32,7 @@ export default compose(
 					})
 				}
 
-				history.goBack()
+				history.push(epicrisis.index(), { skipConfirm: true })
 			}),
 	})
 )(EditEpicrisisComponent)

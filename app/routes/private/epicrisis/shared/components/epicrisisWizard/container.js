@@ -6,6 +6,7 @@ import {
 	lifecycle,
 } from 'recompose'
 import { omitRecoursive } from 'utils/omit.recoursive'
+import t from 'i18n'
 
 import EpicrisisWizardComponent from './component'
 import wizardItems from './wizard.items'
@@ -15,6 +16,16 @@ let containerRef = null
 export default compose(
 	withProps({ items: wizardItems }),
 	withHandlers({
+		onMessage: () => (location) => {
+			const skipConfirm = fp.get('skipConfirm', location.state)
+
+			if (!skipConfirm) {
+				return t('toasts.forms.preventTransition')
+			}
+
+			return skipConfirm
+		},
+
 		onContainerRef: () => (ref) => {
 			containerRef = ref
 		},

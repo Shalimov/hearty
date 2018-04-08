@@ -22,7 +22,6 @@ const createFromAnalyses = fpWithoutCap.map(({ name, description }, index) => [
 ])
 
 const toFormData = fp.flow(
-	fp.get('formModel.value'),
 	fp.entries,
 	fp.map(([name, description]) => ({
 		name: extractFieldName(name),

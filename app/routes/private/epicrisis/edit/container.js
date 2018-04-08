@@ -19,15 +19,15 @@ export default compose(
 			tryAsync(async (epicrisisData, options) => {
 				const templateName = fp.get('templateName', options)
 
-				await updateEpicrisisMutation({
+				const { data: { updateEpicrisis } } = await updateEpicrisisMutation({
 					variables: { input: epicrisisData },
 				})
 
 				if (fp.isString(templateName)) {
 					await printEpicrisisMutation({
 						variables: {
-							_id: epicrisisData._id,
 							epicrisisTemplate: templateName,
+							_id: updateEpicrisis._id,
 						},
 					})
 				}

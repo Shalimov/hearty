@@ -6,9 +6,9 @@ import {
 	Form,
 	Button,
 	SubmitButton,
-	ValidatedInput,
 	EmptyArea,
 } from 'shared/components'
+import { DictionaryInput } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -47,7 +47,7 @@ const MedicineTakingRecommendationComponent = ({
 			{
 				fp.map((field) => (
 					<div key={field.id} className={css(styles.inputWrapper)}>
-						<ValidatedInput
+						<DictionaryInput
 							type="textarea"
 							rows={2}
 							flexible

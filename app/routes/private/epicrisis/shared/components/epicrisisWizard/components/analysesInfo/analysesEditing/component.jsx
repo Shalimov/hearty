@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import {
 	Form,
-	ValidatedInput,
 	SubmitButton,
 	Button,
 	EmptyArea,
 } from 'shared/components'
+import { DictionaryInput } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
@@ -46,7 +46,7 @@ const AnalysesEditingComponent = ({
 			{
 				fp.map((field) => (
 					<div key={field.id} className={css(styles.inputWrapper)}>
-						<ValidatedInput
+						<DictionaryInput
 							type="textarea"
 							rows={3}
 							flexible

@@ -24,7 +24,7 @@ export const showToast = message => {
 			/>
 		)
 
-		toastId = toast.warn(confirmToast, {
+		toastId = toast.info(confirmToast, {
 			autoClose: false,
 			closeButton: false,
 			closeOnClick: false,

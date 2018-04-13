@@ -6,7 +6,7 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	container: {
-		padding: toPx(6 * unit),
+		padding: toPx(4 * unit),
 		width: toPx(75 * unit),
 	},
 })

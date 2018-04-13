@@ -50,7 +50,7 @@ const NavSidebarComponent = () => (
 				<SideBarLink url={analysis.index()} title="links.analysis" icon="line-chart" />
 			</li>
 			<li className={css(styles.menuItem)}>
-				<SideBarLink url={medicine.index()} title="links.medicine" icon="medkit" />
+				<SideBarLink url={medicine.index()} title="links.medicine.groups" icon="medkit" />
 			</li>
 			<li className={css(styles.menuItem)}>
 				<SideBarLink url={dictionary.index()} title="links.dictionary" icon="book" />

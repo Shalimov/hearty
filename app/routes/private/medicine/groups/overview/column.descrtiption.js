@@ -18,11 +18,18 @@ export default (LeftControls, RightControls) => [
 	{
 		Header: t('labels.medicine.priority'),
 		accessor: 'priority',
+		width: 100,
+		style: {
+			textAlign: 'right',
+		},
 	},
 	{
 		Header: t('labels.medicine.count'),
 		id: 'medicamentCount',
 		accessor: 'listOfMedicaments.length',
+		style: {
+			textAlign: 'right',
+		},
 	},
 	{
 		id: 'rightControls',

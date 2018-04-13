@@ -36,9 +36,22 @@ export default compose(
 			},
 		}),
 	}),
+	graphql(gql`
+		mutation RemoveMedicine($_gid: ID!, $_id: ID!) {
+			removeMedicine(_gid: $_gid, _id: $_id) {
+				_id
+			}
+		}
+	`, { name: 'removeMedicine' }),
 	withHandlers({
-		onRemove: () =>
-			tryAsync(async () => {
+		onRemove: ({ match, removeMedicine }) =>
+			tryAsync(async (medicineId) => {
+				const { groupId } = match.params
+
+				await removeMedicine({
+					variables: { _gid: groupId, _id: medicineId },
+					refetchQueries: ['RetrieveMedicineGroupQuery'],
+				})
 			}),
 
 		onGoBack: ({ history }) => () => {

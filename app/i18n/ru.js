@@ -166,7 +166,7 @@ const descriptions = {
 		medicine: {
 			drug: 'Лекарство',
 			defaultPrescription: 'Рекомендация по умолчанию',
-			groups: 'Название групп лекарств',
+			groups: 'Название группы лекарств',
 			priority: 'Приоритет',
 			note: 'Заметка',
 			count: 'Кол-во лекарств в группе',

@@ -8,6 +8,7 @@ class ValidatedFieldModel {
 	formRef = undefined
 	name = undefined
 	scheme = undefined
+	meta = undefined
 	@observable value = undefined
 	@observable touched = false
 	@observable dirty = false
@@ -28,6 +29,10 @@ class ValidatedFieldModel {
 
 	static create(name, initialValue, scheme, readonly) {
 		return new ValidatedFieldModel(name, initialValue, scheme, readonly)
+	}
+
+	setMeta(meta) {
+		this.meta = meta
 	}
 
 	setFormRef(formRef) {

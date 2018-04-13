@@ -90,15 +90,15 @@ export default compose(
 
 			for (const { name, basic } of content) {
 				const initialCount = (basic && hasNoInitialValues) ? 1 : 0
-				formModel.addField(
+				formModel.addField({
 					name,
-					initialValuesMap[name] || initialCount,
-					Ego.number()
+					initialValue: initialValuesMap[name] || initialCount,
+					scheme: Ego.number()
 						.min(0)
 						.max(5)
 						.required()
-						.label(name)
-				)
+						.label(name),
+				})
 			}
 		},
 	})

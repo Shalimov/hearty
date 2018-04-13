@@ -73,7 +73,12 @@ export default compose(
 
 			fp.each((group) => {
 				for (const { name } of group.listOfMedicaments) {
-					formModel.addField(name, isSelectedMedicine(name), Ego.boolean().label(name))
+					formModel.addField({ 
+						name, 
+						initialValue: isSelectedMedicine(name), 
+						scheme: Ego.boolean().label(name),
+						meta: { gid: group._id },
+					}) 
 				}
 			}, content)
 		},

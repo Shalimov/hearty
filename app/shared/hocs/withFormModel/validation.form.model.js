@@ -56,6 +56,15 @@ class VadlidationFormModel {
 		)(this.fields)
 	}
 
+	@computed
+	get valueWithMeta() {
+		return fp.flow(
+			fp.entries,
+			fp.map(([key, item]) => [key, { value: item.value, meta: item.meta }]),
+			fp.fromPairs,
+		)(this.fields)
+	}
+
 	setTouched(value) {
 		fp.invokeArgsMap('setTouched', [value], this.fields)
 	}
@@ -64,9 +73,10 @@ class VadlidationFormModel {
 		fp.invokeMap('reset', this.fields)
 	}
 
-	addField(name, initialValue, scheme, readonly) {
-		this.fields[name] = ValidatedFieldModel.create(name, initialValue, scheme, readonly)
-		return this.fields[name]
+	addField({ name, initialValue, scheme, readonly, meta }) {
+		const field = this.fields[name] = ValidatedFieldModel.create(name, initialValue, scheme, readonly)
+		field.setMeta(meta)
+		return field
 	}
 }
 

@@ -10,9 +10,13 @@ const styles = StyleSheet.create({
 		padding: toPx(4 * unit),
 	},
 
+	headerWrapper: {
+		...mixins.flexRow(),
+		marginBottom: toPx(unit),
+	},
+
 	header: {
 		...mixins.font({ size: font.font26, weight: font.weight.bold }),
-		marginBottom: toPx(unit),
 	},
 
 	description: {
@@ -28,6 +32,10 @@ const styles = StyleSheet.create({
 	icon: {
 		fontSize: font.font24,
 		color: colors.color2,
+	},
+
+	backIcon: {
+		marginRight: toPx(unit),
 	},
 })
 

@@ -20,15 +20,6 @@ const LeftControlsComponent = ({ value }) => (
 					className={css(styles.icon)} />
 			</Button>
 		</Link>
-		<Link
-			title={t('hints.clickToFollow')}
-			className={css(styles.link)}
-			to={medicine.list(value._id)}>
-			<Button iconed>
-				<FontAwesome name="list-alt"
-					className={css(styles.icon)} />
-			</Button>
-		</Link>
 	</div>
 )
 

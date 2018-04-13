@@ -6,7 +6,7 @@ const typeName = 'MedicineGroup'
 const Medicine = `
 	type ${subtypeName} {
 		name: String!
-		defaultValue: String
+		prescription: String
 	}
 `
 

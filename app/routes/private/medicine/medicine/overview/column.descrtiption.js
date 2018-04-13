@@ -5,24 +5,23 @@ export default (LeftControls, RightControls) => [
 	{
 		id: 'leftControls',
 		accessor: fp.identity,
-		width: 80,
+		width: 40,
 		style: {
 			textAlign: 'center',
 		},
 		Cell: LeftControls,
 	},
 	{
-		Header: t('labels.medicine.groups'),
-		accessor: 'groupName',
+		Header: t('labels.medicine.drug'),
+		accessor: 'name',
 	},
 	{
-		Header: t('labels.medicine.priority'),
-		accessor: 'priority',
-	},
-	{
-		Header: t('labels.medicine.count'),
-		id: 'medicamentCount',
-		accessor: 'listOfMedicaments.length',
+		Header: t('labels.medicine.defaultPrescription'),
+		id: 'prescription',
+		accessor: fp.flow(
+			fp.prop('prescription'),
+			value => value || t('labels.medicine.noPrescription')
+		),
 	},
 	{
 		id: 'rightControls',

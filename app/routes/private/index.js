@@ -5,7 +5,7 @@ import Layout from './layout'
 import Welcome from './welcome'
 import Analysis from './analysis'
 import Dictionary from './dictionary'
-import Medicine from './medicine'
+import Medicine from './medicine.old'
 import Epicrisis from './epicrisis'
 import Settings from './settings'
 

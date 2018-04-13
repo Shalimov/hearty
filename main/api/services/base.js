@@ -9,6 +9,10 @@ class BaseService {
 		this.model = repository[modelName]
 	}
 
+	createId() {
+		return this.model.createNewId()
+	}
+
 	toSearchQuery() {
 		throw new Error('Should be reimplemented in derivied Models')
 	}

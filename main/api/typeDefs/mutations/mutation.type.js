@@ -20,8 +20,9 @@ const Mutation = `
 		removeMedicineGroup(_id: ID!): MedicineGroup
 
 		# medicine
-		createMedicine(_id: ID!, name: String!): MedicineGroup
-		removeMedicine(_id: ID!, name: String!): MedicineGroup
+		createMedicine(input: MedicineInput!): MedicineGroup
+		updateMedicine(input: MedicineInput!): MedicineGroup
+		removeMedicine(_gid: ID!, _id: ID!): MedicineGroup
 
 		# terms
 		createTerm(term: String!): Term

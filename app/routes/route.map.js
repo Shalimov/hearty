@@ -19,6 +19,8 @@ export const medicine = createPrefix(`${board.index()}/medicine/groups`, {
 	add: fp.constant('/add'),
 	edit: groupId => `/${groupId}/edit`,
 	list: groupId => `/${groupId}/list`,
+	addItem: groupId => `/${groupId}/list/add`,
+	editItem: (groupId, medicineId) => `/${groupId}/list/${medicineId}/edit`,
 })
 
 export const analysis = createPrefix(`${board.index()}/analysis`, {

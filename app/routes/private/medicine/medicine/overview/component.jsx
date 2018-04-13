@@ -28,7 +28,7 @@ const MedicineOverviewComponent = ({
 		</div>
 		<p className={css(styles.description)}>{t('descriptions.medicine.drugs')}</p>
 		<div className={css(styles.linkWrapper)}>
-			<Link to={medicine.add()}>
+			<Link to={medicine.addItem(medicineGroup._id)}>
 				<Button iconed title={t('links.medicine.addGroup')}>
 					<FontAwesome name="plus-square" className={css(styles.icon)} />
 				</Button>

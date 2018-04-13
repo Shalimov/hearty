@@ -249,6 +249,8 @@ const descriptions = {
 		medicine: {
 			addGroup: 'Добавить группу',
 			editGroup: 'Редактировать группу',
+			addDrug: 'Добавить лекарство',
+			editDrug: 'Редактировать лекарство',
 		},
 		shortcuts: {
 			editor: 'Нажмите нужную комбинацию для выбора',

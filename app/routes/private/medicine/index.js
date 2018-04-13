@@ -1,7 +1,7 @@
 import createRoutes from 'shared/hocs/create-routes'
 
-import Groups from './groups'
 import Medicine from './medicine'
+import Groups from './groups'
 
 const MedicineRoutes = createRoutes(({ match }) => [
 	{

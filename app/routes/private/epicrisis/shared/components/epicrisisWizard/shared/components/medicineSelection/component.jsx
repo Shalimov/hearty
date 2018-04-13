@@ -16,7 +16,10 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const rejectEmpty = fp.reject(fp.flow(fp.get('listOfMedicaments'), fp.isEmpty))
+const postProcessGroups = fp.flow(
+	fp.reject(fp.flow(fp.get('listOfMedicaments'), fp.isEmpty)),
+	fp.orderBy(['priority'], ['desc'])
+)
 
 // TODO: Refactoring
 const MedicineSelectionComponent = ({
@@ -69,7 +72,7 @@ const MedicineSelectionComponent = ({
 												}
 											</tbody>
 										</table>
-									), rejectEmpty(medicineGroups.content))
+									), postProcessGroups(medicineGroups.content))
 								}
 							</div>
 							<div className={css(styles.buttonGroup)}>

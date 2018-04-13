@@ -12,6 +12,10 @@ class MedicineGroupService extends BaseService {
 	toSearchQuery() {
 		return {}
 	}
+
+	sortByCreteria() {
+		return { priority: -1 }
+	}
 }
 
 module.exports = MedicineGroupService

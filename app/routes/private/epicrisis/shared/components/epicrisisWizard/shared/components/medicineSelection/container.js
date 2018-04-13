@@ -13,7 +13,7 @@ const getSelectedKeys = fp.flow(
 	fp.map(fp.first)
 )
 
-// TODO: Refactoring
+// TODO: Refactoring make unlimited number or groups
 export default compose(
 	withFormModel({}),
 	graphql(gql`
@@ -22,8 +22,11 @@ export default compose(
 				content {
 					_id
 					groupName
+					priority
 					listOfMedicaments {
+						_id
 						name
+						prescription
 					}
 				}
 			}

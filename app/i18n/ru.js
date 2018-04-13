@@ -168,7 +168,7 @@ const descriptions = {
 			defaultPrescription: 'Рекомендация по умолчанию',
 			groups: 'Название группы лекарств',
 			priority: 'Приоритет',
-			note: 'Заметка',
+			note: 'Примечание',
 			count: 'Кол-во лекарств в группе',
 			noPrescription: 'Без рекомендаций',
 		},

@@ -1,12 +1,14 @@
+const fp = require('lodash/fp')
+
 module.exports = {
-	createMedicineGroup(_, { groupName }, context) {
+	createMedicineGroup(_, { input: group }, context) {
 		const { medicineGroupService } = context.services
-		return medicineGroupService.create({ groupName, listOfMedicaments: [] })
+		return medicineGroupService.create(fp.assign(group, { listOfMedicaments: [] }))
 	},
 
-	updateMedicineGroup(_, { _id, groupName }, context) {
+	updateMedicineGroup(_, { input: group }, context) {
 		const { medicineGroupService } = context.services
-		return medicineGroupService.update({ _id, groupName })
+		return medicineGroupService.update(group)
 	},
 
 	removeMedicineGroup(_, { _id }, context) {

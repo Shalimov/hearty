@@ -165,6 +165,7 @@ const descriptions = {
 		medicine: {
 			groups: 'Название групп лекарств',
 			priority: 'Приоритет',
+			note: 'Заметка',
 			count: 'Кол-во лекарств в группе',
 		},
 		shortcuts: {
@@ -241,6 +242,10 @@ const descriptions = {
 		chooseDocTemplate: 'Выбор шаблона документа',
 		basic: 'Базовый',
 		additional: 'Дополнительный',
+		medicine: {
+			addGroup: 'Добавить группу',
+			editGroup: 'Редактировать группу',
+		},
 		shortcuts: {
 			editor: 'Нажмите нужную комбинацию для выбора',
 		},

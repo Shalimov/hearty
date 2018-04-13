@@ -8,9 +8,12 @@ import {
 import { tryAsync } from 'utils/try'
 
 import withQueries from './hocs/with.queries'
+import withMutations from './hocs/with.mutations'
 
 import columnsDescriptions from './column.descrtiption'
 import MedicineGroupsOverviewComponent from './component'
+import LeftControls from './components/leftControls'
+import RightControls from './components/rightControls'
 
 const DEFAULT_PAGE_SIZE = 15
 
@@ -23,9 +26,16 @@ export default compose(
 		skip: 0,
 	})),
 	withQueries,
+	withMutations,
 	withHandlers({
-		onRemove: () =>
-			tryAsync(async () => {
+		onRemove: ({ removeMedicineGroup }) =>
+			tryAsync(async (groupId) => {
+				await removeMedicineGroup({
+					variables: {
+						_id: groupId,
+					},
+					refetchQueries: ['MedicineGroupOverviewQuery'],
+				})
 			}),
 
 		onFetchData: ({ data, pageSize, setQueryInput, loadMore }) => (state) => {
@@ -42,7 +52,14 @@ export default compose(
 			loadMore(input)
 		},
 	}),
-	withProps(() => ({
-		columns: columnsDescriptions(),
-	}))
+	withProps(({ onRemove }) => {
+		const wrappedRightControl = withProps({ onRemove })
+
+		return {
+			columns: columnsDescriptions(
+				LeftControls,
+				wrappedRightControl(RightControls)
+			),
+		}
+	})
 )(MedicineGroupsOverviewComponent)

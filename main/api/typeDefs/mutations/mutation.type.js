@@ -15,8 +15,8 @@ const Mutation = `
 		removeAnalysis(_id: ID!): Analysis
 
 		# medicineGroups
-		createMedicineGroup(groupName: String!): MedicineGroup
-		updateMedicineGroup(_id: ID!, groupName: String!): MedicineGroup
+		createMedicineGroup(input: MedicineGroupInput!): MedicineGroup
+		updateMedicineGroup(input: MedicineGroupInput!): MedicineGroup
 		removeMedicineGroup(_id: ID!): MedicineGroup
 
 		# medicine

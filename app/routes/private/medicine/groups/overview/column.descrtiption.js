@@ -1,7 +1,16 @@
-// import fp from 'lodash/fp'
+import fp from 'lodash/fp'
 import t from 'i18n'
 
-export default () => [
+export default (LeftControls, RightControls) => [
+	{
+		id: 'leftControls',
+		accessor: fp.identity,
+		width: 40,
+		style: {
+			textAlign: 'center',
+		},
+		Cell: LeftControls,
+	},
 	{
 		Header: t('labels.medicine.groups'),
 		accessor: 'groupName',
@@ -15,13 +24,13 @@ export default () => [
 		id: 'medicamentCount',
 		accessor: 'listOfMedicaments.length',
 	},
-	// {
-	// 	id: 'controls',
-	// 	accessor: fp.identity,
-	// 	width: 40,
-	// 	style: {
-	// 		textAlign: 'center',
-	// 	},
-	// 	Cell: ControlsCellTemplate,
-	// },
+	{
+		id: 'rightControls',
+		accessor: fp.identity,
+		width: 40,
+		style: {
+			textAlign: 'center',
+		},
+		Cell: RightControls,
+	},
 ]

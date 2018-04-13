@@ -10,6 +10,15 @@ const Medicine = `
 	}
 `
 
+const MedicineGroupInput = `
+	input ${typeName}Input {
+		_id: ID
+		groupName: String!
+		priority: Int!
+		note: String
+	}
+`
+
 const MedicineGroup = `
 	type ${typeName} {
 		_id: ID!
@@ -19,6 +28,7 @@ const MedicineGroup = `
 		listOfMedicaments: [${subtypeName}]!
 	}
 
+	${MedicineGroupInput}
 	${Medicine}
 
 	${createPaginationTypes(typeName)}

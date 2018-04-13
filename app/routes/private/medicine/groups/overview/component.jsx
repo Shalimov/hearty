@@ -30,6 +30,7 @@ const MedicineGroupsOverviewComponent = ({
 		</div>
 		<ReactTable
 			manual
+			minRows={1}
 			sortable={false}
 			data={medicineGroups.content}
 			pages={medicineGroups.totalPages}

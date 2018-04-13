@@ -35,6 +35,7 @@ const MedicineOverviewComponent = ({
 			</Link>
 		</div>
 		<ReactTable
+			minRows={1}
 			sortable={false}
 			data={medicineGroup.listOfMedicaments}
 			loading={loading}

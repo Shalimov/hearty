@@ -23,6 +23,7 @@ export default compose(
 					_id
 					groupName
 					priority
+					note
 					listOfMedicaments {
 						_id
 						name

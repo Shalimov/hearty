@@ -25,6 +25,7 @@ const DictionaryComponent = ({
 		</InlineEditorPortal>
 		<ReactTable
 			manual
+			minRows={1}
 			sortable={false}
 			className="term-table-anchor"
 			data={terms.content}

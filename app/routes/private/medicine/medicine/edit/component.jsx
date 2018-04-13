@@ -7,11 +7,12 @@ import t from 'i18n'
 import EditMedicineForm from '../shared/components/editMedicineForm'
 import styles from './styles'
 
-const EditMedicineComponent = ({ data, onSubmit, onCancel }) => (
+const EditMedicineComponent = ({ data, initialValues, onSubmit, onCancel }) => (
 	<ContentLoader isLoading={data.loading}>
 		<div className={css(styles.container)}>
 			<EditMedicineForm
-				legend={t('legends.medicine.addDrug')}
+				initialValues={initialValues}
+				legend={t('legends.medicine.editDrug')}
 				onSubmit={onSubmit}
 				onCancel={onCancel} />
 		</div>
@@ -19,7 +20,8 @@ const EditMedicineComponent = ({ data, onSubmit, onCancel }) => (
 )
 
 EditMedicineComponent.propTypes = {
-	data: PropTypes.func.isRequired,
+	data: PropTypes.shape().isRequired,
+	initialValues: PropTypes.shape(),
 	onSubmit: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 }

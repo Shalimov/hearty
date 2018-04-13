@@ -45,7 +45,8 @@ module.exports = {
 			})
 		)
 
-		return medicineGroupService.update({ _id: group._id }, {
+		return medicineGroupService.update({ 
+			_id: group._id,
 			listOfMedicaments: medicamentListUpdater(group),
 		})
 	},

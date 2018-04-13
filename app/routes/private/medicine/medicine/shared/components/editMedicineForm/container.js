@@ -8,7 +8,7 @@ import EditMedicineFormComponent from './component'
 export default compose(
 	withFormModel(medicineModel, { spreadFields: true }),
 	withHandlers({
-		onInternalSubmit: ({ initialValues, onSubmit }) => (formData) => {
+		onInternalSubmit: ({ initialValues = {}, onSubmit }) => (formData) => {
 			onSubmit({
 				_id: initialValues._id,
 				...mapper(formData, mapping),

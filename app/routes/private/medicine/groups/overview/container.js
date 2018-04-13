@@ -53,12 +53,12 @@ export default compose(
 		},
 	}),
 	withProps(({ onRemove }) => {
-		const wrappedRightControl = withProps({ onRemove })
+		const wrapRightControl = withProps({ onRemove })
 
 		return {
 			columns: columnsDescriptions(
 				LeftControls,
-				wrappedRightControl(RightControls)
+				wrapRightControl(RightControls)
 			),
 		}
 	})

@@ -22,6 +22,7 @@ export default compose(
 				priority
 				note
 				listOfMedicaments {
+					_id
 					name
 					prescription
 				}
@@ -44,13 +45,14 @@ export default compose(
 			history.goBack()
 		},
 	}),
-	withProps(({ onRemove }) => {
-		const wrappedRightControl = withProps({ onRemove })
+	withProps(({ onRemove, match }) => {
+		const warpLeftControl = withProps({ groupId: match.params.groupId })
+		const wrapRightControl = withProps({ onRemove })
 
 		return {
 			columns: columnsDescriptions(
-				LeftControls,
-				wrappedRightControl(RightControls)
+				warpLeftControl(LeftControls),
+				wrapRightControl(RightControls)
 			),
 		}
 	})

@@ -8,8 +8,9 @@ export default ({ initialValues = {} }) => ({
 			.label(t('labels.medicine.drug'))
 			.required(),
 	},
+	
 	prescriptionField: {
-		initialValue: initialValues.note,
+		initialValue: initialValues.prescription,
 		scheme: Ego.string()
 			.label(t('labels.medicine.defaultPrescription')),
 	},

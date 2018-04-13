@@ -5,6 +5,7 @@ const typeName = 'MedicineGroup'
 
 const Medicine = `
 	type ${subtypeName} {
+		_id: ID!
 		name: String!
 		prescription: String
 	}

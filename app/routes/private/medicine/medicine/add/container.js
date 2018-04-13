@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import { compose, withHandlers } from 'recompose'
 import { tryAsync } from 'utils/try'
 import { graphql } from 'react-apollo'
@@ -7,18 +8,20 @@ import AddMedicineComponent from './component'
 
 export default compose(
 	graphql(gql`
-		mutation CreateMedicine($input: MedicineInput) {
+		mutation CreateMedicine($input: MedicineInput!) {
 			createMedicine(input: $input) {
 				_id
 			}
 		}
 	`, { name: 'createMedicine' }),
 	withHandlers({
-		onSubmit: ({ history, createMedicine }) =>
+		onSubmit: ({ match, history, createMedicine }) =>
 			tryAsync(async (drugData) => {
+				const getDrugData = fp.assign({ _gid: match.params.groupId })
+
 				await createMedicine({
 					variables: {
-						input: drugData,
+						input: getDrugData(drugData),
 					},
 				})
 

@@ -9,12 +9,12 @@ import t from 'i18n'
 
 import styles from './styles'
 
-const LeftControlsComponent = ({ value }) => (
+const LeftControlsComponent = ({ groupId, value }) => (
 	<div className={css(styles.controls)}>
 		<Link
 			title={t('hints.clickToEdit')}
 			className={css(styles.link)}
-			to={medicine.edit(value._id)}>
+			to={medicine.editItem(groupId, value._id)}>
 			<Button iconed>
 				<FontAwesome name="pencil-square-o"
 					className={css(styles.icon)} />
@@ -24,6 +24,7 @@ const LeftControlsComponent = ({ value }) => (
 )
 
 LeftControlsComponent.propTypes = {
+	groupId: PropTypes.string.isRequired,
 	value: PropTypes.shape().isRequired,
 }
 

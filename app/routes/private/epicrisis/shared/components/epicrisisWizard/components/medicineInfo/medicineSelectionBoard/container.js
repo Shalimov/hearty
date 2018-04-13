@@ -9,7 +9,7 @@ export default compose(
 		extractSelectedFields: () => {
 			const { selectedMedicineFields, medicineRecommendations } = initialValues
 			return selectedMedicineFields ?
-				selectedMedicineFields :
+				fp.map('value', selectedMedicineFields) :
 				fp.map('medicine', medicineRecommendations)
 		},
 	}))

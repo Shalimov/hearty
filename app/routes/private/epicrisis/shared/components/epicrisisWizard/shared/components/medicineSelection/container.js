@@ -9,8 +9,8 @@ import MedicineSelectionComponent from './component'
 
 const getSelectedKeys = fp.flow(
 	fp.entries,
-	fp.filter(fp.flow(fp.nth(1), Boolean)),
-	fp.map(fp.first)
+	fp.filter(fp.flow(fp.nth(1), fp.get('value'), Boolean)),
+	fp.map(([key, data]) => ({ value: key, meta: data.meta }))
 )
 
 // TODO: Refactoring make unlimited number or groups
@@ -48,7 +48,7 @@ export default compose(
 			formModel,
 			postTransform = fp.identity,
 		}) => (done) => {
-			done(null, { [storeKey]: postTransform(getSelectedKeys(formModel.value)) })
+			done(null, { [storeKey]: postTransform(getSelectedKeys(formModel.valueWithMeta)) })
 		},
 
 		onBeforeNext: ({ formModel }) => (done) => {
@@ -75,12 +75,13 @@ export default compose(
 			const content = fp.get('medicineGroups.content', data)
 
 			fp.each((group) => {
-				for (const { name } of group.listOfMedicaments) {
+				for (const medicine of group.listOfMedicaments) {
+					const { name } = medicine
 					formModel.addField({ 
 						name, 
 						initialValue: isSelectedMedicine(name), 
 						scheme: Ego.boolean().label(name),
-						meta: { gid: group._id },
+						meta: { group, medicine },
 					}) 
 				}
 			}, content)

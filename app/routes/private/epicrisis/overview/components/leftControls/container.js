@@ -1,6 +1,6 @@
 import { compose, withHandlers } from 'recompose'
 
-import ControlsComponent from './component'
+import LeftControlsComponent from './component'
 
 export default compose(
 	withHandlers({
@@ -8,9 +8,5 @@ export default compose(
 			// TODO: fix it
 			onPrint({ _id: value._id, templateName })
 		},
-
-		onInternalRemove: ({ onRemove, value }) => () => {
-			onRemove(value._id)
-		},
 	})
-)(ControlsComponent)
+)(LeftControlsComponent)

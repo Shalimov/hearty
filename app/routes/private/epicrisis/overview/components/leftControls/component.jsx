@@ -1,44 +1,47 @@
 import React from 'react'
+import fp from 'lodash/fp'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { css } from 'aphrodite'
 import { Button } from 'shared/components'
 import FontAwesome from 'react-fontawesome'
-import { analysis } from 'routes/route.map'
-import { ConfirmModal } from 'shared/components'
+import { epicrisis } from 'routes/route.map'
+import { TemplateFinderModal } from 'routes/shared/components'
 import t from 'i18n'
 
 import styles from './styles'
 
-const ControlsComponent = ({ value, onInternalRemove }) => (
+const LeftControlsComponent = ({ value, onInternalPrint }) => (
 	<div className={css(styles.controls)}>
 		<Link
 			title={t('hints.clickToEdit')}
 			className={css(styles.link)}
-			to={analysis.edit(value._id)}>
+			to={epicrisis.edit(value._id)}>
 			<Button iconed>
 				<FontAwesome name="pencil-square-o"
 					className={css(styles.icon)} />
 			</Button>
 		</Link>
-		<ConfirmModal onConfirm={onInternalRemove}>
+		<TemplateFinderModal onSubmit={onInternalPrint}>
 			{
 				onTrigger => (
 					<Button
-						title={t('hints.clickToRemove')}
-						iconed onClick={onTrigger}>
-						<FontAwesome name="trash"
+						disabled={!fp.get('patient.departureAt', value)}
+						title={t('hints.clickToPrint')}
+						iconed
+						onClick={onTrigger}>
+						<FontAwesome name="print"
 							className={css(styles.link, styles.icon)} />
 					</Button>
 				)
 			}
-		</ConfirmModal>
+		</TemplateFinderModal>
 	</div>
 )
 
-ControlsComponent.propTypes = {
+LeftControlsComponent.propTypes = {
 	value: PropTypes.shape().isRequired,
-	onInternalRemove: PropTypes.func.isRequired,
+	onInternalPrint: PropTypes.func.isRequired,
 }
 
-export default ControlsComponent
+export default LeftControlsComponent

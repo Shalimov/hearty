@@ -1,7 +1,13 @@
 import fp from 'lodash/fp'
 import t from 'i18n'
 
-export default (Controls) => [
+export default (LeftControls, RightControls) => [
+	{
+		id: 'leftcontrols',
+		width: 40,
+		accessor: fp.identity,
+		Cell: LeftControls,
+	},
 	{
 		Header: t('labels.name'),
 		accessor: 'name',
@@ -20,9 +26,9 @@ export default (Controls) => [
 			t('legends.additional'),
 	},
 	{
-		id: 'edit',
-		width: 80,
+		id: 'rightcontrols',
+		width: 40,
 		accessor: fp.identity,
-		Cell: Controls,
+		Cell: RightControls,
 	},
 ]

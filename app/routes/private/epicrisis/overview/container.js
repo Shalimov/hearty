@@ -12,7 +12,8 @@ import { tryAsync } from 'utils/try'
 
 import OverviewEpicrisisComponent from './component'
 import columns from './columns.descriptor'
-import Controls from './components/controls'
+import LeftControls from './components/leftControls'
+import RightControls from './components/rightControls'
 
 const DEFAULT_PAGE_SIZE = 15
 const SEARCH_DELAY = 600
@@ -143,10 +144,14 @@ export default compose(
 		},
 	}),
 	withProps(({ onRemove, onPrint }) => {
-		const propsWrapper = withProps({ onRemove, onPrint })
+		const printWrapper = withProps({ onPrint })
+		const removeWrapper = withProps({ onRemove })
 
 		return {
-			columns: columns(propsWrapper(Controls)),
+			columns: columns(
+				printWrapper(LeftControls),
+				removeWrapper(RightControls)
+			),
 		}
 	})
 )(OverviewEpicrisisComponent)

@@ -1,6 +1,6 @@
 import { compose, withHandlers } from 'recompose'
 
-import ControlsComponent from './component'
+import RightControlsComponent from './component'
 
 export default compose(
 	withHandlers({
@@ -8,4 +8,4 @@ export default compose(
 			onRemove(value._id)
 		},
 	})
-)(ControlsComponent)
+)(RightControlsComponent)

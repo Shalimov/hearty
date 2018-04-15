@@ -27,6 +27,10 @@ class DictionaryService extends BaseService {
 		}
 	}
 
+	sortByCreteria() {
+		return { term: -1 }
+	}
+
 	toSearchQuery(params) {
 		if (!params.term) {
 			return {}

@@ -5,7 +5,8 @@ import { tryAsync } from 'utils/try'
 
 import OverviewAnalysesComponent from './component'
 import columns from './columns.descriptor'
-import Controls from './components/controls'
+import LeftControls from './components/leftControls'
+import RightControls from './components/rightControls'
 
 const DEFAULT_PAGE_SIZE = 15
 
@@ -83,7 +84,7 @@ export default compose(
 		const propsWrapper = withProps({ onRemove })
 
 		return {
-			columns: columns(propsWrapper(Controls)),
+			columns: columns(LeftControls, propsWrapper(RightControls)),
 		}
 	})
 )(OverviewAnalysesComponent)

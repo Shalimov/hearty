@@ -64,6 +64,7 @@ const descriptions = {
 		forgotPassword: 'Забыли пароль',
 		analyses: 'Анализы',
 		epicrises: 'Эпикризы',
+		bookmarks: 'Заметки',
 		medicine: {
 			groups: 'Группы лекарств',
 		},
@@ -266,6 +267,7 @@ const descriptions = {
 		clickToEdit: 'Редактировать',
 		clickToPrint: 'Распечатать',
 		departureAtImportant: 'Для распечатки документа эпикриз должен содержать дату выписки.',
+		dragAndDropBookmark: 'Перетяните название поля для сохранения его в заметках.',
 	},
 
 	placeholders: {

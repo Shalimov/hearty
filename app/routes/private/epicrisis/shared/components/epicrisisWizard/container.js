@@ -3,6 +3,7 @@ import {
 	compose,
 	withProps,
 	withHandlers,
+	withState,
 	lifecycle,
 } from 'recompose'
 import { omitRecoursive } from 'utils/omit.recoursive'
@@ -14,6 +15,7 @@ import wizardItems from './wizard.items'
 let containerRef = null
 
 export default compose(
+	withState('bookmarks', 'setBookmarks', []),
 	withProps({ items: wizardItems }),
 	withHandlers({
 		onMessage: () => (location) => {
@@ -43,6 +45,10 @@ export default compose(
 			], combinedData)
 
 			return onSubmit(cleanEpicrisisData, options)
+		},
+
+		onBookmarksChange: ({ setBookmarks }) => (bookmarks) => {
+			setBookmarks({ bookmarks })
 		},
 	}),
 	lifecycle({

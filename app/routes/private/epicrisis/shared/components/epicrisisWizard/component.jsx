@@ -4,12 +4,14 @@ import { Wizard } from 'shared/components'
 import { Prompt } from 'react-router-dom'
 import { css } from 'aphrodite'
 
+import Bookmarks from './shared/components/bookmarks'
 import styles from './styles'
 
 const EpicrisisWizardComponent = ({
 	items,
 	availableStepSelection,
 	initialValues = {},
+	onBookmarksChange,
 	onMessage,
 	onStepChanged,
 	onContainerRef,
@@ -17,6 +19,7 @@ const EpicrisisWizardComponent = ({
 	onCancel,
 }) => (
 	<div ref={onContainerRef} className={css(styles.epicrisisContainer)}>
+		<Bookmarks bookmarks={initialValues} onChange={onBookmarksChange} />
 		<Prompt message={onMessage} />
 		<Wizard
 			startStep={0}
@@ -38,6 +41,7 @@ EpicrisisWizardComponent.propTypes = {
 	),
 	initialValues: PropTypes.shape(),
 	availableStepSelection: PropTypes.bool,
+	onBookmarksChange: PropTypes.func.isRequired,
 	onInternalSubmit: PropTypes.func.isRequired,
 	onMessage: PropTypes.func.isRequired,
 	onStepChanged: PropTypes.func.isRequired,

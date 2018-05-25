@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css, cssx } from 'utils/aphrodite-ext'
 
+import DraggableLabel from './components/draggableLabel'
 import defaultRenderer from './renderers'
 import toggleRenderer from './renderers/toggle'
 import selectRenderer, {
@@ -49,7 +50,7 @@ const InputComponent = ({
 	...params
 }) => (
 	<div className={cssx({ inlinedContainer: params.inlined }, styles)}>
-		{label && <label className={css(styles.label)}>{label}</label>}
+		{label && <DraggableLabel text={label} className={css(styles.label)}/>}
 		<div className={join(
 			css(styles.inputWrapper),
 			cssx({

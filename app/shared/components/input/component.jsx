@@ -58,7 +58,7 @@ const InputComponent = ({
 				strictLong,
 			}, styles)
 		)}>
-			{renderComponent(params)}
+			{renderComponent(params, rendererProxy)}
 			{params.showError && errorRender(error)}
 		</div>
 	</div>

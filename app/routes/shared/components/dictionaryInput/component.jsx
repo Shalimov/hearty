@@ -15,13 +15,18 @@ const DictionaryInputComponent = ({
 	...params
 }) => {
 	const id = `dictionary-context-${params.field.id}`
-	
+
 	// Set smartTab mode by default for textarea types
 	return (
 		<Fragment>
-			<ContextMenuTrigger id={id}>
-				<ValidatedInput {...params} />
-			</ContextMenuTrigger>
+			<ValidatedInput {...params} renderComponent={
+				(params, defaultRenderer) => (
+					<ContextMenuTrigger id={id}
+						attributes={{ className: css(styles.contextMenuContainer) }}>
+						{defaultRenderer(params)}
+					</ContextMenuTrigger>
+				)
+			} />
 			<ContextMenu id={id}>
 				<MenuItem onClick={openPasteFromDictionaryDialog}>
 					<span className={css(styles.text)}>

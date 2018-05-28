@@ -1,3 +1,4 @@
+const fp = require('lodash/fp')
 const fs = require('fs-extra')
 const path = require('path')
 const JSZip = require('jszip')
@@ -25,7 +26,7 @@ const generateDocument = async (templateName, epircirisData) => {
 			return ''
 		},
 	})
-	doc.setData(epircirisData)
+	doc.setData(fp.omit(['bookmarks'], epircirisData))
 
 	doc.render()
 

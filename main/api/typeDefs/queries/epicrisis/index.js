@@ -32,6 +32,7 @@ const EpicrisisType = (input = '') => `
 	# simple fields
 	recommended: String
 	summary: String
+	bookmarks: String
 `
 
 const Epicrisis = `

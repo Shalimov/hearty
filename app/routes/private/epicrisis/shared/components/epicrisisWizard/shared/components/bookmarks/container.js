@@ -11,9 +11,12 @@ const disposerMap = new Map()
 
 export default compose(
 	pure,
-	withFormModel({
-		bookmarksField: Ego.string(),
-	}, { spreadFields: true }),
+	withFormModel(({ bookmarks }) => ({
+		bookmarksField: {
+			initialValue: bookmarks,
+			scheme: Ego.string(),
+		},
+	}), { spreadFields: true }),
 	withState('isExpanded', 'setExpaned', false),
 	DropTarget(SOURCES.DRAGGABLE_LABEL, {
 		drop({ bookmarksField }, monitor) {

@@ -1,3 +1,4 @@
+import fp from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Wizard } from 'shared/components'
@@ -6,6 +7,8 @@ import { css } from 'aphrodite'
 
 import Bookmarks from './shared/components/bookmarks'
 import styles from './styles'
+
+const bookmarks = fp.get('bookmarks')
 
 const EpicrisisWizardComponent = ({
 	items,
@@ -19,7 +22,7 @@ const EpicrisisWizardComponent = ({
 	onCancel,
 }) => (
 	<div ref={onContainerRef} className={css(styles.epicrisisContainer)}>
-		<Bookmarks bookmarks={initialValues} onChange={onBookmarksChange} />
+		<Bookmarks bookmarks={bookmarks(initialValues)} onChange={onBookmarksChange} />
 		<Prompt message={onMessage} />
 		<Wizard
 			startStep={0}

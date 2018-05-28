@@ -15,7 +15,7 @@ import wizardItems from './wizard.items'
 let containerRef = null
 
 export default compose(
-	withState('bookmarks', 'setBookmarks', ''),
+	withState('bookmarks', 'setBookmarks', fp.get('initialValues.bookmarks')),
 	withProps({ items: wizardItems }),
 	withHandlers({
 		onMessage: () => (location) => {

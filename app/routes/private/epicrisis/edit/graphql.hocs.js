@@ -70,6 +70,7 @@ const queryHoc = graphql(gql`
 			}
 			recommended
 			summary
+			bookmarks
 		}
 	}
 `, {

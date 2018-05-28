@@ -47,17 +47,21 @@ const InputComponent = ({
 	error,
 	errorRender = defaultErrorRender,
 	renderComponent = rendererProxy,
+	inputContainerStyle,
+	containerStyle,
 	...params
 }) => (
-	<div className={cssx({ inlinedContainer: params.inlined }, styles)}>
-		{label && <DraggableLabel text={label} className={css(styles.label)}/>}
+	<div style={containerStyle}
+		className={cssx({ inlinedContainer: params.inlined }, styles)}>
+		{label && <DraggableLabel text={label} className={css(styles.label)} />}
 		<div className={join(
 			css(styles.inputWrapper),
 			cssx({
 				strictShort,
 				strictLong,
 			}, styles)
-		)}>
+		)}
+		style={inputContainerStyle}>
 			{renderComponent(params, rendererProxy)}
 			{params.showError && errorRender(error)}
 		</div>
@@ -70,6 +74,8 @@ InputComponent.propTypes = {
 	strictLong: PropTypes.bool,
 	errorRender: PropTypes.func,
 	showError: PropTypes.bool,
+	inputContainerStyle: PropTypes.shape(),
+	containerStyle: PropTypes.shape(),
 	error: PropTypes.shape({ message: PropTypes.string }),
 	renderComponent: PropTypes.func,
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { cssx, join } from 'utils/aphrodite-ext'
+import { cssxi, join } from 'utils/aphrodite-ext'
 
 import localStyles from './styles'
 import globalStyles from '../../styles'
@@ -18,6 +18,7 @@ const TextareaComponent = ({
 	value,
 	rows,
 	placeholder,
+	inputStyle,
 	onInternalKeyDown,
 	onInternalBlur,
 	onClick,
@@ -28,19 +29,20 @@ const TextareaComponent = ({
 		title={title}
 		className={
 			join(
-				cssx({
+				cssxi({
 					input: true,
 					noBorder,
 					flexible,
 					inputError: showError,
 				}, globalStyles),
-				cssx({
+				cssxi({
 					expandable: true,
 					expandedArea: isExpanded,
 				}, localStyles),
 				className
 			)
 		}
+		style={inputStyle}
 		rows={rows}
 		readOnly={readOnly}
 		placeholder={placeholder}
@@ -66,6 +68,7 @@ TextareaComponent.propTypes = {
 	value: PropTypes.any,
 	rows: PropTypes.number,
 	placeholder: PropTypes.string,
+	inputStyle: PropTypes.shape(),
 	onInternalKeyDown: PropTypes.func.isRequired,
 	onInternalBlur: PropTypes.func,
 	onClick: PropTypes.func.isRequired,

@@ -1,18 +1,23 @@
 import fp from 'lodash/fp'
 import { css } from 'aphrodite'
+import { css as cssi } from 'aphrodite/no-important'
 
-const cssx = (meta, styles) => {
+const createXtenstion = fn => (meta, styles) => {
 	const stylesToApply = fp.flow(
 		fp.entries,
 		fp.filter(([, isUsed]) => isUsed),
 		fp.map(([key]) => styles[key])
 	)(meta)
 
-	return css(...stylesToApply)
+	return fn(...stylesToApply)
 }
 
-cssx.bindWith = styles => meta => cssx(meta, styles)
+const cssx = createXtenstion(css)
+const cssxi = createXtenstion(cssi)
 
-export { css, cssx }
+cssx.bindWith = styles => meta => cssx(meta, styles)
+cssxi.bindWith = styles => meta => cssxi(meta, styles)
+
+export { css, cssx, cssi, cssxi }
 export const join = (...args) => args.join(' ')
 

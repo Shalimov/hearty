@@ -1,38 +1,25 @@
-import fp from 'lodash/fp'
-import { compose, withStateHandlers, withHandlers, lifecycle } from 'recompose'
-import SOURCES from 'constants/dnd.sources'
+import { autorun } from 'mobx'
+import { compose, pure, withState, withHandlers, lifecycle } from 'recompose'
 import { DropTarget } from 'react-dnd'
+import Ego from 'utils/validation'
+import { withFormModel } from 'shared/hocs'
+import SOURCES from 'constants/dnd.sources'
 
 import BookmarksComponent from './component'
 
-const toSet = collection => new Set(collection)
-const toArray = set => [...set.values()]
-const uniq = fp.flow(toSet, toArray)
+const disposerMap = new Map()
 
 export default compose(
-	withStateHandlers((() => ({
-		bookmarks: [],
-		isExpanded: false,
-	})), {
-		setExpaned: () => isExpanded => ({ isExpanded }),
-
-		addBookmark: ({ bookmarks }) => (bookmark) => ({
-			bookmarks: uniq([...bookmarks, bookmark]),
-		}),
-
-		removeBookmark: ({ bookmarks }) => (bookmark) => {
-			const bookmarkSet = toSet(bookmarks)
-			bookmarkSet.delete(bookmark)
-
-			return {
-				bookmarks: toArray(bookmarkSet),
-			}
-		},
-	}),
+	pure,
+	withFormModel({
+		bookmarksField: Ego.string(),
+	}, { spreadFields: true }),
+	withState('isExpanded', 'setExpaned', false),
 	DropTarget(SOURCES.DRAGGABLE_LABEL, {
-		drop({ addBookmark }, monitor) {
+		drop({ bookmarksField }, monitor) {
 			const { text } = monitor.getItem()
-			addBookmark(text)
+			const content = bookmarksField.value
+			bookmarksField.value = content ? `${content}\n${text}` : text
 		},
 	}, (connect, monitor) => ({
 		connectDropTarget: connect.dropTarget(),
@@ -43,16 +30,31 @@ export default compose(
 		onToggle: ({ isExpanded, setExpaned }) => () => {
 			setExpaned(!isExpanded)
 		},
-
-		onRemove: ({ removeBookmark }) => bookmark => () => {
-			removeBookmark(bookmark)
-		},
 	}),
 	lifecycle({
-		componentDidUpdate(oldProps) {
-			if (this.props.bookmarks !== oldProps.bookmarks) {
-				const { onChange } = this.props
-				onChange(this.props.bookmarks)
+		componentDidMount() {
+			const { formModel, onChange } = this.props
+
+			let isFirstTime = true
+
+			const disposer = autorun(() => {
+				const { bookmarksField: bookmarks } = formModel.value
+
+				if (!isFirstTime) {
+					onChange(bookmarks)
+				}
+
+				isFirstTime = false
+			})
+
+			disposerMap.set(this, disposer)
+		},
+
+		componentWillUnmount() {
+			const disposer = disposerMap.get(this)
+
+			if (disposerMap.delete(this)) {
+				disposer()
 			}
 		},
 	})

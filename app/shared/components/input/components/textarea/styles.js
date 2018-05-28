@@ -6,7 +6,7 @@ const { unit } = measures
 
 const styles = StyleSheet.create({
 	expandable: {
-		height: toPx(12 * unit),
+		minHeight: toPx(12 * unit),
 		transition: 'all .5s ease-out',
 	},
 

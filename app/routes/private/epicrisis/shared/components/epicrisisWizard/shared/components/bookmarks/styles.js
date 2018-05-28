@@ -1,7 +1,7 @@
 import { StyleSheet } from 'aphrodite'
 import { colors, font, measures } from 'styles/variables'
 import { mixins } from 'styles/mixins'
-import { toPx, toVh, toVw, tags } from 'utils/styles'
+import { toPx, toPr, toVh, toVw, tags } from 'utils/styles'
 
 const { unit } = measures
 
@@ -14,11 +14,13 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		top: 0,
 		zIndex: 1000,
+		pointerEvents: 'none',
 	},
 
 	bookmarksHeader: {
 		...mixins.font({ size: font.font16, weight: font.weight.bold }),
 		textAlign: 'center',
+		marginBottom: toPx(unit),
 	},
 
 	bookmarksContainer: {
@@ -28,30 +30,13 @@ const styles = StyleSheet.create({
 		borderLeft: `1px solid ${colors.color7}`,
 		borderBottom: `1px solid ${colors.color7}`,
 		transition: 'width 600ms',
+		pointerEvents: 'all',
 	},
 
-	bookmarkPlaceholder: {
-		minWidth: toVw(25),
-		padding: tags.px`${unit} 0`,
-		textAlign: 'center',
-	},
-
-	bookmarkListWrapper: {
+	bookmarkAreaWrapper: {
 		minWidth: toVw(20),
 		padding: toPx(unit),
-	},
-
-	bookmarkList: {
-		height: 'inherit',
-		overflow: 'auto',
-		transition: 'opacity 500ms',
-	},
-
-	bookmarkItem: {
-		...mixins.flexRow(),
-		justifyContent: 'space-between',
-		padding: toPx(unit),
-		borderBottom: `1px solid ${colors.color1}`,
+		height: `calc(${toPr(100)} - ${toPx(3 * unit)})`,
 	},
 
 	expanded: {
@@ -62,11 +47,23 @@ const styles = StyleSheet.create({
 		width: 0,
 	},
 
+	toggle: {
+		pointerEvents: 'all',
+	},
+
 	iconWrapper: {
 		borderRadius: tags.px`${5} 0 0 ${5}`,
 		backgroundColor: colors.color7,
 		padding: tags.px`${6 * unit} ${unit}`,
 		color: colors.white100,
+	},
+
+	inputInnerContainer: {
+		height: toPr(100),
+	},
+
+	inputContainer: {
+		height: 'inherit',
 	},
 })
 

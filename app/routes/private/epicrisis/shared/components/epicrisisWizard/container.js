@@ -15,7 +15,7 @@ import wizardItems from './wizard.items'
 let containerRef = null
 
 export default compose(
-	withState('bookmarks', 'setBookmarks', []),
+	withState('bookmarks', 'setBookmarks', ''),
 	withProps({ items: wizardItems }),
 	withHandlers({
 		onMessage: () => (location) => {
@@ -36,8 +36,8 @@ export default compose(
 			fp.invoke('scrollIntoView', containerRef)
 		},
 
-		onInternalSubmit: ({ onSubmit, initialValues }) => (wizardData, options) => {
-			const combinedData = fp.mergeAll([initialValues, wizardData])
+		onInternalSubmit: ({ onSubmit, initialValues, bookmarks }) => (wizardData, options) => {
+			const combinedData = fp.mergeAll([initialValues, wizardData, { bookmarks }])
 			const cleanEpicrisisData = omitRecoursive([
 				'selectedMedicineFields',
 				'selectedAnalyses',
@@ -48,7 +48,7 @@ export default compose(
 		},
 
 		onBookmarksChange: ({ setBookmarks }) => (bookmarks) => {
-			setBookmarks({ bookmarks })
+			setBookmarks(bookmarks)
 		},
 	}),
 	lifecycle({

@@ -6,7 +6,7 @@ import { MemoryRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { ContentLoader } from 'shared/components'
 import { DialogProvider } from 'shared/hocs'
-import HTML5Backend from 'react-dnd-html5-backend'
+import ElectronBackend from 'react-dnd-electron-backend'
 import { DragDropContextProvider } from 'react-dnd'
 
 import ApplicationRoutes from './routes'
@@ -25,7 +25,7 @@ const ApplicationComponent = ({
 				<Provider
 					applicationStateStore={applicationStateStore}
 					{...services}>
-					<DragDropContextProvider backend={HTML5Backend}>
+					<DragDropContextProvider backend={ElectronBackend}>
 						<Router getUserConfirmation={getUserConfirmation}>
 							<ApplicationRoutes />
 						</Router>

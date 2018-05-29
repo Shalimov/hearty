@@ -7833,9 +7833,9 @@ react-datetime@^2.11.1:
     prop-types "^15.5.7"
     react-onclickoutside "^6.5.0"
 
-react-dnd-html5-backend@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.6.0.tgz#590cd1cca78441bb274edd571fef4c0b16ddcf8e"
+react-dnd-electron-backend@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-dnd-electron-backend/-/react-dnd-electron-backend-1.5.1.tgz#2fe1cc8647ee4c30b019b9c8c7064bf579d055c7"
   dependencies:
     lodash "^4.2.0"
 

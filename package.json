@@ -66,7 +66,7 @@
     "react-contextmenu": "^2.9.2",
     "react-datetime": "^2.11.1",
     "react-dnd": "^2.6.0",
-    "react-dnd-html5-backend": "^2.6.0",
+    "react-dnd-electron-backend": "^1.5.1",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
     "react-input-mask": "^1.2.2",

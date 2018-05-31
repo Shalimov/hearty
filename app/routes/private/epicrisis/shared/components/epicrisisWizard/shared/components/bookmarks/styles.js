@@ -41,10 +41,12 @@ const styles = StyleSheet.create({
 
 	expanded: {
 		width: toVw(30),
+		borderRight: `4px solid ${colors.color7}`,
 	},
 
 	collapsed: {
 		width: 0,
+		borderRight: `3px solid ${colors.color7}`,
 	},
 
 	toggle: {

@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 
 	toggle: {
 		pointerEvents: 'all',
+		position: 'relative',
 	},
 
 	iconWrapper: {
@@ -58,6 +59,18 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.color7,
 		padding: tags.px`${6 * unit} ${unit}`,
 		color: colors.white100,
+	},
+
+	exclamation: {
+		fontSize: font.font18,
+		color: colors.color11,
+		position: 'absolute',
+		top: toPx(-9),
+		left: toPx(-9),
+		backgroundColor: colors.white100,
+		borderRadius: toPx(50),
+		width: toPx(2 * unit),
+		height: toPx(2 * unit),
 	},
 
 	inputInnerContainer: {

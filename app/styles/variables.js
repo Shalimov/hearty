@@ -26,6 +26,7 @@ export const colors = {
 	color8: '#2E2E2E',
 	color9: '#F5F5F5',
 	color10: '#1A1C1D',
+	color11: '#BF0606',
 
 	errorColor1: errorColor,
 	errorColor2: darken(errorColor, 60),

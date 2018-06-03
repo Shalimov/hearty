@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import FontAwesome from 'react-fontawesome'
 import { Button, ValidatedInput } from 'shared/components'
 import { css, cssx } from 'utils/aphrodite-ext'
@@ -24,6 +25,11 @@ const BookmarksComponent = ({
 			<Button iconed onClick={onToggle} className={css(styles.toggle)}>
 				<div className={css(styles.iconWrapper)}>
 					<FontAwesome name="bookmark" />
+					{
+						bookmarksField.value && (
+							<FontAwesome name="exclamation-circle" className={css(styles.exclamation)} />
+						)
+					}
 				</div>
 			</Button>
 			<div className={cx({ bookmarksContainer: true, collapsed, expanded })}>
@@ -38,7 +44,7 @@ const BookmarksComponent = ({
 						placeholder={t('hints.dragAndDropBookmark')}
 						field={bookmarksField}
 						inputStyle={{ border: 'none' }}
-						inputContainerStyle={{ height: '100%'}}
+						inputContainerStyle={{ height: '100%' }}
 						containerStyle={{ height: 'inherit' }} />
 				</div>
 			</div>
@@ -54,4 +60,4 @@ BookmarksComponent.propTypes = {
 	onToggle: PropTypes.func.isRequired,
 }
 
-export default BookmarksComponent
+export default observer(BookmarksComponent)

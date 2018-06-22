@@ -1,5 +1,5 @@
 import fp from 'lodash/fp'
-import { withProps } from 'recompose'
+import { withPropsOnChange } from 'recompose'
 
 import ValidationFormModel from './validation.form.model'
 
@@ -25,13 +25,15 @@ const withFormModel = (description, opts) => {
 	)
 
 	if (options.spreadFields) {
-		return withProps(formModelProvider(formModel => ({
-			[options.as]: formModel,
-			...formModel.fields,
-		})))
+		return withPropsOnChange(
+			['initialValues'],
+			formModelProvider(formModel => ({
+				[options.as]: formModel,
+				...formModel.fields,
+			})))
 	}
 
-	return withProps(formModelProvider(formModel => ({ [options.as]: formModel })))
+	return withPropsOnChange(['initialValues'], formModelProvider(formModel => ({ [options.as]: formModel })))
 }
 
 export default withFormModel

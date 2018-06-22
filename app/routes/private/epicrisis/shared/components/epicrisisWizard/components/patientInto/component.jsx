@@ -19,7 +19,7 @@ const PatientIntoComponent = ({
 	onSubmit,
 	onCancel,
 }) => (
-	<Form>
+	<Form className={css(styles.form)}>
 		<fieldset>
 			<legend className={css(styles.formLegend)}>{t('legends.epicrisisInfo')}</legend>
 			<div className={css(styles.rows)}>

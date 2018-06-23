@@ -31,6 +31,8 @@ export default compose(
 					_id: initialValues._id,
 					...covertedModel,
 				})
+
+				formModel.reset()
 			}
 
 			if (!onlyEditor) {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { css, cssx } from 'utils/aphrodite-ext'
+import { Image } from 'shared/components'
 import {
 	board,
 	dictionary,
@@ -55,19 +56,10 @@ const NavSidebarComponent = () => (
 			<li className={css(styles.menuItem)}>
 				<SideBarLink url={dictionary.index()} title="links.dictionary" icon="book" />
 			</li>
-			{/* <li className={css(styles.menuItem)}>
-				<Collapsible
-					contentOuterClassName={css(styles.menuPaddingRemoval)}
-					trigger={<SideBarTrigger title="Organisation" icon="folder-open" />}
-					triggerWhenOpen={<SideBarTrigger title="Organisation" icon="folder-open" chevronDir="up" />}>
-					<div className={css(styles.collapsableContent)}>
-						<SideBarLink url={tenants.edit(user.tenantId)} title="Update details" extraClass={styles.submenuLink} />
-						<SideBarLink url={tenants.keys(user.tenantId)} title="API Keys" extraClass={styles.submenuLink} />
-						<SideBarLink url={tenantUsers.index(user.tenantId)} title="Users" extraClass={styles.submenuLink} />
-					</div>
-				</Collapsible>
-			</li> */}
 		</menu>
+		<div className={css(styles.imageContainer)}>
+			<Image name="dna-chain" small />
+		</div>
 	</aside>
 )
 

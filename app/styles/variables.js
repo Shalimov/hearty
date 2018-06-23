@@ -12,7 +12,7 @@ const errorColor = '#FFE9E9'
 
 export const colors = {
 	gradients: {
-		color1: 'linear-gradient(to right, #fdfbfb, #ebedee)',
+		color1: 'linear-gradient(to top, #8CB8D8, #C8DEEB, #E8E8E8, #FFF)',
 		color2: 'linear-gradient(to right, #141e30, #243b55)',
 	},
 

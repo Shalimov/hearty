@@ -1,15 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'aphrodite'
+import { cssx } from 'utils/aphrodite-ext'
 
 import styles from './styles'
 
-const ImageComponent = ({ name, ext = 'png' }) => (
-	<img src={`./img/${name}.${ext}`} className={css(styles.image)} />
+const cx = cssx.bindWith(styles)
+
+const ImageComponent = ({ name, ext = 'png', small }) => (
+	<img src={`./img/${name}.${ext}`} className={cx({
+		image: true,
+		small,
+	})} />
 )
 
 ImageComponent.propTypes = {
 	name: PropTypes.string.isRequired,
+	small: PropTypes.bool,
 	ext: PropTypes.string,
 }
 

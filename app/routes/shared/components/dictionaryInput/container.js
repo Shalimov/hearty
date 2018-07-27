@@ -16,7 +16,7 @@ export default compose(
 			// TODO: this is workaround to transmit data between dialog and input and should be improved
 			pasteFromDictionaryDialog.onceData((term) => {
 				if (fp.isString(term)) {
-					field.onChangeText(term)
+					field.onChangeText(`${field.value} ${term}`)
 				}
 			})
 		},
